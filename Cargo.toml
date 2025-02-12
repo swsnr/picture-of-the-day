@@ -21,6 +21,9 @@ edition = "2021"
 publish = false
 
 [dependencies]
+adw = { package = "libadwaita", version = "0.7.0", features = ["v1_6"] }
+glib = { version = "0.20.7", features = ["log", "log_macros"] }
+gtk = { package = "gtk4", version = "0.9.5", features = ["gnome_47"] }
 
 [package.metadata.release]
 pre-release-commit-message = "Release {{version}}"
