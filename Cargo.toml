@@ -1,0 +1,32 @@
+[package]
+name = "picture-of-the-day"
+description = "A fresh picture of the day as your desktop wallpaper "
+homepage = "https://github.com/swsnr/turnon"
+repository = "https://github.com/swsnr/turnon"
+license = "MPL-2.0"
+authors = ["Sebastian Wiesner <sebastian@swsnr.de>"]
+# Our version number.  Since semver doesn't make much sense for UI applications
+# which have no API we repurpose the version numer as follows:
+#
+# - major: Major new features or major changes to the UI, which may break the app for some users.
+# - minor: User-visible features or bugfixes.
+# - patch: Translation updates.
+#
+# Major and minor releases get release notes, but patch releases do not; this
+# enables us to ship updates to translations whenever translators contributed
+# new languages or made major updates, while still providing meaningful release
+# notes for the last functional changes.
+version = "0.0.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+
+[package.metadata.release]
+pre-release-commit-message = "Release {{version}}"
+tag-message = "Turn On {{tag_name}}"
+publish = false
+verify = false
+push = false
+sign-tag = true
+sign-commit = true
