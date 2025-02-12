@@ -1,0 +1,26 @@
+
+# cargo-vet config file
+
+[cargo-vet]
+version = "0.10"
+
+[imports.bytecode-alliance]
+url = "https://raw.githubusercontent.com/bytecodealliance/wasmtime/main/supply-chain/audits.toml"
+
+[imports.embark-studios]
+url = "https://raw.githubusercontent.com/EmbarkStudios/rust-ecosystem/main/audits.toml"
+
+[imports.gnome-releng]
+url = "https://gitlab.gnome.org/Teams/Releng/rust-supply-chain/-/raw/main/gnome-audited/audits.toml"
+
+[imports.google]
+url = "https://raw.githubusercontent.com/google/supply-chain/main/audits.toml"
+
+[imports.mozilla]
+url = "https://raw.githubusercontent.com/mozilla/supply-chain/main/audits.toml"
+
+[imports.swsnr]
+url = "https://raw.githubusercontent.com/swsnr/rust-supply-chain/refs/heads/main/audits.toml"
+
+[policy.picture-of-the-day]
+criteria = "safe-to-run"
