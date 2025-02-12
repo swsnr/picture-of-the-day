@@ -40,3 +40,5 @@ jobs:
       - run: cargo build
       - run: cargo clippy --all-targets
       - run: cargo test
+      - name: cargo deny check
+        uses: EmbarkStudios/cargo-deny-action@v2

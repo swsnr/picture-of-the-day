@@ -1,0 +1,14 @@
+[graph]
+targets = [
+    # Flathub builds these targets so that's what we care aout
+    { triple = 'x86_64-unknown-linux-gnu' },
+    { triple = 'aarch64-unknown-linux-gnu' },
+]
+
+[advisories]
+version = 2
+ignore = []
+
+[licenses]
+version = 2
+allow = ["MPL-2.0"]
