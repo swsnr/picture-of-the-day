@@ -486,6 +486,7 @@ dependencies = [
  "glib",
  "gtk4",
  "libadwaita",
+ "log",
 ]
 
 [[package]]
