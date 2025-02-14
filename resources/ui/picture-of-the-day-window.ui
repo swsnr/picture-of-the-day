@@ -34,6 +34,10 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   </template>
   <menu id="main_menu">
     <item>
+      <attribute name="label" translatable="yes" context="main-window.menu.label">_New window</attribute>
+      <attribute name="action">app.new-window</attribute>
+    </item>
+    <item>
       <attribute name="label" translatable="yes" context="main-window.menu.label">_Quit</attribute>
       <attribute name="action">app.quit</attribute>
     </item>

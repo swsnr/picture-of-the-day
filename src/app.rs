@@ -7,6 +7,9 @@
 use adw::prelude::*;
 use glib::Object;
 use gtk::gio::ActionEntry;
+use widgets::PictureOfTheDayWindow;
+
+use crate::config::G_LOG_DOMAIN;
 
 mod widgets;
 
@@ -21,11 +24,27 @@ impl PictureOfTheDayApplication {
     ///
     /// - `app.quit` quits the application.
     fn setup_actions(&self) {
-        let actions = [ActionEntry::builder("quit")
-            .activate(|app: &Self, _, _| app.quit())
-            .build()];
+        let actions = [
+            ActionEntry::builder("quit")
+                .activate(|app: &Self, _, _| app.quit())
+                .build(),
+            ActionEntry::builder("new-window")
+                .activate(|app: &Self, _, _| app.new_window())
+                .build(),
+        ];
         self.add_action_entries(actions);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
+        self.set_accels_for_action("app.new-window", &["<Control><Shift>n"]);
+    }
+
+    fn new_window(&self) {
+        glib::debug!("Creating new window");
+        // TODO: Get current active window and inherit selected source from it.
+        let window = PictureOfTheDayWindow::new(self);
+        if crate::config::is_development() {
+            window.add_css_class("devel");
+        }
+        window.present();
     }
 }
 
@@ -39,12 +58,9 @@ impl Default for PictureOfTheDayApplication {
 }
 
 mod imp {
-    use adw::prelude::*;
     use adw::subclass::prelude::*;
 
     use crate::config::G_LOG_DOMAIN;
-
-    use super::widgets::PictureOfTheDayWindow;
 
     #[derive(Default)]
     pub struct PictureOfTheDayApplication {}
@@ -82,12 +98,7 @@ mod imp {
         fn activate(&self) {
             glib::debug!("Activating application");
             self.parent_activate();
-
-            let window = PictureOfTheDayWindow::new(&*self.obj());
-            if crate::config::is_development() {
-                window.add_css_class("devel");
-            }
-            window.present();
+            self.obj().new_window();
         }
     }
 
