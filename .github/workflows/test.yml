@@ -40,6 +40,10 @@ jobs:
     container:
       # For Gtk support
       image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+    env:
+      # Skip blueprint compilation because the gtk4-rs container lacks the
+      # typelib files required for blueprint to resolve imports.
+      SKIP_BLUEPRINT: 1
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
