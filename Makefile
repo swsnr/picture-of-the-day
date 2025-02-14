@@ -39,7 +39,8 @@ pot:
 	find resources/ -name '*.blp' > po/POTFILES.blp
 	xgettext $(XGETTEXT_OPTS) --language=C --keyword=_ --keyword=C_:1c,2 --files-from=po/POTFILES.blp --output=po/de.swsnr.picture-of-the-day.blp.pot
 	xgettext $(XGETTEXT_OPTS) --output=po/de.swsnr.picture-of-the-day.pot \
-		po/de.swsnr.picture-of-the-day.blp.pot
+		po/de.swsnr.picture-of-the-day.blp.pot \
+		de.swsnr.picture-of-the-day.desktop.in
 	rm -f po/POTFILES* po/de.swsnr.picture-of-the-day.rs.pot po/de.swsnr.picture-of-the-day.blp.pot
 	sed -i /POT-Creation-Date/d po/de.swsnr.picture-of-the-day.pot
 
@@ -63,6 +64,8 @@ install-locale: $(addprefix $(LOCALEDIR)/,$(addsuffix /LC_MESSAGES/$(APPID).mo,$
 .PHONY: install
 install: install-locale
 	install -Dm0755 target/release/picture-of-the-day $(DESTPREFIX)/bin/$(APPID)
+	install -Dm0644 de.swsnr.picture-of-the-day.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
+	install -Dm0644 dbus-1/de.swsnr.picture-of-the-day.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
 
 # Patch the current git describe version into Picture Of The Day.
 .PHONY: patch-git-version
@@ -74,4 +77,6 @@ patch-git-version:
 .PHONY: patch-appid
 patch-appid:
 	sed -i '/$(APPID)/! s/de\.swsnr\.picture-of-the-day/$(APPID)/g' \
-		src/config.rs
+		src/config.rs \
+		de.swsnr.picture-of-the-day.desktop.in \
+		dbus-1/de.swsnr.picture-of-the-day.service

@@ -1,0 +1,45 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Sebastian Wiesner <sebastian@swsnr.de>
+# This file is distributed under the same license as the de.swsnr.picture-of-the-day package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: de.swsnr.picture-of-the-day\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. Translators: Do feel free to translate the application name
+#: de.swsnr.picture-of-the-day.desktop.in:3
+msgid "Picture Of the Day"
+msgstr ""
+
+#: de.swsnr.picture-of-the-day.desktop.in:4
+msgid "A daily picture as your wallpaper"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: de.swsnr.picture-of-the-day.desktop.in:10
+msgid "Gnome;GTK;Picture;Day;Wallpaper;"
+msgstr ""
+
+#: resources/ui/picture-of-the-day-window.blp:9
+msgid "Picture Of The Day"
+msgstr ""
+
+#: resources/ui/picture-of-the-day-window.blp:34
+msgctxt "main-window.menu.label"
+msgid "_New window"
+msgstr ""
+
+#: resources/ui/picture-of-the-day-window.blp:39
+msgctxt "main-window.menu.label"
+msgid "_Quit"
+msgstr ""

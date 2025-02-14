@@ -42,6 +42,52 @@ fn compile_blueprint() -> Vec<PathBuf> {
     blueprint_files
 }
 
+/// Run `msgfmt` over a template file to merge translations with the template.
+fn msgfmt_template<P: AsRef<Path>>(template: P) {
+    let target = template.as_ref().with_extension("");
+    let mode = match target.extension().and_then(|e| e.to_str()) {
+        Some("desktop") => "--desktop",
+        Some("xml") => "--xml",
+        other => panic!("Unsupported template extension: {:?}", other),
+    };
+
+    Command::new("msgfmt")
+        .args([mode, "--template"])
+        .arg(template.as_ref())
+        .args(["-d", "po", "--output"])
+        .arg(target)
+        .checked();
+}
+
+fn msgfmt() -> Vec<PathBuf> {
+    let po_files: Vec<PathBuf> = glob::glob("po/*.po")
+        .unwrap()
+        .collect::<std::result::Result<_, _>>()
+        .unwrap();
+
+    let msgfmt_exists = Command::new("msgfmt")
+        .arg("--version")
+        .status()
+        .is_ok_and(|status| status.success());
+
+    let templates = &[Path::new("de.swsnr.picture-of-the-day.desktop.in").to_owned()];
+    if msgfmt_exists {
+        for file in templates {
+            msgfmt_template(file);
+        }
+    } else {
+        println!("cargo::warning=msgfmt not found; using untranslated desktop and metainfo file.");
+        for file in templates {
+            std::fs::copy(file, file.with_extension("")).unwrap();
+        }
+    }
+
+    let mut sources = po_files;
+    sources.push("po/LINGUAS".into());
+    sources.extend_from_slice(templates);
+    sources
+}
+
 pub fn compile_resources<P: AsRef<Path>>(
     source_dirs: &[P],
     gresource: &str,
@@ -92,7 +138,10 @@ pub fn compile_resources<P: AsRef<Path>>(
 }
 
 fn main() {
-    let tasks = [std::thread::spawn(compile_blueprint)];
+    let tasks = [
+        std::thread::spawn(compile_blueprint),
+        std::thread::spawn(msgfmt),
+    ];
 
     let mut sources = tasks
         .into_iter()
