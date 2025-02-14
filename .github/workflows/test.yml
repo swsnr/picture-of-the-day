@@ -57,6 +57,9 @@ jobs:
             target/
           key: ${{ runner.os }}-rust-${{ steps.toolchain.outputs.cachekey }}-cargo-${{ hashFiles('**/Cargo.lock') }}
       - run: cargo fmt --check
+      - run: blueprint-compiler format resources/**/*.blp
+        # Make the glob work
+        shell: bash
       - run: cargo build
       - run: cargo clippy --all-targets
       - run: cargo test
