@@ -4,12 +4,29 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use adw::prelude::*;
 use glib::Object;
+use gtk::gio::ActionEntry;
+
+mod widgets;
 
 glib::wrapper! {
     pub struct PictureOfTheDayApplication(ObjectSubclass<imp::PictureOfTheDayApplication>)
         @extends adw::Application, gtk::Application, gtk::gio::Application,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap;
+}
+
+impl PictureOfTheDayApplication {
+    /// Setup actions of the application.
+    ///
+    /// - `app.quit` quits the application.
+    fn setup_actions(&self) {
+        let actions = [ActionEntry::builder("quit")
+            .activate(|app: &Self, _, _| app.quit())
+            .build()];
+        self.add_action_entries(actions);
+        self.set_accels_for_action("app.quit", &["<Control>q"]);
+    }
 }
 
 impl Default for PictureOfTheDayApplication {
@@ -22,9 +39,12 @@ impl Default for PictureOfTheDayApplication {
 }
 
 mod imp {
+    use adw::prelude::*;
     use adw::subclass::prelude::*;
 
     use crate::config::G_LOG_DOMAIN;
+
+    use super::widgets::PictureOfTheDayWindow;
 
     #[derive(Default)]
     pub struct PictureOfTheDayApplication {}
@@ -55,6 +75,19 @@ mod imp {
                     crate::config::CARGO_PKG_VERSION
                 );
             }
+
+            self.obj().setup_actions();
+        }
+
+        fn activate(&self) {
+            glib::debug!("Activating application");
+            self.parent_activate();
+
+            let window = PictureOfTheDayWindow::new(&*self.obj());
+            if crate::config::is_development() {
+                window.add_css_class("devel");
+            }
+            window.present();
         }
     }
 

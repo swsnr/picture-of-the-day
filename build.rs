@@ -4,8 +4,16 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use std::io::{Error, ErrorKind, Result};
 use std::path::{Path, PathBuf};
 use std::process::{Command, Stdio};
+
+fn glob_io(pattern: &str) -> Result<Vec<PathBuf>> {
+    glob::glob(pattern)
+        .map_err(|err| Error::new(ErrorKind::Other, err))?
+        .map(|item| item.map_err(|err| Error::new(ErrorKind::Other, err)))
+        .collect::<Result<Vec<PathBuf>>>()
+}
 
 trait CommandExt {
     fn checked(&mut self);
@@ -18,6 +26,20 @@ impl CommandExt for Command {
             panic!("Command {:?} failed with status {status}", self);
         }
     }
+}
+
+/// Compile all blueprint files.
+fn compile_blueprint() -> Vec<PathBuf> {
+    let blueprint_files = glob_io("resources/**/*.blp").unwrap();
+    if let Some("1") | Some("true") = std::env::var("SKIP_BLUEPRINT").ok().as_deref() {
+        println!("cargo::warning=Skipping blueprint compilation, falling back to committed files.");
+    } else {
+        Command::new("blueprint-compiler")
+            .args(["batch-compile", "resources", "resources"])
+            .args(&blueprint_files)
+            .checked();
+    }
+    blueprint_files
 }
 
 pub fn compile_resources<P: AsRef<Path>>(
@@ -70,7 +92,12 @@ pub fn compile_resources<P: AsRef<Path>>(
 }
 
 fn main() {
-    let mut sources = Vec::new();
+    let tasks = [std::thread::spawn(compile_blueprint)];
+
+    let mut sources = tasks
+        .into_iter()
+        .flat_map(|task| task.join().unwrap())
+        .collect::<Vec<_>>();
 
     sources.extend_from_slice(
         compile_resources(

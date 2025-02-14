@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
     <gresource prefix="/de/swsnr/picture-of-the-day/">
+        <!-- User interface templates -->
+        <file compressed="true" preprocess="xml-stripblanks">ui/picture-of-the-day-window.ui</file>
     </gresource>
 </gresources>
