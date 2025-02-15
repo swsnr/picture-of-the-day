@@ -37,9 +37,12 @@ XGETTEXT_OPTS = \
 pot:
 	find src -name '*.rs' > po/POTFILES.rs
 	find resources/ -name '*.blp' > po/POTFILES.blp
+	xgettext $(XGETTEXT_OPTS) --language=C --keyword=dpgettext2:2c,3 --files-from=po/POTFILES.rs --output=po/de.swsnr.picture-of-the-day.rs.pot
 	xgettext $(XGETTEXT_OPTS) --language=C --keyword=_ --keyword=C_:1c,2 --files-from=po/POTFILES.blp --output=po/de.swsnr.picture-of-the-day.blp.pot
 	xgettext $(XGETTEXT_OPTS) --output=po/de.swsnr.picture-of-the-day.pot \
 		po/de.swsnr.picture-of-the-day.blp.pot \
+		po/de.swsnr.picture-of-the-day.rs.pot \
+		resources/de.swsnr.picture-of-the-day.metainfo.xml.in \
 		de.swsnr.picture-of-the-day.desktop.in
 	rm -f po/POTFILES* po/de.swsnr.picture-of-the-day.rs.pot po/de.swsnr.picture-of-the-day.blp.pot
 	sed -i /POT-Creation-Date/d po/de.swsnr.picture-of-the-day.pot
