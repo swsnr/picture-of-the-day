@@ -21,7 +21,7 @@ jobs:
       image: ghcr.io/flathub/flatpak-builder-lint:latest
     steps:
       - uses: actions/checkout@v4
-      - run: flatpak-builder-lint appstream resources/de.swsnr.turnon.metainfo.xml.in
+      - run: flatpak-builder-lint appstream resources/de.swsnr.picture-of-the-day.metainfo.xml.in
 
   # See https://mozilla.github.io/cargo-vet/configuring-ci.html
   cargo-vet:
