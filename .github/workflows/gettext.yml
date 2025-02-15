@@ -8,7 +8,7 @@ on:
       - src/**/*.rs
       - resources/**/*.blp
       - resources/*.metainfo.xml.in
-      - de.swsnr.turnon.desktop.in
+      - *.desktop.in
       - Makefile
       - .github/workflows/gettext.yml
 
