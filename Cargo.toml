@@ -26,6 +26,7 @@ adw = { package = "libadwaita", version = "0.7.0", features = ["v1_6"] }
 glib = { version = "0.20.7", features = ["log", "log_macros"] }
 gtk = { package = "gtk4", version = "0.9.5", features = ["gnome_47"] }
 log = "0.4.22"
+semver = "1.0.24"
 
 [build-dependencies]
 glob = "0.3.1"

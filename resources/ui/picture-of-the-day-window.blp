@@ -31,13 +31,22 @@ template $PictureOfTheDayWindow: Adw.ApplicationWindow {
 }
 
 menu main_menu {
-  item {
-    label: C_("main-window.menu.label", "_New window");
-    action: "app.new-window";
+  section {
+    item {
+      label: C_("main-window.menu.label", "_New window");
+      action: "app.new-window";
+    }
+
+    item {
+      label: C_("main-window.menu.label", "_Quit");
+      action: "app.quit";
+    }
   }
 
-  item {
-    label: C_("main-window.menu.label", "_Quit");
-    action: "app.quit";
+  section {
+    item {
+      label: C_("main-window.menu.label", "_About Picture Of The Day");
+      action: "win.about-app";
+    }
   }
 }

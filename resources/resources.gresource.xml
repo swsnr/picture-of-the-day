@@ -7,5 +7,7 @@
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.picture-of-the-day.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.picture-of-the-day.Devel.svg</file>
         <file preprocess="xml-stripblanks">icons/symbolic/apps/de.swsnr.picture-of-the-day-symbolic.svg</file>
+        <!-- Other data files -->
+        <file compressed="true" preprocess="xml-stripblanks">de.swsnr.picture-of-the-day.metainfo.xml</file>
     </gresource>
 </gresources>

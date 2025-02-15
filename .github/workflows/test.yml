@@ -14,6 +14,15 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
+  flatpak-builder-lint:
+    name: Lint flatpak manifest and metadata
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub/flatpak-builder-lint:latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: flatpak-builder-lint appstream resources/de.swsnr.turnon.metainfo.xml.in
+
   # See https://mozilla.github.io/cargo-vet/configuring-ci.html
   cargo-vet:
     name: Vet Dependencies
@@ -69,3 +78,4 @@ jobs:
       - run: cargo test
       - name: cargo deny check
         uses: EmbarkStudios/cargo-deny-action@v2
+      - run: appstreamcli validate --explain resources/de.swsnr.picture-of-the-day.metainfo.xml

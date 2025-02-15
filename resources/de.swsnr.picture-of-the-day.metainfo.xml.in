@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<component type="desktop-application">
+    <id>de.swsnr.picture-of-the-day</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <name>Picture Of The Day</name>
+    <summary>A daily picture as your wallpaper</summary>
+    <description>
+        <p>Get a picture of the day from any of the following sources as your daily wallpaper.</p>
+        <ul>
+            <li>NASA Astronomy Picture of the Day</li>
+            <li>Bing</li>
+            <li>NASA Earth Observatory Image of the Day</li>
+            <li>Simon Stålenhag Artwork</li>
+            <li>Wikimedia Picture of the day</li>
+        </ul>
+        <p>Note that all images are protected by copyright; you may not be allowed to use or
+            distribute them. Do take a look at the license terms for each image.</p>
+    </description>
+    <categories>
+        <category>Utility</category>
+    </categories>
+    <keywords>
+        <keyword>Picture</keyword>
+        <keyword>Daily</keyword>
+        <keyword>Wallpaper</keyword>
+        <keyword>Astronomy</keyword>
+        <keyword>Artwork</keyword>
+    </keywords>
+    <url type="homepage">https://github.com/swsnr/picture-of-the-day</url>
+    <url type="bugtracker">
+        https://github.com/swsnr/picture-of-the-day/discussions/categories/ideas-issues</url>
+    <!-- TODO translations link to codeberg translate -->
+    <url type="help">https://github.com/swsnr/picture-of-the-day/discussions/categories/q-a</url>
+    <url type="contact">https://swsnr.de/</url>
+    <url type="vcs-browser">https://github.com/swsnr/picture-of-the-day</url>
+    <launchable type="desktop-id">de.swsnr.picture-of-the-day.desktop</launchable>
+    <releases>
+        <!-- To start release notes for an upcoming release, copy the following template.
+
+        Upon release, cargo release will replace it accordingly.
+
+        <release version="next" date="9999-01-01">
+            <description>
+            </description>
+            <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
+        </release>
+        -->
+        <release version="next" date="9999-01-01">
+            <description>
+            </description>
+            <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
+        </release>
+    </releases>
+    <project_license>MPL-2.0</project_license>
+    <developer id="de.swsnr">
+        <name translate="no">Sebastian Wiesner</name>
+    </developer>
+    <!-- TODO: Screenshots -->
+    <translation type="gettext">de.swsnr.picture-of-the-day</translation>
+    <content_rating type="oars-1.1" />
+    <branding>
+        <color type="primary" scheme_preference="light">#33d17a</color>
+        <color type="primary" scheme_preference="dark">#26a269</color>
+    </branding>
+    <requires>
+        <display_length compare="ge">768</display_length>
+    </requires>
+    <supports>
+        <control>keyboard</control>
+        <control>pointing</control>
+        <control>touch</control>
+    </supports>
+</component>

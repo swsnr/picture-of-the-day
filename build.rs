@@ -70,7 +70,10 @@ fn msgfmt() -> Vec<PathBuf> {
         .status()
         .is_ok_and(|status| status.success());
 
-    let templates = &[Path::new("de.swsnr.picture-of-the-day.desktop.in").to_owned()];
+    let templates = &[
+        Path::new("de.swsnr.picture-of-the-day.desktop.in").to_owned(),
+        Path::new("resources/de.swsnr.picture-of-the-day.metainfo.xml.in").to_owned(),
+    ];
     if msgfmt_exists {
         for file in templates {
             msgfmt_template(file);

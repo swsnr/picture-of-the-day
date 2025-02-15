@@ -494,6 +494,7 @@ dependencies = [
  "gtk4",
  "libadwaita",
  "log",
+ "semver",
 ]
 
 [[package]]

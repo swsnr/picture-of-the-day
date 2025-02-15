@@ -15,6 +15,25 @@ pub static APP_ID: &GStr = gstr!("de.swsnr.picture-of-the-day");
 /// This provides the full version from `Cargo.toml`.
 pub static CARGO_PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
 
+/// Get [`CARGO_PKG_VERSION`] parsed.
+fn cargo_pkg_version() -> semver::Version {
+    semver::Version::parse(CARGO_PKG_VERSION).unwrap()
+}
+/// The version to use for release notes.
+///
+/// Returns [`CARGO_PKG_VERSION`] but with patch set to 0, and all pre and
+/// build parts emptied.
+///
+/// This follows our versioning policy which uses patch releases only for
+/// translation updates.
+pub fn release_notes_version() -> semver::Version {
+    let mut version = cargo_pkg_version();
+    version.patch = 0;
+    version.pre = semver::Prerelease::EMPTY;
+    version.build = semver::BuildMetadata::EMPTY;
+    version
+}
+
 pub const G_LOG_DOMAIN: &str = "PictureOfTheDay";
 
 /// Whether this is a development/nightly build.
