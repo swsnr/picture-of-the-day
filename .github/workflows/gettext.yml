@@ -26,6 +26,7 @@ jobs:
         run: dnf install -y git make gettext appstream
       - uses: actions/checkout@v4
       - run: make pot
+      - run: git diff
       # Create a pull request to update the messages file
       - uses: peter-evans/create-pull-request@v7
         with:
