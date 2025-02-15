@@ -64,6 +64,9 @@ install-locale: $(addprefix $(LOCALEDIR)/,$(addsuffix /LC_MESSAGES/$(APPID).mo,$
 .PHONY: install
 install: install-locale
 	install -Dm0755 target/release/picture-of-the-day $(DESTPREFIX)/bin/$(APPID)
+	install -Dm0644 -t $(DESTPREFIX)/share/icons/hicolor/scalable/apps/ resources/icons/scalable/apps/$(APPID).svg
+	install -Dm0644 resources/icons/symbolic/apps/de.swsnr.picture-of-the-day-symbolic.svg \
+		$(DESTPREFIX)/share/icons/hicolor/symbolic/apps/$(APPID)-symbolic.svg
 	install -Dm0644 de.swsnr.picture-of-the-day.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
 	install -Dm0644 dbus-1/de.swsnr.picture-of-the-day.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
 

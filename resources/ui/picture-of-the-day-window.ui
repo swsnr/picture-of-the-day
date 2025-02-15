@@ -27,6 +27,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="AdwStatusPage">
             <property name="title">Under construction</property>
+            <property name="icon-name">de.swsnr.picture-of-the-day</property>
           </object>
         </child>
       </object>
