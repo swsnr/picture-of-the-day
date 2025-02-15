@@ -5,12 +5,12 @@ on:
   push:
     branches: ["main"]
     paths:
-      - src/**/*.rs
-      - resources/**/*.blp
-      - resources/*.metainfo.xml.in
-      - *.desktop.in
-      - Makefile
-      - .github/workflows/gettext.yml
+      - "src/**/*.rs"
+      - "resources/**/*.blp"
+      - "resources/*.metainfo.xml.in"
+      - "*.desktop.in"
+      - "Makefile"
+      - ".github/workflows/gettext.yml"
 
 jobs:
   xgettext:
