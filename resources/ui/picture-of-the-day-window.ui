@@ -46,6 +46,10 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes" context="application-window.menu.label">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes" context="main-window.menu.label">_About Picture Of The Day</attribute>
         <attribute name="action">win.about-app</attribute>
       </item>
