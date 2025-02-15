@@ -41,4 +41,4 @@ jobs:
           body: "Github bot runs make pot :v:"
           assignees: swsnr
           draft: true
-          add-paths: po/de.swsnr.turnon.pot
+          add-paths: po/*.pot
