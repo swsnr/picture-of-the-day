@@ -68,13 +68,27 @@ impl PictureOfTheDayWindow {
 }
 
 mod imp {
+    use std::cell::Cell;
+
+    use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::subclass::InitializingObject;
+    use glib::Properties;
     use gtk::CompositeTemplate;
+    use strum::IntoEnumIterator;
 
-    #[derive(Default, CompositeTemplate)]
+    use crate::app::widgets::SourceRow;
+    use crate::Source;
+
+    #[derive(Default, CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::PictureOfTheDayWindow)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/picture-of-the-day-window.ui")]
-    pub struct PictureOfTheDayWindow {}
+    pub struct PictureOfTheDayWindow {
+        #[property(get, set, builder(Source::default()))]
+        selected_source: Cell<Source>,
+        #[template_child]
+        sources_list: TemplateChild<gtk::ListBox>,
+    }
 
     #[glib::object_subclass]
     impl ObjectSubclass for PictureOfTheDayWindow {
@@ -90,6 +104,7 @@ mod imp {
             klass.install_action("win.about-app", None, |window, _, _| {
                 window.show_about_dialog();
             });
+            klass.install_property_action("win.select-source", "selected-source");
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -97,7 +112,19 @@ mod imp {
         }
     }
 
-    impl ObjectImpl for PictureOfTheDayWindow {}
+    #[glib::derived_properties]
+    impl ObjectImpl for PictureOfTheDayWindow {
+        fn constructed(&self) {
+            self.parent_constructed();
+
+            for source in Source::iter() {
+                let row = SourceRow::new(source);
+                row.set_action_name(Some("win.select-source"));
+                row.set_action_target(Some(source));
+                self.sources_list.get().append(&row);
+            }
+        }
+    }
 
     impl AdwApplicationWindowImpl for PictureOfTheDayWindow {}
 

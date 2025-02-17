@@ -30,7 +30,13 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         </child>
         <child>
           <object class="GtkShortcutsGroup">
-            <property name="title" translatable="yes" context="shortcuts group title">Windows</property>
+            <property name="title" translatable="yes" context="shortcuts group title">Picture Of The Day Window</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut description">Select source</property>
+                <property name="accelerator">&lt;Ctrl&gt;O</property>
+              </object>
+            </child>
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut description">New window</property>
