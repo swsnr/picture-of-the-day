@@ -5,6 +5,7 @@
         <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
         <!-- User interface templates -->
         <file compressed="true" preprocess="xml-stripblanks">ui/picture-of-the-day-window.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/source-row.ui</file>
         <!-- Icons -->
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.picture-of-the-day.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.picture-of-the-day.Devel.svg</file>

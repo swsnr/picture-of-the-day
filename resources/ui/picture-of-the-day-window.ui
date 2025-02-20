@@ -15,6 +15,40 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <property name="top-bar-style">1</property>
         <child type="top">
           <object class="AdwHeaderBar">
+            <child type="start">
+              <object class="GtkBox">
+                <property name="orientation">0</property>
+                <child>
+                  <object class="GtkMenuButton">
+                    <property name="label" translatable="yes" context="main-window.toolbar.button.label">Source</property>
+                    <child>
+                      <object class="GtkShortcutController">
+                        <property name="scope">1</property>
+                        <child>
+                          <object class="GtkShortcut">
+                            <property name="trigger">&lt;Ctrl&gt;o</property>
+                            <property name="action">activate</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <property name="popover">
+                      <object class="GtkPopover">
+                        <property name="halign">1</property>
+                        <child>
+                          <object class="GtkListBox" id="sources_list">
+                            <property name="selection-mode">0</property>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="boxed-list"/>
+                        </style>
+                      </object>
+                    </property>
+                  </object>
+                </child>
+              </object>
+            </child>
             <child type="end">
               <object class="GtkMenuButton" id="button_menu">
                 <property name="menu-model">main_menu</property>
@@ -27,6 +61,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="AdwStatusPage">
             <property name="title">Under construction</property>
+            <property name="description" bind-source="PictureOfTheDayWindow" bind-property="selected-source" bind-flags="sync-create"/>
             <property name="icon-name">de.swsnr.picture-of-the-day</property>
           </object>
         </child>

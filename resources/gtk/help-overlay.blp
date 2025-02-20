@@ -25,7 +25,12 @@ Gtk.ShortcutsWindow help_overlay {
     }
 
     Gtk.ShortcutsGroup {
-      title: C_("shortcuts group title", "Windows");
+      title: C_("shortcuts group title", "Picture Of The Day Window");
+
+      Gtk.ShortcutsShortcut {
+        title: C_("shortcut description", "Select source");
+        accelerator: "<Ctrl>O";
+      }
 
       Gtk.ShortcutsShortcut {
         title: C_("shortcut description", "New window");

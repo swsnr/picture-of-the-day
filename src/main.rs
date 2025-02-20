@@ -47,8 +47,10 @@ use gtk::prelude::*;
 mod app;
 mod config;
 mod gettext;
+mod source;
 
 use config::G_LOG_DOMAIN;
+use source::Source;
 
 fn main() -> glib::ExitCode {
     static GLIB_LOGGER: glib::GlibLogger = glib::GlibLogger::new(

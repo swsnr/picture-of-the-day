@@ -15,6 +15,36 @@ template $PictureOfTheDayWindow: Adw.ApplicationWindow {
 
     [top]
     Adw.HeaderBar {
+      [start]
+      Box {
+        orientation: horizontal;
+
+        MenuButton {
+          label: C_("main-window.toolbar.button.label", "Source");
+
+          Gtk.ShortcutController {
+            scope: managed;
+
+            Gtk.Shortcut {
+              trigger: "<Ctrl>o";
+              action: "activate";
+            }
+          }
+
+          popover: Popover {
+            halign: start;
+
+            ListBox sources_list {
+              selection-mode: none;
+            }
+
+            styles [
+              "boxed-list",
+            ]
+          };
+        }
+      }
+
       [end]
       MenuButton button_menu {
         menu-model: main_menu;
@@ -25,6 +55,7 @@ template $PictureOfTheDayWindow: Adw.ApplicationWindow {
 
     Adw.StatusPage {
       title: "Under construction";
+      description: bind template.selected-source;
       icon-name: "de.swsnr.picture-of-the-day";
     }
   };
