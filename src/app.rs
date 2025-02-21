@@ -110,7 +110,19 @@ mod imp {
                 "Initializing soup session with user agent {}",
                 crate::config::USER_AGENT
             );
+
+            // If the default glib logger logs debug logs of our log domain
+            // enable debug logging for soup
             self.http_session.set_user_agent(crate::config::USER_AGENT);
+            if !glib::log_writer_default_would_drop(glib::LogLevel::Debug, Some(G_LOG_DOMAIN)) {
+                glib::info!("Enabling HTTP logging");
+                let log = soup::Logger::builder()
+                    .level(soup::LoggerLogLevel::Body)
+                    // Omit bodies larger than 100KiB
+                    .max_body_size(102_400)
+                    .build();
+                self.http_session.add_feature(&log);
+            }
         }
 
         fn activate(&self) {
