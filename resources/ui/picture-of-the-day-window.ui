@@ -47,6 +47,13 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                     </property>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">view-refresh-symbolic</property>
+                    <property name="action-name">win.refresh-images</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Refresh images for selected source</property>
+                  </object>
+                </child>
               </object>
             </child>
             <child type="end">

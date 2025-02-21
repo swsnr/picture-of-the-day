@@ -44,7 +44,7 @@ impl PictureOfTheDayApplication {
             .and_downcast::<PictureOfTheDayWindow>()
             .map(|w| w.selected_source())
             .unwrap_or_default();
-        let window = PictureOfTheDayWindow::new(self, source);
+        let window = PictureOfTheDayWindow::new(self, self.http_session(), source);
         if crate::config::is_development() {
             window.add_css_class("devel");
         }
@@ -62,12 +62,19 @@ impl Default for PictureOfTheDayApplication {
 }
 
 mod imp {
+    use adw::prelude::*;
     use adw::subclass::prelude::*;
+    use glib::Properties;
+    use soup::prelude::SessionExt;
 
     use crate::config::G_LOG_DOMAIN;
 
-    #[derive(Default)]
-    pub struct PictureOfTheDayApplication {}
+    #[derive(Default, Properties)]
+    #[properties(wrapper_type = super::PictureOfTheDayApplication)]
+    pub struct PictureOfTheDayApplication {
+        #[property(get)]
+        http_session: soup::Session,
+    }
 
     #[glib::object_subclass]
     impl ObjectSubclass for PictureOfTheDayApplication {
@@ -78,6 +85,7 @@ mod imp {
         type ParentType = adw::Application;
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for PictureOfTheDayApplication {}
 
     impl ApplicationImpl for PictureOfTheDayApplication {
@@ -97,6 +105,12 @@ mod imp {
             }
 
             self.obj().setup_actions();
+
+            glib::info!(
+                "Initializing soup session with user agent {}",
+                crate::config::USER_AGENT
+            );
+            self.http_session.set_user_agent(crate::config::USER_AGENT);
         }
 
         fn activate(&self) {

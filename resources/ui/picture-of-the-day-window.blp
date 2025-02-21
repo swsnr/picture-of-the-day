@@ -43,6 +43,12 @@ template $PictureOfTheDayWindow: Adw.ApplicationWindow {
             ]
           };
         }
+
+        Button {
+          icon-name: "view-refresh-symbolic";
+          action-name: "win.refresh-images";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Refresh images for selected source");
+        }
       }
 
       [end]

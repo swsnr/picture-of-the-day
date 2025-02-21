@@ -34,7 +34,18 @@ pub fn release_notes_version() -> semver::Version {
     version
 }
 
+/// Log domain for the entire application.
 pub const G_LOG_DOMAIN: &str = "PictureOfTheDay";
+
+/// User Agent to use for all HTTP traffic.
+pub static USER_AGENT: &str = concat!(
+    env!("CARGO_PKG_NAME"),
+    "/",
+    env!("CARGO_PKG_VERSION"),
+    " (",
+    env!("CARGO_PKG_HOMEPAGE"),
+    ")"
+);
 
 /// Whether this is a development/nightly build.
 pub fn is_development() -> bool {

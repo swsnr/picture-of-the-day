@@ -19,9 +19,19 @@ glib::wrapper! {
 }
 
 impl PictureOfTheDayWindow {
-    pub fn new(application: &impl IsA<gtk::Application>, selected_source: Source) -> Self {
+    /// Create a new window.
+    ///
+    /// The window belongs to `application` and keeps a hold on `application`.
+    /// It uses the `session` to fetch images for the selected source, and
+    /// initially uses the given `selected_source`.
+    pub fn new(
+        application: &impl IsA<gtk::Application>,
+        session: soup::Session,
+        selected_source: Source,
+    ) -> Self {
         glib::Object::builder()
             .property("application", application)
+            .property("http-session", session)
             .property("selected-source", selected_source)
             .build()
     }
@@ -71,22 +81,26 @@ impl PictureOfTheDayWindow {
 }
 
 mod imp {
-    use std::cell::Cell;
+    use std::cell::{Cell, RefCell};
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::subclass::InitializingObject;
     use glib::Properties;
+    use gtk::gdk::{Key, ModifierType};
     use gtk::CompositeTemplate;
     use strum::IntoEnumIterator;
 
     use crate::app::widgets::SourceRow;
+    use crate::config::G_LOG_DOMAIN;
     use crate::Source;
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::PictureOfTheDayWindow)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/picture-of-the-day-window.ui")]
     pub struct PictureOfTheDayWindow {
+        #[property(get, construct_only)]
+        http_session: RefCell<soup::Session>,
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
         #[template_child]
@@ -108,6 +122,18 @@ mod imp {
                 window.show_about_dialog();
             });
             klass.install_property_action("win.select-source", "selected-source");
+            klass.install_action_async("win.refresh-images", None, |window, _, _| async move {
+                let source = window.selected_source();
+                glib::info!("Fetching images for source {source:?}");
+                let result = source.get_images(&window.http_session()).await;
+                glib::info!("Fetched images for {source:?}: {result:?}");
+            });
+
+            klass.add_binding_action(
+                Key::F5,
+                ModifierType::NO_MODIFIER_MASK,
+                "win.refresh-images",
+            );
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -126,6 +152,16 @@ mod imp {
                 row.set_action_target(Some(source));
                 self.sources_list.get().append(&row);
             }
+
+            self.obj().connect_selected_source_notify(|window| {
+                glib::info!("Selected source updates: {:?}", window.selected_source());
+                gtk::prelude::WidgetExt::activate_action(window, "win.refresh-images", None)
+                    .unwrap();
+            });
+        }
+
+        fn dispose(&self) {
+            glib::debug!("Disposing window");
         }
     }
 
