@@ -11,14 +11,14 @@ use gtk::gio;
 use crate::source::Source;
 
 glib::wrapper! {
-    pub struct PictureOfTheDayWindow(ObjectSubclass<imp::PictureOfTheDayWindow>)
+    pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
         @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
         @implements gio::ActionGroup, gio::ActionMap,
             gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget,
             gtk::Native, gtk::Root, gtk::ShortcutManager;
 }
 
-impl PictureOfTheDayWindow {
+impl ApplicationWindow {
     /// Create a new window.
     ///
     /// The window belongs to `application` and keeps a hold on `application`.
@@ -96,9 +96,9 @@ mod imp {
     use crate::Source;
 
     #[derive(Default, CompositeTemplate, Properties)]
-    #[properties(wrapper_type = super::PictureOfTheDayWindow)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/picture-of-the-day-window.ui")]
-    pub struct PictureOfTheDayWindow {
+    #[properties(wrapper_type = super::ApplicationWindow)]
+    #[template(resource = "/de/swsnr/picture-of-the-day/ui/application-window.ui")]
+    pub struct ApplicationWindow {
         #[property(get, construct_only)]
         http_session: RefCell<soup::Session>,
         #[property(get, set, builder(Source::default()))]
@@ -108,10 +108,10 @@ mod imp {
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for PictureOfTheDayWindow {
-        const NAME: &'static str = "PictureOfTheDayWindow";
+    impl ObjectSubclass for ApplicationWindow {
+        const NAME: &'static str = "PotDApplicationWindow";
 
-        type Type = super::PictureOfTheDayWindow;
+        type Type = super::ApplicationWindow;
 
         type ParentType = adw::ApplicationWindow;
 
@@ -142,7 +142,7 @@ mod imp {
     }
 
     #[glib::derived_properties]
-    impl ObjectImpl for PictureOfTheDayWindow {
+    impl ObjectImpl for ApplicationWindow {
         fn constructed(&self) {
             self.parent_constructed();
 
@@ -165,11 +165,11 @@ mod imp {
         }
     }
 
-    impl AdwApplicationWindowImpl for PictureOfTheDayWindow {}
+    impl AdwApplicationWindowImpl for ApplicationWindow {}
 
-    impl ApplicationWindowImpl for PictureOfTheDayWindow {}
+    impl ApplicationWindowImpl for ApplicationWindow {}
 
-    impl WindowImpl for PictureOfTheDayWindow {}
+    impl WindowImpl for ApplicationWindow {}
 
-    impl WidgetImpl for PictureOfTheDayWindow {}
+    impl WidgetImpl for ApplicationWindow {}
 }

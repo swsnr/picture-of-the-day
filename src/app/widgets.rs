@@ -4,8 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-mod sourcerow;
-mod window;
+mod application_window;
+mod source_row;
 
-pub use sourcerow::SourceRow;
-pub use window::PictureOfTheDayWindow;
+pub use application_window::ApplicationWindow;
+pub use source_row::SourceRow;

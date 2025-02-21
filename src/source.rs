@@ -20,7 +20,7 @@ mod wikimedia;
 pub use error::SourceError;
 
 #[derive(Debug, Clone, Copy, glib::Enum, glib::Variant, strum::EnumIter)]
-#[enum_type(name = "PictureOfTheDaySource")]
+#[enum_type(name = "PotDSource")]
 pub enum Source {
     Apod,
     Eopod,

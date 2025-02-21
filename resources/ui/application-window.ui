@@ -6,7 +6,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
 -->
 <interface>
   <requires lib="gtk" version="4.0"/>
-  <template class="PictureOfTheDayWindow" parent="AdwApplicationWindow">
+  <template class="PotDApplicationWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Picture Of The Day</property>
     <property name="default-width">1024</property>
     <property name="default-height">768</property>
@@ -68,7 +68,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="AdwStatusPage">
             <property name="title">Under construction</property>
-            <property name="description" bind-source="PictureOfTheDayWindow" bind-property="selected-source" bind-flags="sync-create"/>
+            <property name="description" bind-source="PotDApplicationWindow" bind-property="selected-source" bind-flags="sync-create"/>
             <property name="icon-name">de.swsnr.picture-of-the-day</property>
           </object>
         </child>

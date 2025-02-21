@@ -7,19 +7,20 @@
 use adw::prelude::*;
 use glib::Object;
 use gtk::gio::ActionEntry;
-use widgets::PictureOfTheDayWindow;
 
 use crate::config::G_LOG_DOMAIN;
 
 mod widgets;
 
+use widgets::ApplicationWindow;
+
 glib::wrapper! {
-    pub struct PictureOfTheDayApplication(ObjectSubclass<imp::PictureOfTheDayApplication>)
+    pub struct Application(ObjectSubclass<imp::Application>)
         @extends adw::Application, gtk::Application, gtk::gio::Application,
         @implements gtk::gio::ActionGroup, gtk::gio::ActionMap;
 }
 
-impl PictureOfTheDayApplication {
+impl Application {
     /// Setup actions of the application.
     ///
     /// - `app.quit` quits the application.
@@ -41,10 +42,10 @@ impl PictureOfTheDayApplication {
         glib::debug!("Creating new window");
         let source = self
             .active_window()
-            .and_downcast::<PictureOfTheDayWindow>()
+            .and_downcast::<ApplicationWindow>()
             .map(|w| w.selected_source())
             .unwrap_or_default();
-        let window = PictureOfTheDayWindow::new(self, self.http_session(), source);
+        let window = ApplicationWindow::new(self, self.http_session(), source);
         if crate::config::is_development() {
             window.add_css_class("devel");
         }
@@ -52,7 +53,7 @@ impl PictureOfTheDayApplication {
     }
 }
 
-impl Default for PictureOfTheDayApplication {
+impl Default for Application {
     fn default() -> Self {
         Object::builder()
             .property("application-id", crate::config::APP_ID)
@@ -70,25 +71,25 @@ mod imp {
     use crate::config::G_LOG_DOMAIN;
 
     #[derive(Default, Properties)]
-    #[properties(wrapper_type = super::PictureOfTheDayApplication)]
-    pub struct PictureOfTheDayApplication {
+    #[properties(wrapper_type = super::Application)]
+    pub struct Application {
         #[property(get)]
         http_session: soup::Session,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for PictureOfTheDayApplication {
-        const NAME: &'static str = "PictureOfTheDayApplication";
+    impl ObjectSubclass for Application {
+        const NAME: &'static str = "PotDApplication";
 
-        type Type = super::PictureOfTheDayApplication;
+        type Type = super::Application;
 
         type ParentType = adw::Application;
     }
 
     #[glib::derived_properties]
-    impl ObjectImpl for PictureOfTheDayApplication {}
+    impl ObjectImpl for Application {}
 
-    impl ApplicationImpl for PictureOfTheDayApplication {
+    impl ApplicationImpl for Application {
         fn startup(&self) {
             self.parent_startup();
 
@@ -132,7 +133,7 @@ mod imp {
         }
     }
 
-    impl GtkApplicationImpl for PictureOfTheDayApplication {}
+    impl GtkApplicationImpl for Application {}
 
-    impl AdwApplicationImpl for PictureOfTheDayApplication {}
+    impl AdwApplicationImpl for Application {}
 }

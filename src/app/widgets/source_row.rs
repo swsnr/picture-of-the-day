@@ -52,7 +52,7 @@ mod imp {
 
     #[glib::object_subclass]
     impl ObjectSubclass for SourceRow {
-        const NAME: &'static str = "SourceRow";
+        const NAME: &'static str = "PotDSourceRow";
 
         type Type = super::SourceRow;
 
