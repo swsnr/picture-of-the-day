@@ -8,6 +8,8 @@ use adw::prelude::*;
 use glib::{dgettext, dpgettext2, object::IsA};
 use gtk::gio;
 
+use crate::source::Source;
+
 glib::wrapper! {
     pub struct PictureOfTheDayWindow(ObjectSubclass<imp::PictureOfTheDayWindow>)
         @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
@@ -17,9 +19,10 @@ glib::wrapper! {
 }
 
 impl PictureOfTheDayWindow {
-    pub fn new(application: &impl IsA<gtk::Application>) -> Self {
+    pub fn new(application: &impl IsA<gtk::Application>, selected_source: Source) -> Self {
         glib::Object::builder()
             .property("application", application)
+            .property("selected-source", selected_source)
             .build()
     }
 

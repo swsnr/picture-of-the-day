@@ -39,8 +39,12 @@ impl PictureOfTheDayApplication {
 
     fn new_window(&self) {
         glib::debug!("Creating new window");
-        // TODO: Get current active window and inherit selected source from it.
-        let window = PictureOfTheDayWindow::new(self);
+        let source = self
+            .active_window()
+            .and_downcast::<PictureOfTheDayWindow>()
+            .map(|w| w.selected_source())
+            .unwrap_or_default();
+        let window = PictureOfTheDayWindow::new(self, source);
         if crate::config::is_development() {
             window.add_css_class("devel");
         }
