@@ -25,9 +25,12 @@ build = "build.rs"
 adw = { package = "libadwaita", version = "0.7.0", features = ["v1_6"] }
 glib = { version = "0.20.7", features = ["log", "log_macros"] }
 gtk = { package = "gtk4", version = "0.9.5", features = ["gnome_47"] }
+soup = { package = "soup3", version = "0.7.0", features = ["v3_6"] }
 log = "0.4.22"
 semver = "1.0.24"
 strum = { version = "0.27.1", features = ["derive"] }
+serde = { version = "1.0.128", features = ["derive"] }
+serde_json = "1.0.139"
 
 [build-dependencies]
 glob = "0.3.1"

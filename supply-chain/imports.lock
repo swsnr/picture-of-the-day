@@ -203,6 +203,20 @@ user-id = 6741
 user-login = "Darksonn"
 user-name = "Alice Ryhl"
 
+[[publisher.soup3]]
+version = "0.7.0"
+when = "2024-07-12"
+user-id = 54339
+user-login = "bilelmoussaoui"
+user-name = "Bilal Elmoussaoui"
+
+[[publisher.soup3-sys]]
+version = "0.7.0"
+when = "2024-07-12"
+user-id = 54339
+user-login = "bilelmoussaoui"
+user-name = "Bilal Elmoussaoui"
+
 [[publisher.syn]]
 version = "2.0.98"
 when = "2025-02-02"
@@ -262,6 +276,11 @@ version = "0.3.31"
 who = "Joel Dice <joel.dice@gmail.com>"
 criteria = "safe-to-deploy"
 version = "0.3.31"
+
+[[audits.bytecode-alliance.audits.itoa]]
+who = "Dan Gohman <dev@sunfishcode.online>"
+criteria = "safe-to-deploy"
+delta = "1.0.11 -> 1.0.14"
 
 [[audits.bytecode-alliance.audits.libc]]
 who = "Alex Crichton <alex@alexcrichton.com>"
@@ -422,6 +441,35 @@ and there were no hits.
 There is a little bit of `unsafe` Rust code - the audit can be found at
 https://chromium-review.googlesource.com/c/chromium/src/+/6187726/2
 '''
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.itoa]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+version = "1.0.10"
+notes = '''
+I grepped for \"crypt\", \"cipher\", \"fs\", \"net\" - there were no hits.
+
+There are a few places where `unsafe` is used.  Unsafe review notes can be found
+in https://crrev.com/c/5350697.
+
+Version 1.0.1 of this crate has been added to Chromium in
+https://crrev.com/c/3321896.
+'''
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.itoa]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.10 -> 1.0.11"
+notes = """
+Straightforward diff between 1.0.10 and 1.0.11 - only 3 commits:
+
+* Bumping up the version
+* A touch up of comments
+* And my own PR to make `unsafe` blocks more granular:
+  https://github.com/dtolnay/itoa/pull/42
+"""
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
 [[audits.google.audits.log]]
@@ -630,6 +678,12 @@ delta = "1.0.18 -> 1.0.19"
 notes = "No unsafe, just doc changes"
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
+[[audits.google.audits.ryu]]
+who = "Android Legacy"
+criteria = "safe-to-run"
+version = "1.0.5"
+aggregated-from = "https://chromium.googlesource.com/chromiumos/third_party/rust_crates/+/refs/heads/main/cargo-vet/audits.toml?format=TEXT"
+
 [[audits.google.audits.semver]]
 who = "danakj@chromium.org"
 criteria = "safe-to-run"
@@ -785,6 +839,213 @@ who = "Dustin J. Mitchell <djmitche@chromium.org>"
 criteria = "safe-to-deploy"
 delta = "1.0.216 -> 1.0.217"
 notes = "Minimal changes, nothing unsafe"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+version = "1.0.197"
+notes = "Grepped for \"unsafe\", \"crypt\", \"cipher\", \"fs\", \"net\" - there were no hits"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "danakj <danakj@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.197 -> 1.0.201"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Dustin J. Mitchell <djmitche@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.201 -> 1.0.202"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.202 -> 1.0.203"
+notes = "Grepped for \"unsafe\", \"crypt\", \"cipher\", \"fs\", \"net\" - there were no hits"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Adrian Taylor <adetaylor@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.203 -> 1.0.204"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.204 -> 1.0.207"
+notes = 'Grepped for \"unsafe\", \"crypt\", \"cipher\", \"fs\", \"net\" - there were no hits'
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.207 -> 1.0.209"
+notes = '''
+There are no code changes in this delta - see https://crrev.com/c/5812194/2..5
+
+I've neverthless also grepped for `-i cipher`, `-i crypto`, `\bfs\b`,
+`\bnet\b`, and `\bunsafe\b`.  There were no hits.
+'''
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Adrian Taylor <adetaylor@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.209 -> 1.0.210"
+notes = "Almost no new code - just feature rearrangement"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Liza Burakova <liza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.210 -> 1.0.213"
+notes = "Grepped for 'unsafe', 'crypt', 'cipher', 'fs', 'net' - there were no hits"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Dustin J. Mitchell <djmitche@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.213 -> 1.0.214"
+notes = "No changes to unsafe, no crypto"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Adrian Taylor <adetaylor@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.214 -> 1.0.215"
+notes = "Minor changes should not impact UB risk"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.215 -> 1.0.216"
+notes = "The delta adds `#[automatically_derived]` in a few places.  Still no `unsafe`."
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Dustin J. Mitchell <djmitche@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.216 -> 1.0.217"
+notes = "No changes"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "danakj@chromium.org"
+criteria = "safe-to-run"
+version = "1.0.108"
+notes = """
+Reviewed in https://crrev.com/c/5171063
+
+Previously reviewed during security review and the audit is grandparented in.
+"""
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.108 -> 1.0.111"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.111 -> 1.0.113"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.113 -> 1.0.114"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.114 -> 1.0.115"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Dustin J. Mitchell <djmitche@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.115 -> 1.0.116"
+notes = "No changes that affect safety to run, and no crypto"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "danakj <danakj@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.116 -> 1.0.117"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Adrian Taylor <adetaylor@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.117 -> 1.0.120"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.120 -> 1.0.122"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.122 -> 1.0.124"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.124 -> 1.0.127"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "danakj <danakj@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.127 -> 1.0.128"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Liza Burakova <liza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.128 -> 1.0.132"
+notes = """
+Methods moved into new deserializer trait in de.rs.
+New methods for converting Number to i128 or u128 in number.rs
+No new unsafe changes.
+"""
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Adrian Taylor <adetaylor@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.132 -> 1.0.133"
+notes = "No changes affecting safety-to-run and still no crypto"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Adrian Taylor <adetaylor@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.133 -> 1.0.134"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.134 -> 1.0.137"
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_json]]
+who = "Liza Burakova <liza@chromium.org>"
+criteria = "safe-to-run"
+delta = "1.0.137 -> 1.0.138"
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
 [[audits.google.audits.smallvec]]

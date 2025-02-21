@@ -10,6 +10,14 @@
 #![allow(clippy::as_conversions)]
 
 use glib::{dpgettext2, GString};
+use gtk::gio::IOErrorEnum;
+
+use crate::image::DownloadableImage;
+
+mod error;
+mod wikimedia;
+
+pub use error::SourceError;
 
 #[derive(Debug, Clone, Copy, glib::Enum, glib::Variant, strum::EnumIter)]
 #[enum_type(name = "PictureOfTheDaySource")]
@@ -51,6 +59,24 @@ impl Source {
             Source::Bing => "https://bing.com",
             Source::Wikimedia => "https://commons.wikimedia.org/wiki/Main_Page",
             Source::Stalenhag => "https://simonstalenhag.se/",
+        }
+    }
+
+    pub async fn get_images(
+        self,
+        session: &soup::Session,
+    ) -> Result<Vec<DownloadableImage>, SourceError> {
+        let not_supported = glib::Error::new(
+            IOErrorEnum::NotSupported,
+            &format!("Source {self:?} not supported yet!"),
+        );
+        #[allow(clippy::match_same_arms)]
+        match self {
+            Source::Apod => Err(not_supported.into()),
+            Source::Eopod => Err(not_supported.into()),
+            Source::Bing => Err(not_supported.into()),
+            Source::Wikimedia => Ok(vec![wikimedia::fetch_featured_image(session).await?]),
+            Source::Stalenhag => Err(not_supported.into()),
         }
     }
 }

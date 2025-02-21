@@ -47,6 +47,7 @@ use gtk::prelude::*;
 mod app;
 mod config;
 mod gettext;
+mod image;
 mod source;
 
 use config::G_LOG_DOMAIN;
