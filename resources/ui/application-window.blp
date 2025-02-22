@@ -83,6 +83,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           margin-bottom: 24;
           margin-start: 12;
           margin-end: 12;
+          spacing: 24;
 
           Adw.PreferencesGroup {
             Adw.ActionRow {
@@ -116,6 +117,24 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
               title: C_("images-view.metadata.label", "Description");
               subtitle: bind template.image_description;
               visible: bind $non_empty(template.image_description) as <bool>;
+
+              styles [
+                "property",
+              ]
+            }
+          }
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Source");
+              subtitle: bind template.image_source_name;
+
+              [suffix]
+              LinkButton {
+                icon-name: "external-link-symbolic";
+                uri: bind template.image_source_url;
+                tooltip-text: _("Visit the main page of the source of this image.");
+              }
 
               styles [
                 "property",

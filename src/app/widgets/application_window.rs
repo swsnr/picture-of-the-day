@@ -89,11 +89,15 @@ impl ApplicationWindow {
             self.set_image_url(metadata.url.as_deref().unwrap_or_default());
             self.set_image_description(metadata.description.as_deref().unwrap_or_default());
             self.set_image_copyright(metadata.copyright.as_deref().unwrap_or_default());
+            self.set_image_source_name(metadata.source.i18n_name());
+            self.set_image_source_url(metadata.source.url());
         } else {
             self.set_image_title("");
             self.set_image_url("");
             self.set_image_description("");
             self.set_image_copyright("");
+            self.set_image_source_name("");
+            self.set_image_source_url("");
         }
     }
 }
@@ -130,6 +134,10 @@ mod imp {
         image_copyright: RefCell<String>,
         #[property(get, set)]
         image_description: RefCell<String>,
+        #[property(get, set)]
+        image_source_name: RefCell<String>,
+        #[property(get, set)]
+        image_source_url: RefCell<String>,
         #[template_child]
         sources_list: TemplateChild<gtk::ListBox>,
         #[template_child]

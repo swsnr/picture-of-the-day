@@ -89,6 +89,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                     <property name="margin-bottom">24</property>
                     <property name="margin-start">12</property>
                     <property name="margin-end">12</property>
+                    <property name="spacing">24</property>
                     <child>
                       <object class="AdwPreferencesGroup">
                         <child>
@@ -141,6 +142,26 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                                 </lookup>
                               </closure>
                             </binding>
+                            <style>
+                              <class name="property"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes" context="images-view.metadata.label">Source</property>
+                            <property name="subtitle" bind-source="PotDApplicationWindow" bind-property="image_source_name" bind-flags="sync-create"/>
+                            <child type="suffix">
+                              <object class="GtkLinkButton">
+                                <property name="icon-name">external-link-symbolic</property>
+                                <property name="uri" bind-source="PotDApplicationWindow" bind-property="image_source_url" bind-flags="sync-create"/>
+                                <property name="tooltip-text" translatable="yes">Visit the main page of the source of this image.</property>
+                              </object>
+                            </child>
                             <style>
                               <class name="property"/>
                             </style>

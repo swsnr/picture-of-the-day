@@ -6,6 +6,8 @@
 
 use std::borrow::Cow;
 
+use crate::source::Source;
+
 /// Metadata of an image.
 #[derive(Debug, Eq, PartialEq)]
 pub struct ImageMetadata {
@@ -17,6 +19,8 @@ pub struct ImageMetadata {
     pub copyright: Option<String>,
     /// The direct URL for this image.
     pub url: Option<String>,
+    /// The source this image comes from.
+    pub source: Source,
 }
 
 #[derive(Debug)]

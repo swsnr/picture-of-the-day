@@ -96,6 +96,7 @@ impl From<FeaturedImage> for DownloadableImage {
                 description,
                 copyright,
                 url,
+                source: super::Source::Wikimedia,
             },
             image_url,
             pubdate: None,
