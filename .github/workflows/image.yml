@@ -5,11 +5,11 @@ on:
     branches:
       - "main"
     paths:
-      - "Containerfile"
+      - "Dockerfile"
       - ".github/workflows/image.yml"
   pull_request:
     paths:
-      - "Containerfile"
+      - "Dockerfile"
       - ".github/workflows/image.yml"
   workflow_dispatch:
 
