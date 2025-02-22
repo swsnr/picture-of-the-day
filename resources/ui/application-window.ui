@@ -207,10 +207,12 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                   <object class="AdwClamp">
                     <child>
                       <object class="GtkButton">
+                        <property name="halign">3</property>
                         <property name="label" translatable="yes" context="start-page.button.label">Get images</property>
+                        <property name="action-name">win.load-images</property>
                         <style>
                           <class name="pill"/>
-                          <class name="suggested_action"/>
+                          <class name="suggested-action"/>
                         </style>
                       </object>
                     </child>

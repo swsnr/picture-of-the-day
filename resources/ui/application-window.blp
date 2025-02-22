@@ -172,11 +172,13 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
         child: Adw.Clamp {
           Button {
+            halign: center;
             label: C_("start-page.button.label", "Get images");
+            action-name: "win.load-images";
 
             styles [
               "pill",
-              "suggested_action",
+              "suggested-action",
             ]
           }
         };
