@@ -12,6 +12,7 @@
 use glib::{dpgettext2, GString};
 use gtk::gio::IOErrorEnum;
 
+use crate::config::G_LOG_DOMAIN;
 use crate::image::DownloadableImage;
 
 mod error;
@@ -66,17 +67,25 @@ impl Source {
         self,
         session: &soup::Session,
     ) -> Result<Vec<DownloadableImage>, SourceError> {
-        let not_supported = glib::Error::new(
+        let not_supported: SourceError = glib::Error::new(
             IOErrorEnum::NotSupported,
             &format!("Source {self:?} not supported yet!"),
-        );
+        )
+        .into();
         #[allow(clippy::match_same_arms)]
-        match self {
-            Source::Apod => Err(not_supported.into()),
-            Source::Eopod => Err(not_supported.into()),
-            Source::Bing => Err(not_supported.into()),
+        let images = match self {
+            Source::Apod => Err(not_supported),
+            Source::Eopod => Err(not_supported),
+            Source::Bing => Err(not_supported),
             Source::Wikimedia => Ok(vec![wikimedia::fetch_featured_image(session).await?]),
-            Source::Stalenhag => Err(not_supported.into()),
+            Source::Stalenhag => Err(not_supported),
+        }?;
+
+        if images.is_empty() {
+            glib::warn!("Source {self:?} returned an empty list of images!");
+            Err(SourceError::NoImage)
+        } else {
+            Ok(images)
         }
     }
 }
