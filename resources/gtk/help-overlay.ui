@@ -39,7 +39,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut description">Refresh images</property>
+                <property name="title" translatable="yes" context="shortcut description">Load images</property>
                 <property name="accelerator">F5</property>
               </object>
             </child>

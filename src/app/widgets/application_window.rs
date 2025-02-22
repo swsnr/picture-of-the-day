@@ -218,7 +218,7 @@ mod imp {
             klass.install_action("win.cancel-loading", None, |window, _, _| {
                 window.imp().cancel_loading();
             });
-            klass.install_action_async("win.refresh-images", None, |window, _, _| async move {
+            klass.install_action_async("win.load-images", None, |window, _, _| async move {
                 window.imp().cancel_loading();
                 let cancellable = gio::Cancellable::new();
                 window.imp().is_loading.replace(Some(cancellable.clone()));
@@ -241,11 +241,7 @@ mod imp {
                 window.notify_is_loading();
             });
 
-            klass.add_binding_action(
-                Key::F5,
-                ModifierType::NO_MODIFIER_MASK,
-                "win.refresh-images",
-            );
+            klass.add_binding_action(Key::F5, ModifierType::NO_MODIFIER_MASK, "win.load-images");
             klass.add_binding_action(
                 Key::F9,
                 ModifierType::NO_MODIFIER_MASK,
@@ -277,8 +273,7 @@ mod imp {
 
             self.obj().connect_selected_source_notify(|window| {
                 glib::info!("Selected source updates: {:?}", window.selected_source());
-                gtk::prelude::WidgetExt::activate_action(window, "win.refresh-images", None)
-                    .unwrap();
+                gtk::prelude::WidgetExt::activate_action(window, "win.load-images", None).unwrap();
             });
 
             // We're not showing images initially, so let's disable the sidebar action.
