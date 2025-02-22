@@ -138,6 +138,8 @@ mod imp {
         image_source_name: RefCell<String>,
         #[property(get, set)]
         image_source_url: RefCell<String>,
+        #[property(get, set)]
+        show_image_properties: Cell<bool>,
         #[template_child]
         sources_list: TemplateChild<gtk::ListBox>,
         #[template_child]
@@ -152,6 +154,15 @@ mod imp {
         #[template_callback]
         fn non_empty(s: &str) -> bool {
             !s.is_empty()
+        }
+    }
+
+    impl ApplicationWindow {
+        fn switch_to_images_view(&self) {
+            self.stack.set_visible_child(&*self.images_view);
+            self.obj()
+                .action_set_enabled("win.show-image-properties", true);
+            self.obj().set_show_image_properties(true);
         }
     }
 
@@ -171,17 +182,14 @@ mod imp {
                 window.show_about_dialog();
             });
             klass.install_property_action("win.select-source", "selected-source");
+            klass.install_property_action("win.show-image-properties", "show-image-properties");
             klass.install_action_async("win.refresh-images", None, |window, _, _| async move {
                 let source = window.selected_source();
                 glib::info!("Fetching images for source {source:?}");
                 match source.get_images(&window.http_session()).await {
                     Ok(images) => {
                         glib::info!("Fetched images for {source:?}: {images:?}");
-                        window
-                            .imp()
-                            .stack
-                            .get()
-                            .set_visible_child(&window.imp().images_view.get());
+                        window.imp().switch_to_images_view();
                         window.imp().images.replace(images);
                         let images = window.imp().images.borrow();
                         window.show_image_metadata_in_sidebar(Some(&images[0].metadata));
@@ -196,6 +204,11 @@ mod imp {
                 Key::F5,
                 ModifierType::NO_MODIFIER_MASK,
                 "win.refresh-images",
+            );
+            klass.add_binding_action(
+                Key::F9,
+                ModifierType::NO_MODIFIER_MASK,
+                "win.show-image-properties",
             );
         }
 
@@ -221,6 +234,10 @@ mod imp {
                 gtk::prelude::WidgetExt::activate_action(window, "win.refresh-images", None)
                     .unwrap();
             });
+
+            // We're not showing images initially, so let's disable the sidebar action.
+            self.obj()
+                .action_set_enabled("win.show-image-properties", false);
         }
     }
 

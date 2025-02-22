@@ -60,10 +60,20 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       }
 
       [end]
-      MenuButton button_menu {
-        menu-model: main_menu;
-        icon-name: 'open-menu-symbolic';
-        primary: true;
+      Box {
+        orientation: horizontal;
+
+        ToggleButton {
+          icon-name: "info-outline-symbolic";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Toggle the sidebar with image information");
+          action-name: "win.show-image-properties";
+        }
+
+        MenuButton button_menu {
+          menu-model: main_menu;
+          icon-name: 'open-menu-symbolic';
+          primary: true;
+        }
       }
     }
 
@@ -72,6 +82,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
       Adw.OverlaySplitView images_view {
         sidebar-position: end;
+        show-sidebar: bind template.show-image-properties bidirectional;
 
         content: Adw.StatusPage {
           title: "Coming soon";

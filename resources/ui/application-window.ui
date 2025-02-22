@@ -63,10 +63,22 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               </object>
             </child>
             <child type="end">
-              <object class="GtkMenuButton" id="button_menu">
-                <property name="menu-model">main_menu</property>
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="primary">true</property>
+              <object class="GtkBox">
+                <property name="orientation">0</property>
+                <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">info-outline-symbolic</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Toggle the sidebar with image information</property>
+                    <property name="action-name">win.show-image-properties</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkMenuButton" id="button_menu">
+                    <property name="menu-model">main_menu</property>
+                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="primary">true</property>
+                  </object>
+                </child>
               </object>
             </child>
           </object>
@@ -77,6 +89,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             <child>
               <object class="AdwOverlaySplitView" id="images_view">
                 <property name="sidebar-position">1</property>
+                <property name="show-sidebar" bind-source="PotDApplicationWindow" bind-property="show-image-properties" bind-flags="sync-create|bidirectional"/>
                 <property name="content">
                   <object class="AdwStatusPage">
                     <property name="title">Coming soon</property>
