@@ -10,6 +10,12 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     <property name="title" translatable="yes">Picture Of The Day</property>
     <property name="default-width">1024</property>
     <property name="default-height">768</property>
+    <child>
+      <object class="AdwBreakpoint">
+        <condition>max-width: 400sp</condition>
+        <setter object="images_view" property="collapsed">true</setter>
+      </object>
+    </child>
     <property name="content">
       <object class="AdwToolbarView">
         <property name="top-bar-style">1</property>
@@ -66,10 +72,105 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           </object>
         </child>
         <child>
-          <object class="AdwStatusPage">
-            <property name="title">Under construction</property>
-            <property name="description" bind-source="PotDApplicationWindow" bind-property="selected-source" bind-flags="sync-create"/>
-            <property name="icon-name">de.swsnr.picture-of-the-day</property>
+          <object class="GtkStack" id="stack">
+            <property name="visible-child">empty</property>
+            <child>
+              <object class="AdwOverlaySplitView" id="images_view">
+                <property name="sidebar-position">1</property>
+                <property name="content">
+                  <object class="AdwStatusPage">
+                    <property name="title">Coming soon</property>
+                  </object>
+                </property>
+                <property name="sidebar">
+                  <object class="GtkBox">
+                    <property name="orientation">1</property>
+                    <property name="margin-top">24</property>
+                    <property name="margin-bottom">24</property>
+                    <property name="margin-start">12</property>
+                    <property name="margin-end">12</property>
+                    <child>
+                      <object class="AdwPreferencesGroup">
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes" context="images-view.metadata.label">Title</property>
+                            <property name="subtitle" bind-source="PotDApplicationWindow" bind-property="image_title" bind-flags="sync-create"/>
+                            <child type="suffix">
+                              <object class="GtkLinkButton">
+                                <property name="icon-name">external-link-symbolic</property>
+                                <property name="uri" bind-source="PotDApplicationWindow" bind-property="image_url" bind-flags="sync-create"/>
+                                <binding name="visible">
+                                  <closure function="non_empty" type="gboolean">
+                                    <lookup name="image_url" type="PotDApplicationWindow">
+                                      <constant>PotDApplicationWindow</constant>
+                                    </lookup>
+                                  </closure>
+                                </binding>
+                                <property name="tooltip-text" translatable="yes">Visit the source page of this image.</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="property"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes" context="images-view.metadata.label">Copyright</property>
+                            <property name="subtitle" bind-source="PotDApplicationWindow" bind-property="image_copyright" bind-flags="sync-create"/>
+                            <binding name="visible">
+                              <closure function="non_empty" type="gboolean">
+                                <lookup name="image_copyright" type="PotDApplicationWindow">
+                                  <constant>PotDApplicationWindow</constant>
+                                </lookup>
+                              </closure>
+                            </binding>
+                            <style>
+                              <class name="property"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwActionRow">
+                            <property name="title" translatable="yes" context="images-view.metadata.label">Description</property>
+                            <property name="subtitle" bind-source="PotDApplicationWindow" bind-property="image_description" bind-flags="sync-create"/>
+                            <binding name="visible">
+                              <closure function="non_empty" type="gboolean">
+                                <lookup name="image_description" type="PotDApplicationWindow">
+                                  <constant>PotDApplicationWindow</constant>
+                                </lookup>
+                              </closure>
+                            </binding>
+                            <style>
+                              <class name="property"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwStatusPage" id="empty">
+                <property name="icon-name">de.swsnr.picture-of-the-day</property>
+                <property name="vexpand">true</property>
+                <property name="child">
+                  <object class="AdwClamp">
+                    <child>
+                      <object class="GtkButton">
+                        <property name="label" translatable="yes" context="start-page.button.label">Get images</property>
+                        <style>
+                          <class name="pill"/>
+                          <class name="suggested_action"/>
+                        </style>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
           </object>
         </child>
       </object>

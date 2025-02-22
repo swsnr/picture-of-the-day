@@ -10,6 +10,14 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
   default-width: 1024;
   default-height: 768;
 
+  Adw.Breakpoint {
+    condition ("max-width: 400sp")
+
+    setters {
+      images_view.collapsed: true;
+    }
+  }
+
   content: Adw.ToolbarView {
     top-bar-style: raised;
 
@@ -59,10 +67,79 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       }
     }
 
-    Adw.StatusPage {
-      title: "Under construction";
-      description: bind template.selected-source;
-      icon-name: "de.swsnr.picture-of-the-day";
+    Stack stack {
+      visible-child: empty;
+
+      Adw.OverlaySplitView images_view {
+        sidebar-position: end;
+
+        content: Adw.StatusPage {
+          title: "Coming soon";
+        };
+
+        sidebar: Box {
+          orientation: vertical;
+          margin-top: 24;
+          margin-bottom: 24;
+          margin-start: 12;
+          margin-end: 12;
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Title");
+              subtitle: bind template.image_title;
+
+              [suffix]
+              LinkButton {
+                icon-name: "external-link-symbolic";
+                uri: bind template.image_url;
+                visible: bind $non_empty(template.image_url) as <bool>;
+                tooltip-text: _("Visit the source page of this image.");
+              }
+
+              styles [
+                "property",
+              ]
+            }
+
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Copyright");
+              subtitle: bind template.image_copyright;
+              visible: bind $non_empty(template.image_copyright) as <bool>;
+
+              styles [
+                "property",
+              ]
+            }
+
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Description");
+              subtitle: bind template.image_description;
+              visible: bind $non_empty(template.image_description) as <bool>;
+
+              styles [
+                "property",
+              ]
+            }
+          }
+        };
+      }
+
+      Adw.StatusPage empty {
+        icon-name: "de.swsnr.picture-of-the-day";
+        vexpand: true;
+
+        child: Adw.Clamp {
+          Button {
+            label: C_("start-page.button.label", "Get images");
+
+            styles [
+              "pill",
+              "suggested_action",
+            ]
+          }
+        };
+      }
     }
   };
 }

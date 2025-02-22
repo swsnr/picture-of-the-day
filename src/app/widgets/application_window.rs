@@ -8,7 +8,7 @@ use adw::prelude::*;
 use glib::{dgettext, dpgettext2, object::IsA};
 use gtk::gio;
 
-use crate::source::Source;
+use crate::{image::ImageMetadata, source::Source};
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -78,6 +78,24 @@ impl ApplicationWindow {
 
         dialog.present(Some(self));
     }
+
+    /// Show the given metadata in the image sidebar.
+    ///
+    /// Show title, URL, description, and copyright information in the sidebar,
+    /// if set, or clear out current information if `None`.
+    fn show_image_metadata_in_sidebar(&self, metadata: Option<&ImageMetadata>) {
+        if let Some(metadata) = metadata {
+            self.set_image_title(&*metadata.title);
+            self.set_image_url(metadata.url.as_deref().unwrap_or_default());
+            self.set_image_description(metadata.description.as_deref().unwrap_or_default());
+            self.set_image_copyright(metadata.copyright.as_deref().unwrap_or_default());
+        } else {
+            self.set_image_title("");
+            self.set_image_url("");
+            self.set_image_description("");
+            self.set_image_copyright("");
+        }
+    }
 }
 
 mod imp {
@@ -93,6 +111,7 @@ mod imp {
 
     use crate::app::widgets::SourceRow;
     use crate::config::G_LOG_DOMAIN;
+    use crate::image::DownloadableImage;
     use crate::Source;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -103,8 +122,29 @@ mod imp {
         http_session: RefCell<soup::Session>,
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
+        #[property(get, set)]
+        image_url: RefCell<String>,
+        #[property(get, set)]
+        image_title: RefCell<String>,
+        #[property(get, set)]
+        image_copyright: RefCell<String>,
+        #[property(get, set)]
+        image_description: RefCell<String>,
         #[template_child]
         sources_list: TemplateChild<gtk::ListBox>,
+        #[template_child]
+        stack: TemplateChild<gtk::Stack>,
+        #[template_child]
+        images_view: TemplateChild<adw::OverlaySplitView>,
+        images: RefCell<Vec<DownloadableImage>>,
+    }
+
+    #[gtk::template_callbacks(functions)]
+    impl ApplicationWindow {
+        #[template_callback]
+        fn non_empty(s: &str) -> bool {
+            !s.is_empty()
+        }
     }
 
     #[glib::object_subclass]
@@ -117,6 +157,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+            klass.bind_template_callbacks();
 
             klass.install_action("win.about-app", None, |window, _, _| {
                 window.show_about_dialog();
@@ -125,8 +166,22 @@ mod imp {
             klass.install_action_async("win.refresh-images", None, |window, _, _| async move {
                 let source = window.selected_source();
                 glib::info!("Fetching images for source {source:?}");
-                let result = source.get_images(&window.http_session()).await;
-                glib::info!("Fetched images for {source:?}: {result:?}");
+                match source.get_images(&window.http_session()).await {
+                    Ok(images) => {
+                        glib::info!("Fetched images for {source:?}: {images:?}");
+                        window
+                            .imp()
+                            .stack
+                            .get()
+                            .set_visible_child(&window.imp().images_view.get());
+                        window.imp().images.replace(images);
+                        let images = window.imp().images.borrow();
+                        window.show_image_metadata_in_sidebar(Some(&images[0].metadata));
+                    }
+                    Err(error) => {
+                        glib::error!("Failed to fetch images for {source:?}: {error}");
+                    }
+                }
             });
 
             klass.add_binding_action(
@@ -158,10 +213,6 @@ mod imp {
                 gtk::prelude::WidgetExt::activate_action(window, "win.refresh-images", None)
                     .unwrap();
             });
-        }
-
-        fn dispose(&self) {
-            glib::debug!("Disposing window");
         }
     }
 
