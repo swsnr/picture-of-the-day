@@ -57,6 +57,17 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           action-name: "win.refresh-images";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Refresh images for selected source");
         }
+
+        Button {
+          icon-name: "cross-large-symbolic";
+          action-name: "win.cancel-loading";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Stop loading images");
+          sensitive: bind template.is-loading;
+        }
+
+        Spinner {
+          spinning: bind template.is_loading;
+        }
       }
 
       [end]

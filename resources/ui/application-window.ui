@@ -60,6 +60,19 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Refresh images for selected source</property>
                   </object>
                 </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">cross-large-symbolic</property>
+                    <property name="action-name">win.cancel-loading</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Stop loading images</property>
+                    <property name="sensitive" bind-source="PotDApplicationWindow" bind-property="is-loading" bind-flags="sync-create"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSpinner">
+                    <property name="spinning" bind-source="PotDApplicationWindow" bind-property="is_loading" bind-flags="sync-create"/>
+                  </object>
+                </child>
               </object>
             </child>
             <child type="end">

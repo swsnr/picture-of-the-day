@@ -110,6 +110,7 @@ mod imp {
     use glib::subclass::InitializingObject;
     use glib::Properties;
     use gtk::gdk::{Key, ModifierType};
+    use gtk::gio::{self, Cancellable};
     use gtk::CompositeTemplate;
     use strum::IntoEnumIterator;
 
@@ -140,6 +141,8 @@ mod imp {
         image_source_url: RefCell<String>,
         #[property(get, set)]
         show_image_properties: Cell<bool>,
+        #[property(get = Self::is_loading, type = bool)]
+        is_loading: RefCell<Option<Cancellable>>,
         #[template_child]
         sources_list: TemplateChild<gtk::ListBox>,
         #[template_child]
@@ -158,11 +161,40 @@ mod imp {
     }
 
     impl ApplicationWindow {
+        fn is_loading(&self) -> bool {
+            self.is_loading.borrow().is_some()
+        }
+
+        fn cancel_loading(&self) {
+            if let Some(cancellable) = self.is_loading.replace(None) {
+                cancellable.cancel();
+            }
+            self.obj().notify_is_loading();
+        }
+
         fn switch_to_images_view(&self) {
             self.stack.set_visible_child(&*self.images_view);
             self.obj()
                 .action_set_enabled("win.show-image-properties", true);
             self.obj().set_show_image_properties(true);
+        }
+
+        async fn load_images(&self) {
+            let source = self.selected_source.get();
+            glib::info!("Fetching images for source {source:?}");
+            match source.get_images(&self.obj().http_session()).await {
+                Ok(images) => {
+                    glib::info!("Fetched images for {source:?}: {images:?}");
+                    self.switch_to_images_view();
+                    self.images.replace(images);
+                    let images = self.images.borrow();
+                    self.obj()
+                        .show_image_metadata_in_sidebar(Some(&images[0].metadata));
+                }
+                Err(error) => {
+                    glib::error!("Failed to fetch images for {source:?}: {error}");
+                }
+            }
         }
     }
 
@@ -183,21 +215,30 @@ mod imp {
             });
             klass.install_property_action("win.select-source", "selected-source");
             klass.install_property_action("win.show-image-properties", "show-image-properties");
+            klass.install_action("win.cancel-loading", None, |window, _, _| {
+                window.imp().cancel_loading();
+            });
             klass.install_action_async("win.refresh-images", None, |window, _, _| async move {
-                let source = window.selected_source();
-                glib::info!("Fetching images for source {source:?}");
-                match source.get_images(&window.http_session()).await {
-                    Ok(images) => {
-                        glib::info!("Fetched images for {source:?}: {images:?}");
-                        window.imp().switch_to_images_view();
-                        window.imp().images.replace(images);
-                        let images = window.imp().images.borrow();
-                        window.show_image_metadata_in_sidebar(Some(&images[0].metadata));
-                    }
-                    Err(error) => {
-                        glib::error!("Failed to fetch images for {source:?}: {error}");
-                    }
+                window.imp().cancel_loading();
+                let cancellable = gio::Cancellable::new();
+                window.imp().is_loading.replace(Some(cancellable.clone()));
+                window.notify_is_loading();
+                let result = gio::CancellableFuture::new(
+                    glib::clone!(
+                        #[weak]
+                        window,
+                        async move {
+                            window.imp().load_images().await;
+                        }
+                    ),
+                    cancellable,
+                )
+                .await;
+                if result.is_err() {
+                    glib::info!("Image loading cancelled!");
                 }
+                window.imp().is_loading.replace(None);
+                window.notify_is_loading();
             });
 
             klass.add_binding_action(
@@ -209,6 +250,11 @@ mod imp {
                 Key::F9,
                 ModifierType::NO_MODIFIER_MASK,
                 "win.show-image-properties",
+            );
+            klass.add_binding_action(
+                Key::Escape,
+                ModifierType::NO_MODIFIER_MASK,
+                "win.cancel-loading",
             );
         }
 
