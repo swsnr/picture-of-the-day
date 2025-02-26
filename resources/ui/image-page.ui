@@ -9,21 +9,59 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   <template class="PotDImagePage" parent="AdwBin">
     <property name="child">
       <object class="GtkStack" id="stack">
-        <property name="visible-child">loading</property>
+        <binding name="visible-child">
+          <closure function="stack_page" type="GtkWidget">
+            <lookup name="image-file" type="PotDImage">
+              <lookup name="image" type="PotDImagePage">
+                <constant>PotDImagePage</constant>
+              </lookup>
+            </lookup>
+            <lookup name="error-message" type="PotDImage">
+              <lookup name="image" type="PotDImagePage">
+                <constant>PotDImagePage</constant>
+              </lookup>
+            </lookup>
+          </closure>
+        </binding>
         <child>
           <object class="GtkSpinner" id="loading">
-            <property name="spinning">true</property>
+            <binding name="spinning">
+              <closure function="is_loading" type="gboolean">
+                <lookup name="image-file" type="PotDImage">
+                  <lookup name="image" type="PotDImagePage">
+                    <constant>PotDImagePage</constant>
+                  </lookup>
+                </lookup>
+                <lookup name="error-message" type="PotDImage">
+                  <lookup name="image" type="PotDImagePage">
+                    <constant>PotDImagePage</constant>
+                  </lookup>
+                </lookup>
+              </closure>
+            </binding>
           </object>
         </child>
         <child>
           <object class="GtkPicture" id="picture">
-            <property name="file" bind-source="PotDImagePage" bind-property="image-file" bind-flags="sync-create"/>
+            <binding name="file">
+              <lookup name="image-file" type="PotDImage">
+                <lookup name="image" type="PotDImagePage">
+                  <constant>PotDImagePage</constant>
+                </lookup>
+              </lookup>
+            </binding>
           </object>
         </child>
         <child>
           <object class="AdwStatusPage" id="error">
             <property name="title" translatable="yes" context="image-page.error-message.title">Failed to load image</property>
-            <property name="description" bind-source="PotDImagePage" bind-property="error-message" bind-flags="sync-create"/>
+            <binding name="description">
+              <lookup name="error-message" type="PotDImage">
+                <lookup name="image" type="PotDImagePage">
+                  <constant>PotDImagePage</constant>
+                </lookup>
+              </lookup>
+            </binding>
           </object>
         </child>
       </object>

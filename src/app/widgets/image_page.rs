@@ -5,19 +5,11 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use glib::Object;
-use gtk::gio;
 
 glib::wrapper! {
     pub struct ImagePage(ObjectSubclass<imp::ImagePage>)
         @extends adw::Bin, gtk::Widget,
         @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
-}
-
-impl ImagePage {
-    pub fn reset(&self) {
-        self.set_image_file(None::<gio::File>);
-        self.set_error_message(None::<String>);
-    }
 }
 
 impl Default for ImagePage {
@@ -34,14 +26,14 @@ mod imp {
     use glib::{Properties, subclass::InitializingObject};
     use gtk::{CompositeTemplate, gio};
 
+    use crate::image::ImageObject;
+
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagePage)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
     pub struct ImagePage {
-        #[property(get, set = Self::set_error_message, nullable)]
-        error_message: RefCell<Option<String>>,
-        #[property(get, set = Self::set_image_file, nullable)]
-        image_file: RefCell<Option<gio::File>>,
+        #[property(get, set)]
+        image: RefCell<Option<ImageObject>>,
         #[template_child]
         stack: TemplateChild<gtk::Stack>,
         #[template_child]
@@ -52,41 +44,19 @@ mod imp {
         error: TemplateChild<gtk::Widget>,
     }
 
+    #[gtk::template_callbacks]
     impl ImagePage {
-        fn has_error_message(&self) -> bool {
-            self.error_message.borrow().is_some()
+        #[template_callback(function)]
+        fn is_loading(file: Option<&gio::File>, error_message: Option<&str>) -> bool {
+            file.is_none() && error_message.is_none()
         }
 
-        fn has_image_file(&self) -> bool {
-            self.image_file.borrow().is_some()
-        }
-
-        fn update_stack(&self) {
-            let child = if self.has_error_message() {
-                self.error.get()
-            } else if self.has_image_file() {
-                self.picture.get()
-            } else {
-                self.loading.get()
-            };
-            self.stack.set_visible_child(&child);
-        }
-
-        fn set_error_message(&self, error_message: Option<String>) {
-            self.error_message.replace(error_message);
-            if self.has_error_message() {
-                self.obj().set_image_file(None::<gio::File>);
-            } else {
-                self.update_stack();
-            }
-        }
-
-        fn set_image_file(&self, image_file: Option<gio::File>) {
-            self.image_file.replace(image_file);
-            if self.has_image_file() {
-                self.obj().set_error_message(None::<String>);
-            } else {
-                self.update_stack();
+        #[template_callback]
+        fn stack_page(&self, file: Option<&gio::File>, error_message: Option<&str>) -> gtk::Widget {
+            match (file, error_message) {
+                (Some(_), _) => self.picture.get(),
+                (_, Some(_)) => self.error.get(),
+                (None, None) => self.loading.get(),
             }
         }
     }
@@ -101,6 +71,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+            klass.bind_template_callbacks();
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {

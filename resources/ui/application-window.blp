@@ -95,9 +95,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
         sidebar-position: end;
         show-sidebar: bind template.show-image-properties bidirectional;
 
-        content: $PotDImagesCarousel images_carousel {
-          image-changed => $image_changed() swapped;
-        };
+        content: $PotDImagesCarousel images_carousel {};
 
         sidebar: Box {
           orientation: vertical;
@@ -110,13 +108,13 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           Adw.PreferencesGroup {
             Adw.ActionRow {
               title: C_("images-view.metadata.label", "Title");
-              subtitle: bind template.image_title;
+              subtitle: bind (images_carousel.current-image as <$PotDImage>).title;
 
               [suffix]
               LinkButton {
                 icon-name: "external-link-symbolic";
-                uri: bind template.image_url;
-                visible: bind $non_empty(template.image_url) as <bool>;
+                uri: bind (images_carousel.current-image as <$PotDImage>).url;
+                visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).url) as <bool>;
                 tooltip-text: _("Visit the source page of this image.");
               }
 
@@ -127,8 +125,8 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
             Adw.ActionRow {
               title: C_("images-view.metadata.label", "Copyright");
-              subtitle: bind template.image_copyright;
-              visible: bind $non_empty(template.image_copyright) as <bool>;
+              subtitle: bind (images_carousel.current-image as <$PotDImage>).copyright;
+              visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).copyright) as <bool>;
 
               styles [
                 "property",
@@ -137,8 +135,8 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
             Adw.ActionRow {
               title: C_("images-view.metadata.label", "Description");
-              subtitle: bind template.image_description;
-              visible: bind $non_empty(template.image_description) as <bool>;
+              subtitle: bind (images_carousel.current-image as <$PotDImage>).description;
+              visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).description) as <bool>;
 
               styles [
                 "property",
@@ -149,12 +147,12 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           Adw.PreferencesGroup {
             Adw.ActionRow {
               title: C_("images-view.metadata.label", "Source");
-              subtitle: bind template.image_source_name;
+              subtitle: bind (images_carousel.current-image as <$PotDImage>).source-name;
 
               [suffix]
               LinkButton {
                 icon-name: "external-link-symbolic";
-                uri: bind template.image_source_url;
+                uri: bind (images_carousel.current-image as <$PotDImage>).source-url;
                 tooltip-text: _("Visit the main page of the source of this image.");
               }
 

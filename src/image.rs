@@ -11,9 +11,12 @@ use std::{
 
 use gtk::gio::{self, Cancellable, prelude::FileExt};
 
-use crate::{image::download::download_file, source::Source};
+use crate::{config::G_LOG_DOMAIN, image::download::download_file, source::Source};
 
 pub mod download;
+mod obj;
+
+pub use obj::ImageObject;
 
 /// Metadata of an image.
 #[derive(Debug, Eq, PartialEq)]
@@ -107,7 +110,9 @@ impl ImageDownload {
         ))
         .await
         .unwrap();
-        if !exists {
+        if exists {
+            glib::debug!("Using existing file at {}", self.target.display());
+        } else {
             download_file(session, &self.url, &self.target, cancellable).await?;
         }
         Ok(())

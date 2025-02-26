@@ -7,19 +7,19 @@ using Adw 1;
 
 template $PotDImagePage: Adw.Bin {
   child: Stack stack {
-    visible-child: loading;
+    visible-child: bind $stack_page((template.image as <$PotDImage>).image-file,(template.image as <$PotDImage>).error-message) as <Widget>;
 
     Spinner loading {
-      spinning: true;
+      spinning: bind $is_loading((template.image as <$PotDImage>).image-file,(template.image as <$PotDImage>).error-message) as <bool>;
     }
 
     Picture picture {
-      file: bind template.image-file;
+      file: bind (template.image as <$PotDImage>).image-file;
     }
 
     Adw.StatusPage error {
       title: C_("image-page.error-message.title", "Failed to load image");
-      description: bind template.error-message;
+      description: bind (template.image as <$PotDImage>).error-message;
     }
   };
 }

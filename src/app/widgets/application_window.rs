@@ -8,7 +8,7 @@ use adw::prelude::*;
 use glib::{dgettext, dpgettext2, object::IsA};
 use gtk::gio;
 
-use crate::{image::ImageMetadata, source::Source};
+use crate::source::Source;
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -78,28 +78,6 @@ impl ApplicationWindow {
 
         dialog.present(Some(self));
     }
-
-    /// Show the given metadata in the image sidebar.
-    ///
-    /// Show title, URL, description, and copyright information in the sidebar,
-    /// if set, or clear out current information if `None`.
-    fn show_image_metadata_in_sidebar(&self, metadata: Option<&ImageMetadata>) {
-        if let Some(metadata) = metadata {
-            self.set_image_title(&*metadata.title);
-            self.set_image_url(metadata.url.as_deref().unwrap_or_default());
-            self.set_image_description(metadata.description.as_deref().unwrap_or_default());
-            self.set_image_copyright(metadata.copyright.as_deref().unwrap_or_default());
-            self.set_image_source_name(metadata.source.i18n_name());
-            self.set_image_source_url(metadata.source.url());
-        } else {
-            self.set_image_title("");
-            self.set_image_url("");
-            self.set_image_description("");
-            self.set_image_copyright("");
-            self.set_image_source_name("");
-            self.set_image_source_url("");
-        }
-    }
 }
 
 mod imp {
@@ -118,6 +96,7 @@ mod imp {
     use crate::Source;
     use crate::app::widgets::{ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
+    use crate::image::ImageObject;
     use crate::source::SourceError;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -128,18 +107,6 @@ mod imp {
         http_session: RefCell<soup::Session>,
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
-        #[property(get, set)]
-        image_url: RefCell<String>,
-        #[property(get, set)]
-        image_title: RefCell<String>,
-        #[property(get, set)]
-        image_copyright: RefCell<String>,
-        #[property(get, set)]
-        image_description: RefCell<String>,
-        #[property(get, set)]
-        image_source_name: RefCell<String>,
-        #[property(get, set)]
-        image_source_url: RefCell<String>,
         #[property(get, set)]
         show_image_properties: Cell<bool>,
         #[property(get = Self::is_loading, type = bool)]
@@ -159,12 +126,6 @@ mod imp {
         #[template_callback(function)]
         fn non_empty(s: &str) -> bool {
             !s.is_empty()
-        }
-
-        #[template_callback]
-        fn image_changed(&self, n: u32, carousel: &ImagesCarousel) {
-            let image = carousel.nth_image(n);
-            self.obj().show_image_metadata_in_sidebar(Some(&*image));
         }
     }
 
@@ -202,18 +163,23 @@ mod imp {
                 .join(crate::config::APP_ID)
                 .join("images")
                 .join(source.id());
-            let mut metadatas = Vec::with_capacity(images.len());
-            let mut downloads = Vec::with_capacity(images.len());
-            for image in images {
-                let (metadata, download) = image.prepare_download(&target_directory);
-                metadatas.push(metadata);
-                downloads.push(download);
-            }
+            let images = images
+                .into_iter()
+                .map(|image| {
+                    let (metadata, download) = image.prepare_download(&target_directory);
+                    (ImageObject::from(metadata), download)
+                })
+                .collect::<Vec<_>>();
 
             // Set images to be shown, and switch to images view, in case we're
             // on the empty start page.
             let carousel = self.images_carousel.get();
-            carousel.set_images(metadatas);
+            carousel.set_images(
+                &images
+                    .iter()
+                    .map(|(image, _)| image.clone())
+                    .collect::<Vec<_>>(),
+            );
             self.switch_to_images_view();
 
             let target_directory_file = gio::File::for_path(&target_directory);
@@ -235,22 +201,17 @@ mod imp {
             .unwrap()?;
 
             let http_session = self.http_session.borrow().clone();
-            join_all(downloads.into_iter().enumerate().map(|(n, download)| {
+            join_all(images.into_iter().map(|(image, download)| {
                 glib::clone!(
-                    #[strong]
-                    http_session,
                     #[weak]
-                    carousel,
+                    http_session,
                     #[upgrade_or]
                     Ok(()),
                     async move {
                         match download.download(&http_session, cancellable).await {
                             Ok(()) => {
                                 glib::info!("Displaying image from {}", download.target.display());
-                                carousel.set_image_file(
-                                    u32::try_from(n).unwrap(),
-                                    &gio::File::for_path(&download.target),
-                                );
+                                image.set_image_file(Some(&gio::File::for_path(download.target)));
                                 Ok(())
                             }
                             Err(error) => {
@@ -259,10 +220,7 @@ mod imp {
                                     &download.url
                                 );
                                 // TODO: Provide a human-readable and translated error message here!
-                                carousel.set_error_message(
-                                    u32::try_from(n).unwrap(),
-                                    &format!("Download failed: {error}"),
-                                );
+                                image.set_error_message(Some(format!("Download failed: {error}")));
                                 Err(error)
                             }
                         }
@@ -284,6 +242,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             ImagesCarousel::ensure_type();
+            ImageObject::ensure_type();
 
             klass.bind_template();
             klass.bind_template_callbacks();
