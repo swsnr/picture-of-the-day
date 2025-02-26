@@ -11,7 +11,9 @@ use std::{
 
 use gtk::gio::{self, Cancellable, prelude::FileExt};
 
-use crate::{download::download_file, source::Source};
+use crate::{image::download::download_file, source::Source};
+
+pub mod download;
 
 /// Metadata of an image.
 #[derive(Debug, Eq, PartialEq)]
