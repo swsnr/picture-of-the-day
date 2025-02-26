@@ -6,6 +6,8 @@
         <!-- User interface templates -->
         <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/source-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/image-page.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/images-carousel.ui</file>
         <!-- Action icons-->
         <file preprocess="xml-stripblanks">icons/scalable/actions/external-link-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/info-outline-symbolic.svg</file>

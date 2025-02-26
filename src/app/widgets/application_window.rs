@@ -107,16 +107,17 @@ mod imp {
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
+    use futures_util::future::join_all;
     use glib::subclass::InitializingObject;
     use glib::Properties;
     use gtk::gdk::{Key, ModifierType};
-    use gtk::gio::{self, Cancellable};
+    use gtk::gio::{self, Cancellable, IOErrorEnum};
     use gtk::CompositeTemplate;
     use strum::IntoEnumIterator;
 
-    use crate::app::widgets::SourceRow;
+    use crate::app::widgets::{ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
-    use crate::image::DownloadableImage;
+    use crate::source::SourceError;
     use crate::Source;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -149,14 +150,21 @@ mod imp {
         stack: TemplateChild<gtk::Stack>,
         #[template_child]
         images_view: TemplateChild<adw::OverlaySplitView>,
-        images: RefCell<Vec<DownloadableImage>>,
+        #[template_child]
+        images_carousel: TemplateChild<ImagesCarousel>,
     }
 
-    #[gtk::template_callbacks(functions)]
+    #[gtk::template_callbacks]
     impl ApplicationWindow {
-        #[template_callback]
+        #[template_callback(function)]
         fn non_empty(s: &str) -> bool {
             !s.is_empty()
+        }
+
+        #[template_callback]
+        fn image_changed(&self, n: u32, carousel: &ImagesCarousel) {
+            let image = carousel.nth_image(n);
+            self.obj().show_image_metadata_in_sidebar(Some(&*image));
         }
     }
 
@@ -179,22 +187,90 @@ mod imp {
             self.obj().set_show_image_properties(true);
         }
 
-        async fn load_images(&self) {
+        async fn load_images(&self, cancellable: &Cancellable) -> Result<(), SourceError> {
             let source = self.selected_source.get();
             glib::info!("Fetching images for source {source:?}");
-            match source.get_images(&self.obj().http_session()).await {
-                Ok(images) => {
-                    glib::info!("Fetched images for {source:?}: {images:?}");
-                    self.switch_to_images_view();
-                    self.images.replace(images);
-                    let images = self.images.borrow();
-                    self.obj()
-                        .show_image_metadata_in_sidebar(Some(&images[0].metadata));
-                }
-                Err(error) => {
-                    glib::error!("Failed to fetch images for {source:?}: {error}");
-                }
+            let images = gio::CancellableFuture::new(
+                source.get_images(&self.obj().http_session()),
+                cancellable.clone(),
+            )
+            .await??;
+            glib::info!("Fetched images for {source:?}: {images:?}");
+
+            // Prepare downloads for all images
+            let target_directory = glib::user_data_dir()
+                .join(crate::config::APP_ID)
+                .join("images")
+                .join(source.id());
+            let mut metadatas = Vec::with_capacity(images.len());
+            let mut downloads = Vec::with_capacity(images.len());
+            for image in images {
+                let (metadata, download) = image.prepare_download(&target_directory);
+                metadatas.push(metadata);
+                downloads.push(download);
             }
+
+            // Set images to be shown, and switch to images view, in case we're
+            // on the empty start page.
+            let carousel = self.images_carousel.get();
+            carousel.set_images(metadatas);
+            self.switch_to_images_view();
+
+            let target_directory_file = gio::File::for_path(&target_directory);
+            gio::spawn_blocking(glib::clone!(
+                #[strong]
+                cancellable,
+                move || {
+                    glib::info!(
+                        "Creating target directory {}",
+                        target_directory_file.path().unwrap().display()
+                    );
+                    match target_directory_file.make_directory_with_parents(Some(&cancellable)) {
+                        Err(error) if error.matches(IOErrorEnum::Exists) => Ok(()),
+                        res => res,
+                    }
+                }
+            ))
+            .await
+            .unwrap()?;
+
+            let http_session = self.http_session.borrow().clone();
+            join_all(downloads.into_iter().enumerate().map(|(n, download)| {
+                glib::clone!(
+                    #[strong]
+                    http_session,
+                    #[weak]
+                    carousel,
+                    #[upgrade_or]
+                    Ok(()),
+                    async move {
+                        match download.download(&http_session, cancellable).await {
+                            Ok(()) => {
+                                glib::info!("Displaying image from {}", download.target.display());
+                                carousel.set_image_file(
+                                    u32::try_from(n).unwrap(),
+                                    &gio::File::for_path(&download.target),
+                                );
+                                Ok(())
+                            }
+                            Err(error) => {
+                                glib::error!(
+                                    "Downloading image from {} failed: {error}",
+                                    &download.url
+                                );
+                                // TODO: Provide a human-readable and translated error message here!
+                                carousel.set_error_message(
+                                    u32::try_from(n).unwrap(),
+                                    &format!("Download failed: {error}"),
+                                );
+                                Err(error)
+                            }
+                        }
+                    }
+                )
+            }))
+            .await;
+            Ok(())
         }
     }
 
@@ -207,6 +283,8 @@ mod imp {
         type ParentType = adw::ApplicationWindow;
 
         fn class_init(klass: &mut Self::Class) {
+            ImagesCarousel::ensure_type();
+
             klass.bind_template();
             klass.bind_template_callbacks();
 
@@ -223,19 +301,12 @@ mod imp {
                 let cancellable = gio::Cancellable::new();
                 window.imp().is_loading.replace(Some(cancellable.clone()));
                 window.notify_is_loading();
-                let result = gio::CancellableFuture::new(
-                    glib::clone!(
-                        #[weak]
-                        window,
-                        async move {
-                            window.imp().load_images().await;
-                        }
-                    ),
-                    cancellable,
-                )
-                .await;
-                if result.is_err() {
-                    glib::info!("Image loading cancelled!");
+                if let Err(error) = window.imp().load_images(&cancellable).await {
+                    if error.is_cancelled() {
+                        glib::info!("Image loading cancelled!");
+                    } else {
+                        glib::error!("Image loading failed: {error}");
+                    }
                 }
                 window.imp().is_loading.replace(None);
                 window.notify_is_loading();

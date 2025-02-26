@@ -4,9 +4,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::borrow::Cow;
+use std::{
+    borrow::Cow,
+    path::{Path, PathBuf},
+};
 
-use crate::source::Source;
+use gtk::gio::{self, prelude::FileExt, Cancellable};
+
+use crate::{download::download_file, source::Source};
 
 /// Metadata of an image.
 #[derive(Debug, Eq, PartialEq)]
@@ -58,5 +63,51 @@ impl DownloadableImage {
         self.suggested_filename
             .as_deref()
             .map_or_else(|| self.guess_filename(), Cow::Borrowed)
+    }
+
+    pub fn prepare_download<P: AsRef<Path>>(
+        self,
+        target_directory: P,
+    ) -> (ImageMetadata, ImageDownload) {
+        let filename = match &self.pubdate {
+            Some(pubdate) => Cow::Owned(format!("{pubdate}-{}", self.filename())),
+            None => self.filename(),
+        };
+        let target = target_directory.as_ref().join(&*filename);
+        let download = ImageDownload {
+            url: self.image_url,
+            target,
+        };
+        (self.metadata, download)
+    }
+}
+
+/// An image to download.
+#[derive(Debug)]
+pub struct ImageDownload {
+    /// The URL to download from.
+    pub url: String,
+    /// The file to download to.
+    pub target: PathBuf,
+}
+
+impl ImageDownload {
+    pub async fn download(
+        &self,
+        session: &soup::Session,
+        cancellable: &Cancellable,
+    ) -> Result<(), glib::Error> {
+        let target_file = gio::File::for_path(&self.target);
+        let exists = gio::spawn_blocking(glib::clone!(
+            #[strong]
+            cancellable,
+            move || target_file.query_exists(Some(&cancellable))
+        ))
+        .await
+        .unwrap();
+        if !exists {
+            download_file(session, &self.url, &self.target, cancellable).await?;
+        }
+        Ok(())
     }
 }

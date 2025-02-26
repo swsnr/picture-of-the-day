@@ -20,8 +20,19 @@ mod wikimedia;
 
 pub use error::SourceError;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, glib::Enum, glib::Variant, strum::EnumIter)]
+#[derive(
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Eq,
+    glib::Enum,
+    glib::Variant,
+    strum::EnumIter,
+    strum::IntoStaticStr,
+)]
 #[enum_type(name = "PotDSource")]
+#[strum(serialize_all = "kebab-case")]
 pub enum Source {
     Apod,
     Eopod,
@@ -51,6 +62,10 @@ impl Source {
             Source::Wikimedia => dpgettext2(None, "source name", "Wikimedia Picture Of The Day"),
             Source::Stalenhag => dpgettext2(None, "source name", "Simon Stålenhag"),
         }
+    }
+
+    pub fn id(self) -> &'static str {
+        self.into()
     }
 
     pub fn url(self) -> &'static str {

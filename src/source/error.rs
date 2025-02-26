@@ -7,6 +7,7 @@
 use std::{error::Error, fmt::Display};
 
 use glib::GString;
+use gtk::gio::{Cancelled, IOErrorEnum};
 
 #[derive(Debug)]
 pub enum SourceError {
@@ -20,6 +21,16 @@ pub enum SourceError {
     NoImage,
 }
 
+impl SourceError {
+    /// Whether this error represents a cancelled IO operation.
+    pub fn is_cancelled(&self) -> bool {
+        match self {
+            SourceError::IO(error) => error.matches(IOErrorEnum::Cancelled),
+            _ => false,
+        }
+    }
+}
+
 impl From<glib::Error> for SourceError {
     fn from(error: glib::Error) -> Self {
         Self::IO(error)
@@ -29,6 +40,12 @@ impl From<glib::Error> for SourceError {
 impl From<serde_json::Error> for SourceError {
     fn from(value: serde_json::Error) -> Self {
         Self::InvalidJson(value)
+    }
+}
+
+impl From<Cancelled> for SourceError {
+    fn from(_: Cancelled) -> Self {
+        glib::Error::new(IOErrorEnum::Cancelled, "Cancelled").into()
     }
 }
 

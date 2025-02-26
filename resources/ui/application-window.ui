@@ -104,8 +104,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="sidebar-position">1</property>
                 <property name="show-sidebar" bind-source="PotDApplicationWindow" bind-property="show-image-properties" bind-flags="sync-create|bidirectional"/>
                 <property name="content">
-                  <object class="AdwStatusPage">
-                    <property name="title">Coming soon</property>
+                  <object class="PotDImagesCarousel" id="images_carousel">
+                    <signal name="image-changed" handler="image_changed" swapped="True"/>
                   </object>
                 </property>
                 <property name="sidebar">

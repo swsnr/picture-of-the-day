@@ -1,0 +1,25 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+using Gtk 4.0;
+using Adw 1;
+
+template $PotDImagePage: Adw.Bin {
+  child: Stack stack {
+    visible-child: loading;
+
+    Spinner loading {
+      spinning: true;
+    }
+
+    Picture picture {
+      file: bind template.image-file;
+    }
+
+    Adw.StatusPage error {
+      title: C_("image-page.error-message.title", "Failed to load image");
+      description: bind template.error-message;
+    }
+  };
+}

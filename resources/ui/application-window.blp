@@ -95,8 +95,8 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
         sidebar-position: end;
         show-sidebar: bind template.show-image-properties bidirectional;
 
-        content: Adw.StatusPage {
-          title: "Coming soon";
+        content: $PotDImagesCarousel images_carousel {
+          image-changed => $image_changed() swapped;
         };
 
         sidebar: Box {

@@ -1,0 +1,25 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+using Gtk 4.0;
+using Adw 1;
+
+template $PotDImagesCarousel: Adw.Bin {
+  Gtk.Box {
+    orientation: vertical;
+
+    Adw.Carousel images_carousel {
+      hexpand: true;
+      vexpand: true;
+      margin-start: 6;
+      margin-end: 6;
+      margin-top: 6;
+      margin-bottom: 6;
+    }
+
+    Adw.CarouselIndicatorLines {
+      carousel: images_carousel;
+    }
+  }
+}
