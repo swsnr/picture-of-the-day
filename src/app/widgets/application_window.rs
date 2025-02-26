@@ -108,17 +108,17 @@ mod imp {
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use futures_util::future::join_all;
-    use glib::subclass::InitializingObject;
     use glib::Properties;
+    use glib::subclass::InitializingObject;
+    use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, IOErrorEnum};
-    use gtk::CompositeTemplate;
     use strum::IntoEnumIterator;
 
+    use crate::Source;
     use crate::app::widgets::{ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::source::SourceError;
-    use crate::Source;
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ApplicationWindow)]

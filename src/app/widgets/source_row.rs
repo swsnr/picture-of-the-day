@@ -24,7 +24,7 @@ mod imp {
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::subclass::InitializingObject;
-    use glib::{markup_escape_text, GString, Properties};
+    use glib::{GString, Properties, markup_escape_text};
 
     use crate::Source;
 

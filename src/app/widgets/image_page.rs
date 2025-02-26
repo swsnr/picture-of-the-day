@@ -31,8 +31,8 @@ mod imp {
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use glib::{subclass::InitializingObject, Properties};
-    use gtk::{gio, CompositeTemplate};
+    use glib::{Properties, subclass::InitializingObject};
+    use gtk::{CompositeTemplate, gio};
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagePage)]

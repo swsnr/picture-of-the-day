@@ -9,7 +9,7 @@
 // See <https://github.com/gtk-rs/gtk-rs-core/discussions/1625>
 #![allow(clippy::as_conversions)]
 
-use glib::{dpgettext2, GString};
+use glib::{GString, dpgettext2};
 use gtk::gio::IOErrorEnum;
 
 use crate::config::G_LOG_DOMAIN;

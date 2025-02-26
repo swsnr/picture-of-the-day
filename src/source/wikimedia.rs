@@ -4,7 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::{dpgettext2, Priority};
+use glib::{Priority, dpgettext2};
 use serde::Deserialize;
 use soup::prelude::SessionExt;
 
@@ -187,11 +187,13 @@ mod tests {
 
     use crate::image::DownloadableImage;
 
-    use super::{create_message, FeaturedContent};
+    use super::{FeaturedContent, create_message};
 
     #[test]
     fn cleanup_title() {
-        let s = super::cleanup_title("File:Old peasant with dagger and long smoking pipe, Mestia, Svanetia, Georgia (Republic).jpg");
+        let s = super::cleanup_title(
+            "File:Old peasant with dagger and long smoking pipe, Mestia, Svanetia, Georgia (Republic).jpg",
+        );
         assert_eq!(
             s,
             "Old peasant with dagger and long smoking pipe, Mestia, Svanetia, Georgia (Republic)"
@@ -224,9 +226,15 @@ mod tests {
             image.metadata.copyright.unwrap(),
             "Diego Delso (Own work, CC BY-SA 4.0)"
         );
-        assert_eq!(image.metadata.url.unwrap(), "https://commons.wikimedia.org/wiki/File:Bicudas_(Sphyraena_viridensis),_Cabo_de_Palos,_Espa%C3%B1a,_2022-07-15,_DD_09.jpg");
+        assert_eq!(
+            image.metadata.url.unwrap(),
+            "https://commons.wikimedia.org/wiki/File:Bicudas_(Sphyraena_viridensis),_Cabo_de_Palos,_Espa%C3%B1a,_2022-07-15,_DD_09.jpg"
+        );
 
-        assert_eq!(image.image_url, "https://upload.wikimedia.org/wikipedia/commons/7/70/Bicudas_%28Sphyraena_viridensis%29%2C_Cabo_de_Palos%2C_Espa%C3%B1a%2C_2022-07-15%2C_DD_09.jpg");
+        assert_eq!(
+            image.image_url,
+            "https://upload.wikimedia.org/wikipedia/commons/7/70/Bicudas_%28Sphyraena_viridensis%29%2C_Cabo_de_Palos%2C_Espa%C3%B1a%2C_2022-07-15%2C_DD_09.jpg"
+        );
         assert_eq!(image.pubdate.unwrap(), "2025-02-21");
     }
 }

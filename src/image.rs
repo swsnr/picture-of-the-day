@@ -9,7 +9,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use gtk::gio::{self, prelude::FileExt, Cancellable};
+use gtk::gio::{self, Cancellable, prelude::FileExt};
 
 use crate::{download::download_file, source::Source};
 

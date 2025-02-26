@@ -6,7 +6,7 @@
 
 use std::path::PathBuf;
 
-use glib::{gstr, GStr};
+use glib::{GStr, gstr};
 
 pub static APP_ID: &GStr = gstr!("de.swsnr.picture-of-the-day");
 

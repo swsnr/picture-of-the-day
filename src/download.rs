@@ -6,8 +6,8 @@
 
 use std::path::Path;
 
-use glib::{object::IsA, Priority};
-use gtk::gio::{self, prelude::*, Cancellable, IOErrorEnum};
+use glib::{Priority, object::IsA};
+use gtk::gio::{self, Cancellable, IOErrorEnum, prelude::*};
 use soup::prelude::SessionExt;
 
 use crate::config::G_LOG_DOMAIN;

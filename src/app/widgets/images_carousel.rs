@@ -6,7 +6,7 @@
 
 use std::cell::Ref;
 
-use glib::{subclass::types::ObjectSubclassIsExt, Object};
+use glib::{Object, subclass::types::ObjectSubclassIsExt};
 use gtk::gio;
 
 use crate::image::ImageMetadata;
@@ -141,9 +141,11 @@ mod imp {
         fn signals() -> &'static [Signal] {
             static SIGNALS: OnceLock<Vec<Signal>> = OnceLock::new();
             SIGNALS.get_or_init(|| {
-                vec![Signal::builder("image-changed")
-                    .param_types([u32::static_type()])
-                    .build()]
+                vec![
+                    Signal::builder("image-changed")
+                        .param_types([u32::static_type()])
+                        .build(),
+                ]
             })
         }
 
