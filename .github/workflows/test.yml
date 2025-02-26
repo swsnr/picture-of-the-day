@@ -47,8 +47,8 @@ jobs:
     name: Build & lint
     runs-on: ubuntu-latest
     container:
-      # For Gtk support
-      image: ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+      # Our own CI base image for Gtk and libsoup3
+      image: ghcr.io/swsnr/picture-of-the-day/ci:main
     env:
       # Skip blueprint compilation because the gtk4-rs container lacks the
       # typelib files required for blueprint to resolve imports.

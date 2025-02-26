@@ -1,0 +1,214 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+using Gtk 4.0;
+using Adw 1;
+
+template $PotDApplicationWindow: Adw.ApplicationWindow {
+  title: _("Picture Of The Day");
+  default-width: 1024;
+  default-height: 768;
+
+  Adw.Breakpoint {
+    condition ("max-width: 400sp")
+
+    setters {
+      images_view.collapsed: true;
+    }
+  }
+
+  content: Adw.ToolbarView {
+    top-bar-style: raised;
+
+    [top]
+    Adw.HeaderBar {
+      [start]
+      Box {
+        orientation: horizontal;
+
+        MenuButton {
+          label: C_("main-window.toolbar.button.label", "Source");
+
+          Gtk.ShortcutController {
+            scope: managed;
+
+            Gtk.Shortcut {
+              trigger: "<Ctrl>o";
+              action: "activate";
+            }
+          }
+
+          popover: Popover {
+            halign: start;
+
+            ListBox sources_list {
+              selection-mode: none;
+            }
+
+            styles [
+              "boxed-list",
+            ]
+          };
+        }
+
+        Button {
+          icon-name: "view-refresh-symbolic";
+          action-name: "win.load-images";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Load images for selected source");
+        }
+
+        Button {
+          icon-name: "cross-large-symbolic";
+          action-name: "win.cancel-loading";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Stop loading images");
+          sensitive: bind template.is-loading;
+        }
+
+        Spinner {
+          spinning: bind template.is_loading;
+        }
+      }
+
+      [end]
+      Box {
+        orientation: horizontal;
+
+        ToggleButton {
+          icon-name: "info-outline-symbolic";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Toggle the sidebar with image information");
+          action-name: "win.show-image-properties";
+        }
+
+        MenuButton button_menu {
+          menu-model: main_menu;
+          icon-name: 'open-menu-symbolic';
+          primary: true;
+        }
+      }
+    }
+
+    Stack stack {
+      visible-child: empty;
+
+      Adw.OverlaySplitView images_view {
+        sidebar-position: end;
+        show-sidebar: bind template.show-image-properties bidirectional;
+
+        content: $PotDImagesCarousel images_carousel {
+          image-changed => $image_changed() swapped;
+        };
+
+        sidebar: Box {
+          orientation: vertical;
+          margin-top: 24;
+          margin-bottom: 24;
+          margin-start: 12;
+          margin-end: 12;
+          spacing: 24;
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Title");
+              subtitle: bind template.image_title;
+
+              [suffix]
+              LinkButton {
+                icon-name: "external-link-symbolic";
+                uri: bind template.image_url;
+                visible: bind $non_empty(template.image_url) as <bool>;
+                tooltip-text: _("Visit the source page of this image.");
+              }
+
+              styles [
+                "property",
+              ]
+            }
+
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Copyright");
+              subtitle: bind template.image_copyright;
+              visible: bind $non_empty(template.image_copyright) as <bool>;
+
+              styles [
+                "property",
+              ]
+            }
+
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Description");
+              subtitle: bind template.image_description;
+              visible: bind $non_empty(template.image_description) as <bool>;
+
+              styles [
+                "property",
+              ]
+            }
+          }
+
+          Adw.PreferencesGroup {
+            Adw.ActionRow {
+              title: C_("images-view.metadata.label", "Source");
+              subtitle: bind template.image_source_name;
+
+              [suffix]
+              LinkButton {
+                icon-name: "external-link-symbolic";
+                uri: bind template.image_source_url;
+                tooltip-text: _("Visit the main page of the source of this image.");
+              }
+
+              styles [
+                "property",
+              ]
+            }
+          }
+        };
+      }
+
+      Adw.StatusPage empty {
+        icon-name: "de.swsnr.picture-of-the-day";
+        vexpand: true;
+
+        child: Adw.Clamp {
+          Button {
+            halign: center;
+            label: C_("start-page.button.label", "Get images");
+            action-name: "win.load-images";
+
+            styles [
+              "pill",
+              "suggested-action",
+            ]
+          }
+        };
+      }
+    }
+  };
+}
+
+menu main_menu {
+  section {
+    item {
+      label: C_("main-window.menu.label", "_New window");
+      action: "app.new-window";
+    }
+
+    item {
+      label: C_("main-window.menu.label", "_Quit");
+      action: "app.quit";
+    }
+  }
+
+  section {
+    item {
+      label: C_("application-window.menu.label", "_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+
+    item {
+      label: C_("main-window.menu.label", "_About Picture Of The Day");
+      action: "win.about-app";
+    }
+  }
+}

@@ -39,14 +39,16 @@
 )]
 #![allow(clippy::enum_glob_use, clippy::module_name_repetitions)]
 
-use app::PictureOfTheDayApplication;
+use app::Application;
 use glib::gstr;
 use gtk::gio;
 use gtk::prelude::*;
 
 mod app;
 mod config;
+mod download;
 mod gettext;
+mod image;
 mod source;
 
 use config::G_LOG_DOMAIN;
@@ -78,7 +80,7 @@ fn main() -> glib::ExitCode {
     gio::resources_register_include!("picture-of-the-day.gresource").unwrap();
     glib::set_application_name("Picture Of The Day");
 
-    let app = PictureOfTheDayApplication::default();
+    let app = Application::default();
     app.set_version(config::CARGO_PKG_VERSION);
     app.run()
 }
