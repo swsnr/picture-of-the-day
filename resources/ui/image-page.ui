@@ -7,6 +7,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="PotDImagePage" parent="AdwBin">
+    <property name="hexpand">true</property>
+    <property name="vexpand">true</property>
     <property name="child">
       <object class="GtkStack" id="stack">
         <binding name="visible-child">
@@ -24,21 +26,33 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           </closure>
         </binding>
         <child>
-          <object class="GtkSpinner" id="loading">
-            <binding name="spinning">
-              <closure function="is_loading" type="gboolean">
-                <lookup name="image-file" type="PotDImage">
-                  <lookup name="image" type="PotDImagePage">
-                    <constant>PotDImagePage</constant>
-                  </lookup>
+          <object class="AdwStatusPage" id="loading">
+            <binding name="title">
+              <lookup name="title" type="PotDImage">
+                <lookup name="image" type="PotDImagePage">
+                  <constant>PotDImagePage</constant>
                 </lookup>
-                <lookup name="error-message" type="PotDImage">
-                  <lookup name="image" type="PotDImagePage">
-                    <constant>PotDImagePage</constant>
-                  </lookup>
-                </lookup>
-              </closure>
+              </lookup>
             </binding>
+            <property name="description" translatable="yes" context="image-page.loading-message.title">Image is being downloaded</property>
+            <property name="child">
+              <object class="GtkSpinner">
+                <binding name="spinning">
+                  <closure function="is_loading" type="gboolean">
+                    <lookup name="image-file" type="PotDImage">
+                      <lookup name="image" type="PotDImagePage">
+                        <constant>PotDImagePage</constant>
+                      </lookup>
+                    </lookup>
+                    <lookup name="error-message" type="PotDImage">
+                      <lookup name="image" type="PotDImagePage">
+                        <constant>PotDImagePage</constant>
+                      </lookup>
+                    </lookup>
+                  </closure>
+                </binding>
+              </object>
+            </property>
           </object>
         </child>
         <child>

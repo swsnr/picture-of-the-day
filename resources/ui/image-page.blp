@@ -6,11 +6,21 @@ using Gtk 4.0;
 using Adw 1;
 
 template $PotDImagePage: Adw.Bin {
+  // We wish to cover all available space for our image page, to have every page
+  // in the carousel rendered separately.
+  hexpand: true;
+  vexpand: true;
+
   child: Stack stack {
     visible-child: bind $stack_page((template.image as <$PotDImage>).image-file,(template.image as <$PotDImage>).error-message) as <Widget>;
 
-    Spinner loading {
-      spinning: bind $is_loading((template.image as <$PotDImage>).image-file,(template.image as <$PotDImage>).error-message) as <bool>;
+    Adw.StatusPage loading {
+      title: bind (template.image as <$PotDImage>).title;
+      description: C_("image-page.loading-message.title", "Image is being downloaded");
+
+      child: Spinner {
+        spinning: bind $is_loading((template.image as <$PotDImage>).image-file,(template.image as <$PotDImage>).error-message) as <bool>;
+      };
     }
 
     Picture picture {
