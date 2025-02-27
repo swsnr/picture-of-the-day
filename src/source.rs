@@ -20,6 +20,7 @@ mod http;
 
 mod apod;
 mod bing;
+mod stalenhag;
 mod wikimedia;
 
 pub use error::SourceError;
@@ -97,7 +98,7 @@ impl Source {
             Source::Eopod => Err(not_supported),
             Source::Bing => Ok(bing::fetch_daily_images(session).await?),
             Source::Wikimedia => Ok(vec![wikimedia::fetch_featured_image(session).await?]),
-            Source::Stalenhag => Err(not_supported),
+            Source::Stalenhag => Ok(vec![stalenhag::pick_todays_image()]),
         }?;
 
         if images.is_empty() {
