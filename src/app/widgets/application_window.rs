@@ -142,10 +142,22 @@ mod imp {
         }
 
         fn switch_to_images_view(&self) {
-            self.stack.set_visible_child(&*self.images_view);
-            self.obj()
-                .action_set_enabled("win.show-image-properties", true);
-            self.obj().set_show_image_properties(true);
+            if self.stack.visible_child().unwrap() != self.images_view.get() {
+                // Enable the side bar _before_ switching to the image view and
+                // thus realizing the overlay view with its sidebar; this
+                // ensures that the overlay view gets rendered with expanded
+                // sidebar right from the start, which prevents warnings about
+                // invalid widget sizes for all widgets contained in the overlay
+                // view.
+                //
+                // We only expand the properties sidebar once, when we switch
+                // away from the empty start page.  Afterwards we always honour
+                // the users intention of whether to show the sidebar or not.
+                self.obj().set_show_image_properties(true);
+                self.stack.set_visible_child(&*self.images_view);
+                self.obj()
+                    .action_set_enabled("win.show-image-properties", true);
+            }
         }
 
         async fn load_images(&self, cancellable: &Cancellable) -> Result<(), SourceError> {
