@@ -15,7 +15,9 @@ use gtk::gio::IOErrorEnum;
 use crate::config::G_LOG_DOMAIN;
 use crate::image::DownloadableImage;
 
+mod bing;
 mod error;
+mod http;
 mod wikimedia;
 
 pub use error::SourceError;
@@ -91,7 +93,7 @@ impl Source {
         let images = match self {
             Source::Apod => Err(not_supported),
             Source::Eopod => Err(not_supported),
-            Source::Bing => Err(not_supported),
+            Source::Bing => Ok(bing::fetch_daily_images(session).await?),
             Source::Wikimedia => Ok(vec![wikimedia::fetch_featured_image(session).await?]),
             Source::Stalenhag => Err(not_supported),
         }?;

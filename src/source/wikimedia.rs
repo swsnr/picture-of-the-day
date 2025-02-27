@@ -6,11 +6,11 @@
 
 use glib::{Priority, dpgettext2};
 use serde::Deserialize;
-use soup::prelude::SessionExt;
 
 use crate::config::G_LOG_DOMAIN;
 use crate::image::{DownloadableImage, ImageMetadata};
 use crate::source::SourceError;
+use crate::source::http::SoupSessionExt;
 
 #[derive(Debug, Deserialize)]
 struct FeaturedImageImage {
@@ -137,17 +137,9 @@ async fn fetch_featured_content(
         "Fetching featured wikimedia content from {}",
         message.uri().unwrap()
     );
-    let body = session
-        .send_and_read_future(&message, Priority::DEFAULT)
-        .await?;
-    if message.status() == soup::Status::Ok {
-        Ok(serde_json::from_slice(&body)?)
-    } else {
-        Err(SourceError::HttpStatus(
-            message.status(),
-            message.reason_phrase(),
-        ))
-    }
+    session
+        .send_and_read_json(&message, Priority::DEFAULT)
+        .await
 }
 
 async fn fetch_featured_image_at_date(

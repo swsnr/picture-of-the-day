@@ -1,6 +1,11 @@
 
 # cargo-vet audits file
 
+[[audits.litemap]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.7.4 -> 0.7.5"
+
 [[audits.proc-macro-crate]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -26,6 +31,16 @@ delta = "0.26.3 -> 0.27.1"
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.26.4 -> 0.27.1"
+
+[[audits.zerofrom]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.1.5 -> 0.1.6"
+
+[[audits.zerofrom-derive]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.1.5 -> 0.1.6"
 
 [[trusted.cairo-rs]]
 criteria = "safe-to-run"
