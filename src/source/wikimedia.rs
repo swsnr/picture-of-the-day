@@ -137,9 +137,9 @@ async fn fetch_featured_content(
         "Fetching featured wikimedia content from {}",
         message.uri().unwrap()
     );
-    session
+    Ok(session
         .send_and_read_json(&message, Priority::DEFAULT)
-        .await
+        .await?)
 }
 
 async fn fetch_featured_image_at_date(

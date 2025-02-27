@@ -9,6 +9,8 @@ use std::{error::Error, fmt::Display};
 use glib::GString;
 use gtk::gio::{Cancelled, IOErrorEnum};
 
+use super::http::HttpError;
+
 #[derive(Debug)]
 pub enum SourceError {
     /// IO failed.
@@ -19,6 +21,14 @@ pub enum SourceError {
     InvalidJson(serde_json::Error),
     /// No image was available.
     NoImage,
+    /// Invalid API key for the source
+    InvalidApiKey,
+    /// The client was rate-limited.
+    RateLimited,
+    /// The source did provide data, but the data does not denote an image.
+    ///
+    /// The source may have returned a video, for instance.
+    NotAnImage,
 }
 
 impl SourceError {
@@ -49,11 +59,23 @@ impl From<Cancelled> for SourceError {
     }
 }
 
+impl From<HttpError> for SourceError {
+    fn from(error: HttpError) -> Self {
+        match error {
+            HttpError::IO(error) => Self::IO(error),
+            // We deliberately discard the body here: At this point we should never inspect the
+            // source-specific body again; if there was anything interesting in the body the
+            // source backend itself should've analyzed it by now.
+            HttpError::HttpStatus(status, reason, _) => Self::HttpStatus(status, reason),
+            HttpError::InvalidJson(error) => Self::InvalidJson(error),
+        }
+    }
+}
+
 impl Display for SourceError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             SourceError::IO(error) => write!(f, "{error}"),
-            // soup::Status has no Display impl
             #[allow(clippy::use_debug)]
             SourceError::HttpStatus(status, None) => write!(f, "HTTP status {status:?}"),
             #[allow(clippy::use_debug)]
@@ -62,6 +84,11 @@ impl Display for SourceError {
             }
             SourceError::InvalidJson(error) => write!(f, "Invalid JSON: {error}"),
             SourceError::NoImage => write!(f, "No image available"),
+            SourceError::InvalidApiKey => write!(f, "The API key used was invalid"),
+            SourceError::RateLimited => write!(f, "The client was rate limited"),
+            SourceError::NotAnImage => {
+                write!(f, "The source return no image data but e.g. a video")
+            }
         }
     }
 }
@@ -70,8 +97,8 @@ impl Error for SourceError {
     fn source(&self) -> Option<&(dyn Error + 'static)> {
         match self {
             SourceError::IO(error) => Some(error),
-            SourceError::HttpStatus(_, _) | SourceError::NoImage => None,
             SourceError::InvalidJson(error) => Some(error),
+            _ => None,
         }
     }
 }

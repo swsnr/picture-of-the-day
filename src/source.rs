@@ -15,9 +15,11 @@ use gtk::gio::IOErrorEnum;
 use crate::config::G_LOG_DOMAIN;
 use crate::image::DownloadableImage;
 
-mod bing;
 mod error;
 mod http;
+
+mod apod;
+mod bing;
 mod wikimedia;
 
 pub use error::SourceError;
@@ -91,7 +93,7 @@ impl Source {
         .into();
         #[allow(clippy::match_same_arms)]
         let images = match self {
-            Source::Apod => Err(not_supported),
+            Source::Apod => Ok(vec![apod::fetch_picture_of_the_day(session).await?]),
             Source::Eopod => Err(not_supported),
             Source::Bing => Ok(bing::fetch_daily_images(session).await?),
             Source::Wikimedia => Ok(vec![wikimedia::fetch_featured_image(session).await?]),
