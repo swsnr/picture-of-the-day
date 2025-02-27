@@ -1,6 +1,7 @@
 /target/
 
 /.vscode/
+/.idea/
 
 # Generated from i18n templates
 *.desktop
