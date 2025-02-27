@@ -124,8 +124,8 @@ mod imp {
     #[gtk::template_callbacks]
     impl ApplicationWindow {
         #[template_callback(function)]
-        fn non_empty(s: &str) -> bool {
-            !s.is_empty()
+        fn non_empty(s: Option<&str>) -> bool {
+            s.is_some_and(|s| !s.is_empty())
         }
     }
 
