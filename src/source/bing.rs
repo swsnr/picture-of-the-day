@@ -8,12 +8,12 @@ use std::borrow::Cow;
 
 use glib::Priority;
 use serde::Deserialize;
-use soup::prelude::SessionExt;
 use url::Url;
 
 use crate::{
     config::G_LOG_DOMAIN,
     image::{DownloadableImage, ImageMetadata},
+    source::http::SoupSessionExt,
 };
 
 use super::{Source, SourceError};
@@ -57,17 +57,9 @@ async fn fetch_daily_bing_images(session: &soup::Session) -> Result<BingResponse
     };
     glib::debug!("Querying latest bing images from {url}");
     let message = soup::Message::new("GET", &url).unwrap();
-    let body = session
-        .send_and_read_future(&message, Priority::DEFAULT)
-        .await?;
-    if message.status() == soup::Status::Ok {
-        Ok(serde_json::from_slice(&body)?)
-    } else {
-        Err(SourceError::HttpStatus(
-            message.status(),
-            message.reason_phrase(),
-        ))
-    }
+    Ok(session
+        .send_and_read_json(&message, Priority::DEFAULT)
+        .await?)
 }
 
 pub async fn fetch_daily_images(
