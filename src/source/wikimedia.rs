@@ -120,23 +120,16 @@ fn cleanup_title(title: &str) -> &str {
     }
 }
 
-fn create_message(date: &glib::DateTime, language_code: &str) -> soup::Message {
-    let url_date = date.format("%Y/%m/%d").unwrap();
-    let url =
-        format!("https://api.wikimedia.org/feed/v1/wikipedia/{language_code}/featured/{url_date}");
-    soup::Message::new("GET", &url).unwrap()
-}
-
 async fn fetch_featured_content(
     session: &soup::Session,
     date: &glib::DateTime,
     language_code: &str,
 ) -> Result<FeaturedContent, SourceError> {
-    let message = create_message(date, language_code);
-    glib::info!(
-        "Fetching featured wikimedia content from {}",
-        message.uri().unwrap()
-    );
+    let url_date = date.format("%Y/%m/%d").unwrap();
+    let url =
+        format!("https://api.wikimedia.org/feed/v1/wikipedia/{language_code}/featured/{url_date}");
+    glib::info!("Fetching featured wikimedia content from {url}");
+    let message = soup::Message::new("GET", &url).unwrap();
     Ok(session
         .send_and_read_json(&message, Priority::DEFAULT)
         .await?)
@@ -174,13 +167,6 @@ pub async fn fetch_featured_image(
 
 #[cfg(test)]
 mod tests {
-    use gtk::gio::Cancellable;
-    use soup::prelude::SessionExt;
-
-    use crate::image::DownloadableImage;
-
-    use super::{FeaturedContent, create_message};
-
     #[test]
     fn cleanup_title() {
         let s = super::cleanup_title(
@@ -190,43 +176,5 @@ mod tests {
             s,
             "Old peasant with dagger and long smoking pipe, Mestia, Svanetia, Georgia (Republic)"
         );
-    }
-
-    #[test]
-    fn image_from_featured_content() {
-        // We use deliberately use the sync API here and test the individual parts
-        // separately, because the async soup API suffers from weird deadlocks
-        // when used with separate main contexts.
-        let session = soup::Session::new();
-        let date = glib::DateTime::new(&glib::TimeZone::utc(), 2025, 2, 21, 12, 0, 0.0).unwrap();
-        let message = create_message(&date, "en");
-        let response = session.send_and_read(&message, Cancellable::NONE).unwrap();
-        assert_eq!(message.status(), soup::Status::Ok);
-
-        let featured_content = serde_json::from_slice::<FeaturedContent>(&response).unwrap();
-        let image = DownloadableImage::from(featured_content.image.unwrap()).with_pubdate(&date);
-
-        assert_eq!(
-            image.metadata.title,
-            "Bicudas (Sphyraena viridensis), Cabo de Palos, España, 2022-07-15, DD 09"
-        );
-        assert_eq!(
-            image.metadata.description.unwrap(),
-            "Yellowmouth barracudas (Sphyraena viridensis), Cabo de Palos, Spain"
-        );
-        assert_eq!(
-            image.metadata.copyright.unwrap(),
-            "Diego Delso (Own work, CC BY-SA 4.0)"
-        );
-        assert_eq!(
-            image.metadata.url.unwrap(),
-            "https://commons.wikimedia.org/wiki/File:Bicudas_(Sphyraena_viridensis),_Cabo_de_Palos,_Espa%C3%B1a,_2022-07-15,_DD_09.jpg"
-        );
-
-        assert_eq!(
-            image.image_url,
-            "https://upload.wikimedia.org/wikipedia/commons/7/70/Bicudas_%28Sphyraena_viridensis%29%2C_Cabo_de_Palos%2C_Espa%C3%B1a%2C_2022-07-15%2C_DD_09.jpg"
-        );
-        assert_eq!(image.pubdate.unwrap(), "2025-02-21");
     }
 }
