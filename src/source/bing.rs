@@ -72,33 +72,40 @@ pub async fn fetch_daily_images(
     }
     let images = images
         .into_iter()
-        .map(|image| {
-            let image_url = Url::parse("https://www.bing.com")
-                .unwrap()
-                .join(&format!("{}_UHD.jpg", &image.urlbase))
-                // TODO: Log error and skip this image!
-                .unwrap();
-            let pubdate = format!(
-                "{}-{}-{}",
-                &image.startdate[0..4],
-                &image.startdate[4..6],
-                &image.startdate[6..]
-            );
-            let suggested_filename = image_url
-                .query_pairs()
-                .find_map(|(key, value)| (key == "id").then(|| value.into_owned()));
-            DownloadableImage {
-                metadata: ImageMetadata {
-                    title: image.title,
-                    // The copyright fields really seem to be more of a description really
-                    url: Some(image.copyrightlink),
-                    description: Some(image.copyright),
-                    copyright: None,
-                    source: Source::Bing,
-                },
-                image_url: image_url.into(),
-                pubdate: Some(pubdate),
-                suggested_filename,
+        .filter_map(|image| {
+            let urlbase = format!("{}_UHD.jpg", &image.urlbase);
+            match Url::parse("https://www.bing.com").unwrap().join(&urlbase) {
+                Ok(image_url) => {
+                    let pubdate = format!(
+                        "{}-{}-{}",
+                        &image.startdate[0..4],
+                        &image.startdate[4..6],
+                        &image.startdate[6..]
+                    );
+                    let suggested_filename = image_url
+                        .query_pairs()
+                        .find_map(|(key, value)| (key == "id").then(|| value.into_owned()));
+                    let image = DownloadableImage {
+                        metadata: ImageMetadata {
+                            title: image.title,
+                            // The copyright fields really seem to be more of a description really
+                            url: Some(image.copyrightlink),
+                            description: Some(image.copyright),
+                            copyright: None,
+                            source: Source::Bing,
+                        },
+                        image_url: image_url.into(),
+                        pubdate: Some(pubdate),
+                        suggested_filename,
+                    };
+                    Some(image)
+                }
+                Err(error) => {
+                    glib::error!(
+                        "Failed to compile image URL from {urlbase}, skipping this image: {error}"
+                    );
+                    None
+                }
             }
         })
         .collect();
