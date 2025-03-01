@@ -26,14 +26,14 @@ mod imp {
     use glib::{Properties, subclass::InitializingObject};
     use gtk::{CompositeTemplate, gio};
 
-    use crate::image::ImageObject;
+    use crate::app::model::Image;
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagePage)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
     pub struct ImagePage {
         #[property(get, set)]
-        image: RefCell<Option<ImageObject>>,
+        image: RefCell<Option<Image>>,
         #[template_child]
         stack: TemplateChild<gtk::Stack>,
         #[template_child]

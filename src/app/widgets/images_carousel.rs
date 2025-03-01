@@ -6,7 +6,7 @@
 
 use glib::{Object, subclass::types::ObjectSubclassIsExt};
 
-use crate::image::ImageObject;
+use crate::app::model::Image;
 
 glib::wrapper! {
     pub struct ImagesCarousel(ObjectSubclass<imp::ImagesCarousel>)
@@ -15,11 +15,11 @@ glib::wrapper! {
 }
 
 impl ImagesCarousel {
-    pub fn nth_image(&self, n: u32) -> ImageObject {
+    pub fn nth_image(&self, n: u32) -> Image {
         self.imp().nth_image(n)
     }
 
-    pub fn set_images(&self, images: &[ImageObject]) {
+    pub fn set_images(&self, images: &[Image]) {
         self.imp().set_images(images);
     }
 }
@@ -38,20 +38,20 @@ mod imp {
     use glib::{Properties, subclass::InitializingObject};
     use gtk::CompositeTemplate;
 
-    use crate::{app::widgets::ImagePage, image::ImageObject};
+    use crate::app::{model::Image, widgets::ImagePage};
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagesCarousel)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/images-carousel.ui")]
     pub struct ImagesCarousel {
         #[property(get)]
-        current_image: RefCell<Option<ImageObject>>,
+        current_image: RefCell<Option<Image>>,
         #[template_child]
         images_carousel: TemplateChild<adw::Carousel>,
     }
 
     impl ImagesCarousel {
-        pub fn nth_image(&self, n: u32) -> ImageObject {
+        pub fn nth_image(&self, n: u32) -> Image {
             self.images_carousel
                 .nth_page(n)
                 .downcast::<ImagePage>()
@@ -64,7 +64,7 @@ mod imp {
         /// Set images to show.
         ///
         /// Create as many pages as there are `images`, all in loading state.
-        pub fn set_images(&self, images: &[ImageObject]) {
+        pub fn set_images(&self, images: &[Image]) {
             let carousel = self.images_carousel.get();
 
             let n_pages = usize::try_from(carousel.n_pages()).unwrap();

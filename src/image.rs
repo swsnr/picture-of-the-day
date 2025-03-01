@@ -14,9 +14,6 @@ use gtk::gio::{self, Cancellable, prelude::FileExt};
 use crate::{config::G_LOG_DOMAIN, image::download::download_file, source::Source};
 
 pub mod download;
-mod obj;
-
-pub use obj::ImageObject;
 
 /// Metadata of an image.
 #[derive(Debug, Eq, PartialEq)]

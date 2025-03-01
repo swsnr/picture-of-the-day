@@ -6,13 +6,13 @@
 
 use glib::Object;
 
-use super::ImageMetadata;
+use crate::image::ImageMetadata;
 
 glib::wrapper! {
-    pub struct ImageObject(ObjectSubclass<imp::ImageObject>);
+    pub struct Image(ObjectSubclass<imp::Image>);
 }
 
-impl From<ImageMetadata> for ImageObject {
+impl From<ImageMetadata> for Image {
     fn from(metadata: ImageMetadata) -> Self {
         Object::builder()
             .property("title", metadata.title)
@@ -33,8 +33,8 @@ mod imp {
     use gtk::gio;
 
     #[derive(Default, glib::Properties)]
-    #[properties(wrapper_type = super::ImageObject)]
-    pub struct ImageObject {
+    #[properties(wrapper_type = super::Image)]
+    pub struct Image {
         #[property(get, construct_only)]
         title: RefCell<String>,
         #[property(get, construct_only, nullable)]
@@ -48,18 +48,19 @@ mod imp {
         #[property(get, construct_only)]
         source_url: RefCell<String>,
         #[property(get, set, nullable)]
+        #[allow(clippy::struct_field_names)]
         image_file: RefCell<Option<gio::File>>,
         #[property(get, set, nullable)]
         error_message: RefCell<Option<String>>,
     }
 
     #[glib::object_subclass]
-    impl ObjectSubclass for ImageObject {
+    impl ObjectSubclass for Image {
         const NAME: &'static str = "PotDImage";
 
-        type Type = super::ImageObject;
+        type Type = super::Image;
     }
 
     #[glib::derived_properties]
-    impl ObjectImpl for ImageObject {}
+    impl ObjectImpl for Image {}
 }

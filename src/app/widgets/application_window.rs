@@ -94,9 +94,9 @@ mod imp {
     use strum::IntoEnumIterator;
 
     use crate::Source;
+    use crate::app::model::Image;
     use crate::app::widgets::{ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
-    use crate::image::ImageObject;
     use crate::source::SourceError;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -179,7 +179,7 @@ mod imp {
                 .into_iter()
                 .map(|image| {
                     let (metadata, download) = image.prepare_download(&target_directory);
-                    (ImageObject::from(metadata), download)
+                    (Image::from(metadata), download)
                 })
                 .collect::<Vec<_>>();
 
@@ -254,7 +254,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             ImagesCarousel::ensure_type();
-            ImageObject::ensure_type();
+            Image::ensure_type();
 
             klass.bind_template();
             klass.bind_template_callbacks();

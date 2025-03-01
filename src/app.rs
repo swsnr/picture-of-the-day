@@ -10,6 +10,7 @@ use gtk::gio::ActionEntry;
 
 use crate::config::G_LOG_DOMAIN;
 
+mod model;
 mod widgets;
 
 use widgets::ApplicationWindow;
