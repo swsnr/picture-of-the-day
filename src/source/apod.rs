@@ -55,35 +55,24 @@ struct ApodErrorBody {
     error: ApodErrorDetails,
 }
 
-#[derive(Debug)]
-enum ApodError {
-    IO(glib::Error),
-    Http(HttpError),
-    InvalidApiKey,
-    OverRateLimit,
-    NotAnImage,
-}
-
-impl From<glib::Error> for ApodError {
-    fn from(error: glib::Error) -> Self {
-        ApodError::IO(error)
-    }
-}
-
-impl From<ApodError> for SourceError {
-    fn from(error: ApodError) -> Self {
-        match error {
-            ApodError::IO(error) => SourceError::IO(error),
-            ApodError::Http(http_error) => http_error.into(),
-            ApodError::InvalidApiKey => SourceError::InvalidApiKey,
-            ApodError::OverRateLimit => SourceError::RateLimited,
-            ApodError::NotAnImage => SourceError::NotAnImage,
+fn to_source_error(error: HttpError) -> SourceError {
+    if let HttpError::HttpStatus(_, _, data) = &error {
+        if let Ok(body) = serde_json::from_slice::<ApodErrorBody>(data) {
+            match body.error.code.as_str() {
+                "API_KEY_INVALID" => return SourceError::InvalidApiKey,
+                "OVER_RATE_LIMIT" => return SourceError::RateLimited,
+                _ => (),
+            }
         }
     }
+    error.into()
 }
 
 /// Fetch the astronomy picture of the day.
-async fn query_metadata(session: &soup::Session, api_key: &str) -> Result<ApodMetadata, ApodError> {
+async fn query_metadata(
+    session: &soup::Session,
+    api_key: &str,
+) -> Result<ApodMetadata, SourceError> {
     let url = Url::parse_with_params(
         "https://api.nasa.gov/planetary/apod",
         &[("api_key", api_key)],
@@ -93,31 +82,16 @@ async fn query_metadata(session: &soup::Session, api_key: &str) -> Result<ApodMe
     // We can safely unwrap here, because `Url` already guarantees us that `url` is valid
     let message = soup::Message::new("GET", url.as_str()).unwrap();
 
-    match session
+    session
         .send_and_read_json::<ApodMetadata>(&message, Priority::DEFAULT)
         .await
-    {
-        Err(HttpError::HttpStatus(status, reason, data)) => {
-            let error = if let Ok(body) = serde_json::from_slice::<ApodErrorBody>(&data) {
-                match body.error.code.as_str() {
-                    "API_KEY_INVALID" => ApodError::InvalidApiKey,
-                    "OVER_RATE_LIMIT" => ApodError::OverRateLimit,
-                    _ => ApodError::Http(HttpError::HttpStatus(status, reason, data)),
-                }
-            } else {
-                ApodError::Http(HttpError::HttpStatus(status, reason, data))
-            };
-            Err(error)
-        }
-        Err(error) => Err(ApodError::Http(error)),
-        Ok(metadata) => Ok(metadata),
-    }
+        .map_err(to_source_error)
 }
 
 async fn fetch_apod(
     session: &soup::Session,
     api_key: &str,
-) -> Result<DownloadableImage, ApodError> {
+) -> Result<DownloadableImage, SourceError> {
     let metadata = query_metadata(session, api_key).await?;
     let url_date = &metadata.date.replace('-', "")[2..];
     let url = format!("https://apod.nasa.gov/apod/ap{url_date}.html");
@@ -135,7 +109,7 @@ async fn fetch_apod(
             suggested_filename: None,
         })
     } else {
-        Err(ApodError::NotAnImage)
+        Err(SourceError::NotAnImage)
     }
 }
 
@@ -145,5 +119,5 @@ pub async fn fetch_picture_of_the_day(
     // TODO: Get API key from settings!
     // API key account ID: dcc2671f-ef8d-4c1a-93cc-c5edeba69695
     let api_key = "OmoiiKAC40a83uIjibcFmwfRKa8hfbCK9HLv90DI";
-    Ok(fetch_apod(session, api_key).await?)
+    fetch_apod(session, api_key).await
 }
