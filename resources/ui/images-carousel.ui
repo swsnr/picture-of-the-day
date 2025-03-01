@@ -18,10 +18,11 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             <property name="margin-end">6</property>
             <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
+            <property name="allow-long-swipes">true</property>
           </object>
         </child>
         <child>
-          <object class="AdwCarouselIndicatorLines">
+          <object class="AdwCarouselIndicatorDots">
             <property name="carousel">images_carousel</property>
           </object>
         </child>
