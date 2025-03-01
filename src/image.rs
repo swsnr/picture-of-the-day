@@ -4,10 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::{
-    borrow::Cow,
-    path::{Path, PathBuf},
-};
+use std::{borrow::Cow, path::Path};
 
 use gtk::gio::{self, Cancellable, prelude::FileExt};
 
@@ -62,44 +59,23 @@ impl DownloadableImage {
     }
 
     pub fn filename(&self) -> Cow<str> {
-        self.suggested_filename
+        let filename = self
+            .suggested_filename
             .as_deref()
-            .map_or_else(|| self.guess_filename(), Cow::Borrowed)
+            .map_or_else(|| self.guess_filename(), Cow::Borrowed);
+        match &self.pubdate {
+            Some(pubdate) => Cow::Owned(format!("{pubdate}-{filename}")),
+            None => filename,
+        }
     }
 
-    pub fn prepare_download<P: AsRef<Path>>(
-        self,
-        target_directory: P,
-    ) -> (ImageMetadata, ImageDownload) {
-        let filename = match &self.pubdate {
-            Some(pubdate) => Cow::Owned(format!("{pubdate}-{}", self.filename())),
-            None => self.filename(),
-        };
-        let target = target_directory.as_ref().join(&*filename);
-        let download = ImageDownload {
-            url: self.image_url,
-            target,
-        };
-        (self.metadata, download)
-    }
-}
-
-/// An image to download.
-#[derive(Debug)]
-pub struct ImageDownload {
-    /// The URL to download from.
-    pub url: String,
-    /// The file to download to.
-    pub target: PathBuf,
-}
-
-impl ImageDownload {
-    pub async fn download(
+    pub async fn download_to(
         &self,
+        target: &Path,
         session: &soup::Session,
         cancellable: &Cancellable,
     ) -> Result<(), glib::Error> {
-        let target_file = gio::File::for_path(&self.target);
+        let target_file = gio::File::for_path(target);
         let exists = gio::spawn_blocking(glib::clone!(
             #[strong]
             cancellable,
@@ -108,9 +84,9 @@ impl ImageDownload {
         .await
         .unwrap();
         if exists {
-            glib::debug!("Using existing file at {}", self.target.display());
+            glib::debug!("Using existing file at {}", target.display());
         } else {
-            download_file(session, &self.url, &self.target, cancellable).await?;
+            download_file(session, &self.image_url, target, cancellable).await?;
         }
         Ok(())
     }

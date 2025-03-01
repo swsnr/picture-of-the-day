@@ -26,22 +26,32 @@ mod imp {
     use glib::{Properties, subclass::InitializingObject};
     use gtk::{CompositeTemplate, gio};
 
-    use crate::app::model::Image;
+    use crate::app::model::{Image, ImageDownload};
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagePage)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
     pub struct ImagePage {
-        #[property(get, set)]
+        #[property(get, set = Self::set_image)]
         image: RefCell<Option<Image>>,
-        #[template_child]
-        stack: TemplateChild<gtk::Stack>,
+        #[property(get)]
+        download: RefCell<Option<ImageDownload>>,
         #[template_child]
         loading: TemplateChild<gtk::Widget>,
         #[template_child]
         picture: TemplateChild<gtk::Widget>,
         #[template_child]
         error: TemplateChild<gtk::Widget>,
+    }
+
+    impl ImagePage {
+        fn set_image(&self, image: Option<Image>) {
+            // FIXME: use a property binding instead?
+            self.download
+                .replace(image.as_ref().map(|i| i.download().clone()));
+            self.image.replace(image);
+            self.obj().notify_download();
+        }
     }
 
     #[gtk::template_callbacks]
@@ -70,6 +80,9 @@ mod imp {
         type ParentType = adw::Bin;
 
         fn class_init(klass: &mut Self::Class) {
+            Image::ensure_type();
+            ImageDownload::ensure_type();
+
             klass.bind_template();
             klass.bind_template_callbacks();
         }

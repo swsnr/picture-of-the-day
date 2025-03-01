@@ -82,6 +82,7 @@ impl ApplicationWindow {
 
 mod imp {
     use std::cell::{Cell, RefCell};
+    use std::rc::Rc;
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
@@ -162,6 +163,7 @@ mod imp {
 
         async fn load_images(&self, cancellable: &Cancellable) -> Result<(), SourceError> {
             let source = self.selected_source.get();
+
             glib::info!("Fetching images for source {source:?}");
             let images = gio::CancellableFuture::new(
                 source.get_images(&self.obj().http_session()),
@@ -170,23 +172,15 @@ mod imp {
             .await??;
             glib::info!("Fetched images for {source:?}: {images:?}");
 
-            // Prepare downloads for all images
-            let target_directory = glib::user_data_dir()
-                .join(crate::config::APP_ID)
-                .join("images")
-                .join(source.id());
+            // Create an image object for every received image
             let images = images
                 .into_iter()
-                .map(|image| {
-                    let (metadata, download) = image.prepare_download(&target_directory);
-                    (Image::from(metadata), download)
-                })
+                .map(|image| (Image::from(&image), image))
                 .collect::<Vec<_>>();
 
             // Set images to be shown, and switch to images view, in case we're
             // on the empty start page.
-            let carousel = self.images_carousel.get();
-            carousel.set_images(
+            self.images_carousel.get().set_images(
                 &images
                     .iter()
                     .map(|(image, _)| image.clone())
@@ -194,16 +188,20 @@ mod imp {
             );
             self.switch_to_images_view();
 
-            let target_directory_file = gio::File::for_path(&target_directory);
+            // Create the download directory for the current source.
+            let target_directory = glib::user_data_dir()
+                .join(crate::config::APP_ID)
+                .join("images")
+                .join(source.id());
             gio::spawn_blocking(glib::clone!(
+                #[strong]
+                target_directory,
                 #[strong]
                 cancellable,
                 move || {
-                    glib::info!(
-                        "Creating target directory {}",
-                        target_directory_file.path().unwrap().display()
-                    );
-                    match target_directory_file.make_directory_with_parents(Some(&cancellable)) {
+                    glib::info!("Creating target directory {}", target_directory.display());
+                    let target_directory = gio::File::for_path(&*target_directory);
+                    match target_directory.make_directory_with_parents(Some(&cancellable)) {
                         Err(error) if error.matches(IOErrorEnum::Exists) => Ok(()),
                         res => res,
                     }
@@ -212,33 +210,45 @@ mod imp {
             .await
             .unwrap()?;
 
+            // Download all images
             let http_session = self.http_session.borrow().clone();
-            join_all(images.into_iter().map(|(image, download)| {
-                glib::clone!(
-                    #[weak]
-                    http_session,
-                    #[upgrade_or]
-                    Ok(()),
-                    async move {
-                        match download.download(&http_session, cancellable).await {
-                            Ok(()) => {
-                                glib::info!("Displaying image from {}", download.target.display());
-                                image.set_image_file(Some(&gio::File::for_path(download.target)));
-                                Ok(())
+            let target_directory = Rc::new(target_directory);
+            join_all(
+                images
+                    .into_iter()
+                    .map(|(image_obj, image)| (image, image_obj.download()))
+                    .map(move |(image, download)| {
+                        glib::clone!(
+                            #[strong]
+                            target_directory,
+                            #[weak]
+                            http_session,
+                            #[upgrade_or]
+                            Ok(()),
+                            async move {
+                                let target = target_directory.join(&*image.filename());
+                                match image.download_to(&target, &http_session, cancellable).await {
+                                    Ok(()) => {
+                                        glib::info!("Displaying image from {}", target.display());
+                                        download.set_file(Some(&gio::File::for_path(target)));
+                                        Ok(())
+                                    }
+                                    Err(error) => {
+                                        glib::error!(
+                                            "Downloading image from {} failed: {error}",
+                                            &image.image_url
+                                        );
+                                        // TODO: Provide a human-readable and translated error message here!
+                                        download.set_error_message(Some(format!(
+                                            "Download failed: {error}"
+                                        )));
+                                        Err(error)
+                                    }
+                                }
                             }
-                            Err(error) => {
-                                glib::error!(
-                                    "Downloading image from {} failed: {error}",
-                                    &download.url
-                                );
-                                // TODO: Provide a human-readable and translated error message here!
-                                image.set_error_message(Some(format!("Download failed: {error}")));
-                                Err(error)
-                            }
-                        }
-                    }
-                )
-            }))
+                        )
+                    }),
+            )
             .await;
             Ok(())
         }

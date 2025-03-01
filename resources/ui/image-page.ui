@@ -10,16 +10,16 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     <property name="hexpand">true</property>
     <property name="vexpand">true</property>
     <property name="child">
-      <object class="GtkStack" id="stack">
+      <object class="GtkStack">
         <binding name="visible-child">
           <closure function="stack_page" type="GtkWidget">
-            <lookup name="image-file" type="PotDImage">
-              <lookup name="image" type="PotDImagePage">
+            <lookup name="file" type="PotDImageDownload">
+              <lookup name="download" type="PotDImagePage">
                 <constant>PotDImagePage</constant>
               </lookup>
             </lookup>
-            <lookup name="error-message" type="PotDImage">
-              <lookup name="image" type="PotDImagePage">
+            <lookup name="error-message" type="PotDImageDownload">
+              <lookup name="download" type="PotDImagePage">
                 <constant>PotDImagePage</constant>
               </lookup>
             </lookup>
@@ -34,18 +34,18 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 </lookup>
               </lookup>
             </binding>
-            <property name="description" translatable="yes" context="image-page.loading-message.title">Image is being downloaded</property>
+            <property name="description" translatable="yes" context="image-page.loading-message.title">Downloading image…</property>
             <property name="child">
               <object class="GtkSpinner">
                 <binding name="spinning">
                   <closure function="is_loading" type="gboolean">
-                    <lookup name="image-file" type="PotDImage">
-                      <lookup name="image" type="PotDImagePage">
+                    <lookup name="file" type="PotDImageDownload">
+                      <lookup name="download" type="PotDImagePage">
                         <constant>PotDImagePage</constant>
                       </lookup>
                     </lookup>
-                    <lookup name="error-message" type="PotDImage">
-                      <lookup name="image" type="PotDImagePage">
+                    <lookup name="error-message" type="PotDImageDownload">
+                      <lookup name="download" type="PotDImagePage">
                         <constant>PotDImagePage</constant>
                       </lookup>
                     </lookup>
@@ -58,8 +58,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="GtkPicture" id="picture">
             <binding name="file">
-              <lookup name="image-file" type="PotDImage">
-                <lookup name="image" type="PotDImagePage">
+              <lookup name="file" type="PotDImageDownload">
+                <lookup name="download" type="PotDImagePage">
                   <constant>PotDImagePage</constant>
                 </lookup>
               </lookup>
@@ -70,8 +70,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           <object class="AdwStatusPage" id="error">
             <property name="title" translatable="yes" context="image-page.error-message.title">Failed to load image</property>
             <binding name="description">
-              <lookup name="error-message" type="PotDImage">
-                <lookup name="image" type="PotDImagePage">
+              <lookup name="error-message" type="PotDImageDownload">
+                <lookup name="download" type="PotDImagePage">
                   <constant>PotDImagePage</constant>
                 </lookup>
               </lookup>

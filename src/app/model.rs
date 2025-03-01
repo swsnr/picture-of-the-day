@@ -5,5 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 mod image;
+mod image_download;
 
 pub use image::Image;
+pub use image_download::ImageDownload;
