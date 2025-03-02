@@ -95,7 +95,7 @@ mod imp {
     use strum::IntoEnumIterator;
 
     use crate::Source;
-    use crate::app::model::Image;
+    use crate::app::model::{Image, ImageDownload};
     use crate::app::widgets::{ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::source::SourceError;
@@ -172,10 +172,15 @@ mod imp {
             .await??;
             glib::info!("Fetched images for {source:?}: {images:?}");
 
-            // Create an image object for every received image
+            // Create model objects for all images:  We create an image object
+            // to expose the metadata as glib properties, and a download object
+            // to model the result of an image download.
             let images = images
                 .into_iter()
-                .map(|image| (Image::from(&image), image))
+                .map(|image| {
+                    let obj = Image::from(&image);
+                    (image, obj, ImageDownload::default())
+                })
                 .collect::<Vec<_>>();
 
             // Set images to be shown, and switch to images view, in case we're
@@ -183,7 +188,7 @@ mod imp {
             self.images_carousel.get().set_images(
                 &images
                     .iter()
-                    .map(|(image, _)| image.clone())
+                    .map(|(_, image, download)| (image.clone(), download.clone()))
                     .collect::<Vec<_>>(),
             );
             self.switch_to_images_view();
@@ -213,42 +218,36 @@ mod imp {
             // Download all images
             let http_session = self.http_session.borrow().clone();
             let target_directory = Rc::new(target_directory);
-            join_all(
-                images
-                    .into_iter()
-                    .map(|(image_obj, image)| (image, image_obj.download()))
-                    .map(move |(image, download)| {
-                        glib::clone!(
-                            #[strong]
-                            target_directory,
-                            #[weak]
-                            http_session,
-                            #[upgrade_or]
-                            Ok(()),
-                            async move {
-                                let target = target_directory.join(&*image.filename());
-                                match image.download_to(&target, &http_session, cancellable).await {
-                                    Ok(()) => {
-                                        glib::info!("Displaying image from {}", target.display());
-                                        download.set_file(Some(&gio::File::for_path(target)));
-                                        Ok(())
-                                    }
-                                    Err(error) => {
-                                        glib::error!(
-                                            "Downloading image from {} failed: {error}",
-                                            &image.image_url
-                                        );
-                                        // TODO: Provide a human-readable and translated error message here!
-                                        download.set_error_message(Some(format!(
-                                            "Download failed: {error}"
-                                        )));
-                                        Err(error)
-                                    }
-                                }
+            join_all(images.into_iter().map(move |(image, _, download)| {
+                glib::clone!(
+                    #[strong]
+                    target_directory,
+                    #[weak]
+                    http_session,
+                    #[upgrade_or]
+                    Ok(()),
+                    async move {
+                        let target = target_directory.join(&*image.filename());
+                        match image.download_to(&target, &http_session, cancellable).await {
+                            Ok(()) => {
+                                glib::info!("Displaying image from {}", target.display());
+                                download.set_file(Some(&gio::File::for_path(target)));
+                                Ok(())
                             }
-                        )
-                    }),
-            )
+                            Err(error) => {
+                                glib::error!(
+                                    "Downloading image from {} failed: {error}",
+                                    &image.image_url
+                                );
+                                // TODO: Provide a human-readable and translated error message here!
+                                download
+                                    .set_error_message(Some(format!("Download failed: {error}")));
+                                Err(error)
+                            }
+                        }
+                    }
+                )
+            }))
             .await;
             Ok(())
         }

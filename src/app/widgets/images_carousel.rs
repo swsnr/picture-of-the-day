@@ -6,7 +6,7 @@
 
 use glib::{Object, subclass::types::ObjectSubclassIsExt};
 
-use crate::app::model::Image;
+use crate::app::model::{Image, ImageDownload};
 
 glib::wrapper! {
     pub struct ImagesCarousel(ObjectSubclass<imp::ImagesCarousel>)
@@ -19,7 +19,7 @@ impl ImagesCarousel {
         self.imp().nth_image(n)
     }
 
-    pub fn set_images(&self, images: &[Image]) {
+    pub fn set_images(&self, images: &[(Image, ImageDownload)]) {
         self.imp().set_images(images);
     }
 }
@@ -38,7 +38,10 @@ mod imp {
     use glib::{Properties, subclass::InitializingObject};
     use gtk::CompositeTemplate;
 
-    use crate::app::{model::Image, widgets::ImagePage};
+    use crate::app::{
+        model::{Image, ImageDownload},
+        widgets::ImagePage,
+    };
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagesCarousel)]
@@ -64,7 +67,7 @@ mod imp {
         /// Set images to show.
         ///
         /// Create as many pages as there are `images`, all in loading state.
-        pub fn set_images(&self, images: &[Image]) {
+        pub fn set_images(&self, images: &[(Image, ImageDownload)]) {
             let carousel = self.images_carousel.get();
 
             let n_pages = usize::try_from(carousel.n_pages()).unwrap();
@@ -86,12 +89,13 @@ mod imp {
             debug_assert_eq!(images.len(), usize::try_from(carousel.n_pages()).unwrap());
 
             // Assign an image to all pages
-            for (n, image) in images.iter().enumerate() {
-                carousel
+            for (n, (image, download)) in images.iter().enumerate() {
+                let page = carousel
                     .nth_page(u32::try_from(n).unwrap())
                     .downcast::<ImagePage>()
-                    .unwrap()
-                    .set_image(image);
+                    .unwrap();
+                page.set_image(image);
+                page.set_download(download);
             }
 
             // Then navigate to first page

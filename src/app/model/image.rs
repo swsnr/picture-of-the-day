@@ -37,8 +37,6 @@ mod imp {
     use glib::prelude::*;
     use glib::subclass::prelude::*;
 
-    use crate::app::model::ImageDownload;
-
     #[derive(Default, glib::Properties)]
     #[properties(wrapper_type = super::Image)]
     pub struct Image {
@@ -54,9 +52,6 @@ mod imp {
         source_name: RefCell<String>,
         #[property(get, construct_only)]
         source_url: RefCell<String>,
-        // Track the download of this image.
-        #[property(get)]
-        download: ImageDownload,
     }
 
     #[glib::object_subclass]

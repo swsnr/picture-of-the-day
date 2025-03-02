@@ -32,9 +32,9 @@ mod imp {
     #[properties(wrapper_type = super::ImagePage)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
     pub struct ImagePage {
-        #[property(get, set = Self::set_image)]
+        #[property(get, set)]
         image: RefCell<Option<Image>>,
-        #[property(get)]
+        #[property(get, set)]
         download: RefCell<Option<ImageDownload>>,
         #[template_child]
         loading: TemplateChild<gtk::Widget>,
@@ -42,15 +42,6 @@ mod imp {
         picture: TemplateChild<gtk::Widget>,
         #[template_child]
         error: TemplateChild<gtk::Widget>,
-    }
-
-    impl ImagePage {
-        fn set_image(&self, image: Option<Image>) {
-            self.download
-                .replace(image.as_ref().map(|i| i.download().clone()));
-            self.image.replace(image);
-            self.obj().notify_download();
-        }
     }
 
     #[gtk::template_callbacks]
