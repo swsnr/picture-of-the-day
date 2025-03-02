@@ -46,7 +46,6 @@ mod imp {
 
     impl ImagePage {
         fn set_image(&self, image: Option<Image>) {
-            // FIXME: use a property binding instead?
             self.download
                 .replace(image.as_ref().map(|i| i.download().clone()));
             self.image.replace(image);
