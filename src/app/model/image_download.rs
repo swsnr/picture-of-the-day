@@ -22,15 +22,17 @@ mod imp {
     use glib::subclass::prelude::*;
     use gtk::gio;
 
+    use crate::app::model::ErrorNotification;
+
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::ImageDownload)]
     pub struct ImageDownload {
         /// The downloaded file, if the download was successful.
         #[property(get, set, nullable)]
         file: RefCell<Option<gio::File>>,
-        /// An error message if the download failed.
+        /// An error if the download file.
         #[property(get, set, nullable)]
-        error_message: RefCell<Option<String>>,
+        error: RefCell<Option<ErrorNotification>>,
     }
 
     #[glib::object_subclass]

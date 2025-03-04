@@ -18,7 +18,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <constant>PotDImagePage</constant>
               </lookup>
             </lookup>
-            <lookup name="error-message" type="PotDImageDownload">
+            <lookup name="error" type="PotDImageDownload">
               <lookup name="download" type="PotDImagePage">
                 <constant>PotDImagePage</constant>
               </lookup>
@@ -44,7 +44,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                         <constant>PotDImagePage</constant>
                       </lookup>
                     </lookup>
-                    <lookup name="error-message" type="PotDImageDownload">
+                    <lookup name="error" type="PotDImageDownload">
                       <lookup name="download" type="PotDImagePage">
                         <constant>PotDImagePage</constant>
                       </lookup>
@@ -67,10 +67,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           </object>
         </child>
         <child>
-          <object class="AdwStatusPage" id="error">
-            <property name="title" translatable="yes" context="image-page.error-message.title">Failed to load image</property>
-            <binding name="description">
-              <lookup name="error-message" type="PotDImageDownload">
+          <object class="PotDErrorNotificationPage" id="error">
+            <binding name="error">
+              <lookup name="error" type="PotDImageDownload">
                 <lookup name="download" type="PotDImagePage">
                   <constant>PotDImagePage</constant>
                 </lookup>

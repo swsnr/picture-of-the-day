@@ -1,0 +1,14 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+using Gtk 4.0;
+using Adw 1;
+
+template $PotDErrorNotificationPage: Adw.Bin {
+  Adw.StatusPage error {
+    icon-name: "sad-computer-symbolic";
+    title: bind (template.error as <$PotDErrorNotification>).title;
+    description: bind (template.error as <$PotDErrorNotification>).description;
+  }
+}

@@ -15,6 +15,8 @@ use super::http::HttpError;
 pub enum SourceError {
     /// IO failed.
     IO(glib::Error),
+    /// An IO action was cancelled
+    Cancelled,
     /// An unexpected HTTP status code, with an optional reason.
     HttpStatus(soup::Status, Option<GString>),
     /// A deserialization error.
@@ -31,19 +33,13 @@ pub enum SourceError {
     NotAnImage,
 }
 
-impl SourceError {
-    /// Whether this error represents a cancelled IO operation.
-    pub fn is_cancelled(&self) -> bool {
-        match self {
-            SourceError::IO(error) => error.matches(IOErrorEnum::Cancelled),
-            _ => false,
-        }
-    }
-}
-
 impl From<glib::Error> for SourceError {
     fn from(error: glib::Error) -> Self {
-        Self::IO(error)
+        if error.matches(IOErrorEnum::Cancelled) {
+            Self::Cancelled
+        } else {
+            Self::IO(error)
+        }
     }
 }
 
@@ -55,19 +51,19 @@ impl From<serde_json::Error> for SourceError {
 
 impl From<Cancelled> for SourceError {
     fn from(_: Cancelled) -> Self {
-        glib::Error::new(IOErrorEnum::Cancelled, "Cancelled").into()
+        Self::Cancelled
     }
 }
 
 impl From<HttpError> for SourceError {
     fn from(error: HttpError) -> Self {
         match error {
-            HttpError::IO(error) => Self::IO(error),
+            HttpError::IO(error) => Self::from(error),
             // We deliberately discard the body here: At this point we should never inspect the
             // source-specific body again; if there was anything interesting in the body the
             // source backend itself should've analyzed it by now.
             HttpError::HttpStatus(status, reason, _) => Self::HttpStatus(status, reason),
-            HttpError::InvalidJson(error) => Self::InvalidJson(error),
+            HttpError::InvalidJson(error) => Self::from(error),
         }
     }
 }
@@ -76,6 +72,7 @@ impl Display for SourceError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             SourceError::IO(error) => write!(f, "{error}"),
+            SourceError::Cancelled => write!(f, "Cancelled"),
             #[allow(clippy::use_debug)]
             SourceError::HttpStatus(status, None) => write!(f, "HTTP status {status:?}"),
             #[allow(clippy::use_debug)]

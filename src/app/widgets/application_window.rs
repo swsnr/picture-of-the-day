@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
-use glib::{dgettext, dpgettext2, object::IsA};
+use glib::{dgettext, dpgettext2, object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::gio;
 
 use crate::source::Source;
@@ -78,6 +78,27 @@ impl ApplicationWindow {
 
         dialog.present(Some(self));
     }
+
+    pub fn cancel_loading(&self) {
+        self.imp().cancel_loading();
+    }
+
+    /// Load images for the selected source.
+    pub async fn load_images(&self) {
+        self.cancel_loading();
+        let cancellable = self.imp().start_loading();
+
+        let source = self.selected_source();
+        if let Err(error) = self
+            .imp()
+            .load_images_for_source(source, &cancellable)
+            .await
+        {
+            self.imp().show_error(source, &error);
+        }
+
+        self.imp().finish_loading();
+    }
 }
 
 mod imp {
@@ -95,8 +116,8 @@ mod imp {
     use strum::IntoEnumIterator;
 
     use crate::Source;
-    use crate::app::model::{Image, ImageDownload};
-    use crate::app::widgets::{ImagesCarousel, SourceRow};
+    use crate::app::model::{ErrorNotification, Image, ImageDownload};
+    use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::source::SourceError;
 
@@ -120,6 +141,8 @@ mod imp {
         images_view: TemplateChild<adw::OverlaySplitView>,
         #[template_child]
         images_carousel: TemplateChild<ImagesCarousel>,
+        #[template_child]
+        error_page: TemplateChild<ErrorNotificationPage>,
     }
 
     #[gtk::template_callbacks]
@@ -135,7 +158,7 @@ mod imp {
             self.is_loading.borrow().is_some()
         }
 
-        fn cancel_loading(&self) {
+        pub fn cancel_loading(&self) {
             if let Some(cancellable) = self.is_loading.replace(None) {
                 cancellable.cancel();
             }
@@ -161,16 +184,42 @@ mod imp {
             }
         }
 
-        async fn load_images(&self, cancellable: &Cancellable) -> Result<(), SourceError> {
-            let source = self.selected_source.get();
+        pub fn start_loading(&self) -> gio::Cancellable {
+            let cancellable = gio::Cancellable::new();
+            self.is_loading.replace(Some(cancellable.clone()));
+            self.obj().notify_is_loading();
+            cancellable
+        }
 
+        pub fn finish_loading(&self) {
+            self.is_loading.replace(None);
+            self.obj().notify_is_loading();
+        }
+
+        pub fn show_error(&self, source: Source, error: &SourceError) {
+            if let SourceError::Cancelled = error {
+                glib::info!("Fetching images cancelled by user");
+                // Do not change the view if the user cancelled the action; just
+                // keep the previous view.
+            } else {
+                glib::error!("Fetching images failed: {error}");
+                let error = ErrorNotification::from_error(source, error);
+                self.error_page.set_error(Some(&error));
+                self.stack.set_visible_child(&self.error_page.get());
+            }
+        }
+
+        pub async fn load_images_for_source(
+            &self,
+            source: Source,
+            cancellable: &Cancellable,
+        ) -> Result<(), SourceError> {
             glib::info!("Fetching images for source {source:?}");
             let images = gio::CancellableFuture::new(
                 source.get_images(&self.obj().http_session()),
                 cancellable.clone(),
             )
             .await??;
-            glib::info!("Fetched images for {source:?}: {images:?}");
 
             // Create model objects for all images:  We create an image object
             // to expose the metadata as glib properties, and a download object
@@ -224,25 +273,20 @@ mod imp {
                     target_directory,
                     #[weak]
                     http_session,
-                    #[upgrade_or]
-                    Ok(()),
                     async move {
                         let target = target_directory.join(&*image.filename());
                         match image.download_to(&target, &http_session, cancellable).await {
                             Ok(()) => {
                                 glib::info!("Displaying image from {}", target.display());
                                 download.set_file(Some(&gio::File::for_path(target)));
-                                Ok(())
                             }
                             Err(error) => {
-                                glib::error!(
+                                glib::warn!(
                                     "Downloading image from {} failed: {error}",
                                     &image.image_url
                                 );
-                                // TODO: Provide a human-readable and translated error message here!
-                                download
-                                    .set_error_message(Some(format!("Download failed: {error}")));
-                                Err(error)
+                                let error = ErrorNotification::from_error(source, &error.into());
+                                download.set_error(Some(error));
                             }
                         }
                     }
@@ -264,6 +308,7 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             ImagesCarousel::ensure_type();
             Image::ensure_type();
+            ErrorNotificationPage::ensure_type();
 
             klass.bind_template();
             klass.bind_template_callbacks();
@@ -277,19 +322,7 @@ mod imp {
                 window.imp().cancel_loading();
             });
             klass.install_action_async("win.load-images", None, |window, _, _| async move {
-                window.imp().cancel_loading();
-                let cancellable = gio::Cancellable::new();
-                window.imp().is_loading.replace(Some(cancellable.clone()));
-                window.notify_is_loading();
-                if let Err(error) = window.imp().load_images(&cancellable).await {
-                    if error.is_cancelled() {
-                        glib::info!("Image loading cancelled!");
-                    } else {
-                        glib::error!("Image loading failed: {error}");
-                    }
-                }
-                window.imp().is_loading.replace(None);
-                window.notify_is_loading();
+                window.load_images().await;
             });
 
             klass.add_binding_action(Key::F5, ModifierType::NO_MODIFIER_MASK, "win.load-images");

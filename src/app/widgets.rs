@@ -5,11 +5,13 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 mod application_window;
+mod error_notification_page;
 mod image_page;
 mod images_carousel;
 mod source_row;
 
 pub use application_window::ApplicationWindow;
+pub use error_notification_page::ErrorNotificationPage;
 pub use image_page::ImagePage;
 pub use images_carousel::ImagesCarousel;
 pub use source_row::SourceRow;
