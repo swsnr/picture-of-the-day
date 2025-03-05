@@ -27,8 +27,7 @@
         <keyword>Artwork</keyword>
     </keywords>
     <url type="homepage">https://github.com/swsnr/picture-of-the-day</url>
-    <url type="bugtracker">
-        https://github.com/swsnr/picture-of-the-day/discussions/categories/ideas-issues</url>
+    <url type="bugtracker">https://github.com/swsnr/picture-of-the-day/discussions/categories/ideas-issues</url>
     <!-- TODO translations link to codeberg translate -->
     <url type="help">https://github.com/swsnr/picture-of-the-day/discussions/categories/q-a</url>
     <url type="contact">https://swsnr.de/</url>
