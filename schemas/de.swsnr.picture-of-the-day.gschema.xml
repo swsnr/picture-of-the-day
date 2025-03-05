@@ -1,0 +1,8 @@
+<schemalist>
+  <schema id="de.swsnr.picture-of-the-day" path="/de/swsnr/picture-of-the-day/">
+    <key name="last-source" type="s">
+      <default>"wikimedia"</default>
+      <description>The identifier of the last selectd source.</description>
+    </key>
+  </schema>
+</schemalist>

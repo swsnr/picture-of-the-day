@@ -43,7 +43,8 @@ pot:
 		po/de.swsnr.picture-of-the-day.blp.pot \
 		po/de.swsnr.picture-of-the-day.rs.pot \
 		resources/de.swsnr.picture-of-the-day.metainfo.xml.in \
-		de.swsnr.picture-of-the-day.desktop.in
+		de.swsnr.picture-of-the-day.desktop.in \
+		schemas/de.swsnr.picture-of-the-day.gschema.xml
 	rm -f po/POTFILES* po/de.swsnr.picture-of-the-day.rs.pot po/de.swsnr.picture-of-the-day.blp.pot
 	sed -i /POT-Creation-Date/d po/de.swsnr.picture-of-the-day.pot
 
@@ -72,6 +73,7 @@ install: install-locale
 		$(DESTPREFIX)/share/icons/hicolor/symbolic/apps/$(APPID)-symbolic.svg
 	install -Dm0644 de.swsnr.picture-of-the-day.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
 	install -Dm0644 dbus-1/de.swsnr.picture-of-the-day.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
+	install -Dm0644 schemas/de.swsnr.picture-of-the-day.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml
 
 # Patch the current git describe version into Picture Of The Day.
 .PHONY: patch-git-version
@@ -85,4 +87,5 @@ patch-appid:
 	sed -i '/$(APPID)/! s/de\.swsnr\.picture-of-the-day/$(APPID)/g' \
 		src/config.rs \
 		de.swsnr.picture-of-the-day.desktop.in \
-		dbus-1/de.swsnr.picture-of-the-day.service
+		dbus-1/de.swsnr.picture-of-the-day.service \
+		schemas/de.swsnr.picture-of-the-day.gschema.xml

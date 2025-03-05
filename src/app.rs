@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
-use glib::Object;
+use glib::{Object, subclass::types::ObjectSubclassIsExt};
 use gtk::gio::ActionEntry;
 
 use crate::config::G_LOG_DOMAIN;
@@ -50,6 +50,10 @@ impl Application {
         if crate::config::is_development() {
             window.add_css_class("devel");
         }
+        let settings = self.imp().settings();
+        settings
+            .bind("last-source", &window, "selected-source")
+            .build();
         window.present();
     }
 }
@@ -64,9 +68,12 @@ impl Default for Application {
 }
 
 mod imp {
+    use std::cell::RefCell;
+
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::Properties;
+    use gtk::gio;
     use soup::prelude::SessionExt;
 
     use crate::config::G_LOG_DOMAIN;
@@ -76,6 +83,13 @@ mod imp {
     pub struct Application {
         #[property(get)]
         http_session: soup::Session,
+        settings: RefCell<Option<gio::Settings>>,
+    }
+
+    impl Application {
+        pub fn settings(&self) -> gio::Settings {
+            self.settings.borrow().as_ref().unwrap().clone()
+        }
     }
 
     #[glib::object_subclass]
@@ -107,6 +121,15 @@ mod imp {
             }
 
             self.obj().setup_actions();
+
+            glib::info!("Loading settings");
+            self.settings.replace(Some(gio::Settings::new_full(
+                &crate::config::schema_source()
+                    .lookup(crate::config::APP_ID, true)
+                    .unwrap(),
+                gio::SettingsBackend::NONE,
+                None,
+            )));
 
             glib::info!(
                 "Initializing soup session with user agent {}",

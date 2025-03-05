@@ -140,9 +140,18 @@ pub fn compile_resources<P: AsRef<Path>>(
     sources
 }
 
+fn glib_compile_schemas() -> Vec<PathBuf> {
+    let schemas = glob_io("schemas/*.gschema.xml").unwrap();
+    Command::new("glib-compile-schemas")
+        .args(["--strict", "schemas"])
+        .checked();
+    schemas
+}
+
 fn main() {
     let tasks = [
         std::thread::spawn(compile_blueprint),
+        std::thread::spawn(glib_compile_schemas),
         std::thread::spawn(msgfmt),
     ];
 

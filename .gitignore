@@ -6,3 +6,6 @@
 # Generated from i18n templates
 *.desktop
 resources/*.metainfo.xml
+
+# Compiled settings schemas
+/schemas/*.compiled
