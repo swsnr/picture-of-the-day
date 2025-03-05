@@ -72,6 +72,7 @@ install: install-locale
 	install -Dm0644 resources/icons/symbolic/apps/de.swsnr.picture-of-the-day-symbolic.svg \
 		$(DESTPREFIX)/share/icons/hicolor/symbolic/apps/$(APPID)-symbolic.svg
 	install -Dm0644 de.swsnr.picture-of-the-day.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
+	install -Dm0644 resources/de.swsnr.picture-of-the-day.metainfo.xml $(DESTPREFIX)/share/metainfo/$(APPID).metainfo.xml
 	install -Dm0644 dbus-1/de.swsnr.picture-of-the-day.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
 	install -Dm0644 schemas/de.swsnr.picture-of-the-day.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml
 
@@ -87,5 +88,6 @@ patch-appid:
 	sed -i '/$(APPID)/! s/de\.swsnr\.picture-of-the-day/$(APPID)/g' \
 		src/config.rs \
 		de.swsnr.picture-of-the-day.desktop.in \
+		resources/de.swsnr.picture-of-the-day.metainfo.xml.in \
 		dbus-1/de.swsnr.picture-of-the-day.service \
 		schemas/de.swsnr.picture-of-the-day.gschema.xml
