@@ -94,6 +94,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       Adw.OverlaySplitView images_view {
         sidebar-position: end;
         show-sidebar: bind template.show-image-properties bidirectional;
+        sidebar-width-fraction: 0.33;
 
         content: $PotDImagesCarousel images_carousel {};
 

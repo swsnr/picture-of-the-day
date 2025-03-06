@@ -103,6 +103,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               <object class="AdwOverlaySplitView" id="images_view">
                 <property name="sidebar-position">1</property>
                 <property name="show-sidebar" bind-source="PotDApplicationWindow" bind-property="show-image-properties" bind-flags="sync-create|bidirectional"/>
+                <property name="sidebar-width-fraction">0.33</property>
                 <property name="content">
                   <object class="PotDImagesCarousel" id="images_carousel"></object>
                 </property>
