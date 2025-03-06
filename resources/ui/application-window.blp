@@ -98,68 +98,70 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
         content: $PotDImagesCarousel images_carousel {};
 
-        sidebar: Box {
-          orientation: vertical;
-          margin-top: 24;
-          margin-bottom: 24;
-          margin-start: 12;
-          margin-end: 12;
-          spacing: 24;
+        sidebar: Gtk.ScrolledWindow {
+          Box {
+            orientation: vertical;
+            margin-top: 24;
+            margin-bottom: 24;
+            margin-start: 12;
+            margin-end: 12;
+            spacing: 24;
 
-          Adw.PreferencesGroup {
-            Adw.ActionRow {
-              title: C_("images-view.metadata.label", "Title");
-              subtitle: bind (images_carousel.current-image as <$PotDImage>).title;
+            Adw.PreferencesGroup {
+              Adw.ActionRow {
+                title: C_("images-view.metadata.label", "Title");
+                subtitle: bind (images_carousel.current-image as <$PotDImage>).title;
 
-              [suffix]
-              LinkButton {
-                icon-name: "external-link-symbolic";
-                uri: bind (images_carousel.current-image as <$PotDImage>).url;
-                visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).url) as <bool>;
-                tooltip-text: _("Visit the source page of this image.");
+                [suffix]
+                LinkButton {
+                  icon-name: "external-link-symbolic";
+                  uri: bind (images_carousel.current-image as <$PotDImage>).url;
+                  visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).url) as <bool>;
+                  tooltip-text: _("Visit the source page of this image.");
+                }
+
+                styles [
+                  "property",
+                ]
               }
 
-              styles [
-                "property",
-              ]
-            }
+              Adw.ActionRow {
+                title: C_("images-view.metadata.label", "Copyright");
+                subtitle: bind (images_carousel.current-image as <$PotDImage>).copyright;
+                visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).copyright) as <bool>;
 
-            Adw.ActionRow {
-              title: C_("images-view.metadata.label", "Copyright");
-              subtitle: bind (images_carousel.current-image as <$PotDImage>).copyright;
-              visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).copyright) as <bool>;
-
-              styles [
-                "property",
-              ]
-            }
-
-            Adw.ActionRow {
-              title: C_("images-view.metadata.label", "Description");
-              subtitle: bind (images_carousel.current-image as <$PotDImage>).description;
-              visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).description) as <bool>;
-
-              styles [
-                "property",
-              ]
-            }
-          }
-
-          Adw.PreferencesGroup {
-            Adw.ActionRow {
-              title: C_("images-view.metadata.label", "Source");
-              subtitle: bind (images_carousel.current-image as <$PotDImage>).source-name;
-
-              [suffix]
-              LinkButton {
-                icon-name: "external-link-symbolic";
-                uri: bind (images_carousel.current-image as <$PotDImage>).source-url;
-                tooltip-text: _("Visit the main page of the source of this image.");
+                styles [
+                  "property",
+                ]
               }
 
-              styles [
-                "property",
-              ]
+              Adw.ActionRow {
+                title: C_("images-view.metadata.label", "Description");
+                subtitle: bind (images_carousel.current-image as <$PotDImage>).description;
+                visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).description) as <bool>;
+
+                styles [
+                  "property",
+                ]
+              }
+            }
+
+            Adw.PreferencesGroup {
+              Adw.ActionRow {
+                title: C_("images-view.metadata.label", "Source");
+                subtitle: bind (images_carousel.current-image as <$PotDImage>).source-name;
+
+                [suffix]
+                LinkButton {
+                  icon-name: "external-link-symbolic";
+                  uri: bind (images_carousel.current-image as <$PotDImage>).source-url;
+                  tooltip-text: _("Visit the main page of the source of this image.");
+                }
+
+                styles [
+                  "property",
+                ]
+              }
             }
           }
         };
