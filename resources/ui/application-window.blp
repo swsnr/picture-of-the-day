@@ -74,6 +74,13 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       Box {
         orientation: horizontal;
 
+        Button {
+          icon-name: "de.swsnr.picture-of-the-day-symbolic";
+          action-name: "win.set-as-wallpaper";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Set current image as wallpaper");
+          sensitive: bind (((images_carousel as <$PotDImagesCarousel>).current_image as <$PotDImage>).download as <$PotDImageDownload>).has-file;
+        }
+
         ToggleButton {
           icon-name: "info-outline-symbolic";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Toggle the sidebar with image information");

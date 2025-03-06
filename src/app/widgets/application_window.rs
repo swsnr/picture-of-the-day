@@ -4,8 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use std::{fs::File, os::fd::OwnedFd};
+
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
-use gtk::gio;
+use gtk::gio::{self, IOErrorEnum, prelude::FileExt};
+
+use crate::config::G_LOG_DOMAIN;
+use crate::portal::wallpaper::{Preview, SetOn};
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -46,6 +51,36 @@ impl ApplicationWindow {
         }
 
         self.imp().finish_loading();
+    }
+
+    async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
+        if let Some(image) = self.imp().current_image() {
+            if let Some(file) = image.download().file() {
+                let fd = gio::spawn_blocking(move || {
+                    File::open(file.path().unwrap()).map(OwnedFd::from)
+                })
+                .await
+                .unwrap()
+                .map_err(|error| {
+                    let domain = error
+                        .raw_os_error()
+                        .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
+                        .unwrap_or(IOErrorEnum::Failed);
+                    glib::Error::new(domain, &error.to_string())
+                })?;
+                let connection = gio::bus_get_future(gio::BusType::Session).await?;
+                let result = crate::portal::wallpaper::set_wallpaper_file(
+                    &connection,
+                    Some(self),
+                    fd,
+                    Preview::Preview,
+                    SetOn::Both,
+                )
+                .await?;
+                glib::info!("Request finished: {result:?}");
+            }
+        }
+        Ok(())
     }
 }
 
@@ -102,6 +137,10 @@ mod imp {
     }
 
     impl ApplicationWindow {
+        pub fn current_image(&self) -> Option<Image> {
+            self.images_carousel.current_image()
+        }
+
         fn is_loading(&self) -> bool {
             self.is_loading.borrow().is_some()
         }
@@ -176,7 +215,7 @@ mod imp {
                 .into_iter()
                 .map(|image| {
                     let obj = Image::from(&image);
-                    (image, obj, ImageDownload::default())
+                    (image, obj)
                 })
                 .collect::<Vec<_>>();
 
@@ -185,7 +224,7 @@ mod imp {
             self.images_carousel.get().set_images(
                 &images
                     .iter()
-                    .map(|(_, image, download)| (image.clone(), download.clone()))
+                    .map(|(_, image)| image.clone())
                     .collect::<Vec<_>>(),
             );
             self.switch_to_images_view();
@@ -215,7 +254,7 @@ mod imp {
             // Download all images
             let http_session = self.http_session.borrow().clone();
             let target_directory = Rc::new(target_directory);
-            join_all(images.into_iter().map(move |(image, _, download)| {
+            join_all(images.into_iter().map(move |(image, image_obj)| {
                 glib::clone!(
                     #[strong]
                     target_directory,
@@ -226,7 +265,9 @@ mod imp {
                         match image.download_to(&target, &http_session, cancellable).await {
                             Ok(()) => {
                                 glib::info!("Displaying image from {}", target.display());
-                                download.set_file(Some(&gio::File::for_path(target)));
+                                image_obj
+                                    .download()
+                                    .set_file(Some(&gio::File::for_path(target)));
                             }
                             Err(error) => {
                                 glib::warn!(
@@ -234,7 +275,7 @@ mod imp {
                                     &image.image_url
                                 );
                                 let error = ErrorNotification::from_error(source, &error.into());
-                                download.set_error(Some(error));
+                                image_obj.download().set_error(Some(error));
                             }
                         }
                     }
@@ -256,6 +297,7 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             ImagesCarousel::ensure_type();
             Image::ensure_type();
+            ImageDownload::ensure_type();
             ErrorNotificationPage::ensure_type();
 
             klass.bind_template();
@@ -268,6 +310,12 @@ mod imp {
             });
             klass.install_action_async("win.load-images", None, |window, _, _| async move {
                 window.load_images().await;
+            });
+            klass.install_action_async("win.set-as-wallpaper", None, |window, _, _| async move {
+                if let Err(error) = window.set_current_image_as_wallpaper().await {
+                    // TODO: Proper error handling
+                    glib::error!("Failed to set current image as wallaper: {error}");
+                }
             });
 
             klass.add_binding_action(Key::F5, ModifierType::NO_MODIFIER_MASK, "win.load-images");

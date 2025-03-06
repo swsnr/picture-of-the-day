@@ -15,6 +15,7 @@ impl Default for ImageDownload {
 }
 
 mod imp {
+    use std::cell::Cell;
     use std::cell::RefCell;
 
     use glib::Properties;
@@ -28,11 +29,22 @@ mod imp {
     #[properties(wrapper_type = super::ImageDownload)]
     pub struct ImageDownload {
         /// The downloaded file, if the download was successful.
-        #[property(get, set, nullable)]
+        #[property(get, set = Self::set_file, nullable)]
         file: RefCell<Option<gio::File>>,
+        /// Whether the download has a file.
+        #[property(get)]
+        has_file: Cell<bool>,
         /// An error if the download file.
         #[property(get, set, nullable)]
         error: RefCell<Option<ErrorNotification>>,
+    }
+
+    impl ImageDownload {
+        fn set_file(&self, file: Option<gio::File>) {
+            self.has_file.set(file.is_some());
+            self.file.replace(file);
+            self.obj().notify_has_file();
+        }
     }
 
     #[glib::object_subclass]

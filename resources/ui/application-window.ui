@@ -79,6 +79,22 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               <object class="GtkBox">
                 <property name="orientation">0</property>
                 <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">de.swsnr.picture-of-the-day-symbolic</property>
+                    <property name="action-name">win.set-as-wallpaper</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set current image as wallpaper</property>
+                    <binding name="sensitive">
+                      <lookup name="has-file" type="PotDImageDownload">
+                        <lookup name="download" type="PotDImage">
+                          <lookup name="current_image" type="PotDImagesCarousel">
+                            <constant>images_carousel</constant>
+                          </lookup>
+                        </lookup>
+                      </lookup>
+                    </binding>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkToggleButton">
                     <property name="icon-name">info-outline-symbolic</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Toggle the sidebar with image information</property>
