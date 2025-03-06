@@ -7,8 +7,6 @@
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::gio;
 
-use crate::source::Source;
-
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
         @extends adw::ApplicationWindow, gtk::ApplicationWindow, gtk::Window, gtk::Widget,
@@ -21,17 +19,11 @@ impl ApplicationWindow {
     /// Create a new window.
     ///
     /// The window belongs to `application` and keeps a hold on `application`.
-    /// It uses the `session` to fetch images for the selected source, and
-    /// initially uses the given `selected_source`.
-    pub fn new(
-        application: &impl IsA<gtk::Application>,
-        session: soup::Session,
-        selected_source: Source,
-    ) -> Self {
+    /// It uses the `session` to fetch images for the selected source.
+    pub fn new(application: &impl IsA<gtk::Application>, session: soup::Session) -> Self {
         glib::Object::builder()
             .property("application", application)
             .property("http-session", session)
-            .property("selected-source", selected_source)
             .build()
     }
 

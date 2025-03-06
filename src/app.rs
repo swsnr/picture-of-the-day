@@ -102,17 +102,12 @@ impl Application {
 
     fn new_window(&self) {
         glib::debug!("Creating new window");
-        let source = self
-            .active_window()
-            .and_downcast::<ApplicationWindow>()
-            .map(|w| w.selected_source())
-            .unwrap_or_default();
-        let window = ApplicationWindow::new(self, self.http_session(), source);
+        let window = ApplicationWindow::new(self, self.http_session());
         if crate::config::is_development() {
             window.add_css_class("devel");
         }
-        let settings = self.imp().settings();
-        settings
+        self.imp()
+            .settings()
             .bind("last-source", &window, "selected-source")
             .build();
         window.present();
