@@ -1,0 +1,26 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+using Gtk 4.0;
+using Adw 1;
+
+template $PotDPreferencesDialog: Adw.PreferencesDialog {
+  Adw.PreferencesPage {
+    title: _("Picture Sources");
+    description: _("Configure sources for the Picture of the Day.");
+    icon-name: "picture-of-the-day-symbolic";
+
+    Adw.PreferencesGroup apod {
+      Adw.EntryRow apod_api_key {
+        title: _("API key");
+
+        [suffix]
+        Gtk.LinkButton {
+          label: _("Get API key");
+          uri: "https://api.nasa.gov/";
+        }
+      }
+    }
+  }
+}

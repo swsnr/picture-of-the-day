@@ -281,6 +281,10 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     </section>
     <section>
       <item>
+        <attribute name="label" translatable="yes" context="application-window.menu.label">_Preferences</attribute>
+        <attribute name="action">win.preferences</attribute>
+      </item>
+      <item>
         <attribute name="label" translatable="yes" context="application-window.menu.label">_Keyboard Shortcuts</attribute>
         <attribute name="action">win.show-help-overlay</attribute>
       </item>

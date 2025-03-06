@@ -10,4 +10,9 @@ Categories=GNOME;GTK;Utility;
 Keywords=Gnome;GTK;Picture;Day;Wallpaper;
 StartupNotify=true
 DBusActivatable=true
+Actions=preferences;
 X-GNOME-UsesNotifications=true
+
+[Desktop Action preferences]
+Name=Add new device
+Exec=de.swsnr.picture-of-the-day --preferences

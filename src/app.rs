@@ -6,14 +6,14 @@
 
 use adw::prelude::*;
 use glib::{Object, subclass::types::ObjectSubclassIsExt};
-use gtk::gio::ActionEntry;
+use gtk::gio::{ActionEntry, ApplicationFlags};
 
 use crate::config::G_LOG_DOMAIN;
 
 mod model;
 mod widgets;
 
-use widgets::ApplicationWindow;
+use widgets::{ApplicationWindow, PreferencesDialog};
 
 glib::wrapper! {
     pub struct Application(ObjectSubclass<imp::Application>)
@@ -33,10 +33,23 @@ impl Application {
             ActionEntry::builder("new-window")
                 .activate(|app: &Self, _, _| app.new_window())
                 .build(),
+            ActionEntry::builder("preferences")
+                .activate(|app: &Self, _, _| {
+                    app.show_preferences();
+                })
+                .build(),
         ];
         self.add_action_entries(actions);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
+        self.set_accels_for_action("app.preferences", &["<Control>comma"]);
         self.set_accels_for_action("app.new-window", &["<Control><Shift>n"]);
+    }
+
+    fn show_preferences(&self) -> PreferencesDialog {
+        let prefs = PreferencesDialog::default();
+        prefs.bind(&self.imp().settings());
+        prefs.present(self.active_window().as_ref());
+        prefs
     }
 
     fn new_window(&self) {
@@ -63,18 +76,20 @@ impl Default for Application {
         Object::builder()
             .property("application-id", crate::config::APP_ID)
             .property("resource-base-path", "/de/swsnr/picture-of-the-day")
+            .property("flags", ApplicationFlags::HANDLES_COMMAND_LINE)
             .build()
     }
 }
 
 mod imp {
-    use std::cell::RefCell;
-
+    use adw::gio::ApplicationCommandLine;
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use glib::Properties;
+    use futures::StreamExt;
+    use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
     use gtk::gio;
     use soup::prelude::SessionExt;
+    use std::cell::RefCell;
 
     use crate::config::G_LOG_DOMAIN;
 
@@ -90,6 +105,22 @@ mod imp {
         pub fn settings(&self) -> gio::Settings {
             self.settings.borrow().as_ref().unwrap().clone()
         }
+
+        /// Hold onto this app until `dialog` is closed.
+        async fn hold_until_dialog_closed(&self, dialog: &impl IsA<adw::Dialog>) {
+            let guard = self.obj().hold();
+            let (tx, mut rx) = futures::channel::mpsc::unbounded();
+            dialog.connect_closed(glib::clone!(
+                #[strong]
+                tx,
+                move |_| {
+                    #[allow(clippy::let_underscore_must_use)]
+                    let _: Result<_, _> = tx.unbounded_send(());
+                }
+            ));
+            let _: Option<()> = rx.next().await;
+            drop(guard);
+        }
     }
 
     #[glib::object_subclass]
@@ -102,7 +133,25 @@ mod imp {
     }
 
     #[glib::derived_properties]
-    impl ObjectImpl for Application {}
+    impl ObjectImpl for Application {
+        fn constructed(&self) {
+            self.parent_constructed();
+
+            let app = self.obj();
+            app.add_main_option(
+                "preferences",
+                0.into(),
+                OptionFlags::NONE,
+                OptionArg::None,
+                &dpgettext2(
+                    None,
+                    "command-line.option.description",
+                    "Show preferences dialog",
+                ),
+                None,
+            );
+        }
+    }
 
     impl ApplicationImpl for Application {
         fn startup(&self) {
@@ -123,13 +172,7 @@ mod imp {
             self.obj().setup_actions();
 
             glib::info!("Loading settings");
-            self.settings.replace(Some(gio::Settings::new_full(
-                &crate::config::schema_source()
-                    .lookup(crate::config::APP_ID, true)
-                    .unwrap(),
-                gio::SettingsBackend::NONE,
-                None,
-            )));
+            self.settings.replace(Some(crate::config::get_settings()));
 
             glib::info!(
                 "Initializing soup session with user agent {}",
@@ -147,6 +190,40 @@ mod imp {
                     .max_body_size(102_400)
                     .build();
                 self.http_session.add_feature(&log);
+            }
+        }
+
+        fn command_line(&self, command_line: &ApplicationCommandLine) -> ExitCode {
+            // Hold on to the app while we're processing the command line and
+            // spawn futures to handle it.
+            let guard = self.obj().hold();
+            glib::debug!(
+                "Handling command line. Remote? {}",
+                command_line.is_remote()
+            );
+            let options = command_line.options_dict();
+            if let Ok(Some(true)) = options.lookup("preferences") {
+                glib::debug!("Showing preferences");
+                let prefs = self.obj().show_preferences();
+                glib::spawn_future_local(glib::clone!(
+                    #[strong(rename_to = app)]
+                    self.obj(),
+                    #[strong]
+                    command_line,
+                    async move {
+                        // Hold onto the app until the prefs dialog is closed,
+                        // the end command line processing, and drop our outer
+                        // hold on the application.
+                        app.imp().hold_until_dialog_closed(&prefs).await;
+                        command_line.set_exit_status(ExitCode::SUCCESS.value());
+                        command_line.done();
+                        drop(guard);
+                    }
+                ));
+                ExitCode::SUCCESS
+            } else {
+                self.obj().activate();
+                ExitCode::SUCCESS
             }
         }
 

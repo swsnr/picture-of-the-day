@@ -88,3 +88,14 @@ pub fn schema_source() -> gio::SettingsSchemaSource {
         default
     }
 }
+
+/// Get settings for this application.
+pub fn get_settings() -> gio::Settings {
+    gio::Settings::new_full(
+        &crate::config::schema_source()
+            .lookup(crate::config::APP_ID, true)
+            .unwrap(),
+        gio::SettingsBackend::NONE,
+        None,
+    )
+}

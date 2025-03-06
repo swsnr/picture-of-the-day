@@ -252,6 +252,11 @@ user-id = 6743
 user-login = "epage"
 user-name = "Ed Page"
 
+[[audits.bytecode-alliance.audits.futures]]
+who = "Joel Dice <joel.dice@gmail.com>"
+criteria = "safe-to-deploy"
+version = "0.3.31"
+
 [[audits.bytecode-alliance.audits.futures-channel]]
 who = "Joel Dice <joel.dice@gmail.com>"
 criteria = "safe-to-deploy"
@@ -276,6 +281,11 @@ version = "0.3.31"
 who = "Joel Dice <joel.dice@gmail.com>"
 criteria = "safe-to-deploy"
 version = "0.3.31"
+
+[[audits.bytecode-alliance.audits.futures-sink]]
+who = "Pat Hickey <pat@moreproductive.org>"
+criteria = "safe-to-deploy"
+delta = "0.3.28 -> 0.3.31"
 
 [[audits.bytecode-alliance.audits.icu_properties]]
 who = "Nick Fitzgerald <fitzgen@gmail.com>"
@@ -413,6 +423,12 @@ delta = "1.2.0 -> 1.2.1"
 aggregated-from = "https://chromium.googlesource.com/chromiumos/third_party/rust_crates/+/refs/heads/main/cargo-vet/audits.toml?format=TEXT"
 
 [[audits.google.audits.futures-core]]
+who = "George Burgess IV <gbiv@google.com>"
+criteria = "safe-to-run"
+version = "0.3.28"
+aggregated-from = "https://chromium.googlesource.com/chromiumos/third_party/rust_crates/+/refs/heads/main/cargo-vet/audits.toml?format=TEXT"
+
+[[audits.google.audits.futures-sink]]
 who = "George Burgess IV <gbiv@google.com>"
 criteria = "safe-to-run"
 version = "0.3.28"

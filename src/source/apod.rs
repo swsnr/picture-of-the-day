@@ -5,6 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use glib::Priority;
+use gtk::gio::prelude::SettingsExt;
 use serde::Deserialize;
 use url::Url;
 
@@ -116,8 +117,7 @@ async fn fetch_apod(
 pub async fn fetch_picture_of_the_day(
     session: &soup::Session,
 ) -> Result<DownloadableImage, SourceError> {
-    // TODO: Get API key from settings!
-    // API key account ID: dcc2671f-ef8d-4c1a-93cc-c5edeba69695
-    let api_key = "OmoiiKAC40a83uIjibcFmwfRKa8hfbCK9HLv90DI";
-    fetch_apod(session, api_key).await
+    let settings = crate::config::get_settings();
+    let api_key = settings.string("apod-api-key");
+    fetch_apod(session, &api_key).await
 }
