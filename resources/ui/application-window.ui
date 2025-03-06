@@ -287,7 +287,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     <section>
       <item>
         <attribute name="label" translatable="yes" context="application-window.menu.label">_Preferences</attribute>
-        <attribute name="action">win.preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
       </item>
       <item>
         <attribute name="label" translatable="yes" context="application-window.menu.label">_Keyboard Shortcuts</attribute>
