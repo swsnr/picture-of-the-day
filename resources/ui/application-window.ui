@@ -295,7 +295,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
       </item>
       <item>
         <attribute name="label" translatable="yes" context="main-window.menu.label">_About Picture Of The Day</attribute>
-        <attribute name="action">win.about-app</attribute>
+        <attribute name="action">app.about</attribute>
       </item>
     </section>
   </menu>

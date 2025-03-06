@@ -4,8 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use adw::prelude::*;
-use glib::{dgettext, dpgettext2, object::IsA, subclass::types::ObjectSubclassIsExt};
+use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::gio;
 
 use crate::source::Source;
@@ -34,49 +33,6 @@ impl ApplicationWindow {
             .property("http-session", session)
             .property("selected-source", selected_source)
             .build()
-    }
-
-    fn show_about_dialog(&self) {
-        let dialog = adw::AboutDialog::from_appdata(
-            "/de/swsnr/picture-of-the-day/de.swsnr.picture-of-the-day.metainfo.xml",
-            Some(&crate::config::release_notes_version().to_string()),
-        );
-        dialog.set_version(crate::config::CARGO_PKG_VERSION);
-
-        // TODO translations link to codeberg translate
-        dialog.set_developers(&["Sebastian Wiesner https://swsnr.de"]);
-        dialog.set_designers(&["Sebastian Wiesner https://swsnr.de"]);
-        // Credits for the translator to the current language.
-        // Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
-        // Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-        dialog.set_translator_credits(&dgettext(None, "translator-credits"));
-        dialog.add_acknowledgement_section(
-            Some(&dpgettext2(
-                None,
-                "about-dialog.acknowledgment-section",
-                "Help and inspiration",
-            )),
-            &[
-                "Sebastian Dröge https://github.com/sdroege",
-                "Bilal Elmoussaoui https://github.com/bilelmoussaoui",
-                "Authenticator https://gitlab.gnome.org/World/Authenticator",
-                "Decoder https://gitlab.gnome.org/World/decoder/",
-            ],
-        );
-        dialog.add_acknowledgement_section(
-            Some(&dpgettext2(
-                None,
-                "about-dialog.acknowledgment-section",
-                "Helpful services",
-            )),
-            &[
-                "Flathub https://flathub.org/",
-                "Open Build Service https://build.opensuse.org/",
-                "GitHub actions https://github.com/features/actions",
-            ],
-        );
-
-        dialog.present(Some(self));
     }
 
     pub fn cancel_loading(&self) {
@@ -313,9 +269,6 @@ mod imp {
             klass.bind_template();
             klass.bind_template_callbacks();
 
-            klass.install_action("win.about-app", None, |window, _, _| {
-                window.show_about_dialog();
-            });
             klass.install_property_action("win.select-source", "selected-source");
             klass.install_property_action("win.show-image-properties", "show-image-properties");
             klass.install_action("win.cancel-loading", None, |window, _, _| {

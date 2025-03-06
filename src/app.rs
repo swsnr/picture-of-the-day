@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
-use glib::{Object, subclass::types::ObjectSubclassIsExt};
+use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gtk::gio::{ActionEntry, ApplicationFlags};
 
 use crate::config::G_LOG_DOMAIN;
@@ -33,6 +33,11 @@ impl Application {
             ActionEntry::builder("new-window")
                 .activate(|app: &Self, _, _| app.new_window())
                 .build(),
+            ActionEntry::builder("about")
+                .activate(|app: &Self, _, _| {
+                    app.show_about_dialog();
+                })
+                .build(),
             ActionEntry::builder("preferences")
                 .activate(|app: &Self, _, _| {
                     app.show_preferences();
@@ -43,6 +48,49 @@ impl Application {
         self.set_accels_for_action("app.quit", &["<Control>q"]);
         self.set_accels_for_action("app.preferences", &["<Control>comma"]);
         self.set_accels_for_action("app.new-window", &["<Control><Shift>n"]);
+    }
+
+    fn show_about_dialog(&self) {
+        let dialog = adw::AboutDialog::from_appdata(
+            "/de/swsnr/picture-of-the-day/de.swsnr.picture-of-the-day.metainfo.xml",
+            Some(&crate::config::release_notes_version().to_string()),
+        );
+        dialog.set_version(crate::config::CARGO_PKG_VERSION);
+
+        // TODO translations link to codeberg translate
+        dialog.set_developers(&["Sebastian Wiesner https://swsnr.de"]);
+        dialog.set_designers(&["Sebastian Wiesner https://swsnr.de"]);
+        // Credits for the translator to the current language.
+        // Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
+        // Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
+        dialog.set_translator_credits(&dgettext(None, "translator-credits"));
+        dialog.add_acknowledgement_section(
+            Some(&dpgettext2(
+                None,
+                "about-dialog.acknowledgment-section",
+                "Help and inspiration",
+            )),
+            &[
+                "Sebastian Dröge https://github.com/sdroege",
+                "Bilal Elmoussaoui https://github.com/bilelmoussaoui",
+                "Authenticator https://gitlab.gnome.org/World/Authenticator",
+                "Decoder https://gitlab.gnome.org/World/decoder/",
+            ],
+        );
+        dialog.add_acknowledgement_section(
+            Some(&dpgettext2(
+                None,
+                "about-dialog.acknowledgment-section",
+                "Helpful services",
+            )),
+            &[
+                "Flathub https://flathub.org/",
+                "Open Build Service https://build.opensuse.org/",
+                "GitHub actions https://github.com/features/actions",
+            ],
+        );
+
+        dialog.present(self.active_window().as_ref());
     }
 
     fn show_preferences(&self) -> PreferencesDialog {
