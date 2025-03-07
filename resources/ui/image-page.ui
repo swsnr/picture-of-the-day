@@ -13,12 +13,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
       <object class="GtkStack">
         <binding name="visible-child">
           <closure function="stack_page" type="GtkWidget">
-            <lookup name="file" type="PotDImageDownload">
-              <lookup name="download" type="PotDImagePage">
-                <constant>PotDImagePage</constant>
-              </lookup>
-            </lookup>
-            <lookup name="error" type="PotDImageDownload">
+            <lookup name="state" type="PotDImageDownload">
               <lookup name="download" type="PotDImagePage">
                 <constant>PotDImagePage</constant>
               </lookup>
@@ -38,18 +33,11 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             <property name="child">
               <object class="GtkSpinner">
                 <binding name="spinning">
-                  <closure function="is_loading" type="gboolean">
-                    <lookup name="file" type="PotDImageDownload">
-                      <lookup name="download" type="PotDImagePage">
-                        <constant>PotDImagePage</constant>
-                      </lookup>
+                  <lookup name="is-pending" type="PotDImageDownload">
+                    <lookup name="download" type="PotDImagePage">
+                      <constant>PotDImagePage</constant>
                     </lookup>
-                    <lookup name="error" type="PotDImageDownload">
-                      <lookup name="download" type="PotDImagePage">
-                        <constant>PotDImagePage</constant>
-                      </lookup>
-                    </lookup>
-                  </closure>
+                  </lookup>
                 </binding>
               </object>
             </property>

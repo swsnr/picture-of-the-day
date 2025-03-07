@@ -24,10 +24,10 @@ mod imp {
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::{Properties, subclass::InitializingObject};
-    use gtk::{CompositeTemplate, gio};
+    use gtk::CompositeTemplate;
 
     use crate::app::{
-        model::{ErrorNotification, Image, ImageDownload},
+        model::{Image, ImageDownload, ImageDownloadState},
         widgets::ErrorNotificationPage,
     };
 
@@ -35,9 +35,9 @@ mod imp {
     #[properties(wrapper_type = super::ImagePage)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
     pub struct ImagePage {
-        #[property(get, set)]
+        #[property(get, set = Self::set_image)]
         image: RefCell<Option<Image>>,
-        #[property(get, set)]
+        #[property(get)]
         download: RefCell<Option<ImageDownload>>,
         #[template_child]
         loading: TemplateChild<gtk::Widget>,
@@ -47,23 +47,23 @@ mod imp {
         error: TemplateChild<gtk::Widget>,
     }
 
+    impl ImagePage {
+        fn set_image(&self, image: Option<Image>) {
+            self.download.replace(image.as_ref().map(Image::download));
+            self.image.replace(image);
+
+            self.obj().notify_download();
+        }
+    }
+
     #[gtk::template_callbacks]
     impl ImagePage {
-        #[template_callback(function)]
-        fn is_loading(file: Option<&gio::File>, error: Option<&ErrorNotification>) -> bool {
-            file.is_none() && error.is_none()
-        }
-
         #[template_callback]
-        fn stack_page(
-            &self,
-            file: Option<&gio::File>,
-            error: Option<&ErrorNotification>,
-        ) -> gtk::Widget {
-            match (file, error) {
-                (Some(_), _) => self.picture.get(),
-                (_, Some(_)) => self.error.get(),
-                (None, None) => self.loading.get(),
+        fn stack_page(&self, state: ImageDownloadState) -> gtk::Widget {
+            match state {
+                ImageDownloadState::Pending => self.loading.get(),
+                ImageDownloadState::Succeeded => self.picture.get(),
+                ImageDownloadState::Failed => self.error.get(),
             }
         }
     }
@@ -79,6 +79,7 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             Image::ensure_type();
             ImageDownload::ensure_type();
+            ImageDownloadState::ensure_type();
             ErrorNotificationPage::ensure_type();
 
             klass.bind_template();

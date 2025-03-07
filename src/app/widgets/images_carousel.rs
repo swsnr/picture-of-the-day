@@ -92,7 +92,6 @@ mod imp {
                     .downcast::<ImagePage>()
                     .unwrap();
                 page.set_image(image);
-                page.set_download(image.download());
             }
 
             // Then navigate to first page

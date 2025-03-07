@@ -10,4 +10,4 @@ mod image_download;
 
 pub use error_notification::ErrorNotification;
 pub use image::Image;
-pub use image_download::ImageDownload;
+pub use image_download::{ImageDownload, ImageDownloadState};
