@@ -80,7 +80,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="orientation">0</property>
                 <child>
                   <object class="GtkButton">
-                    <property name="icon-name">de.swsnr.picture-of-the-day-symbolic</property>
+                    <property name="icon-name">image-symbolic</property>
                     <property name="action-name">win.set-as-wallpaper</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set current image as wallpaper</property>
                     <binding name="sensitive">
@@ -95,10 +95,24 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                   </object>
                 </child>
                 <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkToggleButton">
                     <property name="icon-name">info-outline-symbolic</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Toggle the sidebar with image information</property>
                     <property name="action-name">win.show-image-properties</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
                   </object>
                 </child>
                 <child>

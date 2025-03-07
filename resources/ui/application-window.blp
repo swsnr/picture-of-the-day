@@ -75,16 +75,28 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
         orientation: horizontal;
 
         Button {
-          icon-name: "de.swsnr.picture-of-the-day-symbolic";
+          icon-name: "image-symbolic";
           action-name: "win.set-as-wallpaper";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Set current image as wallpaper");
           sensitive: bind $has_file((images_carousel.current-image as <$PotDImage>).downloaded-file) as <bool>;
+        }
+
+        Separator {
+          styles [
+            "spacer",
+          ]
         }
 
         ToggleButton {
           icon-name: "info-outline-symbolic";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Toggle the sidebar with image information");
           action-name: "win.show-image-properties";
+        }
+
+        Separator {
+          styles [
+            "spacer",
+          ]
         }
 
         MenuButton button_menu {
