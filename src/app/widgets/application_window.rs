@@ -50,7 +50,7 @@ impl ApplicationWindow {
             .load_images_for_source(source, &cancellable)
             .await
         {
-            self.imp().show_error(source, &error);
+            self.imp().show_source_error(source, &error);
         }
 
         self.imp().finish_loading();
@@ -114,7 +114,7 @@ mod imp {
     use strum::IntoEnumIterator;
 
     use crate::Source;
-    use crate::app::model::{ErrorNotification, Image};
+    use crate::app::model::{ErrorNotification, ErrorNotificationActions, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::source::SourceError;
@@ -203,30 +203,36 @@ mod imp {
             self.obj().notify_is_loading();
         }
 
-        pub fn show_error(&self, source: Source, error: &SourceError) {
+        pub fn show_source_error(&self, source: Source, error: &SourceError) {
             if let SourceError::Cancelled = error {
                 glib::info!("Fetching images cancelled by user");
                 // Don't notify if the user just cancelled things
             } else {
                 glib::error!("Fetching images failed: {error}");
                 let error = ErrorNotification::from_error(source, error);
-                let toast = adw::Toast::builder()
-                    .title(error.title())
-                    .priority(adw::ToastPriority::High)
-                    .timeout(15)
-                    .button_label(dpgettext2(None, "toast.button.label", "Details"))
-                    .build();
-
-                toast.connect_button_clicked(glib::clone!(
-                    #[weak(rename_to = window)]
-                    self.obj(),
-                    move |toast| {
-                        toast.dismiss();
-                        window.show_error_dialog(&error);
-                    }
-                ));
-                self.toasts.add_toast(toast);
+                self.show_error(&error);
             }
+        }
+
+        pub fn show_error(&self, error: &ErrorNotification) {
+            let toast = adw::Toast::builder()
+                .title(error.title())
+                .priority(adw::ToastPriority::High)
+                .timeout(15)
+                .button_label(dpgettext2(None, "toast.button.label", "Details"))
+                .build();
+
+            toast.connect_button_clicked(glib::clone!(
+                #[strong]
+                error,
+                #[weak(rename_to = window)]
+                self.obj(),
+                move |toast| {
+                    toast.dismiss();
+                    window.show_error_dialog(&error);
+                }
+            ));
+            self.toasts.add_toast(toast);
         }
 
         pub async fn load_images_for_source(
@@ -343,8 +349,22 @@ mod imp {
             });
             klass.install_action_async("win.set-as-wallpaper", None, |window, _, _| async move {
                 if let Err(error) = window.set_current_image_as_wallpaper().await {
-                    // TODO: Proper error handling
-                    glib::error!("Failed to set current image as wallaper: {error}");
+                    glib::warn!("Failed to set current image as wallaper: {error}");
+                    let description = dpgettext2(
+                        None,
+                        "error-notification.description",
+                        "An I/O error occurred while setting the wallpaper, with the following message: %1. If the issue persists please report the problem.",
+                    );
+                    let error = ErrorNotification::builder()
+                        .title(dpgettext2(
+                            None,
+                            "error-notification.title",
+                            "Failed to set wallpaper",
+                        ))
+                        .description(description.replace("%1", &error.to_string()))
+                        .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                        .build();
+                    window.imp().show_error(&error);
                 }
             });
 

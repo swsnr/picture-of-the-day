@@ -7,5 +7,5 @@
 mod error_notification;
 mod image;
 
-pub use error_notification::ErrorNotification;
+pub use error_notification::{ErrorNotification, ErrorNotificationActions};
 pub use image::{Image, ImageState};
