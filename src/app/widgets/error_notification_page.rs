@@ -6,10 +6,18 @@
 
 use glib::Object;
 
+use crate::app::model::ErrorNotification;
+
 glib::wrapper! {
     pub struct ErrorNotificationPage(ObjectSubclass<imp::ErrorNotificationPage>)
         @extends adw::Bin, gtk::Widget,
         @implements gtk::Accessible, gtk::Buildable, gtk::ConstraintTarget;
+}
+
+impl ErrorNotificationPage {
+    pub fn new(error: &ErrorNotification) -> Self {
+        Object::builder().property("error", error).build()
+    }
 }
 
 impl Default for ErrorNotificationPage {

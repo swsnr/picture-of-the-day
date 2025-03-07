@@ -6,9 +6,12 @@
 
 use std::{fs::File, os::fd::OwnedFd};
 
+use adw::prelude::*;
+use glib::dpgettext2;
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::gio::{self, IOErrorEnum, prelude::FileExt};
 
+use crate::app::model::ErrorNotification;
 use crate::config::G_LOG_DOMAIN;
 use crate::portal::wallpaper::{Preview, SetOn};
 
@@ -54,33 +57,45 @@ impl ApplicationWindow {
     }
 
     async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
-        if let Some(image) = self.imp().current_image() {
-            if let Some(file) = image.download().file() {
-                let fd = gio::spawn_blocking(move || {
-                    File::open(file.path().unwrap()).map(OwnedFd::from)
-                })
-                .await
-                .unwrap()
-                .map_err(|error| {
-                    let domain = error
-                        .raw_os_error()
-                        .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
-                        .unwrap_or(IOErrorEnum::Failed);
-                    glib::Error::new(domain, &error.to_string())
-                })?;
-                let connection = gio::bus_get_future(gio::BusType::Session).await?;
-                let result = crate::portal::wallpaper::set_wallpaper_file(
-                    &connection,
-                    Some(self),
-                    fd,
-                    Preview::Preview,
-                    SetOn::Both,
-                )
-                .await?;
-                glib::info!("Request finished: {result:?}");
-            }
+        if let Some(file) = self
+            .imp()
+            .current_image()
+            .and_then(|image| image.downloaded_file())
+        {
+            let fd =
+                gio::spawn_blocking(move || File::open(file.path().unwrap()).map(OwnedFd::from))
+                    .await
+                    .unwrap()
+                    .map_err(|error| {
+                        let domain = error
+                            .raw_os_error()
+                            .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
+                            .unwrap_or(IOErrorEnum::Failed);
+                        glib::Error::new(domain, &error.to_string())
+                    })?;
+            let connection = gio::bus_get_future(gio::BusType::Session).await?;
+            let result = crate::portal::wallpaper::set_wallpaper_file(
+                &connection,
+                Some(self),
+                fd,
+                Preview::Preview,
+                SetOn::Both,
+            )
+            .await?;
+            glib::info!("Request finished: {result:?}");
         }
         Ok(())
+    }
+
+    fn show_error_dialog(&self, error: &ErrorNotification) {
+        let dialog = adw::AlertDialog::builder()
+            .heading(error.title())
+            .body(error.description())
+            .build();
+        dialog.add_response("close", &dpgettext2(None, "alert.response", "Close"));
+        dialog.set_close_response("close");
+        dialog.set_default_response(Some("close"));
+        dialog.present(Some(self));
     }
 }
 
@@ -91,15 +106,15 @@ mod imp {
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use futures::future::join_all;
-    use glib::Properties;
     use glib::subclass::InitializingObject;
+    use glib::{Properties, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, IOErrorEnum};
     use strum::IntoEnumIterator;
 
     use crate::Source;
-    use crate::app::model::{ErrorNotification, Image, ImageDownload};
+    use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::source::SourceError;
@@ -125,7 +140,7 @@ mod imp {
         #[template_child]
         images_carousel: TemplateChild<ImagesCarousel>,
         #[template_child]
-        error_page: TemplateChild<ErrorNotificationPage>,
+        toasts: TemplateChild<adw::ToastOverlay>,
     }
 
     #[gtk::template_callbacks]
@@ -133,6 +148,11 @@ mod imp {
         #[template_callback(function)]
         fn non_empty(s: Option<&str>) -> bool {
             s.is_some_and(|s| !s.is_empty())
+        }
+
+        #[template_callback(function)]
+        fn has_file(f: Option<&gio::File>) -> bool {
+            f.is_some()
         }
     }
 
@@ -186,13 +206,26 @@ mod imp {
         pub fn show_error(&self, source: Source, error: &SourceError) {
             if let SourceError::Cancelled = error {
                 glib::info!("Fetching images cancelled by user");
-                // Do not change the view if the user cancelled the action; just
-                // keep the previous view.
+                // Don't notify if the user just cancelled things
             } else {
                 glib::error!("Fetching images failed: {error}");
                 let error = ErrorNotification::from_error(source, error);
-                self.error_page.set_error(Some(&error));
-                self.stack.set_visible_child(&self.error_page.get());
+                let toast = adw::Toast::builder()
+                    .title(error.title())
+                    .priority(adw::ToastPriority::High)
+                    .timeout(15)
+                    .button_label(dpgettext2(None, "toast.button.label", "Details"))
+                    .build();
+
+                toast.connect_button_clicked(glib::clone!(
+                    #[weak(rename_to = window)]
+                    self.obj(),
+                    move |toast| {
+                        toast.dismiss();
+                        window.show_error_dialog(&error);
+                    }
+                ));
+                self.toasts.add_toast(toast);
             }
         }
 
@@ -265,9 +298,7 @@ mod imp {
                         match image.download_to(&target, &http_session, cancellable).await {
                             Ok(()) => {
                                 glib::info!("Displaying image from {}", target.display());
-                                image_obj
-                                    .download()
-                                    .set_file(Some(&gio::File::for_path(target)));
+                                image_obj.set_downloaded_file(Some(&gio::File::for_path(target)));
                             }
                             Err(error) => {
                                 glib::warn!(
@@ -275,7 +306,7 @@ mod imp {
                                     &image.image_url
                                 );
                                 let error = ErrorNotification::from_error(source, &error.into());
-                                image_obj.download().set_error(Some(error));
+                                image_obj.set_download_error(Some(error));
                             }
                         }
                     }
@@ -297,7 +328,6 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             ImagesCarousel::ensure_type();
             Image::ensure_type();
-            ImageDownload::ensure_type();
             ErrorNotificationPage::ensure_type();
 
             klass.bind_template();

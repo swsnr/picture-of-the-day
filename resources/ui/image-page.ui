@@ -13,8 +13,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
       <object class="GtkStack">
         <binding name="visible-child">
           <closure function="stack_page" type="GtkWidget">
-            <lookup name="state" type="PotDImageDownload">
-              <lookup name="download" type="PotDImagePage">
+            <lookup name="state" type="PotDImage">
+              <lookup name="image" type="PotDImagePage">
                 <constant>PotDImagePage</constant>
               </lookup>
             </lookup>
@@ -33,8 +33,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             <property name="child">
               <object class="GtkSpinner">
                 <binding name="spinning">
-                  <lookup name="is-pending" type="PotDImageDownload">
-                    <lookup name="download" type="PotDImagePage">
+                  <lookup name="is-pending" type="PotDImage">
+                    <lookup name="image" type="PotDImagePage">
                       <constant>PotDImagePage</constant>
                     </lookup>
                   </lookup>
@@ -46,8 +46,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="GtkPicture" id="picture">
             <binding name="file">
-              <lookup name="file" type="PotDImageDownload">
-                <lookup name="download" type="PotDImagePage">
+              <lookup name="downloaded-file" type="PotDImage">
+                <lookup name="image" type="PotDImagePage">
                   <constant>PotDImagePage</constant>
                 </lookup>
               </lookup>
@@ -57,8 +57,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <child>
           <object class="PotDErrorNotificationPage" id="error">
             <binding name="error">
-              <lookup name="error" type="PotDImageDownload">
-                <lookup name="download" type="PotDImagePage">
+              <lookup name="download-error" type="PotDImage">
+                <lookup name="image" type="PotDImagePage">
                   <constant>PotDImagePage</constant>
                 </lookup>
               </lookup>

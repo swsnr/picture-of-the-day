@@ -27,7 +27,7 @@ mod imp {
     use gtk::CompositeTemplate;
 
     use crate::app::{
-        model::{Image, ImageDownload, ImageDownloadState},
+        model::{Image, ImageState},
         widgets::ErrorNotificationPage,
     };
 
@@ -35,10 +35,8 @@ mod imp {
     #[properties(wrapper_type = super::ImagePage)]
     #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
     pub struct ImagePage {
-        #[property(get, set = Self::set_image)]
+        #[property(get, set)]
         image: RefCell<Option<Image>>,
-        #[property(get)]
-        download: RefCell<Option<ImageDownload>>,
         #[template_child]
         loading: TemplateChild<gtk::Widget>,
         #[template_child]
@@ -47,23 +45,14 @@ mod imp {
         error: TemplateChild<gtk::Widget>,
     }
 
-    impl ImagePage {
-        fn set_image(&self, image: Option<Image>) {
-            self.download.replace(image.as_ref().map(Image::download));
-            self.image.replace(image);
-
-            self.obj().notify_download();
-        }
-    }
-
     #[gtk::template_callbacks]
     impl ImagePage {
         #[template_callback]
-        fn stack_page(&self, state: ImageDownloadState) -> gtk::Widget {
+        fn stack_page(&self, state: ImageState) -> gtk::Widget {
             match state {
-                ImageDownloadState::Pending => self.loading.get(),
-                ImageDownloadState::Succeeded => self.picture.get(),
-                ImageDownloadState::Failed => self.error.get(),
+                ImageState::Pending => self.loading.get(),
+                ImageState::Downloaded => self.picture.get(),
+                ImageState::DownloadFailed => self.error.get(),
             }
         }
     }
@@ -78,8 +67,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Image::ensure_type();
-            ImageDownload::ensure_type();
-            ImageDownloadState::ensure_type();
+            ImageState::ensure_type();
             ErrorNotificationPage::ensure_type();
 
             klass.bind_template();

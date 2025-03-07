@@ -78,7 +78,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           icon-name: "de.swsnr.picture-of-the-day-symbolic";
           action-name: "win.set-as-wallpaper";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Set current image as wallpaper");
-          sensitive: bind (((images_carousel as <$PotDImagesCarousel>).current_image as <$PotDImage>).download as <$PotDImageDownload>).has-file;
+          sensitive: bind $has_file((images_carousel.current-image as <$PotDImage>).downloaded-file) as <bool>;
         }
 
         ToggleButton {
@@ -95,104 +95,104 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       }
     }
 
-    Stack stack {
-      visible-child: empty;
+    Adw.ToastOverlay toasts {
+      child: Stack stack {
+        visible-child: empty;
 
-      Adw.OverlaySplitView images_view {
-        sidebar-position: end;
-        show-sidebar: bind template.show-image-properties bidirectional;
-        sidebar-width-fraction: 0.33;
+        Adw.OverlaySplitView images_view {
+          sidebar-position: end;
+          show-sidebar: bind template.show-image-properties bidirectional;
+          sidebar-width-fraction: 0.33;
 
-        content: $PotDImagesCarousel images_carousel {};
+          content: $PotDImagesCarousel images_carousel {};
 
-        sidebar: Gtk.ScrolledWindow {
-          Box {
-            orientation: vertical;
-            margin-top: 24;
-            margin-bottom: 24;
-            margin-start: 12;
-            margin-end: 12;
-            spacing: 24;
+          sidebar: Gtk.ScrolledWindow {
+            Box {
+              orientation: vertical;
+              margin-top: 24;
+              margin-bottom: 24;
+              margin-start: 12;
+              margin-end: 12;
+              spacing: 24;
 
-            Adw.PreferencesGroup {
-              Adw.ActionRow {
-                title: C_("images-view.metadata.label", "Title");
-                subtitle: bind (images_carousel.current-image as <$PotDImage>).title;
+              Adw.PreferencesGroup {
+                Adw.ActionRow {
+                  title: C_("images-view.metadata.label", "Title");
+                  subtitle: bind (images_carousel.current-image as <$PotDImage>).title;
 
-                [suffix]
-                LinkButton {
-                  icon-name: "external-link-symbolic";
-                  uri: bind (images_carousel.current-image as <$PotDImage>).url;
-                  visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).url) as <bool>;
-                  tooltip-text: _("Visit the source page of this image.");
+                  [suffix]
+                  LinkButton {
+                    icon-name: "external-link-symbolic";
+                    uri: bind (images_carousel.current-image as <$PotDImage>).url;
+                    visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).url) as <bool>;
+                    tooltip-text: _("Visit the source page of this image.");
+                  }
+
+                  styles [
+                    "property",
+                  ]
                 }
 
-                styles [
-                  "property",
-                ]
-              }
+                Adw.ActionRow {
+                  title: C_("images-view.metadata.label", "Copyright");
+                  subtitle: bind (images_carousel.current-image as <$PotDImage>).copyright;
+                  visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).copyright) as <bool>;
 
-              Adw.ActionRow {
-                title: C_("images-view.metadata.label", "Copyright");
-                subtitle: bind (images_carousel.current-image as <$PotDImage>).copyright;
-                visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).copyright) as <bool>;
-
-                styles [
-                  "property",
-                ]
-              }
-
-              Adw.ActionRow {
-                title: C_("images-view.metadata.label", "Description");
-                subtitle: bind (images_carousel.current-image as <$PotDImage>).description;
-                visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).description) as <bool>;
-
-                styles [
-                  "property",
-                ]
-              }
-            }
-
-            Adw.PreferencesGroup {
-              Adw.ActionRow {
-                title: C_("images-view.metadata.label", "Source");
-                subtitle: bind (images_carousel.current-image as <$PotDImage>).source-name;
-
-                [suffix]
-                LinkButton {
-                  icon-name: "external-link-symbolic";
-                  uri: bind (images_carousel.current-image as <$PotDImage>).source-url;
-                  tooltip-text: _("Visit the main page of the source of this image.");
+                  styles [
+                    "property",
+                  ]
                 }
 
-                styles [
-                  "property",
-                ]
+                Adw.ActionRow {
+                  title: C_("images-view.metadata.label", "Description");
+                  subtitle: bind (images_carousel.current-image as <$PotDImage>).description;
+                  visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).description) as <bool>;
+
+                  styles [
+                    "property",
+                  ]
+                }
+              }
+
+              Adw.PreferencesGroup {
+                Adw.ActionRow {
+                  title: C_("images-view.metadata.label", "Source");
+                  subtitle: bind (images_carousel.current-image as <$PotDImage>).source-name;
+
+                  [suffix]
+                  LinkButton {
+                    icon-name: "external-link-symbolic";
+                    uri: bind (images_carousel.current-image as <$PotDImage>).source-url;
+                    tooltip-text: _("Visit the main page of the source of this image.");
+                  }
+
+                  styles [
+                    "property",
+                  ]
+                }
               }
             }
-          }
-        };
-      }
+          };
+        }
 
-      $PotDErrorNotificationPage error_page {}
+        Adw.StatusPage empty {
+          icon-name: "de.swsnr.picture-of-the-day";
+          vexpand: true;
 
-      Adw.StatusPage empty {
-        icon-name: "de.swsnr.picture-of-the-day";
-        vexpand: true;
+          child: Adw.Clamp {
+            Button {
+              halign: center;
+              label: C_("start-page.button.label", "Get images");
+              action-name: "win.load-images";
 
-        child: Adw.Clamp {
-          Button {
-            halign: center;
-            label: C_("start-page.button.label", "Get images");
-            action-name: "win.load-images";
-
-            styles [
-              "pill",
-              "suggested-action",
-            ]
-          }
-        };
-      }
+              styles [
+                "pill",
+                "suggested-action",
+              ]
+            }
+          };
+        }
+      };
     }
   };
 }

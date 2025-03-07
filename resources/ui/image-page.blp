@@ -12,23 +12,23 @@ template $PotDImagePage: Adw.Bin {
   vexpand: true;
 
   child: Stack {
-    visible-child: bind $stack_page((template.download as <$PotDImageDownload>).state) as <Widget>;
+    visible-child: bind $stack_page((template.image as <$PotDImage>).state) as <Widget>;
 
     Adw.StatusPage loading {
       title: bind (template.image as <$PotDImage>).title;
       description: C_("image-page.loading-message.title", "Downloading image…");
 
       child: Spinner {
-        spinning: bind (template.download as <$PotDImageDownload>).is-pending;
+        spinning: bind (template.image as <$PotDImage>).is-pending;
       };
     }
 
     Picture picture {
-      file: bind (template.download as <$PotDImageDownload>).file;
+      file: bind (template.image as <$PotDImage>).downloaded-file;
     }
 
     $PotDErrorNotificationPage error {
-      error: bind (template.download as <$PotDImageDownload>).error;
+      error: bind (template.image as <$PotDImage>).download-error;
     }
   };
 }

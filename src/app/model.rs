@@ -6,8 +6,6 @@
 
 mod error_notification;
 mod image;
-mod image_download;
 
 pub use error_notification::ErrorNotification;
-pub use image::Image;
-pub use image_download::{ImageDownload, ImageDownloadState};
+pub use image::{Image, ImageState};
