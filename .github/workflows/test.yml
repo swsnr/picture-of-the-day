@@ -21,7 +21,7 @@ jobs:
       image: ghcr.io/flathub/flatpak-builder-lint:latest
     steps:
       - uses: actions/checkout@v4
-      - run: flatpak-builder-lint appstream resources/de.swsnr.picture-of-the-day.metainfo.xml.in
+      - run: flatpak-builder-lint appstream resources/de.swsnr.pictureoftheday.metainfo.xml.in
 
   # See https://mozilla.github.io/cargo-vet/configuring-ci.html
   cargo-vet:
@@ -80,4 +80,4 @@ jobs:
         uses: EmbarkStudios/cargo-deny-action@v2
         with:
           rust-version: stable
-      - run: appstreamcli validate --explain resources/de.swsnr.picture-of-the-day.metainfo.xml
+      - run: appstreamcli validate --explain resources/de.swsnr.pictureoftheday.metainfo.xml

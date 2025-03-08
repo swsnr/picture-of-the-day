@@ -77,7 +77,7 @@ fn main() -> glib::ExitCode {
     gettext::bind_textdomain_codeset(config::APP_ID, gstr!("UTF-8")).unwrap();
     gettext::setlocale(gettext::LC_ALL, gstr!("")).unwrap();
 
-    gio::resources_register_include!("picture-of-the-day.gresource").unwrap();
+    gio::resources_register_include!("pictureoftheday.gresource").unwrap();
     glib::set_application_name("Picture Of The Day");
 
     let app = Application::default();

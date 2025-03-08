@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=de.swsnr.pictureoftheday
+Exec=de.swsnr.pictureoftheday --gapplication-service

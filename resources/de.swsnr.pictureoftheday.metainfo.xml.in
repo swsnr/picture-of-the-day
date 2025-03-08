@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <component type="desktop-application">
-    <id>de.swsnr.picture-of-the-day</id>
+    <id>de.swsnr.pictureoftheday</id>
     <metadata_license>CC0-1.0</metadata_license>
     <name>Picture Of The Day</name>
     <summary>A daily picture as your wallpaper</summary>
@@ -13,7 +13,7 @@
             <li>Simon Stålenhag Artwork</li>
             <li>Wikimedia Picture Of The Day</li>
         </ul>
-        <p>Note that all images are protected by copyright; you may not be allowed to use or distribute them. Do take a look at the license terms for each image.</p>
+        <p>Note that all images are protected by copyright; you may not be allowed to use ordistribute them. Do take a look at the license terms for each image.</p>
     </description>
     <categories>
         <category>Utility</category>
@@ -31,7 +31,7 @@
     <url type="help">https://github.com/swsnr/picture-of-the-day/discussions/categories/q-a</url>
     <url type="contact">https://swsnr.de/</url>
     <url type="vcs-browser">https://github.com/swsnr/picture-of-the-day</url>
-    <launchable type="desktop-id">de.swsnr.picture-of-the-day.desktop</launchable>
+    <launchable type="desktop-id">de.swsnr.pictureoftheday.desktop</launchable>
     <releases>
         <!-- To start release notes for an upcoming release, copy the following template.
 
@@ -54,7 +54,7 @@
         <name translate="no">Sebastian Wiesner</name>
     </developer>
     <!-- TODO: Screenshots -->
-    <translation type="gettext">de.swsnr.picture-of-the-day</translation>
+    <translation type="gettext">de.swsnr.pictureoftheday</translation>
     <content_rating type="oars-1.1" />
     <branding>
         <color type="primary" scheme_preference="light">#33d17a</color>

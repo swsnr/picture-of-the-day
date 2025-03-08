@@ -42,7 +42,7 @@ mod imp {
     };
 
     #[derive(Default, CompositeTemplate)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/preferences-dialog.ui")]
+    #[template(resource = "/de/swsnr/pictureoftheday/ui/preferences-dialog.ui")]
     pub struct PreferencesDialog {
         #[template_child]
         apod: TemplateChild<adw::PreferencesGroup>,

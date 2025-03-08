@@ -71,8 +71,8 @@ fn msgfmt() -> Vec<PathBuf> {
         .is_ok_and(|status| status.success());
 
     let templates = &[
-        Path::new("de.swsnr.picture-of-the-day.desktop.in").to_owned(),
-        Path::new("resources/de.swsnr.picture-of-the-day.metainfo.xml.in").to_owned(),
+        Path::new("de.swsnr.pictureoftheday.desktop.in").to_owned(),
+        Path::new("resources/de.swsnr.pictureoftheday.metainfo.xml.in").to_owned(),
     ];
     if msgfmt_exists {
         for file in templates {
@@ -164,7 +164,7 @@ fn main() {
         compile_resources(
             &["resources"],
             "resources/resources.gresource.xml",
-            "picture-of-the-day.gresource",
+            "pictureoftheday.gresource",
         )
         .as_slice(),
     );

@@ -52,14 +52,14 @@ impl Application {
 
     fn show_about_dialog(&self) {
         let dialog = adw::AboutDialog::from_appdata(
-            "/de/swsnr/picture-of-the-day/de.swsnr.picture-of-the-day.metainfo.xml",
+            "/de/swsnr/pictureoftheday/de.swsnr.pictureoftheday.metainfo.xml",
             Some(&crate::config::release_notes_version().to_string()),
         );
         dialog.set_version(crate::config::CARGO_PKG_VERSION);
 
         dialog.add_link(
             &dpgettext2(None, "about-dialog.link.label", "Translations"),
-            "https://translate.codeberg.org/engage/de-swsnr-picture-of-the-day/",
+            "https://translate.codeberg.org/engage/de-swsnr-pictureoftheday/",
         );
 
         dialog.set_developers(&["Sebastian Wiesner https://swsnr.de"]);
@@ -122,7 +122,7 @@ impl Default for Application {
     fn default() -> Self {
         Object::builder()
             .property("application-id", crate::config::APP_ID)
-            .property("resource-base-path", "/de/swsnr/picture-of-the-day")
+            .property("resource-base-path", "/de/swsnr/pictureoftheday")
             .property("flags", ApplicationFlags::HANDLES_COMMAND_LINE)
             .build()
     }

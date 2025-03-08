@@ -35,7 +35,7 @@ struct ImageInCollection {
 
 pub static COLLECTIONS: LazyLock<Vec<Collection>> = LazyLock::new(|| {
     let data = gio::resources_lookup_data(
-        "/de/swsnr/picture-of-the-day/stalenhag/collections.json",
+        "/de/swsnr/pictureoftheday/stalenhag/collections.json",
         ResourceLookupFlags::NONE,
     )
     .unwrap();

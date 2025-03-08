@@ -1,8 +1,8 @@
 # The app ID to use.
 #
-# Use de.swsnr.picture-of-the-day for the standard app ID, and de.swsnr.picture-of-the-day.Devel to
+# Use de.swsnr.pictureoftheday for the standard app ID, and de.swsnr.pictureoftheday.Devel to
 # build a nightly snapshot.  Other values are not supported.
-APPID = de.swsnr.picture-of-the-day
+APPID = de.swsnr.pictureoftheday
 # The destination prefix to install files to.  Combines traditional DESTDIR and
 # PREFIX variables; picture-of-the-day does not encode the prefix into its binary and thus
 # does not need to distinguish between the prefix and the destdir.
@@ -37,16 +37,16 @@ XGETTEXT_OPTS = \
 pot:
 	find src -name '*.rs' > po/POTFILES.rs
 	find resources/ -name '*.blp' > po/POTFILES.blp
-	xgettext $(XGETTEXT_OPTS) --language=C --keyword=dpgettext2:2c,3 --files-from=po/POTFILES.rs --output=po/de.swsnr.picture-of-the-day.rs.pot
-	xgettext $(XGETTEXT_OPTS) --language=C --keyword=_ --keyword=C_:1c,2 --files-from=po/POTFILES.blp --output=po/de.swsnr.picture-of-the-day.blp.pot
-	xgettext $(XGETTEXT_OPTS) --output=po/de.swsnr.picture-of-the-day.pot \
-		po/de.swsnr.picture-of-the-day.blp.pot \
-		po/de.swsnr.picture-of-the-day.rs.pot \
-		resources/de.swsnr.picture-of-the-day.metainfo.xml.in \
-		de.swsnr.picture-of-the-day.desktop.in \
-		schemas/de.swsnr.picture-of-the-day.gschema.xml
-	rm -f po/POTFILES* po/de.swsnr.picture-of-the-day.rs.pot po/de.swsnr.picture-of-the-day.blp.pot
-	sed -i /POT-Creation-Date/d po/de.swsnr.picture-of-the-day.pot
+	xgettext $(XGETTEXT_OPTS) --language=C --keyword=dpgettext2:2c,3 --files-from=po/POTFILES.rs --output=po/de.swsnr.pictureoftheday.rs.pot
+	xgettext $(XGETTEXT_OPTS) --language=C --keyword=_ --keyword=C_:1c,2 --files-from=po/POTFILES.blp --output=po/de.swsnr.pictureoftheday.blp.pot
+	xgettext $(XGETTEXT_OPTS) --output=po/de.swsnr.pictureoftheday.pot \
+		po/de.swsnr.pictureoftheday.blp.pot \
+		po/de.swsnr.pictureoftheday.rs.pot \
+		resources/de.swsnr.pictureoftheday.metainfo.xml.in \
+		de.swsnr.pictureoftheday.desktop.in \
+		schemas/de.swsnr.pictureoftheday.gschema.xml
+	rm -f po/POTFILES* po/de.swsnr.pictureoftheday.rs.pot po/de.swsnr.pictureoftheday.blp.pot
+	sed -i /POT-Creation-Date/d po/de.swsnr.pictureoftheday.pot
 
 po/%.mo: po/%.po
 	msgfmt --output-file $@ --check $<
@@ -67,14 +67,14 @@ install-locale: $(addprefix $(LOCALEDIR)/,$(addsuffix /LC_MESSAGES/$(APPID).mo,$
 # You must run cargo build --release before invoking this target!
 .PHONY: install
 install: install-locale
-	install -Dm0755 target/release/picture-of-the-day $(DESTPREFIX)/bin/$(APPID)
+	install -Dm0755 target/release/pictureoftheday $(DESTPREFIX)/bin/$(APPID)
 	install -Dm0644 -t $(DESTPREFIX)/share/icons/hicolor/scalable/apps/ resources/icons/scalable/apps/$(APPID).svg
-	install -Dm0644 resources/icons/symbolic/apps/de.swsnr.picture-of-the-day-symbolic.svg \
+	install -Dm0644 resources/icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg \
 		$(DESTPREFIX)/share/icons/hicolor/symbolic/apps/$(APPID)-symbolic.svg
-	install -Dm0644 de.swsnr.picture-of-the-day.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
-	install -Dm0644 resources/de.swsnr.picture-of-the-day.metainfo.xml $(DESTPREFIX)/share/metainfo/$(APPID).metainfo.xml
-	install -Dm0644 dbus-1/de.swsnr.picture-of-the-day.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
-	install -Dm0644 schemas/de.swsnr.picture-of-the-day.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml
+	install -Dm0644 de.swsnr.pictureoftheday.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
+	install -Dm0644 resources/de.swsnr.pictureoftheday.metainfo.xml $(DESTPREFIX)/share/metainfo/$(APPID).metainfo.xml
+	install -Dm0644 dbus-1/de.swsnr.pictureoftheday.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
+	install -Dm0644 schemas/de.swsnr.pictureoftheday.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml
 
 # Patch the current git describe version into Picture Of The Day.
 .PHONY: patch-git-version
@@ -85,9 +85,9 @@ patch-git-version:
 # Patch the app ID to use APPID in various files
 .PHONY: patch-appid
 patch-appid:
-	sed -i '/$(APPID)/! s/de\.swsnr\.picture-of-the-day/$(APPID)/g' \
+	sed -i '/$(APPID)/! s/de\.swsnr\.pictureoftheday/$(APPID)/g' \
 		src/config.rs \
-		de.swsnr.picture-of-the-day.desktop.in \
-		resources/de.swsnr.picture-of-the-day.metainfo.xml.in \
-		dbus-1/de.swsnr.picture-of-the-day.service \
-		schemas/de.swsnr.picture-of-the-day.gschema.xml
+		de.swsnr.pictureoftheday.desktop.in \
+		resources/de.swsnr.pictureoftheday.metainfo.xml.in \
+		dbus-1/de.swsnr.pictureoftheday.service \
+		schemas/de.swsnr.pictureoftheday.gschema.xml

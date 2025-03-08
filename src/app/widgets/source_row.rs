@@ -30,7 +30,7 @@ mod imp {
 
     #[derive(Default, Properties, gtk::CompositeTemplate)]
     #[properties(wrapper_type = super::SourceRow)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/source-row.ui")]
+    #[template(resource = "/de/swsnr/pictureoftheday/ui/source-row.ui")]
     pub struct SourceRow {
         #[property(get, set, construct, builder(Source::default()))]
         source: Cell<Source>,

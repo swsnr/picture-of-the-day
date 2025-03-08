@@ -42,7 +42,7 @@ mod imp {
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagesCarousel)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/images-carousel.ui")]
+    #[template(resource = "/de/swsnr/pictureoftheday/ui/images-carousel.ui")]
     pub struct ImagesCarousel {
         #[property(get)]
         current_image: RefCell<Option<Image>>,

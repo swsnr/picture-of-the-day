@@ -38,7 +38,7 @@ mod imp {
 
     #[derive(Default, glib::Properties, CompositeTemplate)]
     #[properties(wrapper_type = super::ErrorNotificationPage)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/error-notification-page.ui")]
+    #[template(resource = "/de/swsnr/pictureoftheday/ui/error-notification-page.ui")]
     pub struct ErrorNotificationPage {
         #[property(get, set = Self::set_error, nullable)]
         error: RefCell<Option<ErrorNotification>>,

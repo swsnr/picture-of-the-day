@@ -36,7 +36,7 @@ def is_patch_release(prev_version: Version, new_version: Version) -> bool:
 
 
 def assert_no_releasenotes(new_version: Version):
-    metadata_file = Path(os.environ['CRATE_ROOT']) / 'resources' / 'de.swsnr.picture-of-the-day.metainfo.xml.in'
+    metadata_file = Path(os.environ['CRATE_ROOT']) / 'resources' / 'de.swsnr.pictureoftheday.metainfo.xml.in'
     tree = etree.parse(metadata_file)
     if tree.find('./releases/release[@version="next"]') is not None:
         raise ValueError('Upcoming release notes found; must do a major or minor release, not a patch release!')
@@ -45,7 +45,7 @@ def assert_no_releasenotes(new_version: Version):
 
 
 def update_releasenotes(new_version: Version, *, tag_name: str, date: str, dry_run: bool):
-    metadata_file = Path(os.environ['CRATE_ROOT']) / 'resources' / 'de.swsnr.picture-of-the-day.metainfo.xml.in'
+    metadata_file = Path(os.environ['CRATE_ROOT']) / 'resources' / 'de.swsnr.pictureoftheday.metainfo.xml.in'
     parser = etree.XMLParser(target=etree.TreeBuilder(insert_comments=True))
     tree = etree.parse(metadata_file, parser)
     next_release = tree.find('./releases/release[@version="next"]')
@@ -56,7 +56,7 @@ def update_releasenotes(new_version: Version, *, tag_name: str, date: str, dry_r
     next_release[-1].tail = next_release.text
     url = etree.SubElement(next_release, 'url')
     url.tail = next_release.tail
-    url.text = f'https://github.com/swsnr/picture-of-the-day/releases/tag/{tag_name}'
+    url.text = f'https://github.com/swsnr/pictureoftheday/releases/tag/{tag_name}'
     if dry_run:
         etree.dump(next_release)
     else:

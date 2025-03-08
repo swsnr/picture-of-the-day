@@ -9,7 +9,7 @@ use std::path::PathBuf;
 use glib::{GStr, gstr};
 use gtk::gio;
 
-pub static APP_ID: &GStr = gstr!("de.swsnr.picture-of-the-day");
+pub static APP_ID: &GStr = gstr!("de.swsnr.pictureoftheday");
 
 /// The Cargo package verson.
 ///

@@ -170,7 +170,7 @@ mod imp {
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ApplicationWindow)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/application-window.ui")]
+    #[template(resource = "/de/swsnr/pictureoftheday/ui/application-window.ui")]
     pub struct ApplicationWindow {
         #[property(get, construct_only)]
         http_session: RefCell<soup::Session>,

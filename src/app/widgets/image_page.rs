@@ -33,7 +33,7 @@ mod imp {
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ImagePage)]
-    #[template(resource = "/de/swsnr/picture-of-the-day/ui/image-page.ui")]
+    #[template(resource = "/de/swsnr/pictureoftheday/ui/image-page.ui")]
     pub struct ImagePage {
         #[property(get, set)]
         image: RefCell<Option<Image>>,
