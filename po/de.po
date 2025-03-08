@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:23+0000\n"
+"PO-Revision-Date: 2025-03-08 10:26+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
 "de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
@@ -315,7 +315,7 @@ msgstr "Einstellungen öffnen"
 #: src/app/model/error_notification.rs:41
 msgctxt "error-notification.title"
 msgid "Picture Of The Day needs an API key"
-msgstr ""
+msgstr "Bild des Tages benötigt einen API-Schlüssel"
 
 #: src/app/model/error_notification.rs:46
 msgctxt "error-notification.description"
@@ -323,6 +323,8 @@ msgid ""
 "Please configure a valid API key for %1 in the application preferences.  The "
 "current key appears to be invalid."
 msgstr ""
+"Bitte konfiguriere einen gültigen API-Schlüssel für %1 in den Einstellungen "
+"der Anwendung."
 
 #: src/app/model/error_notification.rs:59
 msgctxt "error-notification.title"
