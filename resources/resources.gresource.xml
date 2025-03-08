@@ -19,12 +19,10 @@
         <!-- App Icon -->
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.Devel.svg</file>
-        <file preprocess="xml-stripblanks">
-            icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg</file>
         <!-- Data files of sources -->
         <file preprocess="json-stripblanks" compressed="true">stalenhag/collections.json</file>
         <!-- Other data files -->
-        <file compressed="true" preprocess="xml-stripblanks">
-            de.swsnr.pictureoftheday.metainfo.xml</file>
+        <file compressed="true" preprocess="xml-stripblanks">de.swsnr.pictureoftheday.metainfo.xml</file>
     </gresource>
 </gresources>
