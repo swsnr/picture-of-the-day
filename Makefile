@@ -104,3 +104,20 @@ flatpak-devel:
 	flatpak run org.flatpak.Builder --force-clean --user --install \
 		--install-deps-from=flathub --repo=.flatpak-repo \
 		builddir flatpak/de.swsnr.pictureoftheday.Devel.yaml
+
+# Build a regular flatpak (sandboxed build)
+.PHONY: flatpak
+flatpak:
+	flatpak run org.flatpak.Builder --force-clean --sandbox --user --install \
+		--install-deps-from=flathub --ccache \
+		--mirror-screenshots-url=https://dl.flathub.org/media/ --repo=.flatpak-repo \
+		builddir flatpak/de.swsnr.pictureoftheday.yaml
+
+.PHONY: flatpak-lint-manifest
+flatpak-lint-manifest:
+	flatpak run --command=flatpak-builder-lint org.flatpak.Builder \
+		manifest flatpak/de.swsnr.pictureoftheday.yaml
+
+.PHONY: flatpak-lint-repo
+flatpak-lint-repo:
+	flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo .flatpak-repo

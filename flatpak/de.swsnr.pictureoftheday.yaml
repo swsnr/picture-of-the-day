@@ -1,0 +1,42 @@
+id: de.swsnr.pictureoftheday
+runtime: org.gnome.Platform
+runtime-version: "47"
+sdk: org.gnome.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+command: de.swsnr.pictureoftheday
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --device=dri
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  env:
+    # Tell build.rs not to regenerate the UI files from blueprint sources
+    SKIP_BLUEPRINT: "1"
+modules:
+  - name: pictureoftheday
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/swsnr/picture-of-the-day/releases/download/v0.0.1/pictureoftheday-v0.0.1.tar.zst
+        sha512: "d69ed1783ee645c59b28c82665ce0261e7936de37c154b2125732cbdd2b2c885a63343fc11950947b1182485c3e2f3dc91d6f584b9396fcc0ade99d0b6098b06"
+      - type: archive
+        url: https://github.com/swsnr/picture-of-the-day/releases/download/v0.0.1/vendor.tar.zst
+        sha512: "212ece23ffdb44147bf5861f659064b6c13b0991bc4a16a5c5329211361531a5bdf71fb5c6a61d477a05d07cfe7f10f1e0270bab93134d24d8b93b48016b8a66"
+        dest: vendor/
+      - type: inline
+        dest: .cargo/
+        dest-filename: config.toml
+        contents: |
+          [source.crates-io]
+          replace-with = "vendored-sources"
+
+          [source.vendored-sources]
+          directory = "vendor"
+    build-commands:
+      - cargo build --frozen --release --verbose
+      - make DESTPREFIX=/app install
+      - glib-compile-schemas --strict /app/share/glib-2.0/schemas

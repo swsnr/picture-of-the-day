@@ -22,6 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: flatpak-builder-lint appstream resources/de.swsnr.pictureoftheday.metainfo.xml.in
+      - run: flatpak-builder-lint manifest flatpak/de.swsnr.pictureoftheday.yaml
 
   # See https://mozilla.github.io/cargo-vet/configuring-ci.html
   cargo-vet:
