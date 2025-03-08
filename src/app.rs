@@ -190,11 +190,7 @@ mod imp {
                 0.into(),
                 OptionFlags::NONE,
                 OptionArg::None,
-                &dpgettext2(
-                    None,
-                    "command-line.option.description",
-                    "Show preferences dialog",
-                ),
+                &dpgettext2(None, "command-line.option.description", "Open preferences"),
                 None,
             );
         }
