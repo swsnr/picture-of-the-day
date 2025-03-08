@@ -160,7 +160,7 @@ mod errors {
             let description = dpgettext2(
                 None,
                 "error-notification.description",
-                "An I/O error occurred while fetching today's image from %1, with the following message: %2.",
+                "An I/O error occurred while fetching today's image from %1, with the following message: %2. Try again later, or try a different source. If the issue persists please report the problem.",
             );
             (title, description)
         };
