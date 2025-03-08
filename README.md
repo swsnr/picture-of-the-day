@@ -19,7 +19,7 @@ Note that all images are protected by copyright; you may not be allowed to use o
 
 ## Installation
 
-Under construction
+- [Flathub](https://flathub.org/apps/details/de.swsnr.pictureoftheday)
 
 ## Translations
 
