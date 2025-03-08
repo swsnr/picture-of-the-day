@@ -105,7 +105,7 @@ jobs:
         with:
           path: ./artifacts
           merge-multiple: true
-      - run: echo ARCHIVE_SHA512="$(sha512sum artifacts/pictureoftheday-${{ github.ref_name }}.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
+      - run: echo ARCHIVE_SHA512="$(sha512sum artifacts/picture-of-the-day-${{ github.ref_name }}.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
       - run: echo VENDOR_SHA512="$(sha512sum artifacts/vendor.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
       - run: rm -rf artifacts
       - name: Replace git archive url
