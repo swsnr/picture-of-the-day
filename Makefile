@@ -76,6 +76,11 @@ install: install-locale
 	install -Dm0644 dbus-1/de.swsnr.pictureoftheday.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
 	install -Dm0644 schemas/de.swsnr.pictureoftheday.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml
 
+# Install for flatpak.  Like install, but with some extra flatpak-specific steps
+.PHONY: install-flatpak
+install-flatpak: install
+	glib-compile-schemas --strict $(DESTPREFIX)/share/glib-2.0/schemas
+
 # Patch the current git describe version into Picture Of The Day.
 .PHONY: patch-git-version
 patch-git-version:

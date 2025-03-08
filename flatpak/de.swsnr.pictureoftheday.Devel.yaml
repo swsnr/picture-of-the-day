@@ -29,5 +29,4 @@ modules:
       # Patch version number and app ID before building our binary
       - make APPID=de.swsnr.pictureoftheday.Devel patch-git-version patch-appid
       - cargo build --locked --release --verbose
-      - make DESTPREFIX=/app APPID=de.swsnr.pictureoftheday.Devel install
-      - glib-compile-schemas --strict /app/share/glib-2.0/schemas
+      - make DESTPREFIX=/app APPID=de.swsnr.pictureoftheday.Devel install-flatpak

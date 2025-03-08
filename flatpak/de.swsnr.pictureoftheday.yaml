@@ -38,5 +38,4 @@ modules:
           directory = "vendor"
     build-commands:
       - cargo build --frozen --release --verbose
-      - make DESTPREFIX=/app install
-      - glib-compile-schemas --strict /app/share/glib-2.0/schemas
+      - make DESTPREFIX=/app install-flatpak
