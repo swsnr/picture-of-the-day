@@ -53,7 +53,16 @@
     <developer id="de.swsnr">
         <name translate="no">Sebastian Wiesner</name>
     </developer>
-    <!-- TODO: Screenshots -->
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/swsnr/picture-of-the-day/refs/heads/main/screenshots/wikimedia.png</image>
+            <caption>A picture of the day from Wikimedia</caption>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/swsnr/picture-of-the-day/refs/heads/main/screenshots/start-page.png</image>
+            <caption>The empty greeting page with the application icon</caption>
+        </screenshot>
+    </screenshots>
     <translation type="gettext">de.swsnr.pictureoftheday</translation>
     <content_rating type="oars-1.1" />
     <branding>
