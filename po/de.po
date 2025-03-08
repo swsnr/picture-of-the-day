@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-03-08 10:40+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
+"picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,10 @@ msgstr ""
 "Bildschirmhintergrund."
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:10
-msgid "NASA Astronomy Picture of the Day"
+#, fuzzy
+#| msgctxt "source name"
+#| msgid "NASA Astronomy Picture Of The Day"
+msgid "NASA Astronomy Picture Of The Day"
 msgstr "NASA Astronomie Bild des Tages"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:11
@@ -56,7 +59,9 @@ msgid "Bing"
 msgstr "Bing"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:12
-msgid "NASA Earth Observatory Image of the Day"
+#, fuzzy
+#| msgid "NASA Earth Observatory Image of the Day"
+msgid "NASA Earth Observatory Image Of The Day"
 msgstr "NASA Erdbeobachtung Bild des Tages"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:13
@@ -64,7 +69,9 @@ msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhag Kunstwerke"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
-msgid "Wikimedia Picture of the day"
+#, fuzzy
+#| msgid "Wikimedia Picture of the day"
+msgid "Wikimedia Picture Of The day"
 msgstr "Wikimedia Bild des Tages"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:16
@@ -157,8 +164,11 @@ msgid "Load images for selected source"
 msgstr "Bilder aus gewählter Quelle laden"
 
 #: resources/ui/application-window.blp:64
+#, fuzzy
+#| msgctxt "shortcut description"
+#| msgid "Cancel loading images"
 msgctxt "main-window.toolbar.button.tooltip"
-msgid "Stop loading images"
+msgid "Cancel loading images"
 msgstr "Laden der Bilder abbrechen"
 
 #: resources/ui/application-window.blp:80
@@ -307,9 +317,11 @@ msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Hilfreiche Dienste"
 
-#: src/app.rs:196
+#: src/app.rs:193
+#, fuzzy
+#| msgid "Open preferences"
 msgctxt "command-line.option.description"
-msgid "Show preferences dialog"
+msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
 #: src/app/model/error_notification.rs:41
@@ -318,9 +330,14 @@ msgid "Picture Of The Day needs an API key"
 msgstr "Bild des Tages benötigt einen API-Schlüssel"
 
 #: src/app/model/error_notification.rs:46
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "Please configure a valid API key for %1 in the application preferences.  "
+#| "The current key appears to be invalid."
 msgctxt "error-notification.description"
 msgid ""
-"Please configure a valid API key for %1 in the application preferences.  The "
+"Please configure a valid API key for %1 in the application preferences. The "
 "current key appears to be invalid."
 msgstr ""
 "Bitte konfiguriere einen gültigen API-Schlüssel für %1 in den Einstellungen "
@@ -367,7 +384,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:100
 #: src/app/model/error_notification.rs:118
-#: src/app/model/error_notification.rs:145
+#: src/app/model/error_notification.rs:159
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
 msgstr "Abrufen der Bilder fehlgeschlagen"
@@ -404,26 +421,44 @@ msgctxt "error-notification.description"
 msgid "You cancelled loading images from %1."
 msgstr "Du hast das Laden der Bilder von %1 abgebrochen."
 
-#: src/app/model/error_notification.rs:151
+#: src/app/model/error_notification.rs:150
+msgctxt "error-notification.title"
+msgid "Limited network connectivity"
+msgstr ""
+
+#: src/app/model/error_notification.rs:155
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while fetching today's image from %1, with the "
+#| "following message: %2.  The system appears to have limited network "
+#| "connectivity.  Try to connect to the internet."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
-"following message: %2.  The system appears to have limited network "
-"connectivity.  Try to connect to the internet."
+"following message: %2. Your system appears to have only limited network "
+"connectivity. Try to connect your system to the internet."
 msgstr ""
 "Ein I/O Fehler ist aufgetreten beim Anruf des heutigen Bildes von %1, mit "
 "der folgenden Fehlermeldung: %2. Dein System scheint nur eingeschränkte "
 "Verbindung zum Netzwerk zu haben. Versuche, Dein System mit dem Internet zu "
 "verbinden."
 
-#: src/app/model/error_notification.rs:157
+#: src/app/model/error_notification.rs:163
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while opening %1, with the following message: %2. "
+#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
-"following message: %2."
+"following message: %2. Try again later, or try a different source. If the "
+"issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Anruf des heutigen Bildes von %1, mit "
-"der folgenden Fehlermeldung: %2."
+"Ein I/O Fehler ist aufgetreten beim Öffnen von %1, mit der folgenden "
+"Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde das Problem "
+"bitte."
 
 #: src/app/widgets/application_window.rs:64
 msgctxt "error-notification.description"
@@ -519,13 +554,13 @@ msgid "Collection: %s"
 msgstr "Sammlung: %s"
 
 #: src/source/wikimedia.rs:60
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
 msgstr "%artist (%credit, %license)"
 
 #: src/source/wikimedia.rs:66
-#, c-format, fuzzy
+#, fuzzy, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
 msgstr "%artist (%license)"
@@ -534,3 +569,22 @@ msgstr "%artist (%license)"
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Unbekannt, alle Rechte vorbehalten"
+
+#~ msgid "NASA Astronomy Picture of the Day"
+#~ msgstr "NASA Astronomie Bild des Tages"
+
+#~ msgctxt "main-window.toolbar.button.tooltip"
+#~ msgid "Stop loading images"
+#~ msgstr "Laden der Bilder abbrechen"
+
+#~ msgctxt "command-line.option.description"
+#~ msgid "Show preferences dialog"
+#~ msgstr "Einstellungen öffnen"
+
+#~ msgctxt "error-notification.description"
+#~ msgid ""
+#~ "An I/O error occurred while fetching today's image from %1, with the "
+#~ "following message: %2."
+#~ msgstr ""
+#~ "Ein I/O Fehler ist aufgetreten beim Anruf des heutigen Bildes von %1, mit "
+#~ "der folgenden Fehlermeldung: %2."
