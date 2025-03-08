@@ -6,6 +6,7 @@ on:
     branches: ["main"]
     paths:
       - "src/**/*.rs"
+      - "schemas/*.gschema.xml"
       - "resources/**/*.blp"
       - "resources/*.metainfo.xml.in"
       - "*.desktop.in"
