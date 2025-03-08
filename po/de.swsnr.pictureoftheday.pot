@@ -86,11 +86,23 @@ msgstr ""
 msgid "Artwork"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:47
+msgid ""
+"The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
+"and Bing."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
+msgid ""
+"Add a main window to show today's picture of the day and a button to set it "
+"as current wallpaper."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
 msgid "A picture of the day from Wikimedia"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
