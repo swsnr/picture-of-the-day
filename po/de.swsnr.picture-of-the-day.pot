@@ -15,31 +15,482 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #. Translators: Do feel free to translate the application name
-#: de.swsnr.picture-of-the-day.desktop.in:3
+#: de.swsnr.picture-of-the-day.desktop.in:4
 msgid "Picture Of the Day"
 msgstr ""
 
-#: de.swsnr.picture-of-the-day.desktop.in:4
+#: de.swsnr.picture-of-the-day.desktop.in:5
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:6
 msgid "A daily picture as your wallpaper"
 msgstr ""
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: de.swsnr.picture-of-the-day.desktop.in:10
+#: de.swsnr.picture-of-the-day.desktop.in:11
 msgid "Gnome;GTK;Picture;Day;Wallpaper;"
 msgstr ""
 
-#: resources/ui/picture-of-the-day-window.blp:9
+#: de.swsnr.picture-of-the-day.desktop.in:18
+msgid "Add new device"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:5
+#: resources/ui/application-window.blp:9
 msgid "Picture Of The Day"
 msgstr ""
 
-#: resources/ui/picture-of-the-day-window.blp:34
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:8
+msgid ""
+"Get a picture of the day from any of the following sources as your daily "
+"wallpaper."
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:10
+msgid "NASA Astronomy Picture of the Day"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:11
+msgid "Bing"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:12
+msgid "NASA Earth Observatory Image of the Day"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:13
+msgid "Simon Stålenhag Artwork"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
+msgid "Wikimedia Picture of the day"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:16
+msgid ""
+"Note that all images are protected by copyright; you may not be allowed to "
+"use or distribute them. Do take a look at the license terms for each image."
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:23
+msgid "Picture"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:24
+msgid "Daily"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:25
+msgid "Wallpaper"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:26
+msgid "Astronomy"
+msgstr ""
+
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:27
+msgid "Artwork"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:14
+msgctxt "shortcuts group title"
+msgid "General"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:17
+msgctxt "shortcut description"
+msgid "Preferences"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:22
+msgctxt "shortcut description"
+msgid "Show shortcuts"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:27
+msgctxt "shortcut description"
+msgid "Quit application"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:33
+msgctxt "shortcuts group title"
+msgid "Picture Of The Day Window"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:36
+msgctxt "shortcut description"
+msgid "Select source"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:41
+msgctxt "shortcut description"
+msgid "Load images"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:46
+msgctxt "shortcut description"
+msgid "Cancel loading images"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:51
+msgctxt "shortcut description"
+msgid "Toggle sidebar"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:56
+msgctxt "shortcut description"
+msgid "New window"
+msgstr ""
+
+#: resources/ui/application-window.blp:31
+msgctxt "main-window.toolbar.button.label"
+msgid "Source"
+msgstr ""
+
+#: resources/ui/application-window.blp:58
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Load images for selected source"
+msgstr ""
+
+#: resources/ui/application-window.blp:64
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Stop loading images"
+msgstr ""
+
+#: resources/ui/application-window.blp:80
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Set current image as wallpaper"
+msgstr ""
+
+#: resources/ui/application-window.blp:92
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Toggle the sidebar with image information"
+msgstr ""
+
+#: resources/ui/application-window.blp:132
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr ""
+
+#: resources/ui/application-window.blp:140
+msgid "Visit the source page of this image."
+msgstr ""
+
+#: resources/ui/application-window.blp:149
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr ""
+
+#: resources/ui/application-window.blp:159
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr ""
+
+#: resources/ui/application-window.blp:171
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr ""
+
+#: resources/ui/application-window.blp:178
+msgid "Visit the main page of the source of this image."
+msgstr ""
+
+#: resources/ui/application-window.blp:197
+msgctxt "start-page.button.label"
+msgid "Get images"
+msgstr ""
+
+#: resources/ui/application-window.blp:215
 msgctxt "main-window.menu.label"
 msgid "_New window"
 msgstr ""
 
-#: resources/ui/picture-of-the-day-window.blp:39
+#: resources/ui/application-window.blp:220
 msgctxt "main-window.menu.label"
 msgid "_Quit"
+msgstr ""
+
+#: resources/ui/application-window.blp:227
+msgctxt "application-window.menu.label"
+msgid "_Preferences"
+msgstr ""
+
+#: resources/ui/application-window.blp:232
+msgctxt "application-window.menu.label"
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: resources/ui/application-window.blp:237
+msgctxt "main-window.menu.label"
+msgid "_About Picture Of The Day"
+msgstr ""
+
+#: resources/ui/error-notification-page.blp:20
+msgid "Open preferences"
+msgstr ""
+
+#: resources/ui/error-notification-page.blp:30
+msgid "Contact information"
+msgstr ""
+
+#: resources/ui/error-notification-page.blp:40
+msgid "Open source"
+msgstr ""
+
+#: resources/ui/image-page.blp:19
+msgctxt "image-page.loading-message.title"
+msgid "Downloading image…"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:10
+msgid "Picture Sources"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:11
+msgid "Configure sources for the Picture of the Day."
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:16
+msgid "API key"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:20
+msgid "Get API key"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:28
+msgid "Enabled collections"
+msgstr ""
+
+#: schemas/de.swsnr.picture-of-the-day.gschema.xml:5
+msgid "The identifier of the last selected source."
+msgstr ""
+
+#: schemas/de.swsnr.picture-of-the-day.gschema.xml:10
+msgid ""
+"The API key to use for requests to the APOD API. The default key is usually "
+"fine, but if you find that you are rate-limited, you may wish to use your "
+"own API key, which you can obtain free of charge at https://api.nasa.gov/."
+msgstr ""
+
+#: schemas/de.swsnr.picture-of-the-day.gschema.xml:20
+msgid "Collections from Stålenhag which to ignore."
+msgstr ""
+
+#. Credits for the translator to the current language.
+#. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
+#. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
+#: src/app.rs:66
+msgid "translator-credits"
+msgstr ""
+
+#: src/app.rs:71
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Help and inspiration"
+msgstr ""
+
+#: src/app.rs:84
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Helpful services"
+msgstr ""
+
+#: src/app.rs:192
+msgctxt "command-line.option.description"
+msgid "Show preferences dialog"
+msgstr ""
+
+#: src/app/model/error_notification.rs:41
+msgctxt "error-notification.title"
+msgid "Picture Of The Day needs an API key"
+msgstr ""
+
+#: src/app/model/error_notification.rs:46
+msgctxt "error-notification.description"
+msgid ""
+"Please configure a valid API key for %1 in the application preferences.  The "
+"current key appears to be invalid."
+msgstr ""
+
+#: src/app/model/error_notification.rs:59
+msgctxt "error-notification.title"
+msgid "Picture Of The Day was rate-limited"
+msgstr ""
+
+#: src/app/model/error_notification.rs:64
+msgctxt "error-notification.description"
+msgid ""
+"The %1 server is rate-limited and does currently not allow you to fetch an "
+"image. Try again later, or try a different source."
+msgstr ""
+
+#: src/app/model/error_notification.rs:73
+#: src/app/model/error_notification.rs:86
+msgctxt "error-notification.title"
+msgid "No image today"
+msgstr ""
+
+#: src/app/model/error_notification.rs:77
+msgctxt "error-notification.description"
+msgid ""
+"Currently, %1 does not provide an image for today. Try again later, or try a "
+"different source."
+msgstr ""
+
+#: src/app/model/error_notification.rs:90
+msgctxt "error-notification.description"
+msgid ""
+"Today, %1 provides a video or another type of media which this application "
+"does not support. Try again tomorrow, or try a different source."
+msgstr ""
+
+#: src/app/model/error_notification.rs:100
+#: src/app/model/error_notification.rs:118
+#: src/app/model/error_notification.rs:145
+msgctxt "error-notification.title"
+msgid "Fetching images failed"
+msgstr ""
+
+#: src/app/model/error_notification.rs:104
+msgctxt "error-notification.description"
+msgid ""
+"The %s server replied with HTTP status %2. The server may have issues "
+"currently. Try again later, or try a different source. If the issue persists "
+"please report the problem."
+msgstr ""
+
+#: src/app/model/error_notification.rs:122
+msgctxt "error-notification.description"
+msgid ""
+"The %1 server responded with invalid data. The server may have issues "
+"currently. Try again later, or try a different source. If the issue persists "
+"please report the problem."
+msgstr ""
+
+#: src/app/model/error_notification.rs:132
+msgctxt "error-notification.title"
+msgid "Cancelled"
+msgstr ""
+
+#: src/app/model/error_notification.rs:136
+msgctxt "error-notification.description"
+msgid "You cancelled loading images from %1."
+msgstr ""
+
+#: src/app/model/error_notification.rs:151
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from %1, with the "
+"following message: %2.  The system appears to have limited network "
+"connectivity.  Try to connect to the internet."
+msgstr ""
+
+#: src/app/model/error_notification.rs:157
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from %1, with the "
+"following message: %2."
+msgstr ""
+
+#: src/app/widgets/application_window.rs:64
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening %1, with the following message: %2. If "
+"the issue persists please report the problem."
+msgstr ""
+
+#: src/app/widgets/application_window.rs:70
+msgctxt "error-notification.title"
+msgid "Failed to open source URL"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:89
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while setting the wallpaper, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+
+#: src/app/widgets/application_window.rs:95
+msgctxt "error-notification.title"
+msgid "Failed to set wallpaper"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:111
+msgctxt "alert.response"
+msgid "Close"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:118
+msgctxt "alert.response"
+msgid "Contact information"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:122
+msgctxt "alert.response"
+msgid "Open preferences"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:126
+msgctxt "alert.response"
+msgid "Open URL"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:271
+msgctxt "toast.button.label"
+msgid "Details"
+msgstr ""
+
+#: src/app/widgets/preferences_dialog.rs:76
+msgid "%1/%2 collection enabled"
+msgid_plural "%1/%2 collections enabled"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/source.rs:58
+msgctxt "source name"
+msgid "NASA Astronomy Picture Of The Day"
+msgstr ""
+
+#: src/source.rs:59
+msgctxt "source name"
+msgid "Bing"
+msgstr ""
+
+#: src/source.rs:60
+msgctxt "source name"
+msgid "Wikimedia Picture Of The Day"
+msgstr ""
+
+#: src/source.rs:61
+msgctxt "source name"
+msgid "Simon Stålenhag"
+msgstr ""
+
+#: src/source/stalenhag.rs:101
+msgctxt "source.stalenhag.copyright"
+msgid "All rights reserved."
+msgstr ""
+
+#: src/source/stalenhag.rs:102
+#, c-format
+msgctxt "source.stalenhag.description"
+msgid "Collection: %s"
+msgstr ""
+
+#: src/source/wikimedia.rs:60
+#, c-format
+msgctxt "source.wikimedia.copyright"
+msgid "%artist (%credit, %license)"
+msgstr ""
+
+#: src/source/wikimedia.rs:66
+#, c-format
+msgctxt "source.wikimedia.copyright"
+msgid "%artist (%license)"
+msgstr ""
+
+#: src/source/wikimedia.rs:75
+msgctxt "source.wikimedia.copyright"
+msgid "Unknown, all rights reserved"
 msgstr ""
