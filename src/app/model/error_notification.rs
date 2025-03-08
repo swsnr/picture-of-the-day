@@ -142,20 +142,27 @@ mod errors {
     }
 
     pub fn io_error(source: Source, error: &glib::Error) -> ErrorNotification {
-        let title = dpgettext2(None, "error-notification.title", "Fetching images failed");
         let connectivity = gio::NetworkMonitor::default().connectivity();
-        let description = if connectivity == gio::NetworkConnectivity::Full {
-            dpgettext2(
+        let (title, description) = if connectivity == gio::NetworkConnectivity::Full {
+            let title = dpgettext2(
+                None,
+                "error-notification.title",
+                "Limited network connectivity",
+            );
+            let description = dpgettext2(
                 None,
                 "error-notification.description",
                 "An I/O error occurred while fetching today's image from %1, with the following message: %2. The system appears to have limited network connectivity.  Try to connect to the internet.",
-            )
+            );
+            (title, description)
         } else {
-            dpgettext2(
+            let title = dpgettext2(None, "error-notification.title", "Fetching images failed");
+            let description = dpgettext2(
                 None,
                 "error-notification.description",
                 "An I/O error occurred while fetching today's image from %1, with the following message: %2.",
-            )
+            );
+            (title, description)
         };
         ErrorNotification::builder()
             .title(title)
