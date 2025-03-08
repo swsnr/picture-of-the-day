@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:40+0000\n"
+"PO-Revision-Date: 2025-03-08 10:44+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,9 +48,6 @@ msgstr ""
 "Bildschirmhintergrund."
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:10
-#, fuzzy
-#| msgctxt "source name"
-#| msgid "NASA Astronomy Picture Of The Day"
 msgid "NASA Astronomy Picture Of The Day"
 msgstr "NASA Astronomie Bild des Tages"
 
@@ -59,8 +56,6 @@ msgid "Bing"
 msgstr "Bing"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:12
-#, fuzzy
-#| msgid "NASA Earth Observatory Image of the Day"
 msgid "NASA Earth Observatory Image Of The Day"
 msgstr "NASA Erdbeobachtung Bild des Tages"
 
@@ -69,8 +64,6 @@ msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhag Kunstwerke"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
-#, fuzzy
-#| msgid "Wikimedia Picture of the day"
 msgid "Wikimedia Picture Of The day"
 msgstr "Wikimedia Bild des Tages"
 
@@ -164,9 +157,6 @@ msgid "Load images for selected source"
 msgstr "Bilder aus gewählter Quelle laden"
 
 #: resources/ui/application-window.blp:64
-#, fuzzy
-#| msgctxt "shortcut description"
-#| msgid "Cancel loading images"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Cancel loading images"
 msgstr "Laden der Bilder abbrechen"
@@ -318,8 +308,6 @@ msgid "Helpful services"
 msgstr "Hilfreiche Dienste"
 
 #: src/app.rs:193
-#, fuzzy
-#| msgid "Open preferences"
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
@@ -330,11 +318,6 @@ msgid "Picture Of The Day needs an API key"
 msgstr "Bild des Tages benötigt einen API-Schlüssel"
 
 #: src/app/model/error_notification.rs:46
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Please configure a valid API key for %1 in the application preferences.  "
-#| "The current key appears to be invalid."
 msgctxt "error-notification.description"
 msgid ""
 "Please configure a valid API key for %1 in the application preferences. The "
@@ -424,15 +407,9 @@ msgstr "Du hast das Laden der Bilder von %1 abgebrochen."
 #: src/app/model/error_notification.rs:150
 msgctxt "error-notification.title"
 msgid "Limited network connectivity"
-msgstr ""
+msgstr "Eingeschränkte Netzwerkverbindung"
 
 #: src/app/model/error_notification.rs:155
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2.  The system appears to have limited network "
-#| "connectivity.  Try to connect to the internet."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
@@ -445,20 +422,15 @@ msgstr ""
 "verbinden."
 
 #: src/app/model/error_notification.rs:163
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
 "following message: %2. Try again later, or try a different source. If the "
 "issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Öffnen von %1, mit der folgenden "
-"Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde das Problem "
-"bitte."
+"Ein I/O Fehler ist aufgetreten beim Abrufen des heutigen Bildes von %1, mit "
+"der folgenden Fehlermeldung: %2. Versuche es morgen erneut, oder wähle eine "
+"andere Quelle. Falls das Problem bestehen bleibt, melde das Problem bitte."
 
 #: src/app/widgets/application_window.rs:64
 msgctxt "error-notification.description"
@@ -537,7 +509,6 @@ msgid "Wikimedia Picture Of The Day"
 msgstr ""
 
 #: src/source.rs:61
-#, fuzzy
 msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
@@ -554,13 +525,13 @@ msgid "Collection: %s"
 msgstr "Sammlung: %s"
 
 #: src/source/wikimedia.rs:60
-#, fuzzy, c-format
+#, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
 msgstr "%artist (%credit, %license)"
 
 #: src/source/wikimedia.rs:66
-#, fuzzy, c-format
+#, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
 msgstr "%artist (%license)"
