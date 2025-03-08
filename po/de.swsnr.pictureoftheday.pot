@@ -53,41 +53,45 @@ msgid "Bing"
 msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:12
-msgid "NASA Earth Observatory Image Of The Day"
-msgstr ""
-
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
 msgid "Simon Stålenhag Artwork"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
 msgid "Wikimedia Picture Of The Day"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:21
 msgid "Picture"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
 msgid "Daily"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
 msgid "Wallpaper"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
 msgid "Astronomy"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
 msgid "Artwork"
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
+msgid "A picture of the day from Wikimedia"
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+msgid "The empty greeting page with the application icon"
 msgstr ""
 
 #: resources/gtk/help-overlay.blp:14
