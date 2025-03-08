@@ -10,5 +10,41 @@ template $PotDErrorNotificationPage: Adw.Bin {
     icon-name: "sad-computer-symbolic";
     title: bind (template.error as <$PotDErrorNotification>).title;
     description: bind (template.error as <$PotDErrorNotification>).description;
+
+    child: Box {
+      orientation: horizontal;
+      halign: center;
+      spacing: 12;
+
+      Button preferences {
+        label: _("Open preferences");
+        action-name: "app.preferences";
+
+        styles [
+          "pill",
+          "suggested-action",
+        ]
+      }
+
+      Button about {
+        label: _("Contact information");
+        action-name: "app.about";
+
+        styles [
+          "pill",
+          "suggested-action",
+        ]
+      }
+
+      Button source {
+        label: _("Open source");
+        action-name: "win.open-source-url";
+
+        styles [
+          "pill",
+          "suggested-action",
+        ]
+      }
+    };
   }
 }

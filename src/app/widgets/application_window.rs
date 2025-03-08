@@ -4,16 +4,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::{fs::File, os::fd::OwnedFd};
-
 use adw::prelude::*;
 use glib::dpgettext2;
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
-use gtk::gio::{self, IOErrorEnum, prelude::FileExt};
+use gtk::UriLauncher;
+use gtk::gio;
 
-use crate::app::model::ErrorNotification;
+use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
-use crate::portal::wallpaper::{Preview, SetOn};
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -56,51 +54,101 @@ impl ApplicationWindow {
         self.imp().finish_loading();
     }
 
-    async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
-        if let Some(file) = self
-            .imp()
-            .current_image()
-            .and_then(|image| image.downloaded_file())
-        {
-            let fd =
-                gio::spawn_blocking(move || File::open(file.path().unwrap()).map(OwnedFd::from))
-                    .await
-                    .unwrap()
-                    .map_err(|error| {
-                        let domain = error
-                            .raw_os_error()
-                            .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
-                            .unwrap_or(IOErrorEnum::Failed);
-                        glib::Error::new(domain, &error.to_string())
-                    })?;
-            let connection = gio::bus_get_future(gio::BusType::Session).await?;
-            let result = crate::portal::wallpaper::set_wallpaper_file(
-                &connection,
-                Some(self),
-                fd,
-                Preview::Preview,
-                SetOn::Both,
-            )
-            .await?;
-            glib::info!("Request finished: {result:?}");
+    async fn open_source_url(&self) {
+        let url = self.selected_source().url();
+        if let Err(error) = UriLauncher::new(url).launch_future(Some(self)).await {
+            glib::warn!("Failed to open source URL: {error}");
+            let description = dpgettext2(
+                None,
+                "error-notification.description",
+                "An I/O error occurred while opening %1, with the following message: %2. If the issue persists please report the problem.",
+            );
+            let error = ErrorNotification::builder()
+                .title(dpgettext2(
+                    None,
+                    "error-notification.title",
+                    "Failed to open source URL",
+                ))
+                .description(
+                    description
+                        .replace("%1", url)
+                        .replace("%2", &error.to_string()),
+                )
+                .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                .build();
+            self.imp().show_error(&error);
+        };
+    }
+
+    async fn set_current_image_as_wallpaper(&self) {
+        if let Err(error) = self.imp().set_current_image_as_wallpaper().await {
+            glib::warn!("Failed to set current image as wallaper: {error}");
+            let description = dpgettext2(
+                None,
+                "error-notification.description",
+                "An I/O error occurred while setting the wallpaper, with the following message: %1. If the issue persists please report the problem.",
+            );
+            let error = ErrorNotification::builder()
+                .title(dpgettext2(
+                    None,
+                    "error-notification.title",
+                    "Failed to set wallpaper",
+                ))
+                .description(description.replace("%1", &error.to_string()))
+                .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                .build();
+            self.imp().show_error(&error);
         }
-        Ok(())
     }
 
     fn show_error_dialog(&self, error: &ErrorNotification) {
+        let actions = error.actions();
         let dialog = adw::AlertDialog::builder()
             .heading(error.title())
             .body(error.description())
+            .prefer_wide_layout(!actions.is_empty())
             .build();
         dialog.add_response("close", &dpgettext2(None, "alert.response", "Close"));
         dialog.set_close_response("close");
         dialog.set_default_response(Some("close"));
+
+        for (action_name, action) in actions.iter_names() {
+            let (label, action_to_activate) = match action {
+                ErrorNotificationActions::OPEN_ABOUT_DIALOG => {
+                    let label = dpgettext2(None, "alert.response", "Contact information");
+                    (label, "app.about")
+                }
+                ErrorNotificationActions::OPEN_PREFERENCES => {
+                    let label = dpgettext2(None, "alert.response", "Open preferences");
+                    (label, "app.preferences")
+                }
+                ErrorNotificationActions::OPEN_SOURCE_URL => {
+                    let label = dpgettext2(None, "alert.response", "Open URL");
+                    (label, "win.open-source-url")
+                }
+                _ => unreachable!(),
+            };
+            dialog.add_response(action_name, &label);
+            dialog.connect_response(
+                Some(action_name),
+                glib::clone!(
+                    #[weak(rename_to = window)]
+                    self,
+                    move |_, _| {
+                        gtk::prelude::WidgetExt::activate_action(&window, action_to_activate, None)
+                            .unwrap();
+                    }
+                ),
+            );
+        }
         dialog.present(Some(self));
     }
 }
 
 mod imp {
     use std::cell::{Cell, RefCell};
+    use std::fs::File;
+    use std::os::fd::OwnedFd;
     use std::rc::Rc;
 
     use adw::prelude::*;
@@ -114,9 +162,10 @@ mod imp {
     use strum::IntoEnumIterator;
 
     use crate::Source;
-    use crate::app::model::{ErrorNotification, ErrorNotificationActions, Image};
+    use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
+    use crate::portal::wallpaper::{Preview, SetOn};
     use crate::source::SourceError;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -321,6 +370,37 @@ mod imp {
             .await;
             Ok(())
         }
+
+        pub async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
+            if let Some(file) = self
+                .current_image()
+                .and_then(|image| image.downloaded_file())
+            {
+                let fd = gio::spawn_blocking(move || {
+                    File::open(file.path().unwrap()).map(OwnedFd::from)
+                })
+                .await
+                .unwrap()
+                .map_err(|error| {
+                    let domain = error
+                        .raw_os_error()
+                        .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
+                        .unwrap_or(IOErrorEnum::Failed);
+                    glib::Error::new(domain, &error.to_string())
+                })?;
+                let connection = gio::bus_get_future(gio::BusType::Session).await?;
+                let result = crate::portal::wallpaper::set_wallpaper_file(
+                    &connection,
+                    Some(&*self.obj()),
+                    fd,
+                    Preview::Preview,
+                    SetOn::Both,
+                )
+                .await?;
+                glib::info!("Request finished: {result:?}");
+            }
+            Ok(())
+        }
     }
 
     #[glib::object_subclass]
@@ -347,25 +427,11 @@ mod imp {
             klass.install_action_async("win.load-images", None, |window, _, _| async move {
                 window.load_images().await;
             });
+            klass.install_action_async("win.open-source-url", None, |window, _, _| async move {
+                window.open_source_url().await;
+            });
             klass.install_action_async("win.set-as-wallpaper", None, |window, _, _| async move {
-                if let Err(error) = window.set_current_image_as_wallpaper().await {
-                    glib::warn!("Failed to set current image as wallaper: {error}");
-                    let description = dpgettext2(
-                        None,
-                        "error-notification.description",
-                        "An I/O error occurred while setting the wallpaper, with the following message: %1. If the issue persists please report the problem.",
-                    );
-                    let error = ErrorNotification::builder()
-                        .title(dpgettext2(
-                            None,
-                            "error-notification.title",
-                            "Failed to set wallpaper",
-                        ))
-                        .description(description.replace("%1", &error.to_string()))
-                        .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
-                        .build();
-                    window.imp().show_error(&error);
-                }
+                window.set_current_image_as_wallpaper().await;
             });
 
             klass.add_binding_action(Key::F5, ModifierType::NO_MODIFIER_MASK, "win.load-images");
