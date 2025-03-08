@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:44+0000\n"
+"PO-Revision-Date: 2025-03-08 10:47+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,8 +64,6 @@ msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhag Kunstwerke"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
-#, fuzzy
-#| msgid "Wikimedia Picture Of The day"
 msgid "Wikimedia Picture Of The Day"
 msgstr "Wikimedia Bild des Tages"
 
@@ -508,7 +506,7 @@ msgstr "Bing"
 #: src/source.rs:60
 msgctxt "source name"
 msgid "Wikimedia Picture Of The Day"
-msgstr ""
+msgstr "Wikimedia Bild des Tages"
 
 #: src/source.rs:61
 msgctxt "source name"
