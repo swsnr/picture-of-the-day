@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:48+0000\n"
+"PO-Revision-Date: 2025-03-08 11:32+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,27 +19,27 @@ msgstr ""
 "X-Generator: Weblate 5.10.2\n"
 
 #. Translators: Do feel free to translate the application name
-#: de.swsnr.picture-of-the-day.desktop.in:4
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:5
+#: de.swsnr.pictureoftheday.desktop.in:4
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:5
 #: resources/ui/application-window.blp:9
 msgid "Picture Of The Day"
 msgstr "Bild des Tages"
 
-#: de.swsnr.picture-of-the-day.desktop.in:5
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:6
+#: de.swsnr.pictureoftheday.desktop.in:5
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:6
 msgid "A daily picture as your wallpaper"
 msgstr "Ein tägliches Bild als Bildschirmhintergrund"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: de.swsnr.picture-of-the-day.desktop.in:11
+#: de.swsnr.pictureoftheday.desktop.in:11
 msgid "Gnome;GTK;Picture;Day;Wallpaper;"
 msgstr "Gnome;GTK;Bild;Tag;Bildschirmhintergrund;"
 
-#: de.swsnr.picture-of-the-day.desktop.in:18
+#: de.swsnr.pictureoftheday.desktop.in:18
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:8
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
 msgid ""
 "Get a picture of the day from any of the following sources as your daily "
 "wallpaper."
@@ -47,27 +47,27 @@ msgstr ""
 "Erhalte ein Bild des Tages aus einer der folgenden Quellen als täglichen "
 "Bildschirmhintergrund."
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:10
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
 msgid "NASA Astronomy Picture Of The Day"
 msgstr "NASA Astronomie Bild des Tages"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:11
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:11
 msgid "Bing"
 msgstr "Bing"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:12
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:12
 msgid "NASA Earth Observatory Image Of The Day"
 msgstr "NASA Erdbeobachtung Bild des Tages"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:13
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
 msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhag Kunstwerke"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
 msgid "Wikimedia Picture Of The Day"
 msgstr "Wikimedia Bild des Tages"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:16
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
@@ -76,23 +76,23 @@ msgstr ""
 "Bilder möglicherweise nicht nutzen oder verbreiten. Beachte die "
 "Lizenzbedingungen jedes einzelnen Bildes."
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:23
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
 msgid "Picture"
 msgstr "Bild"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:24
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
 msgid "Daily"
 msgstr "Täglich"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:25
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
 msgid "Wallpaper"
 msgstr "Bildschirmhintergrund"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:26
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
 msgid "Astronomy"
 msgstr "Astronomie"
 
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:27
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
 msgid "Artwork"
 msgstr "Kunstwerk"
 
@@ -266,11 +266,11 @@ msgstr "API-Schlüssel erhalten"
 msgid "Enabled collections"
 msgstr "Ausgewählte Sammlungen"
 
-#: schemas/de.swsnr.picture-of-the-day.gschema.xml:5
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:5
 msgid "The identifier of the last selected source."
 msgstr "Der Name der zuletzt gewählten Quelle."
 
-#: schemas/de.swsnr.picture-of-the-day.gschema.xml:10
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:10
 msgid ""
 "The API key to use for requests to the APOD API. The default key is usually "
 "fine, but if you find that you are rate-limited, you may wish to use your "
@@ -281,7 +281,7 @@ msgstr ""
 "limitiert wird, möchtest Du eventuell Deinen eigenen API-Schlüssel nutzen, "
 "den Du kostenlos unter https://api.nasa.gov/ erhalten kannst."
 
-#: schemas/de.swsnr.picture-of-the-day.gschema.xml:20
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:20
 msgid "Collections from Stålenhag which to ignore."
 msgstr "Zu ignorierende Stålenhag-Sammlungen."
 
