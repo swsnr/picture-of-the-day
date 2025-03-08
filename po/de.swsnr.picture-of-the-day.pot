@@ -19,7 +19,9 @@ msgstr ""
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.picture-of-the-day.desktop.in:4
-msgid "Picture Of the Day"
+#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:5
+#: resources/ui/application-window.blp:9
+msgid "Picture Of The Day"
 msgstr ""
 
 #: de.swsnr.picture-of-the-day.desktop.in:5
@@ -33,12 +35,7 @@ msgid "Gnome;GTK;Picture;Day;Wallpaper;"
 msgstr ""
 
 #: de.swsnr.picture-of-the-day.desktop.in:18
-msgid "Add new device"
-msgstr ""
-
-#: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:5
-#: resources/ui/application-window.blp:9
-msgid "Picture Of The Day"
+msgid "Preferences"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:8
@@ -278,24 +275,29 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr ""
 
+#: src/app.rs:61
+msgctxt "about-dialog.link.label"
+msgid "Translations"
+msgstr ""
+
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:66
+#: src/app.rs:70
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.rs:71
+#: src/app.rs:75
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr ""
 
-#: src/app.rs:84
+#: src/app.rs:88
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
-#: src/app.rs:192
+#: src/app.rs:196
 msgctxt "command-line.option.description"
 msgid "Show preferences dialog"
 msgstr ""
