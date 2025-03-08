@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:26+0000\n"
+"PO-Revision-Date: 2025-03-08 10:30+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
 "de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
@@ -329,7 +329,7 @@ msgstr ""
 #: src/app/model/error_notification.rs:59
 msgctxt "error-notification.title"
 msgid "Picture Of The Day was rate-limited"
-msgstr ""
+msgstr "Die Zugriffsrate von Bild des Tages wurde beschränkt"
 
 #: src/app/model/error_notification.rs:64
 msgctxt "error-notification.description"
@@ -337,12 +337,14 @@ msgid ""
 "The %1 server is rate-limited and does currently not allow you to fetch an "
 "image. Try again later, or try a different source."
 msgstr ""
+"Der %1 Server beschränkt die Zugriffsrate und erlaubt Dir aktuell nicht, ein "
+"Bild abzurufen. Versuche es später erneut, oder wähle eine andere Quelle."
 
 #: src/app/model/error_notification.rs:73
 #: src/app/model/error_notification.rs:86
 msgctxt "error-notification.title"
 msgid "No image today"
-msgstr ""
+msgstr "Kein Bild heute"
 
 #: src/app/model/error_notification.rs:77
 msgctxt "error-notification.description"
@@ -350,6 +352,8 @@ msgid ""
 "Currently, %1 does not provide an image for today. Try again later, or try a "
 "different source."
 msgstr ""
+"Aktuell stellt %1 kein Bild für heute zur Verfügung. Versuche es später "
+"erneut, oder wähle eine andere Quelle."
 
 #: src/app/model/error_notification.rs:90
 msgctxt "error-notification.description"
@@ -357,13 +361,16 @@ msgid ""
 "Today, %1 provides a video or another type of media which this application "
 "does not support. Try again tomorrow, or try a different source."
 msgstr ""
+"Heute stellt %1 ein Video oder eine andere Art von Medium zur Verfügung, das "
+"diese Anwendung nicht unterstützt. Versuche es morgen erneut, oder wähle "
+"eine andere Quelle."
 
 #: src/app/model/error_notification.rs:100
 #: src/app/model/error_notification.rs:118
 #: src/app/model/error_notification.rs:145
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
-msgstr ""
+msgstr "Abrufen der Bilder fehlgeschlagen"
 
 #: src/app/model/error_notification.rs:104
 msgctxt "error-notification.description"
@@ -372,6 +379,9 @@ msgid ""
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
 msgstr ""
+"Der %1 Server hat mit dem HTTP Status %2 geantwortet. Eventuell hat der "
+"Server aktuell Probleme. Versuche es später erneut, oder wähle eine andere "
+"Quelle. Falls das Problem bestehen bleibt, melde das Problem bitte."
 
 #: src/app/model/error_notification.rs:122
 msgctxt "error-notification.description"
@@ -380,16 +390,19 @@ msgid ""
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
 msgstr ""
+"Der %1 Server hat mit ungültige Daten geantwortet. Eventuell hat der Server "
+"aktuell Probleme. Versuche es später erneut, oder wähle eine andere Quelle. "
+"Falls das Problem bestehen bleibt, melde das Problem bitte."
 
 #: src/app/model/error_notification.rs:132
 msgctxt "error-notification.title"
 msgid "Cancelled"
-msgstr ""
+msgstr "Abgebrochen"
 
 #: src/app/model/error_notification.rs:136
 msgctxt "error-notification.description"
 msgid "You cancelled loading images from %1."
-msgstr ""
+msgstr "Du hast das Laden der Bilder von %1 abgebrochen."
 
 #: src/app/model/error_notification.rs:151
 msgctxt "error-notification.description"
