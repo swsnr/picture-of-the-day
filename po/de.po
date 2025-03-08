@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:05+0000\n"
+"PO-Revision-Date: 2025-03-08 10:21+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,233 +37,238 @@ msgstr "Gnome;GTK;Bild;Tag;Bildschirmhintergrund;"
 
 #: de.swsnr.picture-of-the-day.desktop.in:18
 msgid "Preferences"
-msgstr ""
+msgstr "Einstellungen"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:8
 msgid ""
 "Get a picture of the day from any of the following sources as your daily "
 "wallpaper."
 msgstr ""
+"Erhalte ein Bild des Tages aus einer der folgenden Quellen als täglichen "
+"Bildschirmhintergrund."
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:10
 msgid "NASA Astronomy Picture of the Day"
-msgstr ""
+msgstr "NASA Astronomie Bild des Tages"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:11
 msgid "Bing"
-msgstr ""
+msgstr "Bing"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:12
 msgid "NASA Earth Observatory Image of the Day"
-msgstr ""
+msgstr "NASA Erdbeobachtung Bild des Tages"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:13
 msgid "Simon Stålenhag Artwork"
-msgstr ""
+msgstr "Simon Stålenhag Kunstwerke"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
 msgid "Wikimedia Picture of the day"
-msgstr ""
+msgstr "Wikimedia Bild des Tages"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:16
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
 msgstr ""
+"Beachte dass alle Bilder urheberrechtlich geschützt sind; Du darfst die "
+"Bilder möglicherweise nicht nutzen oder verbreiten. Beachte die "
+"Lizenzbedingungen jedes einzelnen Bildes."
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:23
 msgid "Picture"
-msgstr ""
+msgstr "Bild"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:24
 msgid "Daily"
-msgstr ""
+msgstr "Täglich"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:25
 msgid "Wallpaper"
-msgstr ""
+msgstr "Bildschirmhintergrund"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:26
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomie"
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:27
 msgid "Artwork"
-msgstr ""
+msgstr "Kunstwerk"
 
 #: resources/gtk/help-overlay.blp:14
 msgctxt "shortcuts group title"
 msgid "General"
-msgstr ""
+msgstr "Allgemein"
 
 #: resources/gtk/help-overlay.blp:17
 msgctxt "shortcut description"
 msgid "Preferences"
-msgstr ""
+msgstr "Einstellungen"
 
 #: resources/gtk/help-overlay.blp:22
 msgctxt "shortcut description"
 msgid "Show shortcuts"
-msgstr ""
+msgstr "Tastenkürzel anzeigen"
 
 #: resources/gtk/help-overlay.blp:27
 msgctxt "shortcut description"
 msgid "Quit application"
-msgstr ""
+msgstr "Anwendung beenden"
 
 #: resources/gtk/help-overlay.blp:33
 msgctxt "shortcuts group title"
 msgid "Picture Of The Day Window"
-msgstr ""
+msgstr "Bild des Tages Fenster"
 
 #: resources/gtk/help-overlay.blp:36
 msgctxt "shortcut description"
 msgid "Select source"
-msgstr ""
+msgstr "Quelle auswählen"
 
 #: resources/gtk/help-overlay.blp:41
 msgctxt "shortcut description"
 msgid "Load images"
-msgstr ""
+msgstr "Bilder laden"
 
 #: resources/gtk/help-overlay.blp:46
 msgctxt "shortcut description"
 msgid "Cancel loading images"
-msgstr ""
+msgstr "Laden der Bilder abbrechen"
 
 #: resources/gtk/help-overlay.blp:51
 msgctxt "shortcut description"
 msgid "Toggle sidebar"
-msgstr ""
+msgstr "Seitenleiste umschalten"
 
 #: resources/gtk/help-overlay.blp:56
 msgctxt "shortcut description"
 msgid "New window"
-msgstr ""
+msgstr "Neues Fenster"
 
 #: resources/ui/application-window.blp:31
 msgctxt "main-window.toolbar.button.label"
 msgid "Source"
-msgstr ""
+msgstr "Quelle"
 
 #: resources/ui/application-window.blp:58
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Load images for selected source"
-msgstr ""
+msgstr "Bilder aus gewählter Quelle laden"
 
 #: resources/ui/application-window.blp:64
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Stop loading images"
-msgstr ""
+msgstr "Laden der Bilder abbrechen"
 
 #: resources/ui/application-window.blp:80
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
-msgstr ""
+msgstr "Aktuelles Bild als Bildschirmhintergrund setzen"
 
 #: resources/ui/application-window.blp:92
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
-msgstr ""
+msgstr "Seitenleiste mit Bildinformationen umschalten"
 
 #: resources/ui/application-window.blp:132
 msgctxt "images-view.metadata.label"
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: resources/ui/application-window.blp:140
 msgid "Visit the source page of this image."
-msgstr ""
+msgstr "Die Quellseite dieses Bildes besuchen."
 
 #: resources/ui/application-window.blp:149
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
-msgstr ""
+msgstr "Urheberrecht"
 
 #: resources/ui/application-window.blp:159
 msgctxt "images-view.metadata.label"
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: resources/ui/application-window.blp:171
 msgctxt "images-view.metadata.label"
 msgid "Source"
-msgstr ""
+msgstr "Quelle"
 
 #: resources/ui/application-window.blp:178
 msgid "Visit the main page of the source of this image."
-msgstr ""
+msgstr "Die Hauptseite der Quelle dieses Bildes besuchen."
 
 #: resources/ui/application-window.blp:197
 msgctxt "start-page.button.label"
 msgid "Get images"
-msgstr ""
+msgstr "Bilder erhalten"
 
 #: resources/ui/application-window.blp:215
 msgctxt "main-window.menu.label"
 msgid "_New window"
-msgstr ""
+msgstr "_Neues Fenster"
 
 #: resources/ui/application-window.blp:220
 msgctxt "main-window.menu.label"
 msgid "_Quit"
-msgstr ""
+msgstr "_Beenden"
 
 #: resources/ui/application-window.blp:227
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
-msgstr ""
+msgstr "_Einstellungen"
 
 #: resources/ui/application-window.blp:232
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
-msgstr ""
+msgstr "_Tastenkürzel"
 
 #: resources/ui/application-window.blp:237
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
-msgstr ""
+msgstr "_Über Bild des Tages"
 
 #: resources/ui/error-notification-page.blp:20
 msgid "Open preferences"
-msgstr ""
+msgstr "Einstellungen öffnen"
 
 #: resources/ui/error-notification-page.blp:30
 msgid "Contact information"
-msgstr ""
+msgstr "Kontaktinformationen"
 
 #: resources/ui/error-notification-page.blp:40
 msgid "Open source"
-msgstr ""
+msgstr "Quelle öffnen"
 
 #: resources/ui/image-page.blp:19
 msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
-msgstr ""
+msgstr "Bild wird heruntergeladen…"
 
 #: resources/ui/preferences-dialog.blp:10
 msgid "Picture Sources"
-msgstr ""
+msgstr "Bildquellen"
 
 #: resources/ui/preferences-dialog.blp:11
 msgid "Configure sources for the Picture of the Day."
-msgstr ""
+msgstr "Quellen für das Bild des Tages konfigurieren."
 
 #: resources/ui/preferences-dialog.blp:16
 msgid "API key"
-msgstr ""
+msgstr "API-Schlüssel"
 
 #: resources/ui/preferences-dialog.blp:20
 msgid "Get API key"
-msgstr ""
+msgstr "API-Schlüssel erhalten"
 
 #: resources/ui/preferences-dialog.blp:28
 msgid "Enabled collections"
-msgstr ""
+msgstr "Ausgewählte Sammlungen"
 
 #: schemas/de.swsnr.picture-of-the-day.gschema.xml:5
 msgid "The identifier of the last selected source."
-msgstr ""
+msgstr "Der Name der zuletzt gewählten Quelle."
 
 #: schemas/de.swsnr.picture-of-the-day.gschema.xml:10
 msgid ""
@@ -271,15 +276,19 @@ msgid ""
 "fine, but if you find that you are rate-limited, you may wish to use your "
 "own API key, which you can obtain free of charge at https://api.nasa.gov/."
 msgstr ""
+"Der API-Schlüssel für Anfragen an die APOD-API. Der Standardschlüssel reicht "
+"normalerweise aus, aber wenn Du beobachtest, dass Deine Zugriffsrate "
+"limitiert wird, möchtest Du eventuell Deinen eigenen API-Schlüssel nutzen, "
+"den Du kostenlos unter https://api.nasa.gov/ erhalten kannst."
 
 #: schemas/de.swsnr.picture-of-the-day.gschema.xml:20
 msgid "Collections from Stålenhag which to ignore."
-msgstr ""
+msgstr "Zu ignorierende Stålenhag-Sammlungen."
 
 #: src/app.rs:61
 msgctxt "about-dialog.link.label"
 msgid "Translations"
-msgstr ""
+msgstr "Übersetzungen"
 
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
