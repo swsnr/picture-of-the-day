@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 11:32+0000\n"
+"PO-Revision-Date: 2025-03-08 13:44+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,11 +94,11 @@ msgstr "Kunstwerk"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
 msgid "A picture of the day from Wikimedia"
-msgstr ""
+msgstr "Das Bild des Tages von Wikimedia"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid "The empty greeting page with the application icon"
-msgstr ""
+msgstr "Die leere Startseite mit dem Anwendungssymbol"
 
 #: resources/gtk/help-overlay.blp:14
 msgctxt "shortcuts group title"
