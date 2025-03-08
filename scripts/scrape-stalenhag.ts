@@ -38,8 +38,7 @@ const scrapeCollection = async (
   const url = new URL(`${collection.tag}.html`, BASE_URL);
   const response = await fetch(url, {
     headers: {
-      "User-Agent":
-        "https://github.com/swsnr/gnome-shell-extension-picture-of-the-day",
+      "User-Agent": "picture-of-the-day (https://github.com/swsnr/picture-of-the-day)"
     },
   });
   if (!response.ok) {
