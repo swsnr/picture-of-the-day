@@ -45,7 +45,7 @@ msgid ""
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:10
-msgid "NASA Astronomy Picture of the Day"
+msgid "NASA Astronomy Picture Of The Day"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:11
@@ -53,7 +53,7 @@ msgid "Bing"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:12
-msgid "NASA Earth Observatory Image of the Day"
+msgid "NASA Earth Observatory Image Of The Day"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:13
@@ -61,7 +61,7 @@ msgid "Simon Stålenhag Artwork"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
-msgid "Wikimedia Picture of the day"
+msgid "Wikimedia Picture Of The day"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:16
@@ -152,7 +152,7 @@ msgstr ""
 
 #: resources/ui/application-window.blp:64
 msgctxt "main-window.toolbar.button.tooltip"
-msgid "Stop loading images"
+msgid "Cancel loading images"
 msgstr ""
 
 #: resources/ui/application-window.blp:80
@@ -297,9 +297,9 @@ msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
-#: src/app.rs:196
+#: src/app.rs:193
 msgctxt "command-line.option.description"
-msgid "Show preferences dialog"
+msgid "Open preferences"
 msgstr ""
 
 #: src/app/model/error_notification.rs:41
@@ -310,7 +310,7 @@ msgstr ""
 #: src/app/model/error_notification.rs:46
 msgctxt "error-notification.description"
 msgid ""
-"Please configure a valid API key for %1 in the application preferences.  The "
+"Please configure a valid API key for %1 in the application preferences. The "
 "current key appears to be invalid."
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:100
 #: src/app/model/error_notification.rs:118
-#: src/app/model/error_notification.rs:145
+#: src/app/model/error_notification.rs:159
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
 msgstr ""
@@ -379,19 +379,25 @@ msgctxt "error-notification.description"
 msgid "You cancelled loading images from %1."
 msgstr ""
 
-#: src/app/model/error_notification.rs:151
-msgctxt "error-notification.description"
-msgid ""
-"An I/O error occurred while fetching today's image from %1, with the "
-"following message: %2.  The system appears to have limited network "
-"connectivity.  Try to connect to the internet."
+#: src/app/model/error_notification.rs:150
+msgctxt "error-notification.title"
+msgid "Limited network connectivity"
 msgstr ""
 
-#: src/app/model/error_notification.rs:157
+#: src/app/model/error_notification.rs:155
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
-"following message: %2."
+"following message: %2. Your system appears to have only limited network "
+"connectivity. Try to connect your system to the internet."
+msgstr ""
+
+#: src/app/model/error_notification.rs:163
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from %1, with the "
+"following message: %2. Try again later, or try a different source. If the "
+"issue persists please report the problem."
 msgstr ""
 
 #: src/app/widgets/application_window.rs:64
