@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 11:32+0000\n"
+"PO-Revision-Date: 2025-03-08 13:44+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
 "de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
@@ -56,18 +56,14 @@ msgid "Bing"
 msgstr "Bing"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:12
-msgid "NASA Earth Observatory Image Of The Day"
-msgstr "NASA Erdbeobachtung Bild des Tages"
-
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
 msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhag Kunstwerke"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
 msgid "Wikimedia Picture Of The Day"
 msgstr "Wikimedia Bild des Tages"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
@@ -76,25 +72,33 @@ msgstr ""
 "Bilder möglicherweise nicht nutzen oder verbreiten. Beachte die "
 "Lizenzbedingungen jedes einzelnen Bildes."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:21
 msgid "Picture"
 msgstr "Bild"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
 msgid "Daily"
 msgstr "Täglich"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
 msgid "Wallpaper"
 msgstr "Bildschirmhintergrund"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
 msgid "Astronomy"
 msgstr "Astronomie"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
 msgid "Artwork"
 msgstr "Kunstwerk"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
+msgid "A picture of the day from Wikimedia"
+msgstr "Das Bild des Tages von Wikimedia"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+msgid "The empty greeting page with the application icon"
+msgstr "Die leere Startseite mit dem Anwendungssymbol"
 
 #: resources/gtk/help-overlay.blp:14
 msgctxt "shortcuts group title"
@@ -540,6 +544,9 @@ msgstr "%artist (%license)"
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Unbekannt, alle Rechte vorbehalten"
+
+#~ msgid "NASA Earth Observatory Image Of The Day"
+#~ msgstr "NASA Erdbeobachtung Bild des Tages"
 
 #~ msgid "NASA Astronomy Picture of the Day"
 #~ msgstr "NASA Astronomie Bild des Tages"
