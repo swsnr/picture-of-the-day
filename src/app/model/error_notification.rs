@@ -152,7 +152,7 @@ mod errors {
             let description = dpgettext2(
                 None,
                 "error-notification.description",
-                "An I/O error occurred while fetching today's image from %1, with the following message: %2. The system appears to have limited network connectivity.  Try to connect to the internet.",
+                "An I/O error occurred while fetching today's image from %1, with the following message: %2. The system appears to have limited network connectivity. Try to connect to the internet.",
             );
             (title, description)
         } else {
