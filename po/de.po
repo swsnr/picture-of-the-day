@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:33+0000\n"
+"PO-Revision-Date: 2025-03-08 10:39+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
 "de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
@@ -431,11 +431,14 @@ msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
 "the issue persists please report the problem."
 msgstr ""
+"Ein I/O Fehler ist aufgetreten beim Öffnen von %1, mit der folgenden "
+"Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde das Problem "
+"bitte."
 
 #: src/app/widgets/application_window.rs:70
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
-msgstr ""
+msgstr "Öffnen der URL der Quelle fehlgeschlagen"
 
 #: src/app/widgets/application_window.rs:89
 msgctxt "error-notification.description"
@@ -443,47 +446,50 @@ msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
+"Ein I/O Fehler ist aufgetreten beim Setzen des Bildschirmhintergrunds, mit "
+"der folgenden Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde "
+"das Problem bitte."
 
 #: src/app/widgets/application_window.rs:95
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
-msgstr ""
+msgstr "Setzen des Bildschirmhintergrunds fehlgeschlagen"
 
 #: src/app/widgets/application_window.rs:111
 msgctxt "alert.response"
 msgid "Close"
-msgstr ""
+msgstr "Schließen"
 
 #: src/app/widgets/application_window.rs:118
 msgctxt "alert.response"
 msgid "Contact information"
-msgstr ""
+msgstr "Kontaktinformationen"
 
 #: src/app/widgets/application_window.rs:122
 msgctxt "alert.response"
 msgid "Open preferences"
-msgstr ""
+msgstr "Einstellungen öffnen"
 
 #: src/app/widgets/application_window.rs:126
 msgctxt "alert.response"
 msgid "Open URL"
-msgstr ""
+msgstr "URL öffnen"
 
 #: src/app/widgets/application_window.rs:271
 msgctxt "toast.button.label"
 msgid "Details"
-msgstr ""
+msgstr "Details"
 
 #: src/app/widgets/preferences_dialog.rs:76
 msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1/%2 Sammlung aktiviert"
+msgstr[1] "%1/%2 Sammlungen aktiviert"
 
 #: src/source.rs:58
 msgctxt "source name"
 msgid "NASA Astronomy Picture Of The Day"
-msgstr ""
+msgstr "NASA Astronomie Bild des Tages"
 
 #: src/source.rs:59
 msgctxt "source name"
