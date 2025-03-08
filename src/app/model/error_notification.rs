@@ -43,7 +43,7 @@ mod errors {
         let description = dpgettext2(
             None,
             "error-notification.description",
-            "Please configure a valid API key for %1 in the application preferences.  The current key appears to be invalid.",
+            "Please configure a valid API key for %1 in the application preferences. The current key appears to be invalid.",
         );
         ErrorNotification::builder()
             .title(title)
@@ -148,7 +148,7 @@ mod errors {
             dpgettext2(
                 None,
                 "error-notification.description",
-                "An I/O error occurred while fetching today's image from %1, with the following message: %2.  The system appears to have limited network connectivity.  Try to connect to the internet.",
+                "An I/O error occurred while fetching today's image from %1, with the following message: %2. The system appears to have limited network connectivity.  Try to connect to the internet.",
             )
         } else {
             dpgettext2(
