@@ -67,7 +67,7 @@ msgstr ""
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
-"use ordistribute them. Do take a look at the license terms for each image."
+"use or distribute them. Do take a look at the license terms for each image."
 msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
