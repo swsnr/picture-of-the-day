@@ -14,5 +14,5 @@ Actions=preferences;
 X-GNOME-UsesNotifications=true
 
 [Desktop Action preferences]
-Name=Add new device
+Name=Preferences
 Exec=de.swsnr.picture-of-the-day --preferences
