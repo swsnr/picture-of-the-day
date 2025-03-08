@@ -1,0 +1,93 @@
+name: Release
+
+on:
+  push:
+    tags: v*
+
+permissions: read-all
+
+jobs:
+  prepare-release-notes:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: appstreamcli metainfo-to-news
+        uses: docker://ghcr.io/gtk-rs/gtk4-rs/gtk4:latest
+        with:
+          args: appstreamcli metainfo-to-news resources/de.swsnr.pictureoftheday.metainfo.xml.in news.yaml
+      - name: yq eval-all '[.]' -oj news.yaml
+        id: news
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval-all '[.]' -oj news.yaml
+      - run: jq -nr --arg tag "${TAGNAME}" '$ENV.JSON | fromjson | .[] | select(.Version == ($tag | ltrimstr("v"))) | .Description | tostring' > relnotes.md
+        env:
+          JSON: ${{ steps.news.outputs.result }}
+          # Get release notes for the next release on the main branch, otherwise use the tag name
+          TAGNAME: ${{ !startsWith(github.ref, 'refs/tags/') && 'next' || github.ref_name }}
+      - run: cat relnotes.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: relnotes
+          path: relnotes.md
+
+  vendor-dependencies:
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - run: cargo --version
+      - run: tar --version
+      - run: zstd --version
+      - run: echo "${GITHUB_SHA}"
+      # Generate a reproducible vendor bundle
+      - run: env LC_ALL=C TZ=UTC0 echo "timestamp=$(git show --quiet --date='format-local:%Y-%m-%dT%H:%M:%SZ' --format="%cd" "${GITHUB_SHA}")" >> "$GITHUB_OUTPUT"
+        id: timestamp
+      - run: cargo vendor --locked
+      - run: env LC_ALL=C tar --numeric-owner --owner 0 --group 0 --sort name --mode='go+u,go-w' --format=posix --pax-option=exthdr.name=%d/PaxHeaders/%f --pax-option=delete=atime,delete=ctime --mtime="${{ steps.timestamp.outputs.timestamp }}" -c -f vendor.tar.zst --zstd vendor
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: vendor.tar.zst
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vendor.tar.zst
+          path: vendor.tar.zst
+
+  git-archive:
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: env LC_ALL=C TZ=UTC0 git archive --format tar --prefix 'pictureoftheday-${{ github.ref_name }}/' --output 'pictureoftheday-${{ github.ref_name }}.tar' "${{ github.sha }}"
+      - run: zstd 'pictureoftheday-${{ github.ref_name }}.tar'
+      - uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: 'pictureoftheday-${{ github.ref_name }}.tar.zst'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pictureoftheday-${{ github.ref_name }}.tar.zst
+          path: pictureoftheday-${{ github.ref_name }}.tar.zst
+
+  create-release:
+    runs-on: ubuntu-latest
+    needs: [prepare-release-notes, git-archive, vendor-dependencies]
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+          merge-multiple: true
+      - uses: softprops/action-gh-release@v2
+        with:
+          body_path: ./artifacts/relnotes.md
+          make_latest: true
+          files: |
+            ./artifacts/*.tar.*
