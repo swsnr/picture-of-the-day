@@ -42,11 +42,6 @@
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
-        <release version="next" date="9999-01-01">
-            <description>
-            </description>
-            <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
-        </release>
     </releases>
     <project_license>MPL-2.0</project_license>
     <developer id="de.swsnr">
