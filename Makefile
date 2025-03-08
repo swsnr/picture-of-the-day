@@ -71,7 +71,7 @@ install: install-locale
 	install -Dm0644 -t $(DESTPREFIX)/share/icons/hicolor/scalable/apps/ resources/icons/scalable/apps/$(APPID).svg
 	install -Dm0644 resources/icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg \
 		$(DESTPREFIX)/share/icons/hicolor/symbolic/apps/$(APPID)-symbolic.svg
-	install -Dm0644 de.swsnr.pictureoftheday.desktop.in $(DESTPREFIX)/share/applications/$(APPID).desktop
+	install -Dm0644 de.swsnr.pictureoftheday.desktop $(DESTPREFIX)/share/applications/$(APPID).desktop
 	install -Dm0644 resources/de.swsnr.pictureoftheday.metainfo.xml $(DESTPREFIX)/share/metainfo/$(APPID).metainfo.xml
 	install -Dm0644 dbus-1/de.swsnr.pictureoftheday.service $(DESTPREFIX)/share/dbus-1/services/$(APPID).service
 	install -Dm0644 schemas/de.swsnr.pictureoftheday.gschema.xml $(DESTPREFIX)/share/glib-2.0/schemas/$(APPID).gschema.xml
