@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:21+0000\n"
+"PO-Revision-Date: 2025-03-08 10:23+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
 "de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
@@ -295,22 +295,22 @@ msgstr "Übersetzungen"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
 #: src/app.rs:70
 msgid "translator-credits"
-msgstr ""
+msgstr "Sebastian Wiesner <sebastian@swsnr.de>"
 
 #: src/app.rs:75
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
-msgstr ""
+msgstr "Hilfe und Inspiration"
 
 #: src/app.rs:88
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
-msgstr ""
+msgstr "Hilfreiche Dienste"
 
 #: src/app.rs:196
 msgctxt "command-line.option.description"
 msgid "Show preferences dialog"
-msgstr ""
+msgstr "Einstellungen öffnen"
 
 #: src/app/model/error_notification.rs:41
 msgctxt "error-notification.title"
