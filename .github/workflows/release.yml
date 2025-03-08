@@ -65,15 +65,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: env LC_ALL=C TZ=UTC0 git archive --format tar --prefix 'pictureoftheday-${{ github.ref_name }}/' --output 'pictureoftheday-${{ github.ref_name }}.tar' "${{ github.sha }}"
-      - run: zstd 'pictureoftheday-${{ github.ref_name }}.tar'
+      - run: env LC_ALL=C TZ=UTC0 git archive --format tar --prefix 'picture-of-the-day-${{ github.ref_name }}/' --output 'picture-of-the-day-${{ github.ref_name }}.tar' "${{ github.sha }}"
+      - run: zstd 'picture-of-the-day-${{ github.ref_name }}.tar'
       - uses: actions/attest-build-provenance@v2
         with:
-          subject-path: 'pictureoftheday-${{ github.ref_name }}.tar.zst'
+          subject-path: 'picture-of-the-day-${{ github.ref_name }}.tar.zst'
       - uses: actions/upload-artifact@v4
         with:
-          name: pictureoftheday-${{ github.ref_name }}.tar.zst
-          path: pictureoftheday-${{ github.ref_name }}.tar.zst
+          name: picture-of-the-day-${{ github.ref_name }}.tar.zst
+          path: picture-of-the-day-${{ github.ref_name }}.tar.zst
 
   create-release:
     runs-on: ubuntu-latest
@@ -91,3 +91,55 @@ jobs:
           make_latest: true
           files: |
             ./artifacts/*.tar.*
+
+  # Update flatpak manifest
+  update-manifest:
+    runs-on: ubuntu-latest
+    needs: [git-archive, vendor-dependencies]
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+          merge-multiple: true
+      - run: echo ARCHIVE_SHA512="$(sha512sum artifacts/pictureoftheday-${{ github.ref_name }}.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
+      - run: echo VENDOR_SHA512="$(sha512sum artifacts/vendor.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
+      - run: rm -rf artifacts
+      - name: Replace git archive url
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval -i '.modules.[0].sources.[0].url = "https://github.com/swsnr/picture-of-the-day/releases/download/$GITHUB_REF_NAME/picture-of-the-day-$GITHUB_REF_NAME.tar.zst"' flatpak/de.swsnr.pictureoftheday.yaml
+      - name: Replace git archive sha512sum
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval -i '.modules.[0].sources.[0].sha512 = "$ARCHIVE_SHA512"' flatpak/de.swsnr.pictureoftheday.yaml
+      - name: Replace vendor bundle url
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval -i '.modules.[0].sources.[1].url = "https://github.com/swsnr/picture-of-the-day/releases/download/$GITHUB_REF_NAME/vendor.tar.zst"' flatpak/de.swsnr.pictureoftheday.yaml
+      - name: Replace vendor sha512sum
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval -i '.modules.[0].sources.[1].sha512 = "$VENDOR_SHA512"' flatpak/de.swsnr.pictureoftheday.yaml
+      - name: Substitute environment variables
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval -i '(.. | select(tag == "!!str")) |= envsubst' flatpak/de.swsnr.pictureoftheday.yaml
+      # A little sanity check
+      - run: git diff
+      # Create a pull request to update the manifest on main
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update flatpak manifest for ${{ github.ref_name }}"
+          branch: workflow/update-flatpak-manifest
+          base: main
+          sign-commits: true
+          delete-branch: true
+          title: "Update flatpak manifest for ${{ github.ref_name }}"
+          body: |
+            Update flatpak manifest for release ${{ github.ref_name }}.
+          assignees: swsnr
+          draft: always-true
