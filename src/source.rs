@@ -19,7 +19,7 @@ mod http;
 
 mod apod;
 mod bing;
-mod stalenhag;
+pub mod stalenhag;
 mod wikimedia;
 
 pub use error::SourceError;

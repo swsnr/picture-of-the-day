@@ -7,22 +7,22 @@
 use std::sync::LazyLock;
 
 use glib::dpgettext2;
-use gtk::gio::{self, ResourceLookupFlags};
+use gtk::gio::{self, ResourceLookupFlags, prelude::SettingsExtManual};
 use serde::Deserialize;
 
 use crate::image::{DownloadableImage, ImageMetadata};
 
 #[derive(Debug, Deserialize)]
-struct Image {
-    src: String,
+pub struct Image {
+    pub src: String,
 }
 
 #[derive(Debug, Deserialize)]
-struct Collection {
-    title: String,
-    tag: String,
-    url: String,
-    images: Vec<Image>,
+pub struct Collection {
+    pub title: String,
+    pub tag: String,
+    pub url: String,
+    pub images: Vec<Image>,
 }
 
 #[derive(Debug)]
@@ -33,27 +33,13 @@ struct ImageInCollection {
     image: &'static Image,
 }
 
-static COLLECTIONS: LazyLock<Vec<Collection>> = LazyLock::new(|| {
+pub static COLLECTIONS: LazyLock<Vec<Collection>> = LazyLock::new(|| {
     let data = gio::resources_lookup_data(
         "/de/swsnr/picture-of-the-day/stalenhag/collections.json",
         ResourceLookupFlags::NONE,
     )
     .unwrap();
     serde_json::from_slice(&data).unwrap()
-});
-
-static ALL_IMAGES: LazyLock<Vec<ImageInCollection>> = LazyLock::new(|| {
-    COLLECTIONS
-        .iter()
-        .flat_map(|c| {
-            c.images.iter().map(|i| ImageInCollection {
-                title: &c.title,
-                tag: &c.tag,
-                url: &c.url,
-                image: i,
-            })
-        })
-        .collect()
 });
 
 // See https://stackoverflow.com/a/38406885
@@ -79,15 +65,37 @@ fn pretty_title(title: &str) -> String {
         .join(" ")
 }
 
+fn enabled_collections() -> impl Iterator<Item = &'static Collection> {
+    let settings = crate::config::get_settings();
+    let disabled_collections = settings.strv("disabled-collections");
+    COLLECTIONS
+        .iter()
+        .filter(move |collection| !disabled_collections.contains(&collection.tag))
+}
+
+fn images(collections: impl Iterator<Item = &'static Collection>) -> Vec<ImageInCollection> {
+    collections
+        .flat_map(|c| {
+            c.images.iter().map(|i| ImageInCollection {
+                title: &c.title,
+                tag: &c.tag,
+                url: &c.url,
+                image: i,
+            })
+        })
+        .collect()
+}
+
 pub fn pick_todays_image() -> DownloadableImage {
+    let all_images = images(enabled_collections());
     // The 84th anniversary of Georg Elsner's heroic act of resistance against the nazi regime
     let base_date = glib::DateTime::from_local(2023, 11, 8, 21, 20, 0.0).unwrap();
     let now = glib::DateTime::now_local().unwrap();
     let days = now.difference(&base_date).as_days();
-    let index = usize::try_from(days.rem_euclid(i64::try_from(ALL_IMAGES.len()).unwrap())).unwrap();
+    let index = usize::try_from(days.rem_euclid(i64::try_from(all_images.len()).unwrap())).unwrap();
     // The modulus above makes sure we don't index out of bounds here
     #[allow(clippy::indexing_slicing)]
-    let image = &ALL_IMAGES[index];
+    let image = &all_images[index];
     // The URL of the image is guaranteed to have at least one slash.
     let (_, base_name) = image.image.src.rsplit_once('/').unwrap();
     let copyright = dpgettext2(None, "source.stalenhag.copyright", "All rights reserved.");

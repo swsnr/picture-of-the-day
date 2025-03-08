@@ -15,5 +15,9 @@
         at https://api.nasa.gov/.
       </description>
     </key>
+    <key name="disabled-collections" type="as">
+      <default>[]</default>
+      <description>Collections from Stålenhag which to ignore.</description>
+    </key>
   </schema>
 </schemalist>
