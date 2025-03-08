@@ -61,7 +61,7 @@ msgid "Simon Stålenhag Artwork"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:14
-msgid "Wikimedia Picture Of The day"
+msgid "Wikimedia Picture Of The Day"
 msgstr ""
 
 #: resources/de.swsnr.picture-of-the-day.metainfo.xml.in:16
