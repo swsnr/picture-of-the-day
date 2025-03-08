@@ -9,3 +9,7 @@ resources/*.metainfo.xml
 
 # Compiled settings schemas
 /schemas/*.compiled
+
+# Flatpak outputs
+/.flatpak-builder/
+/.flatpak-repo/

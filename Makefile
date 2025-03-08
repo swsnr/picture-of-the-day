@@ -10,7 +10,7 @@ DESTPREFIX = /app
 # Installation directory for locale files.
 LOCALEDIR = $(DESTPREFIX)/share/locale/
 
-GIT_DESCRIBE = $(shell git describe)
+GIT_DESCRIBE = $(shell git describe --always)
 
 BLUEPRINTS = $(wildcard ui/*.blp)
 CATALOGS = $(wildcard po/*.po)
@@ -80,7 +80,7 @@ install: install-locale
 .PHONY: patch-git-version
 patch-git-version:
 	sed -Ei 's/^version = "([^"]+)"/version = "\1+$(GIT_DESCRIBE)"/' Cargo.toml
-	cargo update -p picture-of-the-day
+	cargo update -p pictureoftheday
 
 # Patch the app ID to use APPID in various files
 .PHONY: patch-appid
@@ -91,3 +91,16 @@ patch-appid:
 		resources/de.swsnr.pictureoftheday.metainfo.xml.in \
 		dbus-1/de.swsnr.pictureoftheday.service \
 		schemas/de.swsnr.pictureoftheday.gschema.xml
+
+# Remove compiled message catalogs and other generated files, and flatpak
+# things
+.PHONY: clean
+clean:
+	rm -fr po/*.mo builddir .flatpak-repo .flatpak-builder
+
+# Build a development flatpak without sandbox.
+.PHONY: flatpak-devel
+flatpak-devel:
+	flatpak run org.flatpak.Builder --force-clean --user --install \
+		--install-deps-from=flathub --repo=.flatpak-repo \
+		builddir flatpak/de.swsnr.pictureoftheday.Devel.yaml
