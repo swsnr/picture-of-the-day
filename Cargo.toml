@@ -1,5 +1,5 @@
 [package]
-name = "picture-of-the-day"
+name = "pictureoftheday"
 description = "A fresh picture of the day as your desktop wallpaper "
 homepage = "https://github.com/swsnr/turnon"
 repository = "https://github.com/swsnr/turnon"

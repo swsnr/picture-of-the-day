@@ -22,5 +22,5 @@ url = "https://raw.githubusercontent.com/mozilla/supply-chain/main/audits.toml"
 [imports.swsnr]
 url = "https://raw.githubusercontent.com/swsnr/rust-supply-chain/refs/heads/main/audits.toml"
 
-[policy.picture-of-the-day]
+[policy.pictureoftheday]
 criteria = "safe-to-run"
