@@ -78,6 +78,30 @@ user-id = 3623 # Sebastian Dröge (sdroege)
 start = "2021-04-04"
 end = "2026-02-12"
 
+[[trusted.gdk4-wayland]]
+criteria = "safe-to-run"
+user-id = 3623 # Sebastian Dröge (sdroege)
+start = "2021-04-04"
+end = "2026-03-06"
+
+[[trusted.gdk4-wayland-sys]]
+criteria = "safe-to-run"
+user-id = 3623 # Sebastian Dröge (sdroege)
+start = "2021-04-04"
+end = "2026-03-06"
+
+[[trusted.gdk4-x11]]
+criteria = "safe-to-run"
+user-id = 3623 # Sebastian Dröge (sdroege)
+start = "2021-04-04"
+end = "2026-03-07"
+
+[[trusted.gdk4-x11-sys]]
+criteria = "safe-to-run"
+user-id = 3623 # Sebastian Dröge (sdroege)
+start = "2021-04-04"
+end = "2026-03-07"
+
 [[trusted.gio]]
 criteria = "safe-to-run"
 user-id = 3623 # Sebastian Dröge (sdroege)

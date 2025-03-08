@@ -79,10 +79,40 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               <object class="GtkBox">
                 <property name="orientation">0</property>
                 <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">image-symbolic</property>
+                    <property name="action-name">win.set-as-wallpaper</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set current image as wallpaper</property>
+                    <binding name="sensitive">
+                      <closure function="has_file" type="gboolean">
+                        <lookup name="downloaded-file" type="PotDImage">
+                          <lookup name="current-image" type="PotDImagesCarousel">
+                            <constant>images_carousel</constant>
+                          </lookup>
+                        </lookup>
+                      </closure>
+                    </binding>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkToggleButton">
                     <property name="icon-name">info-outline-symbolic</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Toggle the sidebar with image information</property>
                     <property name="action-name">win.show-image-properties</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
                   </object>
                 </child>
                 <child>
@@ -97,43 +127,72 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           </object>
         </child>
         <child>
-          <object class="GtkStack" id="stack">
-            <property name="visible-child">empty</property>
-            <child>
-              <object class="AdwOverlaySplitView" id="images_view">
-                <property name="sidebar-position">1</property>
-                <property name="show-sidebar" bind-source="PotDApplicationWindow" bind-property="show-image-properties" bind-flags="sync-create|bidirectional"/>
-                <property name="sidebar-width-fraction">0.33</property>
-                <property name="content">
-                  <object class="PotDImagesCarousel" id="images_carousel"></object>
-                </property>
-                <property name="sidebar">
-                  <object class="GtkScrolledWindow">
-                    <child>
-                      <object class="GtkBox">
-                        <property name="orientation">1</property>
-                        <property name="margin-top">24</property>
-                        <property name="margin-bottom">24</property>
-                        <property name="margin-start">12</property>
-                        <property name="margin-end">12</property>
-                        <property name="spacing">24</property>
+          <object class="AdwToastOverlay" id="toasts">
+            <property name="child">
+              <object class="GtkStack" id="stack">
+                <property name="visible-child">empty</property>
+                <child>
+                  <object class="AdwOverlaySplitView" id="images_view">
+                    <property name="sidebar-position">1</property>
+                    <property name="show-sidebar" bind-source="PotDApplicationWindow" bind-property="show-image-properties" bind-flags="sync-create|bidirectional"/>
+                    <property name="sidebar-width-fraction">0.33</property>
+                    <property name="content">
+                      <object class="PotDImagesCarousel" id="images_carousel"></object>
+                    </property>
+                    <property name="sidebar">
+                      <object class="GtkScrolledWindow">
                         <child>
-                          <object class="AdwPreferencesGroup">
+                          <object class="GtkBox">
+                            <property name="orientation">1</property>
+                            <property name="margin-top">24</property>
+                            <property name="margin-bottom">24</property>
+                            <property name="margin-start">12</property>
+                            <property name="margin-end">12</property>
+                            <property name="spacing">24</property>
                             <child>
-                              <object class="AdwActionRow">
-                                <property name="title" translatable="yes" context="images-view.metadata.label">Title</property>
-                                <binding name="subtitle">
-                                  <lookup name="title" type="PotDImage">
-                                    <lookup name="current-image" type="PotDImagesCarousel">
-                                      <constant>images_carousel</constant>
-                                    </lookup>
-                                  </lookup>
-                                </binding>
-                                <child type="suffix">
-                                  <object class="GtkLinkButton">
-                                    <property name="icon-name">external-link-symbolic</property>
-                                    <binding name="uri">
-                                      <lookup name="url" type="PotDImage">
+                              <object class="AdwPreferencesGroup">
+                                <child>
+                                  <object class="AdwActionRow">
+                                    <property name="title" translatable="yes" context="images-view.metadata.label">Title</property>
+                                    <binding name="subtitle">
+                                      <lookup name="title" type="PotDImage">
+                                        <lookup name="current-image" type="PotDImagesCarousel">
+                                          <constant>images_carousel</constant>
+                                        </lookup>
+                                      </lookup>
+                                    </binding>
+                                    <child type="suffix">
+                                      <object class="GtkLinkButton">
+                                        <property name="icon-name">external-link-symbolic</property>
+                                        <binding name="uri">
+                                          <lookup name="url" type="PotDImage">
+                                            <lookup name="current-image" type="PotDImagesCarousel">
+                                              <constant>images_carousel</constant>
+                                            </lookup>
+                                          </lookup>
+                                        </binding>
+                                        <binding name="visible">
+                                          <closure function="non_empty" type="gboolean">
+                                            <lookup name="url" type="PotDImage">
+                                              <lookup name="current-image" type="PotDImagesCarousel">
+                                                <constant>images_carousel</constant>
+                                              </lookup>
+                                            </lookup>
+                                          </closure>
+                                        </binding>
+                                        <property name="tooltip-text" translatable="yes">Visit the source page of this image.</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="property"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="AdwActionRow">
+                                    <property name="title" translatable="yes" context="images-view.metadata.label">Copyright</property>
+                                    <binding name="subtitle">
+                                      <lookup name="copyright" type="PotDImage">
                                         <lookup name="current-image" type="PotDImagesCarousel">
                                           <constant>images_carousel</constant>
                                         </lookup>
@@ -141,133 +200,105 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                                     </binding>
                                     <binding name="visible">
                                       <closure function="non_empty" type="gboolean">
-                                        <lookup name="url" type="PotDImage">
+                                        <lookup name="copyright" type="PotDImage">
                                           <lookup name="current-image" type="PotDImagesCarousel">
                                             <constant>images_carousel</constant>
                                           </lookup>
                                         </lookup>
                                       </closure>
                                     </binding>
-                                    <property name="tooltip-text" translatable="yes">Visit the source page of this image.</property>
+                                    <style>
+                                      <class name="property"/>
+                                    </style>
                                   </object>
                                 </child>
-                                <style>
-                                  <class name="property"/>
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title" translatable="yes" context="images-view.metadata.label">Copyright</property>
-                                <binding name="subtitle">
-                                  <lookup name="copyright" type="PotDImage">
-                                    <lookup name="current-image" type="PotDImagesCarousel">
-                                      <constant>images_carousel</constant>
-                                    </lookup>
-                                  </lookup>
-                                </binding>
-                                <binding name="visible">
-                                  <closure function="non_empty" type="gboolean">
-                                    <lookup name="copyright" type="PotDImage">
-                                      <lookup name="current-image" type="PotDImagesCarousel">
-                                        <constant>images_carousel</constant>
-                                      </lookup>
-                                    </lookup>
-                                  </closure>
-                                </binding>
-                                <style>
-                                  <class name="property"/>
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title" translatable="yes" context="images-view.metadata.label">Description</property>
-                                <binding name="subtitle">
-                                  <lookup name="description" type="PotDImage">
-                                    <lookup name="current-image" type="PotDImagesCarousel">
-                                      <constant>images_carousel</constant>
-                                    </lookup>
-                                  </lookup>
-                                </binding>
-                                <binding name="visible">
-                                  <closure function="non_empty" type="gboolean">
-                                    <lookup name="description" type="PotDImage">
-                                      <lookup name="current-image" type="PotDImagesCarousel">
-                                        <constant>images_carousel</constant>
-                                      </lookup>
-                                    </lookup>
-                                  </closure>
-                                </binding>
-                                <style>
-                                  <class name="property"/>
-                                </style>
-                              </object>
-                            </child>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="AdwPreferencesGroup">
-                            <child>
-                              <object class="AdwActionRow">
-                                <property name="title" translatable="yes" context="images-view.metadata.label">Source</property>
-                                <binding name="subtitle">
-                                  <lookup name="source-name" type="PotDImage">
-                                    <lookup name="current-image" type="PotDImagesCarousel">
-                                      <constant>images_carousel</constant>
-                                    </lookup>
-                                  </lookup>
-                                </binding>
-                                <child type="suffix">
-                                  <object class="GtkLinkButton">
-                                    <property name="icon-name">external-link-symbolic</property>
-                                    <binding name="uri">
-                                      <lookup name="source-url" type="PotDImage">
+                                <child>
+                                  <object class="AdwActionRow">
+                                    <property name="title" translatable="yes" context="images-view.metadata.label">Description</property>
+                                    <binding name="subtitle">
+                                      <lookup name="description" type="PotDImage">
                                         <lookup name="current-image" type="PotDImagesCarousel">
                                           <constant>images_carousel</constant>
                                         </lookup>
                                       </lookup>
                                     </binding>
-                                    <property name="tooltip-text" translatable="yes">Visit the main page of the source of this image.</property>
+                                    <binding name="visible">
+                                      <closure function="non_empty" type="gboolean">
+                                        <lookup name="description" type="PotDImage">
+                                          <lookup name="current-image" type="PotDImagesCarousel">
+                                            <constant>images_carousel</constant>
+                                          </lookup>
+                                        </lookup>
+                                      </closure>
+                                    </binding>
+                                    <style>
+                                      <class name="property"/>
+                                    </style>
                                   </object>
                                 </child>
-                                <style>
-                                  <class name="property"/>
-                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwPreferencesGroup">
+                                <child>
+                                  <object class="AdwActionRow">
+                                    <property name="title" translatable="yes" context="images-view.metadata.label">Source</property>
+                                    <binding name="subtitle">
+                                      <lookup name="source-name" type="PotDImage">
+                                        <lookup name="current-image" type="PotDImagesCarousel">
+                                          <constant>images_carousel</constant>
+                                        </lookup>
+                                      </lookup>
+                                    </binding>
+                                    <child type="suffix">
+                                      <object class="GtkLinkButton">
+                                        <property name="icon-name">external-link-symbolic</property>
+                                        <binding name="uri">
+                                          <lookup name="source-url" type="PotDImage">
+                                            <lookup name="current-image" type="PotDImagesCarousel">
+                                              <constant>images_carousel</constant>
+                                            </lookup>
+                                          </lookup>
+                                        </binding>
+                                        <property name="tooltip-text" translatable="yes">Visit the main page of the source of this image.</property>
+                                      </object>
+                                    </child>
+                                    <style>
+                                      <class name="property"/>
+                                    </style>
+                                  </object>
+                                </child>
                               </object>
                             </child>
                           </object>
                         </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
-                </property>
-              </object>
-            </child>
-            <child>
-              <object class="PotDErrorNotificationPage" id="error_page"></object>
-            </child>
-            <child>
-              <object class="AdwStatusPage" id="empty">
-                <property name="icon-name">de.swsnr.picture-of-the-day</property>
-                <property name="vexpand">true</property>
-                <property name="child">
-                  <object class="AdwClamp">
-                    <child>
-                      <object class="GtkButton">
-                        <property name="halign">3</property>
-                        <property name="label" translatable="yes" context="start-page.button.label">Get images</property>
-                        <property name="action-name">win.load-images</property>
-                        <style>
-                          <class name="pill"/>
-                          <class name="suggested-action"/>
-                        </style>
+                </child>
+                <child>
+                  <object class="AdwStatusPage" id="empty">
+                    <property name="icon-name">de.swsnr.picture-of-the-day</property>
+                    <property name="vexpand">true</property>
+                    <property name="child">
+                      <object class="AdwClamp">
+                        <child>
+                          <object class="GtkButton">
+                            <property name="halign">3</property>
+                            <property name="label" translatable="yes" context="start-page.button.label">Get images</property>
+                            <property name="action-name">win.load-images</property>
+                            <style>
+                              <class name="pill"/>
+                              <class name="suggested-action"/>
+                            </style>
+                          </object>
+                        </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
-                </property>
+                </child>
               </object>
-            </child>
+            </property>
           </object>
         </child>
       </object>

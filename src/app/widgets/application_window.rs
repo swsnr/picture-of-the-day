@@ -4,8 +4,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use adw::prelude::*;
+use glib::dpgettext2;
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
+use gtk::UriLauncher;
 use gtk::gio;
+
+use crate::app::model::{ErrorNotification, ErrorNotificationActions};
+use crate::config::G_LOG_DOMAIN;
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -42,31 +48,124 @@ impl ApplicationWindow {
             .load_images_for_source(source, &cancellable)
             .await
         {
-            self.imp().show_error(source, &error);
+            self.imp().show_source_error(source, &error);
         }
 
         self.imp().finish_loading();
+    }
+
+    async fn open_source_url(&self) {
+        let url = self.selected_source().url();
+        if let Err(error) = UriLauncher::new(url).launch_future(Some(self)).await {
+            glib::warn!("Failed to open source URL: {error}");
+            let description = dpgettext2(
+                None,
+                "error-notification.description",
+                "An I/O error occurred while opening %1, with the following message: %2. If the issue persists please report the problem.",
+            );
+            let error = ErrorNotification::builder()
+                .title(dpgettext2(
+                    None,
+                    "error-notification.title",
+                    "Failed to open source URL",
+                ))
+                .description(
+                    description
+                        .replace("%1", url)
+                        .replace("%2", &error.to_string()),
+                )
+                .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                .build();
+            self.imp().show_error(&error);
+        };
+    }
+
+    async fn set_current_image_as_wallpaper(&self) {
+        if let Err(error) = self.imp().set_current_image_as_wallpaper().await {
+            glib::warn!("Failed to set current image as wallaper: {error}");
+            let description = dpgettext2(
+                None,
+                "error-notification.description",
+                "An I/O error occurred while setting the wallpaper, with the following message: %1. If the issue persists please report the problem.",
+            );
+            let error = ErrorNotification::builder()
+                .title(dpgettext2(
+                    None,
+                    "error-notification.title",
+                    "Failed to set wallpaper",
+                ))
+                .description(description.replace("%1", &error.to_string()))
+                .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                .build();
+            self.imp().show_error(&error);
+        }
+    }
+
+    fn show_error_dialog(&self, error: &ErrorNotification) {
+        let actions = error.actions();
+        let dialog = adw::AlertDialog::builder()
+            .heading(error.title())
+            .body(error.description())
+            .prefer_wide_layout(!actions.is_empty())
+            .build();
+        dialog.add_response("close", &dpgettext2(None, "alert.response", "Close"));
+        dialog.set_close_response("close");
+        dialog.set_default_response(Some("close"));
+
+        for (action_name, action) in actions.iter_names() {
+            let (label, action_to_activate) = match action {
+                ErrorNotificationActions::OPEN_ABOUT_DIALOG => {
+                    let label = dpgettext2(None, "alert.response", "Contact information");
+                    (label, "app.about")
+                }
+                ErrorNotificationActions::OPEN_PREFERENCES => {
+                    let label = dpgettext2(None, "alert.response", "Open preferences");
+                    (label, "app.preferences")
+                }
+                ErrorNotificationActions::OPEN_SOURCE_URL => {
+                    let label = dpgettext2(None, "alert.response", "Open URL");
+                    (label, "win.open-source-url")
+                }
+                _ => unreachable!(),
+            };
+            dialog.add_response(action_name, &label);
+            dialog.connect_response(
+                Some(action_name),
+                glib::clone!(
+                    #[weak(rename_to = window)]
+                    self,
+                    move |_, _| {
+                        gtk::prelude::WidgetExt::activate_action(&window, action_to_activate, None)
+                            .unwrap();
+                    }
+                ),
+            );
+        }
+        dialog.present(Some(self));
     }
 }
 
 mod imp {
     use std::cell::{Cell, RefCell};
+    use std::fs::File;
+    use std::os::fd::OwnedFd;
     use std::rc::Rc;
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use futures::future::join_all;
-    use glib::Properties;
     use glib::subclass::InitializingObject;
+    use glib::{Properties, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, IOErrorEnum};
     use strum::IntoEnumIterator;
 
     use crate::Source;
-    use crate::app::model::{ErrorNotification, Image, ImageDownload};
+    use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
+    use crate::portal::wallpaper::{Preview, SetOn};
     use crate::source::SourceError;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -90,7 +189,7 @@ mod imp {
         #[template_child]
         images_carousel: TemplateChild<ImagesCarousel>,
         #[template_child]
-        error_page: TemplateChild<ErrorNotificationPage>,
+        toasts: TemplateChild<adw::ToastOverlay>,
     }
 
     #[gtk::template_callbacks]
@@ -99,9 +198,18 @@ mod imp {
         fn non_empty(s: Option<&str>) -> bool {
             s.is_some_and(|s| !s.is_empty())
         }
+
+        #[template_callback(function)]
+        fn has_file(f: Option<&gio::File>) -> bool {
+            f.is_some()
+        }
     }
 
     impl ApplicationWindow {
+        pub fn current_image(&self) -> Option<Image> {
+            self.images_carousel.current_image()
+        }
+
         fn is_loading(&self) -> bool {
             self.is_loading.borrow().is_some()
         }
@@ -144,17 +252,36 @@ mod imp {
             self.obj().notify_is_loading();
         }
 
-        pub fn show_error(&self, source: Source, error: &SourceError) {
+        pub fn show_source_error(&self, source: Source, error: &SourceError) {
             if let SourceError::Cancelled = error {
                 glib::info!("Fetching images cancelled by user");
-                // Do not change the view if the user cancelled the action; just
-                // keep the previous view.
+                // Don't notify if the user just cancelled things
             } else {
                 glib::error!("Fetching images failed: {error}");
                 let error = ErrorNotification::from_error(source, error);
-                self.error_page.set_error(Some(&error));
-                self.stack.set_visible_child(&self.error_page.get());
+                self.show_error(&error);
             }
+        }
+
+        pub fn show_error(&self, error: &ErrorNotification) {
+            let toast = adw::Toast::builder()
+                .title(error.title())
+                .priority(adw::ToastPriority::High)
+                .timeout(15)
+                .button_label(dpgettext2(None, "toast.button.label", "Details"))
+                .build();
+
+            toast.connect_button_clicked(glib::clone!(
+                #[strong]
+                error,
+                #[weak(rename_to = window)]
+                self.obj(),
+                move |toast| {
+                    toast.dismiss();
+                    window.show_error_dialog(&error);
+                }
+            ));
+            self.toasts.add_toast(toast);
         }
 
         pub async fn load_images_for_source(
@@ -176,7 +303,7 @@ mod imp {
                 .into_iter()
                 .map(|image| {
                     let obj = Image::from(&image);
-                    (image, obj, ImageDownload::default())
+                    (image, obj)
                 })
                 .collect::<Vec<_>>();
 
@@ -185,7 +312,7 @@ mod imp {
             self.images_carousel.get().set_images(
                 &images
                     .iter()
-                    .map(|(_, image, download)| (image.clone(), download.clone()))
+                    .map(|(_, image)| image.clone())
                     .collect::<Vec<_>>(),
             );
             self.switch_to_images_view();
@@ -215,7 +342,7 @@ mod imp {
             // Download all images
             let http_session = self.http_session.borrow().clone();
             let target_directory = Rc::new(target_directory);
-            join_all(images.into_iter().map(move |(image, _, download)| {
+            join_all(images.into_iter().map(move |(image, image_obj)| {
                 glib::clone!(
                     #[strong]
                     target_directory,
@@ -226,7 +353,7 @@ mod imp {
                         match image.download_to(&target, &http_session, cancellable).await {
                             Ok(()) => {
                                 glib::info!("Displaying image from {}", target.display());
-                                download.set_file(Some(&gio::File::for_path(target)));
+                                image_obj.set_downloaded_file(Some(&gio::File::for_path(target)));
                             }
                             Err(error) => {
                                 glib::warn!(
@@ -234,13 +361,44 @@ mod imp {
                                     &image.image_url
                                 );
                                 let error = ErrorNotification::from_error(source, &error.into());
-                                download.set_error(Some(error));
+                                image_obj.set_download_error(Some(error));
                             }
                         }
                     }
                 )
             }))
             .await;
+            Ok(())
+        }
+
+        pub async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
+            if let Some(file) = self
+                .current_image()
+                .and_then(|image| image.downloaded_file())
+            {
+                let fd = gio::spawn_blocking(move || {
+                    File::open(file.path().unwrap()).map(OwnedFd::from)
+                })
+                .await
+                .unwrap()
+                .map_err(|error| {
+                    let domain = error
+                        .raw_os_error()
+                        .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
+                        .unwrap_or(IOErrorEnum::Failed);
+                    glib::Error::new(domain, &error.to_string())
+                })?;
+                let connection = gio::bus_get_future(gio::BusType::Session).await?;
+                let result = crate::portal::wallpaper::set_wallpaper_file(
+                    &connection,
+                    Some(&*self.obj()),
+                    fd,
+                    Preview::Preview,
+                    SetOn::Both,
+                )
+                .await?;
+                glib::info!("Request finished: {result:?}");
+            }
             Ok(())
         }
     }
@@ -268,6 +426,12 @@ mod imp {
             });
             klass.install_action_async("win.load-images", None, |window, _, _| async move {
                 window.load_images().await;
+            });
+            klass.install_action_async("win.open-source-url", None, |window, _, _| async move {
+                window.open_source_url().await;
+            });
+            klass.install_action_async("win.set-as-wallpaper", None, |window, _, _| async move {
+                window.set_current_image_as_wallpaper().await;
             });
 
             klass.add_binding_action(Key::F5, ModifierType::NO_MODIFIER_MASK, "win.load-images");

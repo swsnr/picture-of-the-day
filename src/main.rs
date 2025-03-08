@@ -48,6 +48,7 @@ mod app;
 mod config;
 mod gettext;
 mod image;
+mod portal;
 mod source;
 
 use config::G_LOG_DOMAIN;

@@ -49,6 +49,34 @@ user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
+[[publisher.gdk4-wayland]]
+version = "0.9.6"
+when = "2025-02-16"
+user-id = 3623
+user-login = "sdroege"
+user-name = "Sebastian Dröge"
+
+[[publisher.gdk4-wayland-sys]]
+version = "0.9.6"
+when = "2025-02-16"
+user-id = 3623
+user-login = "sdroege"
+user-name = "Sebastian Dröge"
+
+[[publisher.gdk4-x11]]
+version = "0.9.6"
+when = "2025-02-16"
+user-id = 3623
+user-login = "sdroege"
+user-name = "Sebastian Dröge"
+
+[[publisher.gdk4-x11-sys]]
+version = "0.9.6"
+when = "2025-02-16"
+user-id = 3623
+user-login = "sdroege"
+user-name = "Sebastian Dröge"
+
 [[publisher.gio]]
 version = "0.20.7"
 when = "2024-12-16"

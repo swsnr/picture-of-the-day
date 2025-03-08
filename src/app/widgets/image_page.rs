@@ -24,10 +24,10 @@ mod imp {
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::{Properties, subclass::InitializingObject};
-    use gtk::{CompositeTemplate, gio};
+    use gtk::CompositeTemplate;
 
     use crate::app::{
-        model::{ErrorNotification, Image, ImageDownload},
+        model::{Image, ImageState},
         widgets::ErrorNotificationPage,
     };
 
@@ -37,8 +37,6 @@ mod imp {
     pub struct ImagePage {
         #[property(get, set)]
         image: RefCell<Option<Image>>,
-        #[property(get, set)]
-        download: RefCell<Option<ImageDownload>>,
         #[template_child]
         loading: TemplateChild<gtk::Widget>,
         #[template_child]
@@ -49,21 +47,12 @@ mod imp {
 
     #[gtk::template_callbacks]
     impl ImagePage {
-        #[template_callback(function)]
-        fn is_loading(file: Option<&gio::File>, error: Option<&ErrorNotification>) -> bool {
-            file.is_none() && error.is_none()
-        }
-
         #[template_callback]
-        fn stack_page(
-            &self,
-            file: Option<&gio::File>,
-            error: Option<&ErrorNotification>,
-        ) -> gtk::Widget {
-            match (file, error) {
-                (Some(_), _) => self.picture.get(),
-                (_, Some(_)) => self.error.get(),
-                (None, None) => self.loading.get(),
+        fn stack_page(&self, state: ImageState) -> gtk::Widget {
+            match state {
+                ImageState::Pending => self.loading.get(),
+                ImageState::Downloaded => self.picture.get(),
+                ImageState::DownloadFailed => self.error.get(),
             }
         }
     }
@@ -78,7 +67,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             Image::ensure_type();
-            ImageDownload::ensure_type();
+            ImageState::ensure_type();
             ErrorNotificationPage::ensure_type();
 
             klass.bind_template();
