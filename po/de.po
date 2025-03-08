@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 10:39+0000\n"
+"PO-Revision-Date: 2025-03-08 10:40+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
 "Language-Team: German <https://translate.codeberg.org/projects/"
 "de-swsnr-picture-of-the-day/de-swsnr-picture-of-the-day/de/>\n"
@@ -494,7 +494,7 @@ msgstr "NASA Astronomie Bild des Tages"
 #: src/source.rs:59
 msgctxt "source name"
 msgid "Bing"
-msgstr ""
+msgstr "Bing"
 
 #: src/source.rs:60
 msgctxt "source name"
@@ -502,34 +502,35 @@ msgid "Wikimedia Picture Of The Day"
 msgstr ""
 
 #: src/source.rs:61
+#, fuzzy
 msgctxt "source name"
 msgid "Simon Stålenhag"
-msgstr ""
+msgstr "Simon Stålenhag"
 
 #: src/source/stalenhag.rs:101
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
-msgstr ""
+msgstr "Alle Rechte vorbehalten."
 
 #: src/source/stalenhag.rs:102
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
-msgstr ""
+msgstr "Sammlung: %s"
 
 #: src/source/wikimedia.rs:60
-#, c-format
+#, c-format, fuzzy
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
-msgstr ""
+msgstr "%artist (%credit, %license)"
 
 #: src/source/wikimedia.rs:66
-#, c-format
+#, c-format, fuzzy
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
-msgstr ""
+msgstr "%artist (%license)"
 
 #: src/source/wikimedia.rs:75
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
-msgstr ""
+msgstr "Unbekannt, alle Rechte vorbehalten"
