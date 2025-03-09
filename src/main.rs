@@ -67,6 +67,11 @@ fn main() -> glib::ExitCode {
     log::set_max_level(max_level);
     log::set_logger(&GLIB_LOGGER).unwrap();
 
+    glib::info!(
+        "Running in flatpak?: {}",
+        crate::config::running_in_flatpak()
+    );
+
     let locale_dir = config::locale_directory();
     glib::debug!(
         "Initializing gettext with locale directory {}",
