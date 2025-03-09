@@ -11,33 +11,35 @@ use glib::{Variant, VariantDict, object::IsA};
 use gtk::gio::IOErrorEnum;
 use gtk::gio::{self, DBusSignalFlags, SignalSubscriptionId};
 use gtk::prelude::*;
+use strum::EnumIter;
 
 use crate::config::G_LOG_DOMAIN;
 
 /// The result of a portal request.
-#[derive(Debug, Copy, Clone)]
+///
+/// See <https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Request.html#org-freedesktop-portal-request-response>
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Variant, EnumIter)]
+#[repr(u32)]
+#[variant_enum(repr)]
 pub enum RequestResult {
     ///Success, the request is carried out
-    Success,
+    Success = 0,
     /// The user cancelled the interaction
-    Cancelled,
+    Cancelled = 1,
     /// The user interaction was ended in some other way
-    Ended,
+    Ended = 2,
 }
 
-impl TryFrom<u32> for RequestResult {
-    type Error = glib::Error;
+/// A response to a portal request.
+///
+/// See <https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Request.html#org-freedesktop-portal-request-response>
+#[derive(Clone, glib::Variant)]
+pub struct PortalResponse(RequestResult, VariantDict);
 
-    fn try_from(value: u32) -> Result<Self, Self::Error> {
-        match value {
-            0 => Ok(Self::Success),
-            1 => Ok(Self::Cancelled),
-            2 => Ok(Self::Ended),
-            _ => Err(glib::Error::new(
-                IOErrorEnum::InvalidArgument,
-                &format!("Unknown response value {value}"),
-            )),
-        }
+impl PortalResponse {
+    /// Get the result of this request.
+    pub fn result(&self) -> RequestResult {
+        self.0
     }
 }
 
@@ -102,7 +104,7 @@ impl HandleToken {
     pub async fn wait_for_response(
         &self,
         connection: &gio::DBusConnection,
-    ) -> Result<(RequestResult, VariantDict), glib::Error> {
+    ) -> Result<PortalResponse, glib::Error> {
         let (tx, mut rx) = futures::channel::mpsc::unbounded();
         let id = connection.signal_subscribe(
             Some("org.freedesktop.portal.Desktop"),
@@ -112,10 +114,10 @@ impl HandleToken {
             None,
             DBusSignalFlags::NO_MATCH_RULE,
             move |_connection, _sender, _path, _interface, _signal, parameters| {
-                let result = parameters.get::<(u32, VariantDict)>().ok_or_else(|| {
+                let result = parameters.get::<PortalResponse>().ok_or_else(|| {
                     glib::Error::new(
                         IOErrorEnum::InvalidData,
-                        &format!("Unexpected type received: {}", parameters.value_type()),
+                        &format!("Unexpected parameters received: {parameters:?}"),
                     )
                 });
                 if let Err(error) = tx.unbounded_send(result) {
@@ -124,9 +126,11 @@ impl HandleToken {
             },
         );
         let signal = ConnectedSignal(connection.clone(), Some(id));
-        let (result, results) = rx.next().await.unwrap()?;
+        let result = rx.next().await.unwrap()?;
+        // Disconnect from the signal after we received the response; do this
+        // explicitly to make the lifetime of the signal connection abundantly clear here.
         drop(signal);
-        Ok((RequestResult::try_from(result)?, results))
+        Ok(result)
     }
 }
 
@@ -237,6 +241,25 @@ impl WindowIdentifier {
             }
         } else {
             Self::None
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use glib::VariantTy;
+    use strum::IntoEnumIterator;
+
+    use super::*;
+
+    #[test]
+    #[allow(clippy::as_conversions)]
+    fn request_result_variant() {
+        for result in RequestResult::iter() {
+            let variant = result.to_variant();
+            assert_eq!(variant.type_(), VariantTy::UINT32);
+            assert_eq!(variant.get::<u32>().unwrap(), result as u32);
+            assert_eq!(variant.get::<RequestResult>().unwrap(), result);
         }
     }
 }

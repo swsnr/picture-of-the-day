@@ -102,7 +102,7 @@ pub async fn set_wallpaper_file<F: AsFd>(
     // Assert that we're listening on the correct response path!
     assert_eq!(path.0, token.request_object_path(connection));
 
-    let (request_result, _) = result.await.unwrap()?;
+    let request_result = result.await.unwrap()?.result();
 
     // Make sure we keep the window identifier alive until the call's finished.
     drop(window_identifier);
