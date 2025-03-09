@@ -40,6 +40,7 @@
 #![allow(clippy::enum_glob_use, clippy::module_name_repetitions)]
 
 use app::Application;
+use glib::dpgettext2;
 use glib::gstr;
 use gtk::gio;
 use gtk::prelude::*;
@@ -83,7 +84,7 @@ fn main() -> glib::ExitCode {
     gettext::setlocale(gettext::LC_ALL, gstr!("")).unwrap();
 
     gio::resources_register_include!("pictureoftheday.gresource").unwrap();
-    glib::set_application_name("Picture Of The Day");
+    glib::set_application_name(&dpgettext2(None, "application-name", "Picture Of The Day"));
 
     let app = Application::default();
     app.set_version(config::CARGO_PKG_VERSION);
