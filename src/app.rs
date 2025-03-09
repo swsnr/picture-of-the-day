@@ -200,6 +200,10 @@ mod imp {
         fn startup(&self) {
             self.parent_startup();
 
+            // Set default icon for all Gtk windows; we do this here instead of
+            // in main because by this time Gtk is already initialized.
+            gtk::Window::set_default_icon_name(crate::config::APP_ID);
+
             if crate::config::is_development() {
                 glib::warn!(
                     "Starting application version {} (DEVELOPMENT BUILD)",
