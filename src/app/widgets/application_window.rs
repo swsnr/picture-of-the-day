@@ -147,25 +147,26 @@ impl ApplicationWindow {
 
 mod imp {
     use std::cell::{Cell, RefCell};
-    use std::fs::File;
-    use std::os::fd::OwnedFd;
     use std::rc::Rc;
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use futures::future::join_all;
     use glib::subclass::InitializingObject;
-    use glib::{Properties, dpgettext2};
+    use glib::variant::Handle;
+    use glib::{Priority, Properties, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
-    use gtk::gio::{self, Cancellable, IOErrorEnum};
+    use gtk::gio::{self, Cancellable, FileDescriptorBased, IOErrorEnum, UnixFDList};
     use strum::IntoEnumIterator;
 
     use crate::Source;
     use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
-    use crate::portal::wallpaper::{Preview, SetOn};
+    use crate::portal::client::PortalClient;
+    use crate::portal::wallpaper::{Preview, SetOn, SetWallpaperFile};
+    use crate::portal::window::PortalWindowHandle;
     use crate::source::SourceError;
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -376,27 +377,36 @@ mod imp {
                 .current_image()
                 .and_then(|image| image.downloaded_file())
             {
-                let fd = gio::spawn_blocking(move || {
-                    File::open(file.path().unwrap()).map(OwnedFd::from)
-                })
-                .await
-                .unwrap()
-                .map_err(|error| {
-                    let domain = error
-                        .raw_os_error()
-                        .and_then(<gtk::gio::IOErrorEnum as glib::error::ErrorDomain>::from)
-                        .unwrap_or(IOErrorEnum::Failed);
-                    glib::Error::new(domain, &error.to_string())
-                })?;
-                let connection = gio::bus_get_future(gio::BusType::Session).await?;
-                let result = crate::portal::wallpaper::set_wallpaper_file(
-                    &connection,
-                    Some(&*self.obj()),
-                    fd,
+                let fd = file
+                    .read_future(Priority::DEFAULT)
+                    .await?
+                    .dynamic_cast::<FileDescriptorBased>()
+                    .map_err(|_| {
+                        glib::Error::new(
+                            IOErrorEnum::Failed,
+                            &format!(
+                                "Failed to obtain file descriptor for {}",
+                                file.path().unwrap().display()
+                            ),
+                        )
+                    })?;
+                let client = PortalClient::session().await?;
+                let fdlist = UnixFDList::new();
+                let window_handle = PortalWindowHandle::new_for_window(&*self.obj()).await;
+                let call = SetWallpaperFile::new(
+                    window_handle.identifier(),
+                    Handle(fdlist.append(fd)?),
                     Preview::Preview,
                     SetOn::Both,
-                )
-                .await?;
+                );
+                let result = client
+                    .invoke_with_unix_fd_list(call, Some(&fdlist))
+                    .await?
+                    .receive_response()
+                    .await?
+                    .result();
+                // Explicitly keep the window handle alive until we received a response for the request.
+                drop(window_handle);
                 glib::info!("Request finished: {result:?}");
             }
             Ok(())

@@ -4,18 +4,11 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::os::fd::AsFd;
-use std::rc::Rc;
-
-use glib::VariantTy;
-use glib::object::IsA;
 use glib::variant::Handle;
-use gtk::gio::prelude::*;
-use gtk::gio::{self, IOErrorEnum, UnixFDList};
+use glib::{Variant, VariantDict};
 
-use crate::portal::request::{HandleToken, WindowIdentifier};
-
-use super::request::RequestResult;
+use super::client::PortalCall;
+use super::window::PortalWindowIdentifier;
 
 /// Where to set the wallpaper.
 #[derive(Debug, Copy, Clone, strum::IntoStaticStr)]
@@ -32,80 +25,53 @@ pub enum SetOn {
 /// Whether to show a preview for the wallpaper or not.
 #[derive(Debug, Copy, Clone)]
 pub enum Preview {
+    /// Show a preview window.
+    ///
+    /// If a preview is shown the portal does not ask for permission separately.
     Preview,
     #[allow(dead_code)]
+    /// Do not show a preview.
+    ///
+    /// If the app lacks permission to set the wallpaper the portal asks the
+    /// user to grant the app this permission.
     NoPreview,
 }
 
-/// Set the current wallaper to a file.
-///
-/// Talk to the wallpaper portal on `connection`, and set the given `file` as
-/// wallpaper.
-///
-/// `window` is the parent window to use for dialogs the portal needs to show
-/// in order to process the request, such as the preview window.
-///
-/// `preview` denotes whether or not to show a preview, and `set_on` determines
-/// where to set the wallpaper.
-pub async fn set_wallpaper_file<F: AsFd>(
-    connection: &gio::DBusConnection,
-    window: Option<&impl IsA<gtk::Window>>,
-    file: F,
-    show_preview: Preview,
-    set_on: SetOn,
-) -> Result<RequestResult, glib::Error> {
-    let token = Rc::new(HandleToken::new());
-    let set_on: &'static str = set_on.into();
-    let options = token.create_options();
-    options.insert("show-preview", matches!(show_preview, Preview::Preview));
-    options.insert("set-on", set_on);
+#[derive(Variant)]
+pub struct SetWallpaperFile<'a>(PortalWindowIdentifier<'a>, Handle, VariantDict);
 
-    let window_identifier = if let Some(window) = window {
-        WindowIdentifier::new_for_window(window.as_ref()).await
-    } else {
-        WindowIdentifier::None
-    };
-    let fdlist = UnixFDList::new();
-    let args = (
-        &window_identifier,
-        Handle(fdlist.append(file.as_fd())?),
-        options,
-    )
-        .to_variant();
+impl<'a> SetWallpaperFile<'a> {
+    /// Create a request to set the wallpaper to a file.
+    ///
+    /// - `window` denotes the parent window to show portal dialogs on.
+    /// - `file` points to the file to use as new wallpaper.
+    /// - `show_preview` determines whether the portal should show a preview for
+    ///   the wallpaper.
+    /// - `set_on` tells the portal where to set the wallpaper.
+    ///
+    /// See [`org.freedesktop.portal.Wallpaper.SetWallpaperFile`][1].
+    ///
+    /// [1]: https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Wallpaper.html#org-freedesktop-portal-wallpaper-setwallpaperfile
+    pub fn new(
+        window: PortalWindowIdentifier<'a>,
+        file: Handle,
+        show_preview: Preview,
+        set_on: SetOn,
+    ) -> Self {
+        let options = VariantDict::new(None);
+        let set_on: &'static str = set_on.into();
+        options.insert("show-preview", matches!(show_preview, Preview::Preview));
+        options.insert("set-on", set_on);
+        Self(window, file, options)
+    }
+}
 
-    let result = glib::spawn_future_local(glib::clone!(
-        #[strong]
-        token,
-        #[strong]
-        connection,
-        async move { token.wait_for_response(&connection).await }
-    ));
-    let (return_value, _) = connection
-        .call_with_unix_fd_list_future(
-            Some("org.freedesktop.portal.Desktop"),
-            "/org/freedesktop/portal/desktop",
-            "org.freedesktop.portal.Wallpaper",
-            "SetWallpaperFile",
-            Some(&args),
-            Some(VariantTy::new("(o)").unwrap()),
-            gio::DBusCallFlags::NONE,
-            -1,
-            Some(&fdlist),
-        )
-        .await?;
-    let path = return_value.get::<(String,)>().ok_or_else(|| {
-        glib::Error::new(
-            IOErrorEnum::InvalidData,
-            &format!("Unexpected return type: {}", return_value.value_type()),
-        )
-    })?;
-    // Assert that we're listening on the correct response path!
-    assert_eq!(path.0, token.request_object_path(connection));
+impl PortalCall for SetWallpaperFile<'_> {
+    const INTERFACE: &'static str = "org.freedesktop.portal.Wallpaper";
 
-    let request_result = result.await.unwrap()?.result();
+    const METHOD_NAME: &'static str = "SetWallpaperFile";
 
-    // Make sure we keep the window identifier alive until the call's finished.
-    drop(window_identifier);
-
-    Ok(request_result)
+    fn options_mut(&mut self) -> &mut VariantDict {
+        &mut self.2
+    }
 }
