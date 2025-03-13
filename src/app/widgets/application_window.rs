@@ -154,7 +154,7 @@ mod imp {
     use futures::future::join_all;
     use glib::subclass::InitializingObject;
     use glib::variant::Handle;
-    use glib::{Priority, Properties, dpgettext2};
+    use glib::{Object, Priority, Properties, closure, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, FileDescriptorBased, IOErrorEnum, UnixFDList};
@@ -198,11 +198,6 @@ mod imp {
         #[template_callback(function)]
         fn non_empty(s: Option<&str>) -> bool {
             s.is_some_and(|s| !s.is_empty())
-        }
-
-        #[template_callback(function)]
-        fn has_file(f: Option<&gio::File>) -> bool {
-            f.is_some()
         }
     }
 
@@ -440,9 +435,6 @@ mod imp {
             klass.install_action_async("win.open-source-url", None, |window, _, _| async move {
                 window.open_source_url().await;
             });
-            klass.install_action_async("win.set-as-wallpaper", None, |window, _, _| async move {
-                window.set_current_image_as_wallpaper().await;
-            });
 
             klass.add_binding_action(Key::F5, ModifierType::NO_MODIFIER_MASK, "win.load-images");
             klass.add_binding_action(
@@ -482,6 +474,26 @@ mod imp {
             // We're not showing images initially, so let's disable the sidebar action.
             self.obj()
                 .action_set_enabled("win.show-image-properties", false);
+
+            let act_set_wallpaper = gio::SimpleAction::new("set-as-wallpaper", None);
+            act_set_wallpaper.connect_activate(glib::clone!(
+                #[weak(rename_to = window)]
+                self.obj(),
+                move |_, _| {
+                    glib::spawn_future_local(async move {
+                        window.set_current_image_as_wallpaper().await;
+                    });
+                }
+            ));
+            self.obj().add_action(&act_set_wallpaper);
+            act_set_wallpaper.set_enabled(false);
+            self.images_carousel
+                .property_expression("current-image")
+                .chain_property::<Image>("downloaded-file")
+                .chain_closure::<bool>(closure!(|_: Option<Object>, file: Option<&gio::File>| {
+                    file.is_some()
+                }))
+                .bind(&act_set_wallpaper, "enabled", Object::NONE);
         }
     }
 

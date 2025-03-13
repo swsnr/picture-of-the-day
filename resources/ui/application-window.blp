@@ -78,7 +78,6 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           icon-name: "image-symbolic";
           action-name: "win.set-as-wallpaper";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Set current image as wallpaper");
-          sensitive: bind $has_file((images_carousel.current-image as <$PotDImage>).downloaded-file) as <bool>;
         }
 
         Separator {

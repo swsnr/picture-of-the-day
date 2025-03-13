@@ -83,15 +83,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                     <property name="icon-name">image-symbolic</property>
                     <property name="action-name">win.set-as-wallpaper</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set current image as wallpaper</property>
-                    <binding name="sensitive">
-                      <closure function="has_file" type="gboolean">
-                        <lookup name="downloaded-file" type="PotDImage">
-                          <lookup name="current-image" type="PotDImagesCarousel">
-                            <constant>images_carousel</constant>
-                          </lookup>
-                        </lookup>
-                      </closure>
-                    </binding>
                   </object>
                 </child>
                 <child>
