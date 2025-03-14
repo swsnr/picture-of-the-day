@@ -76,9 +76,6 @@ mod imp {
         /// The state of the download
         #[property(get, builder(ImageState::default()))]
         state: Cell<ImageState>,
-        /// Whether the download is still pending.
-        #[property(get)]
-        is_pending: Cell<bool>,
         /// The downloaded file, if the download was successful.
         #[property(get, set = Self::set_downloaded_file, nullable)]
         downloaded_file: RefCell<Option<gio::File>>,
@@ -89,10 +86,6 @@ mod imp {
 
     impl Image {
         fn update_state(&self) {
-            self.is_pending.set(
-                self.downloaded_file.borrow().is_none() && self.download_error.borrow().is_none(),
-            );
-
             let state = if self.downloaded_file.borrow().is_some() {
                 ImageState::Downloaded
             } else if self.download_error.borrow().is_some() {
@@ -102,7 +95,6 @@ mod imp {
             };
             self.state.set(state);
 
-            self.obj().notify_is_pending();
             self.obj().notify_state();
         }
 

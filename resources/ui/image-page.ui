@@ -30,15 +30,9 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               </lookup>
             </binding>
             <property name="description" translatable="yes" context="image-page.loading-message.title">Downloading image…</property>
-            <property name="child">
-              <object class="GtkSpinner">
-                <binding name="spinning">
-                  <lookup name="is-pending" type="PotDImage">
-                    <lookup name="image" type="PotDImagePage">
-                      <constant>PotDImagePage</constant>
-                    </lookup>
-                  </lookup>
-                </binding>
+            <property name="paintable">
+              <object class="AdwSpinnerPaintable">
+                <property name="widget">loading</property>
               </object>
             </property>
           </object>

@@ -18,8 +18,8 @@ template $PotDImagePage: Adw.Bin {
       title: bind (template.image as <$PotDImage>).title;
       description: C_("image-page.loading-message.title", "Downloading image…");
 
-      child: Spinner {
-        spinning: bind (template.image as <$PotDImage>).is-pending;
+      paintable: Adw.SpinnerPaintable {
+        widget: loading;
       };
     }
 
