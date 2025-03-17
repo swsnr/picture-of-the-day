@@ -153,11 +153,10 @@ mod imp {
     use adw::subclass::prelude::*;
     use futures::future::join_all;
     use glib::subclass::InitializingObject;
-    use glib::variant::Handle;
-    use glib::{Object, Priority, Properties, closure, dpgettext2};
+    use glib::{Object, Properties, closure, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
-    use gtk::gio::{self, Cancellable, FileDescriptorBased, IOErrorEnum, UnixFDList};
+    use gtk::gio::{self, Cancellable, IOErrorEnum};
     use strum::IntoEnumIterator;
 
     use crate::Source;
@@ -165,7 +164,7 @@ mod imp {
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::portal::client::PortalClient;
-    use crate::portal::wallpaper::{Preview, SetOn, SetWallpaperFile};
+    use crate::portal::wallpaper::{Preview, SetOn};
     use crate::portal::window::PortalWindowHandle;
     use crate::source::SourceError;
 
@@ -372,36 +371,11 @@ mod imp {
                 .current_image()
                 .and_then(|image| image.downloaded_file())
             {
-                let fd = file
-                    .read_future(Priority::DEFAULT)
-                    .await?
-                    .dynamic_cast::<FileDescriptorBased>()
-                    .map_err(|_| {
-                        glib::Error::new(
-                            IOErrorEnum::Failed,
-                            &format!(
-                                "Failed to obtain file descriptor for {}",
-                                file.path().unwrap().display()
-                            ),
-                        )
-                    })?;
-                let client = PortalClient::session().await?;
-                let fdlist = UnixFDList::new();
                 let window_handle = PortalWindowHandle::new_for_window(&*self.obj()).await;
-                let call = SetWallpaperFile::new(
-                    window_handle.identifier(),
-                    Handle(fdlist.append(fd)?),
-                    Preview::Preview,
-                    SetOn::Both,
-                );
+                let client = PortalClient::session().await?;
                 let result = client
-                    .invoke_with_unix_fd_list(call, Some(&fdlist))
-                    .await?
-                    .receive_response()
-                    .await?
-                    .result();
-                // Explicitly keep the window handle alive until we received a response for the request.
-                drop(window_handle);
+                    .set_wallpaper(&file, &window_handle, Preview::Preview, SetOn::Both)
+                    .await?;
                 glib::info!("Request finished: {result:?}");
             }
             Ok(())

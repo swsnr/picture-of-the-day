@@ -5,14 +5,18 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use futures::StreamExt;
+use glib::variant::Handle;
+use glib::{Priority, VariantTy, WeakRef};
 use glib::{Variant, VariantDict, object::IsA};
-use glib::{VariantTy, WeakRef};
-use gtk::gio::{self, DBusSignalFlags, SignalSubscriptionId, UnixFDList};
+use gtk::gio::{self, DBusSignalFlags, FileDescriptorBased, SignalSubscriptionId, UnixFDList};
 use gtk::gio::{DBusConnection, IOErrorEnum};
 use gtk::prelude::*;
 use strum::EnumIter;
 
 use crate::config::G_LOG_DOMAIN;
+
+use super::wallpaper::{Preview, SetOn, SetWallpaperFile};
+use super::window::PortalWindowHandle;
 
 /// The result of a portal request.
 ///
@@ -244,6 +248,43 @@ impl PortalClient {
         assert_eq!(return_value.request_object_path(), request.object_path());
 
         Ok(request)
+    }
+
+    pub async fn set_wallpaper(
+        &self,
+        file: &gio::File,
+        window: &PortalWindowHandle,
+        show_preview: Preview,
+        set_on: SetOn,
+    ) -> Result<RequestResult, glib::Error> {
+        let fd = file
+            .read_future(Priority::DEFAULT)
+            .await?
+            .dynamic_cast::<FileDescriptorBased>()
+            .map_err(|_| {
+                glib::Error::new(
+                    IOErrorEnum::Failed,
+                    &format!(
+                        "Failed to obtain file descriptor for {}",
+                        file.path().unwrap().display()
+                    ),
+                )
+            })?;
+        let client = PortalClient::session().await?;
+        let fdlist = UnixFDList::new();
+        let call = SetWallpaperFile::new(
+            window.identifier(),
+            Handle(fdlist.append(fd)?),
+            show_preview,
+            set_on,
+        );
+        let result = client
+            .invoke_with_unix_fd_list(call, Some(&fdlist))
+            .await?
+            .receive_response()
+            .await?
+            .result();
+        Ok(result)
     }
 }
 
