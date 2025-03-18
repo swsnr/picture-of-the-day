@@ -270,7 +270,6 @@ impl PortalClient {
                     ),
                 )
             })?;
-        let client = PortalClient::session().await?;
         let fdlist = UnixFDList::new();
         let call = SetWallpaperFile::new(
             window.identifier(),
@@ -278,7 +277,7 @@ impl PortalClient {
             show_preview,
             set_on,
         );
-        let result = client
+        let result = self
             .invoke_with_unix_fd_list(call, Some(&fdlist))
             .await?
             .receive_response()
