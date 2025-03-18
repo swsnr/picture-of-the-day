@@ -99,3 +99,42 @@ pub fn get_settings() -> gio::Settings {
         None,
     )
 }
+
+#[cfg(test)]
+mod tests {
+
+    #[test]
+    fn release_notes_version_only_has_major_and_minor() {
+        let version = super::release_notes_version();
+        assert_eq!(version.major, super::cargo_pkg_version().major);
+        assert_eq!(version.minor, super::cargo_pkg_version().minor);
+        assert_eq!(version.patch, 0);
+        assert!(version.pre.is_empty());
+        assert!(version.build.is_empty());
+    }
+    #[test]
+    fn release_notes_for_release_notes_version() {
+        let metadata = std::fs::read_to_string(concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/resources/de.swsnr.pictureoftheday.metainfo.xml.in"
+        ))
+        .unwrap();
+        assert!(metadata.contains(&format!(
+            "<release version=\"{}\"",
+            super::release_notes_version()
+        )));
+    }
+
+    #[test]
+    fn no_release_notes_for_cargo_pkg_version() {
+        let version = super::cargo_pkg_version();
+        if version != super::release_notes_version() {
+            let metadata = std::fs::read_to_string(concat!(
+                env!("CARGO_MANIFEST_DIR"),
+                "/resources/de.swsnr.pictureoftheday.metainfo.xml.in"
+            ))
+            .unwrap();
+            assert!(!metadata.contains(&format!("version=\"{version}\"")));
+        }
+    }
+}
