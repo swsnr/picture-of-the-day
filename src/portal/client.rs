@@ -181,18 +181,17 @@ impl PortalReturnValue {
     }
 }
 
-#[derive(Debug)]
+/// A client for the portal API on top of a Gio D-Bus connection.
+///
+/// Cloning this client simply increments the ref-count of the inner Gio D-Bus
+/// connection.
+#[derive(Debug, Clone, glib::Boxed)]
+#[boxed_type(name = "PotDPortalClient", nullable)]
 pub struct PortalClient {
     connection: DBusConnection,
 }
 
 impl PortalClient {
-    pub async fn session() -> Result<Self, glib::Error> {
-        Ok(Self::new(
-            &gio::bus_get_future(gio::BusType::Session).await?,
-        ))
-    }
-
     /// Create a portal client on an existing D-Bus `connection`./
     pub fn new(connection: &DBusConnection) -> Self {
         Self {

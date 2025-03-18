@@ -12,6 +12,7 @@ use gtk::gio;
 
 use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
+use crate::portal::client::PortalClient;
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -26,10 +27,15 @@ impl ApplicationWindow {
     ///
     /// The window belongs to `application` and keeps a hold on `application`.
     /// It uses the `session` to fetch images for the selected source.
-    pub fn new(application: &impl IsA<gtk::Application>, session: soup::Session) -> Self {
+    pub fn new(
+        application: &impl IsA<gtk::Application>,
+        session: soup::Session,
+        portal_client: PortalClient,
+    ) -> Self {
         glib::Object::builder()
             .property("application", application)
             .property("http-session", session)
+            .property("portal-client", portal_client)
             .build()
     }
 
@@ -174,6 +180,8 @@ mod imp {
     pub struct ApplicationWindow {
         #[property(get, construct_only)]
         http_session: RefCell<soup::Session>,
+        #[property(get, construct_only)]
+        portal_client: RefCell<Option<PortalClient>>,
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
         #[property(get, set)]
@@ -372,8 +380,10 @@ mod imp {
                 .and_then(|image| image.downloaded_file())
             {
                 let window_handle = PortalWindowHandle::new_for_window(&*self.obj()).await;
-                let client = PortalClient::session().await?;
-                let result = client
+                let result = self
+                    .obj()
+                    .portal_client()
+                    .unwrap()
                     .set_wallpaper(&file, &window_handle, Preview::Preview, SetOn::Both)
                     .await?;
                 glib::info!("Request finished: {result:?}");

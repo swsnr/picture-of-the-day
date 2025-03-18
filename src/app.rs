@@ -106,7 +106,8 @@ impl Application {
 
     fn new_window(&self) {
         glib::debug!("Creating new window");
-        let window = ApplicationWindow::new(self, self.http_session());
+        let window =
+            ApplicationWindow::new(self, self.http_session(), self.portal_client().unwrap());
         if crate::config::is_development() {
             window.add_css_class("devel");
         }
@@ -138,13 +139,16 @@ mod imp {
     use soup::prelude::SessionExt;
     use std::cell::RefCell;
 
-    use crate::config::G_LOG_DOMAIN;
+    use crate::{config::G_LOG_DOMAIN, portal::client::PortalClient};
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
     pub struct Application {
         #[property(get)]
         http_session: soup::Session,
+        #[property(get)]
+        portal_client: RefCell<Option<PortalClient>>,
+        #[property(get)]
         settings: RefCell<Option<gio::Settings>>,
     }
 
@@ -272,6 +276,17 @@ mod imp {
                 self.obj().activate();
                 ExitCode::SUCCESS
             }
+        }
+
+        fn dbus_register(
+            &self,
+            connection: &gio::DBusConnection,
+            object_path: &str,
+        ) -> Result<(), glib::Error> {
+            self.parent_dbus_register(connection, object_path)?;
+            self.portal_client
+                .replace(Some(PortalClient::new(connection)));
+            Ok(())
         }
 
         fn activate(&self) {
