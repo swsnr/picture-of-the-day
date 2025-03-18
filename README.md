@@ -4,7 +4,7 @@
 [![Translation status](https://translate.codeberg.org/widget/de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/svg-badge.svg)](https://translate.codeberg.org/engage/de-swsnr-pictureoftheday/)
 [![CI status](https://img.shields.io/github/actions/workflow/status/swsnr/picture-of-the-day/test.yml)](https://github.com/swsnr/picture-of-the-day/actions)
 
-A daily picture as your wallpaper in GNOME:
+Your daily GNOME wallpaper:
 
 ![The empty start page with the application icon on the left, and the Wikimedia picture of the day on the right](./screenshots/social-image.png)
 
