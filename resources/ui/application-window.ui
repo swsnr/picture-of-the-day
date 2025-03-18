@@ -152,6 +152,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                                         </lookup>
                                       </lookup>
                                     </binding>
+                                    <property name="use-markup">false</property>
                                     <child type="suffix">
                                       <object class="GtkLinkButton">
                                         <property name="icon-name">external-link-symbolic</property>
@@ -198,6 +199,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                                         </lookup>
                                       </closure>
                                     </binding>
+                                    <property name="use-markup">false</property>
                                     <style>
                                       <class name="property"/>
                                     </style>
@@ -222,6 +224,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                                         </lookup>
                                       </closure>
                                     </binding>
+                                    <property name="use-markup">false</property>
                                     <style>
                                       <class name="property"/>
                                     </style>
@@ -241,6 +244,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                                         </lookup>
                                       </lookup>
                                     </binding>
+                                    <property name="use-markup">false</property>
                                     <child type="suffix">
                                       <object class="GtkLinkButton">
                                         <property name="icon-name">external-link-symbolic</property>

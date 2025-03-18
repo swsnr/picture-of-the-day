@@ -130,6 +130,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
                 Adw.ActionRow {
                   title: C_("images-view.metadata.label", "Title");
                   subtitle: bind (images_carousel.current-image as <$PotDImage>).title;
+                  use-markup: false;
 
                   [suffix]
                   LinkButton {
@@ -148,6 +149,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
                   title: C_("images-view.metadata.label", "Copyright");
                   subtitle: bind (images_carousel.current-image as <$PotDImage>).copyright;
                   visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).copyright) as <bool>;
+                  use-markup: false;
 
                   styles [
                     "property",
@@ -158,6 +160,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
                   title: C_("images-view.metadata.label", "Description");
                   subtitle: bind (images_carousel.current-image as <$PotDImage>).description;
                   visible: bind $non_empty((images_carousel.current-image as <$PotDImage>).description) as <bool>;
+                  use-markup: false;
 
                   styles [
                     "property",
@@ -169,6 +172,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
                 Adw.ActionRow {
                   title: C_("images-view.metadata.label", "Source");
                   subtitle: bind (images_carousel.current-image as <$PotDImage>).source-name;
+                  use-markup: false;
 
                   [suffix]
                   LinkButton {
