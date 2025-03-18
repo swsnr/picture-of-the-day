@@ -63,7 +63,7 @@ mod imp {
 
             settings
                 .bind(
-                    "disabled-collections",
+                    "stalenhag-disabled-collections",
                     &*self.stalenhag_collections,
                     "subtitle",
                 )
@@ -88,7 +88,7 @@ mod imp {
                 // Deref to make the rust compiler understand that collection is static
                 let collection: &'static Collection = collection;
                 settings
-                    .bind("disabled-collections", switch, "active")
+                    .bind("stalenhag-disabled-collections", switch, "active")
                     .set_mapping(glib::clone!(
                         #[weak]
                         settings,
@@ -96,7 +96,7 @@ mod imp {
                         move |value, _| {
                             let is_enabled = value.get::<bool>().ok()?;
                             let disabled_collections =
-                                settings.strv("disabled-collections").into_iter();
+                                settings.strv("stalenhag-disabled-collections").into_iter();
                             let mapped = if is_enabled {
                                 let disabled_collections = disabled_collections
                                     .filter(|c| *c.as_str() != collection.tag)

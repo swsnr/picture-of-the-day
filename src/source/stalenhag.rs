@@ -67,7 +67,7 @@ fn pretty_title(title: &str) -> String {
 
 fn enabled_collections() -> impl Iterator<Item = &'static Collection> {
     let settings = crate::config::get_settings();
-    let disabled_collections = settings.strv("disabled-collections");
+    let disabled_collections = settings.strv("stalenhag-disabled-collections");
     COLLECTIONS
         .iter()
         .filter(move |collection| !disabled_collections.contains(&collection.tag))
