@@ -51,6 +51,7 @@ mod gettext;
 mod image;
 mod io;
 mod portal;
+mod rng;
 mod source;
 
 use config::G_LOG_DOMAIN;

@@ -2,7 +2,15 @@
   <schema id="de.swsnr.pictureoftheday" path="/de/swsnr/pictureoftheday/">
     <key name="last-source" type="s">
       <default>"wikimedia"</default>
-      <description>The identifier of the last selected source.</description>
+      <description>The identifier of the last selected source in a window.</description>
+    </key>
+    <key name="automatic-source" type="s">
+      <default>"wikimedia"</default>
+      <description>The identifier of the source for automatic wallpapers.</description>
+    </key>
+    <key name="set-wallpaper-automatically" type="b">
+      <default>false</default>
+      <description>Whether to set the wallpaper automatically.</description>
     </key>
     <key name="apod-api-key" type="s">
       <!-- API key account ID: dcc2671f-ef8d-4c1a-93cc-c5edeba69695 -->

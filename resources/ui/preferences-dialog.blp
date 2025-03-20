@@ -32,4 +32,25 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
       }
     }
   }
+
+  Adw.PreferencesPage {
+    title: _("Automatic wallpaper");
+    icon-name: "today-symbolic";
+
+    Adw.PreferencesGroup {
+      title: _("Set wallpaper automatically");
+      description: _("If enabled automatically get the picture of the day from the following source and set it as wallpaper.");
+
+      [header-suffix]
+      Gtk.Switch {
+        valign: start;
+        active: bind template.set-wallpaper-automatically bidirectional;
+      }
+
+      Adw.ExpanderRow automatic_source_row {
+        title: bind $source_label(template.automatic-source) as <string>;
+        expanded: true;
+      }
+    }
+  }
 }

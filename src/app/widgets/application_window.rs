@@ -362,7 +362,7 @@ mod imp {
                 .current_image()
                 .and_then(|image| image.downloaded_file())
             {
-                let window_handle = PortalWindowHandle::new_for_window(&*self.obj()).await;
+                let window_handle = PortalWindowHandle::new_for_native(&*self.obj()).await;
                 let result = self
                     .obj()
                     .portal_client()

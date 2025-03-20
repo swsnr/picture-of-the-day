@@ -47,5 +47,35 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         </child>
       </object>
     </child>
+    <child>
+      <object class="AdwPreferencesPage">
+        <property name="title" translatable="yes">Automatic wallpaper</property>
+        <property name="icon-name">today-symbolic</property>
+        <child>
+          <object class="AdwPreferencesGroup">
+            <property name="title" translatable="yes">Set wallpaper automatically</property>
+            <property name="description" translatable="yes">If enabled automatically get the picture of the day from the following source and set it as wallpaper.</property>
+            <child type="header-suffix">
+              <object class="GtkSwitch">
+                <property name="valign">1</property>
+                <property name="active" bind-source="PotDPreferencesDialog" bind-property="set-wallpaper-automatically" bind-flags="sync-create|bidirectional"/>
+              </object>
+            </child>
+            <child>
+              <object class="AdwExpanderRow" id="automatic_source_row">
+                <binding name="title">
+                  <closure function="source_label" type="gchararray">
+                    <lookup name="automatic-source" type="PotDPreferencesDialog">
+                      <constant>PotDPreferencesDialog</constant>
+                    </lookup>
+                  </closure>
+                </binding>
+                <property name="expanded">true</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
   </template>
 </interface>
