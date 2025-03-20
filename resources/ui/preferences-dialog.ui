@@ -10,8 +10,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
     <child>
       <object class="AdwPreferencesPage">
         <property name="title" translatable="yes">Picture Sources</property>
-        <property name="description" translatable="yes">Configure sources for the Picture of the Day.</property>
-        <property name="icon-name">pictureoftheday-symbolic</property>
+        <property name="description" translatable="yes">Configure sources for the Picture Of The Day.</property>
+        <property name="icon-name">de.swsnr.pictureoftheday-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup" id="group_apod">
             <child>
