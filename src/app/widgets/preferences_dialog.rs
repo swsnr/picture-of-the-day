@@ -4,7 +4,8 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::{Object, subclass::types::ObjectSubclassIsExt};
+use adw::prelude::*;
+use glib::Object;
 use gtk::gio;
 
 glib::wrapper! {
@@ -15,7 +16,14 @@ glib::wrapper! {
 
 impl PreferencesDialog {
     pub fn bind(&self, settings: &gio::Settings) {
-        self.imp().bind(settings);
+        settings.bind("apod-api-key", self, "apod-api-key").build();
+        settings
+            .bind(
+                "stalenhag-disabled-collections",
+                self,
+                "stalenhag-disabled-collections",
+            )
+            .build();
     }
 }
 
@@ -30,93 +38,42 @@ mod imp {
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use glib::{Variant, dngettext, subclass::InitializingObject};
-    use gtk::{
-        CompositeTemplate,
-        gio::{self, prelude::SettingsExtManual},
-    };
+    use glib::{Properties, StrV, dngettext, subclass::InitializingObject};
+    use gtk::CompositeTemplate;
 
-    use crate::source::{
-        Source,
-        stalenhag::{self, Collection},
-    };
+    use crate::source::{Source, stalenhag};
 
-    #[derive(Default, CompositeTemplate)]
+    #[derive(Default, CompositeTemplate, Properties)]
+    #[properties(wrapper_type = super::PreferencesDialog)]
     #[template(resource = "/de/swsnr/pictureoftheday/ui/preferences-dialog.ui")]
     pub struct PreferencesDialog {
+        #[property(get, set)]
+        apod_api_key: RefCell<String>,
+        #[property(get, set)]
+        stalenhag_disabled_collections: RefCell<StrV>,
         #[template_child]
-        apod: TemplateChild<adw::PreferencesGroup>,
+        group_apod: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
-        apod_api_key: TemplateChild<adw::EntryRow>,
-        #[template_child]
-        stalenhag: TemplateChild<adw::PreferencesGroup>,
+        group_stalenhag: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
         stalenhag_collections: TemplateChild<adw::ExpanderRow>,
-        collection_switches: RefCell<Vec<(&'static Collection, adw::SwitchRow)>>,
     }
 
+    #[gtk::template_callbacks]
     impl PreferencesDialog {
-        pub fn bind(&self, settings: &gio::Settings) {
-            settings
-                .bind("apod-api-key", &*self.apod_api_key, "text")
-                .build();
-
-            settings
-                .bind(
-                    "stalenhag-disabled-collections",
-                    &*self.stalenhag_collections,
-                    "subtitle",
-                )
-                .get_only()
-                .mapping(|value, _| {
-                    let n_disabled = value.n_children();
-                    let n_enabled = stalenhag::COLLECTIONS.len() - n_disabled;
-                    let label = dngettext(
-                        None,
-                        "%1/%2 collection enabled",
-                        "%1/%2 collections enabled",
-                        u64::try_from(n_enabled).unwrap(),
-                    )
-                    .replace("%1", &n_enabled.to_string())
-                    .replace("%2", &stalenhag::COLLECTIONS.len().to_string());
-                    Some(label.into())
-                })
-                .build();
-
-            let collections = self.collection_switches.borrow();
-            for (collection, switch) in collections.iter() {
-                // Deref to make the rust compiler understand that collection is static
-                let collection: &'static Collection = collection;
-                settings
-                    .bind("stalenhag-disabled-collections", switch, "active")
-                    .set_mapping(glib::clone!(
-                        #[weak]
-                        settings,
-                        #[upgrade_or_default]
-                        move |value, _| {
-                            let is_enabled = value.get::<bool>().ok()?;
-                            let disabled_collections =
-                                settings.strv("stalenhag-disabled-collections").into_iter();
-                            let mapped = if is_enabled {
-                                let disabled_collections = disabled_collections
-                                    .filter(|c| *c.as_str() != collection.tag)
-                                    .map(|s| Variant::from(s.as_str()));
-                                Variant::array_from_iter::<String>(disabled_collections)
-                            } else {
-                                let disabled_collections = disabled_collections
-                                    .map(|s| Variant::from(s.as_str()))
-                                    .chain(std::iter::once(Variant::from(&collection.tag)));
-                                Variant::array_from_iter::<String>(disabled_collections)
-                            };
-                            Some(mapped)
-                        }
-                    ))
-                    .mapping(|value, _| {
-                        let is_enabled = !value.array_iter_str().ok()?.any(|c| c == collection.tag);
-                        Some(is_enabled.into())
-                    })
-                    .build();
-            }
+        #[template_callback(function)]
+        #[allow(clippy::needless_pass_by_value)]
+        fn label_enabled_collections(disabled_collections: StrV) -> String {
+            let n_disabled = disabled_collections.len();
+            let n_enabled = stalenhag::COLLECTIONS.len() - n_disabled;
+            dngettext(
+                None,
+                "%1/%2 collection enabled",
+                "%1/%2 collections enabled",
+                u64::try_from(n_enabled).unwrap(),
+            )
+            .replace("%1", &n_enabled.to_string())
+            .replace("%2", &stalenhag::COLLECTIONS.len().to_string())
         }
     }
 
@@ -130,6 +87,7 @@ mod imp {
 
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
+            klass.bind_template_callbacks();
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -137,34 +95,51 @@ mod imp {
         }
     }
 
+    #[glib::derived_properties]
     impl ObjectImpl for PreferencesDialog {
         fn constructed(&self) {
             self.parent_constructed();
 
             let source_groups = [
-                (Source::Apod, &self.apod),
-                (Source::Stalenhag, &self.stalenhag),
+                (Source::Apod, &self.group_apod),
+                (Source::Stalenhag, &self.group_stalenhag),
             ];
             for (source, group) in source_groups {
                 group.set_title(&source.i18n_name());
                 group.set_description(Some(&format!("<a href=\"{0}\">{0}</a>", source.url())));
             }
 
-            self.collection_switches.replace(
-                stalenhag::COLLECTIONS
-                    .iter()
-                    .map(|collection| {
-                        let switch = adw::SwitchRow::builder()
-                            .title(&collection.title)
-                            .subtitle(format!("<a href=\"{0}\">{0}</a>", collection.url))
-                            .build();
-                        (collection, switch)
+            for collection in stalenhag::COLLECTIONS.iter() {
+                let switch = adw::SwitchRow::builder()
+                    .title(&collection.title)
+                    .subtitle(format!("<a href=\"{0}\">{0}</a>", collection.url))
+                    .build();
+                self.obj()
+                    .bind_property("stalenhag-disabled-collections", &switch, "active")
+                    .bidirectional()
+                    .transform_to(|_, disabled_collections: StrV| {
+                        let is_disabled = disabled_collections.contains(&collection.tag);
+                        Some(!is_disabled)
                     })
-                    .collect(),
-            );
-
-            for (_, switch) in self.collection_switches.borrow().iter() {
-                self.stalenhag_collections.add_row(switch);
+                    .transform_from(|binding, enabled: bool| {
+                        let source = binding
+                            .source()
+                            .map(|o| o.downcast::<super::PreferencesDialog>().unwrap())?;
+                        let mut disabled_collections = source.stalenhag_disabled_collections();
+                        if enabled {
+                            if let Some(index) = disabled_collections
+                                .iter()
+                                .position(|tag| tag == &collection.tag)
+                            {
+                                disabled_collections.remove(index);
+                            }
+                        } else {
+                            disabled_collections.push((&collection.tag).into());
+                        }
+                        Some(disabled_collections)
+                    })
+                    .build();
+                self.stalenhag_collections.add_row(&switch);
             }
         }
     }

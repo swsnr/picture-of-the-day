@@ -13,10 +13,11 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
         <property name="description" translatable="yes">Configure sources for the Picture of the Day.</property>
         <property name="icon-name">pictureoftheday-symbolic</property>
         <child>
-          <object class="AdwPreferencesGroup" id="apod">
+          <object class="AdwPreferencesGroup" id="group_apod">
             <child>
-              <object class="AdwEntryRow" id="apod_api_key">
+              <object class="AdwEntryRow">
                 <property name="title" translatable="yes">API key</property>
+                <property name="text" bind-source="PotDPreferencesDialog" bind-property="apod-api-key" bind-flags="sync-create|bidirectional"/>
                 <child type="suffix">
                   <object class="GtkLinkButton">
                     <property name="label" translatable="yes">Get API key</property>
@@ -28,10 +29,17 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
           </object>
         </child>
         <child>
-          <object class="AdwPreferencesGroup" id="stalenhag">
+          <object class="AdwPreferencesGroup" id="group_stalenhag">
             <child>
               <object class="AdwExpanderRow" id="stalenhag_collections">
                 <property name="title" translatable="yes">Enabled collections</property>
+                <binding name="subtitle">
+                  <closure function="label_enabled_collections" type="gchararray">
+                    <lookup name="stalenhag-disabled-collections" type="PotDPreferencesDialog">
+                      <constant>PotDPreferencesDialog</constant>
+                    </lookup>
+                  </closure>
+                </binding>
                 <property name="expanded">true</property>
               </object>
             </child>

@@ -11,9 +11,10 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
     description: _("Configure sources for the Picture of the Day.");
     icon-name: "pictureoftheday-symbolic";
 
-    Adw.PreferencesGroup apod {
-      Adw.EntryRow apod_api_key {
+    Adw.PreferencesGroup group_apod {
+      Adw.EntryRow {
         title: _("API key");
+        text: bind template.apod-api-key bidirectional;
 
         [suffix]
         Gtk.LinkButton {
@@ -23,9 +24,10 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
       }
     }
 
-    Adw.PreferencesGroup stalenhag {
+    Adw.PreferencesGroup group_stalenhag {
       Adw.ExpanderRow stalenhag_collections {
         title: _("Enabled collections");
+        subtitle: bind $label_enabled_collections(template.stalenhag-disabled-collections) as <string>;
         expanded: true;
       }
     }
