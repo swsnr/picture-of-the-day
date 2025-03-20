@@ -49,6 +49,7 @@ mod app;
 mod config;
 mod gettext;
 mod image;
+mod io;
 mod portal;
 mod source;
 

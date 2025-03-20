@@ -162,13 +162,14 @@ mod imp {
     use glib::{Object, Properties, closure, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
-    use gtk::gio::{self, Cancellable, IOErrorEnum};
+    use gtk::gio::{self, Cancellable};
     use strum::IntoEnumIterator;
 
     use crate::Source;
     use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
+    use crate::io::ensure_directory;
     use crate::portal::client::PortalClient;
     use crate::portal::wallpaper::{Preview, SetOn};
     use crate::portal::window::PortalWindowHandle;
@@ -321,26 +322,8 @@ mod imp {
             self.switch_to_images_view();
 
             // Create the download directory for the current source.
-            let target_directory = glib::user_data_dir()
-                .join(crate::config::APP_ID)
-                .join("images")
-                .join(source.id());
-            gio::spawn_blocking(glib::clone!(
-                #[strong]
-                target_directory,
-                #[strong]
-                cancellable,
-                move || {
-                    glib::info!("Creating target directory {}", target_directory.display());
-                    let target_directory = gio::File::for_path(&*target_directory);
-                    match target_directory.make_directory_with_parents(Some(&cancellable)) {
-                        Err(error) if error.matches(IOErrorEnum::Exists) => Ok(()),
-                        res => res,
-                    }
-                }
-            ))
-            .await
-            .unwrap()?;
+            let target_directory = source.images_directory();
+            ensure_directory(&target_directory, cancellable).await?;
 
             // Download all images
             let http_session = self.http_session.borrow().clone();

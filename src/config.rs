@@ -100,6 +100,12 @@ pub fn get_settings() -> gio::Settings {
     )
 }
 
+pub fn images_directory() -> PathBuf {
+    glib::user_data_dir()
+        .join(crate::config::APP_ID)
+        .join("images")
+}
+
 #[cfg(test)]
 mod tests {
 

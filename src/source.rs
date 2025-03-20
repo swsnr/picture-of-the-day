@@ -9,6 +9,8 @@
 // See <https://github.com/gtk-rs/gtk-rs-core/discussions/1625>
 #![allow(clippy::as_conversions)]
 
+use std::path::PathBuf;
+
 use glib::{GString, dpgettext2};
 
 use crate::config::G_LOG_DOMAIN;
@@ -73,6 +75,10 @@ impl Source {
             Source::Wikimedia => "https://commons.wikimedia.org/wiki/Main_Page",
             Source::Stalenhag => "https://simonstalenhag.se/",
         }
+    }
+
+    pub fn images_directory(self) -> PathBuf {
+        crate::config::images_directory().join(self.id())
     }
 
     pub async fn get_images(
