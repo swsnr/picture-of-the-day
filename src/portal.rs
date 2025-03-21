@@ -7,4 +7,5 @@
 pub mod client;
 pub mod window;
 
+pub mod background;
 pub mod wallpaper;

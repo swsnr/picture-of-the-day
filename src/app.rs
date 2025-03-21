@@ -51,7 +51,9 @@ impl Application {
                 .activate(|app: &Self, _, _| app.quit())
                 .build(),
             ActionEntry::builder("new-window")
-                .activate(|app: &Self, _, _| app.new_window())
+                .activate(|app: &Self, _, _| {
+                    app.present_new_window();
+                })
                 .build(),
             ActionEntry::builder("about")
                 .activate(|app: &Self, _, _| {
@@ -146,7 +148,7 @@ impl Application {
         prefs
     }
 
-    fn new_window(&self) {
+    fn present_new_window(&self) -> ApplicationWindow {
         glib::debug!("Creating new window");
         let window =
             ApplicationWindow::new(self, self.http_session(), self.portal_client().unwrap());
@@ -158,6 +160,7 @@ impl Application {
             .bind("last-source", &window, "selected-source")
             .build();
         window.present();
+        window
     }
 
     fn show_error_from_automatic_wallpaper(&self, source: Source, error: &SourceError) {
@@ -317,7 +320,15 @@ mod imp {
     use soup::prelude::*;
     use std::cell::RefCell;
 
-    use crate::{config::G_LOG_DOMAIN, portal::client::PortalClient, source::Source};
+    use crate::{
+        config::G_LOG_DOMAIN,
+        portal::{
+            background::AutostartMode,
+            client::{PortalClient, RequestResult},
+            window::PortalWindowHandle,
+        },
+        source::Source,
+    };
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
@@ -528,7 +539,49 @@ mod imp {
         fn activate(&self) {
             glib::debug!("Activating application");
             self.parent_activate();
-            self.obj().new_window();
+
+            let first_activation = self.obj().active_window().is_none();
+            let window = self.obj().present_new_window();
+            let portal_client = self.obj().portal_client().unwrap();
+            if first_activation {
+                // Request background if the app gets activated the first time.
+                glib::spawn_future_local(async move {
+                    let reason = dpgettext2(
+                        None,
+                        "portal.request-background.reason",
+                        "Automatically fetch and set wallpaper in background",
+                    );
+                    let window_handle = PortalWindowHandle::new_for_native(&window).await;
+                    glib::info!("Requesting permission to run in background and autostart");
+                    match portal_client
+                        .request_background(&window_handle, &reason, AutostartMode::DBusActivate)
+                        .await
+                    {
+                        Ok(response) => {
+                            if response.request_result == RequestResult::Success {
+                                if !response.background {
+                                    glib::warn!(
+                                        "Background request successful, but background not granted?"
+                                    );
+                                }
+                                if !response.autostart {
+                                    glib::warn!(
+                                        "Background request successful, but autostart not granted?"
+                                    );
+                                }
+                            } else {
+                                glib::warn!(
+                                    "Background request no successfully: {:?}",
+                                    response.request_result
+                                );
+                            }
+                        }
+                        Err(error) => {
+                            glib::error!("Failed to request background with autostart: {error}");
+                        }
+                    }
+                });
+            }
         }
     }
 
