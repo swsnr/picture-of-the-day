@@ -58,7 +58,7 @@ impl PortalWindowHandle {
     /// On X11 return the XID.
     ///
     /// In case of error or on other windowing systems return [`Self::None`].
-    pub async fn new_for_window(window: &impl IsA<gtk::Native>) -> Self {
+    pub async fn new_for_native(window: &impl IsA<gtk::Native>) -> Self {
         if let Some(surface) = window.as_ref().surface() {
             if let Some(toplevel) = surface.downcast_ref::<WaylandToplevel>() {
                 Self::wayland_identifier(toplevel)
@@ -69,6 +69,14 @@ impl PortalWindowHandle {
             } else {
                 Self::None
             }
+        } else {
+            Self::None
+        }
+    }
+
+    pub async fn new_for_app(app: &impl IsA<gtk::Application>) -> Self {
+        if let Some(window) = app.active_window() {
+            Self::new_for_native(&window).await
         } else {
             Self::None
         }

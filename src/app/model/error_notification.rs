@@ -49,6 +49,7 @@ mod errors {
             .title(title)
             .description(description.replace("%1", &source.i18n_name()))
             .actions(ErrorNotificationActions::OPEN_PREFERENCES)
+            .needs_attention()
             .build()
     }
 
@@ -93,6 +94,8 @@ mod errors {
             .title(title)
             .description(description.replace("%1", &source.i18n_name()))
             .actions(ErrorNotificationActions::OPEN_SOURCE_URL)
+            // Needs attention because the user can navigate to the source site and e.g. watch the video
+            .needs_attention()
             .build()
     }
 
@@ -213,6 +216,8 @@ mod imp {
         description: RefCell<String>,
         #[property(get, construct_only)]
         actions: Cell<ErrorNotificationActions>,
+        #[property(get, construct_only)]
+        needs_attention: Cell<bool>,
     }
 
     #[glib::object_subclass]
@@ -252,6 +257,15 @@ impl ErrorNotificationBuilder {
 
     pub fn actions(mut self, actions: ErrorNotificationActions) -> Self {
         self.builder = self.builder.property("actions", actions);
+        self
+    }
+
+    /// Indicate that this error needs immediate user attention.
+    ///
+    /// In this case an error notification should be shown immediately, even if
+    /// the error occurred during background refresh.
+    pub fn needs_attention(mut self) -> Self {
+        self.builder = self.builder.property("needs-attention", true);
         self
     }
 

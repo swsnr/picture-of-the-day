@@ -81,6 +81,10 @@ impl Source {
         crate::config::images_directory().join(self.id())
     }
 
+    /// Get metadata for images offer by this source for today.
+    ///
+    /// Return a non-empty list of images for today.  Return an error if I/O
+    /// failed, or if the source did not provide any image.
     pub async fn get_images(
         self,
         session: &soup::Session,

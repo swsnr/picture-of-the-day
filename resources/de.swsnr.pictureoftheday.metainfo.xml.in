@@ -42,6 +42,15 @@
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
+        <release version="next" date="9999-01-01">
+            <description>
+                <p>Picture Of The Day can now set the daily wallpaper automatically in background.</p>
+            </description>
+            <issues>
+                <issue url="https://github.com/swsnr/turnon/issues/13">GH-13</issue>
+            </issues>
+            <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
+        </release>
         <release version="0.1.0" date="2025-03-08">
             <description>
                 <p>The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, and Bing.</p>
