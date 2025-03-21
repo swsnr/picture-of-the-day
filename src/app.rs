@@ -158,6 +158,9 @@ impl Application {
         self.imp()
             .settings()
             .bind("last-source", &window, "selected-source")
+            // Only get once, initially, but do not update when another window selects a different source.
+            // This way we only remember the last source selected in any window.
+            .get_no_changes()
             .build();
         window.present();
         window
