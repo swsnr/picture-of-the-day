@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-21 13:21+0000\n"
+"PO-Revision-Date: 2025-03-21 15:19+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,10 +100,12 @@ msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr ""
+"Starte automatisch und aktualisiere das tägliche Hintergrundbild alle zwölf "
+"Stunden."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
 msgid "No longer support multiple windows."
-msgstr ""
+msgstr "Mehrere Fenster werden nicht länger unterstützt."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
 msgid ""
@@ -195,11 +197,9 @@ msgid "Set current image as wallpaper"
 msgstr "Aktuelles Bild als Bildschirmhintergrund setzen"
 
 #: resources/ui/application-window.blp:91
-#, fuzzy
-#| msgid "Set wallpaper automatically"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set daily wallpaper automatically"
-msgstr "Bildschirmhintergrund automatisch setzen"
+msgstr "Täglichen Bildschirmhintergrund automatisch setzen"
 
 #: resources/ui/application-window.blp:103
 msgctxt "main-window.toolbar.button.tooltip"
@@ -289,10 +289,8 @@ msgid "Enabled collections"
 msgstr "Ausgewählte Sammlungen"
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:5
-#, fuzzy
-#| msgid "The identifier of the last selected source in a window."
 msgid "The identifier the selected source."
-msgstr "Der Name der zuletzt gewählten Quelle in einem Fenster."
+msgstr "Der Name der gewählten."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:9
 msgid "Whether to set the wallpaper automatically."
