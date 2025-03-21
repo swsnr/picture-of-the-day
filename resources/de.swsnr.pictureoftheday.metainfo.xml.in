@@ -44,7 +44,8 @@
         -->
         <release version="next" date="9999-01-01">
             <description>
-                <p>Picture Of The Day can now set the daily wallpaper automatically in background.  For this purpose, it now requests to be autostarted.</p>
+                <p>Start automatically and refresh the daily wallpaper automatically every twelve hours.</p>
+                <p>No longer support multiple windows.</p>
             </description>
             <issues>
                 <issue url="https://github.com/swsnr/turnon/issues/13">GH-13</issue>

@@ -9,8 +9,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   <template class="PotDPreferencesDialog" parent="AdwPreferencesDialog">
     <child>
       <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Picture Sources</property>
-        <property name="description" translatable="yes">Configure sources for the Picture Of The Day.</property>
         <property name="icon-name">de.swsnr.pictureoftheday-symbolic</property>
         <child>
           <object class="AdwPreferencesGroup" id="group_apod">
@@ -36,36 +34,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <binding name="subtitle">
                   <closure function="label_enabled_collections" type="gchararray">
                     <lookup name="stalenhag-disabled-collections" type="PotDPreferencesDialog">
-                      <constant>PotDPreferencesDialog</constant>
-                    </lookup>
-                  </closure>
-                </binding>
-                <property name="expanded">true</property>
-              </object>
-            </child>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="AdwPreferencesPage">
-        <property name="title" translatable="yes">Automatic wallpaper</property>
-        <property name="icon-name">today-symbolic</property>
-        <child>
-          <object class="AdwPreferencesGroup">
-            <property name="title" translatable="yes">Set wallpaper automatically</property>
-            <property name="description" translatable="yes">If enabled automatically get the picture of the day from the following source and set it as wallpaper.</property>
-            <child type="header-suffix">
-              <object class="GtkSwitch">
-                <property name="valign">1</property>
-                <property name="active" bind-source="PotDPreferencesDialog" bind-property="set-wallpaper-automatically" bind-flags="sync-create|bidirectional"/>
-              </object>
-            </child>
-            <child>
-              <object class="AdwExpanderRow" id="automatic_source_row">
-                <binding name="title">
-                  <closure function="source_label" type="gchararray">
-                    <lookup name="automatic-source" type="PotDPreferencesDialog">
                       <constant>PotDPreferencesDialog</constant>
                     </lookup>
                   </closure>

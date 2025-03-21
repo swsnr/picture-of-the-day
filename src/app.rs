@@ -31,7 +31,7 @@ use crate::{
 mod model;
 mod widgets;
 
-use widgets::{ApplicationWindow, PreferencesDialog};
+use widgets::PreferencesDialog;
 
 glib::wrapper! {
     pub struct Application(ObjectSubclass<imp::Application>)
@@ -49,11 +49,6 @@ impl Application {
         let actions = [
             ActionEntry::builder("quit")
                 .activate(|app: &Self, _, _| app.quit())
-                .build(),
-            ActionEntry::builder("new-window")
-                .activate(|app: &Self, _, _| {
-                    app.present_new_window();
-                })
                 .build(),
             ActionEntry::builder("about")
                 .activate(|app: &Self, _, _| {
@@ -91,7 +86,6 @@ impl Application {
         self.add_action_entries(actions);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
         self.set_accels_for_action("app.preferences", &["<Control>comma"]);
-        self.set_accels_for_action("app.new-window", &["<Control><Shift>n"]);
     }
 
     fn show_about_dialog(&self) {
@@ -146,24 +140,6 @@ impl Application {
         prefs.bind(&self.imp().settings());
         prefs.present(self.active_window().as_ref());
         prefs
-    }
-
-    fn present_new_window(&self) -> ApplicationWindow {
-        glib::debug!("Creating new window");
-        let window =
-            ApplicationWindow::new(self, self.http_session(), self.portal_client().unwrap());
-        if crate::config::is_development() {
-            window.add_css_class("devel");
-        }
-        self.imp()
-            .settings()
-            .bind("last-source", &window, "selected-source")
-            // Only get once, initially, but do not update when another window selects a different source.
-            // This way we only remember the last source selected in any window.
-            .get_no_changes()
-            .build();
-        window.present();
-        window
     }
 
     fn show_error_from_automatic_wallpaper(&self, source: Source, error: &SourceError) {
@@ -324,6 +300,7 @@ mod imp {
     use std::cell::RefCell;
 
     use crate::{
+        app::widgets::ApplicationWindow,
         config::G_LOG_DOMAIN,
         portal::{
             background::AutostartMode,
@@ -396,7 +373,7 @@ mod imp {
         fn start_stop_wallpaper_update(&self) {
             let settings = self.settings();
             if settings.boolean("set-wallpaper-automatically") {
-                self.start_automatic_wallpaper_update(settings.get::<Source>("automatic-source"));
+                self.start_automatic_wallpaper_update(settings.get::<Source>("selected-source"));
             } else {
                 self.stop_automatic_wallpaper_update();
             }
@@ -475,7 +452,7 @@ mod imp {
 
             glib::info!("Starting automatic updates");
             self.start_stop_wallpaper_update();
-            for key in ["set-wallpaper-automatically", "automatic-source"] {
+            for key in ["set-wallpaper-automatically", "selected-source"] {
                 settings.connect_changed(
                     Some(key),
                     glib::clone!(
@@ -543,11 +520,25 @@ mod imp {
             glib::debug!("Activating application");
             self.parent_activate();
 
-            let first_activation = self.obj().active_window().is_none();
-            let window = self.obj().present_new_window();
-            let portal_client = self.obj().portal_client().unwrap();
-            if first_activation {
+            if let Some(window) = self.obj().active_window() {
+                window.present();
+            } else {
+                glib::debug!("Creating new window");
+                let window = ApplicationWindow::new(
+                    &*self.obj(),
+                    self.obj().http_session(),
+                    self.obj().portal_client().unwrap(),
+                );
+                if crate::config::is_development() {
+                    window.add_css_class("devel");
+                }
+                for setting in ["selected-source", "set-wallpaper-automatically"] {
+                    self.settings().bind(setting, &window, setting).build();
+                }
+                window.present();
+
                 // Request background if the app gets activated the first time.
+                let portal_client = self.obj().portal_client().unwrap();
                 glib::spawn_future_local(async move {
                     let reason = dpgettext2(
                         None,

@@ -87,6 +87,18 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
         }
 
         ToggleButton {
+          icon-name: "today-symbolic";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Set daily wallpaper automatically");
+          action-name: "win.set-wallpaper-automatically";
+        }
+
+        Separator {
+          styles [
+            "spacer",
+          ]
+        }
+
+        ToggleButton {
           icon-name: "info-outline-symbolic";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Toggle the sidebar with image information");
           action-name: "win.show-image-properties";
@@ -214,11 +226,6 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
 menu main_menu {
   section {
-    item {
-      label: C_("main-window.menu.label", "_New window");
-      action: "app.new-window";
-    }
-
     item {
       label: C_("main-window.menu.label", "_Quit");
       action: "app.quit";

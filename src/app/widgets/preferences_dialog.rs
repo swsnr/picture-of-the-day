@@ -24,16 +24,6 @@ impl PreferencesDialog {
                 "stalenhag-disabled-collections",
             )
             .build();
-        settings
-            .bind(
-                "set-wallpaper-automatically",
-                self,
-                "set-wallpaper-automatically",
-            )
-            .build();
-        settings
-            .bind("automatic-source", self, "automatic-source")
-            .build();
     }
 }
 
@@ -44,18 +34,14 @@ impl Default for PreferencesDialog {
 }
 
 mod imp {
-    use std::cell::{Cell, RefCell};
+    use std::cell::RefCell;
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use glib::{GString, Properties, StrV, dngettext, subclass::InitializingObject};
+    use glib::{Properties, StrV, dngettext, subclass::InitializingObject};
     use gtk::CompositeTemplate;
-    use strum::IntoEnumIterator;
 
-    use crate::{
-        app::widgets::SourceRow,
-        source::{Source, stalenhag},
-    };
+    use crate::source::{Source, stalenhag};
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::PreferencesDialog)]
@@ -65,18 +51,12 @@ mod imp {
         apod_api_key: RefCell<String>,
         #[property(get, set)]
         stalenhag_disabled_collections: RefCell<StrV>,
-        #[property(get, set)]
-        set_wallpaper_automatically: Cell<bool>,
-        #[property(get, set, builder(Source::default()))]
-        automatic_source: Cell<Source>,
         #[template_child]
         group_apod: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
         group_stalenhag: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
         stalenhag_collections: TemplateChild<adw::ExpanderRow>,
-        #[template_child]
-        automatic_source_row: TemplateChild<adw::ExpanderRow>,
     }
 
     #[gtk::template_callbacks]
@@ -95,11 +75,6 @@ mod imp {
             .replace("%1", &n_enabled.to_string())
             .replace("%2", &stalenhag::COLLECTIONS.len().to_string())
         }
-
-        #[template_callback(function)]
-        fn source_label(source: Source) -> GString {
-            source.i18n_name()
-        }
     }
 
     #[glib::object_subclass]
@@ -113,8 +88,6 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
             klass.bind_template_callbacks();
-
-            klass.install_property_action("select-automatic-source", "automatic-source");
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -141,6 +114,8 @@ mod imp {
                     .title(&collection.title)
                     .subtitle(format!("<a href=\"{0}\">{0}</a>", collection.url))
                     .build();
+                self.stalenhag_collections.add_row(&switch);
+
                 self.obj()
                     .bind_property("stalenhag-disabled-collections", &switch, "active")
                     .bidirectional()
@@ -166,14 +141,6 @@ mod imp {
                         Some(disabled_collections)
                     })
                     .build();
-                self.stalenhag_collections.add_row(&switch);
-            }
-
-            for source in Source::iter() {
-                let row = SourceRow::new(source);
-                row.set_action_name(Some("select-automatic-source"));
-                row.set_action_target(Some(source));
-                self.automatic_source_row.get().add_row(&row);
             }
         }
     }
