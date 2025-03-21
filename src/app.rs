@@ -200,7 +200,7 @@ impl Application {
                                 // update is needed, and remember now as the time
                                 // of the last update
                                 glib::info!(
-                                    "Not updating wallpaper, \
+                                    "Updating wallpaper, \
                         last update was more than {hours_since_last_update:?}\
                          hours (>= 12) ago"
                                 );
