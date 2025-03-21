@@ -61,12 +61,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <property name="accelerator">F9</property>
               </object>
             </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut description">New window</property>
-                <property name="action-name">app.new-window</property>
-              </object>
-            </child>
           </object>
         </child>
       </object>

@@ -94,6 +94,20 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 </child>
                 <child>
                   <object class="GtkToggleButton">
+                    <property name="icon-name">today-symbolic</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set daily wallpaper automatically</property>
+                    <property name="action-name">win.set-wallpaper-automatically</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkToggleButton">
                     <property name="icon-name">info-outline-symbolic</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Toggle the sidebar with image information</property>
                     <property name="action-name">win.show-image-properties</property>
@@ -301,10 +315,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   </template>
   <menu id="main_menu">
     <section>
-      <item>
-        <attribute name="label" translatable="yes" context="main-window.menu.label">_New window</attribute>
-        <attribute name="action">app.new-window</attribute>
-      </item>
       <item>
         <attribute name="label" translatable="yes" context="main-window.menu.label">_Quit</attribute>
         <attribute name="action">app.quit</attribute>

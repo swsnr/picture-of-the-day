@@ -186,6 +186,8 @@ mod imp {
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
         #[property(get, set)]
+        set_wallpaper_automatically: Cell<bool>,
+        #[property(get, set)]
         show_image_properties: Cell<bool>,
         #[property(get = Self::is_loading, type = bool)]
         is_loading: RefCell<Option<Cancellable>>,
@@ -393,6 +395,10 @@ mod imp {
 
             klass.install_property_action("win.select-source", "selected-source");
             klass.install_property_action("win.show-image-properties", "show-image-properties");
+            klass.install_property_action(
+                "win.set-wallpaper-automatically",
+                "set-wallpaper-automatically",
+            );
             klass.install_action("win.cancel-loading", None, |window, _, _| {
                 window.imp().cancel_loading();
             });

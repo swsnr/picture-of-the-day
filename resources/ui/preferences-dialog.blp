@@ -7,8 +7,6 @@ using Adw 1;
 
 template $PotDPreferencesDialog: Adw.PreferencesDialog {
   Adw.PreferencesPage {
-    title: _("Picture Sources");
-    description: _("Configure sources for the Picture Of The Day.");
     icon-name: "de.swsnr.pictureoftheday-symbolic";
 
     Adw.PreferencesGroup group_apod {
@@ -28,27 +26,6 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
       Adw.ExpanderRow stalenhag_collections {
         title: _("Enabled collections");
         subtitle: bind $label_enabled_collections(template.stalenhag-disabled-collections) as <string>;
-        expanded: true;
-      }
-    }
-  }
-
-  Adw.PreferencesPage {
-    title: _("Automatic wallpaper");
-    icon-name: "today-symbolic";
-
-    Adw.PreferencesGroup {
-      title: _("Set wallpaper automatically");
-      description: _("If enabled automatically get the picture of the day from the following source and set it as wallpaper.");
-
-      [header-suffix]
-      Gtk.Switch {
-        valign: start;
-        active: bind template.set-wallpaper-automatically bidirectional;
-      }
-
-      Adw.ExpanderRow automatic_source_row {
-        title: bind $source_label(template.automatic-source) as <string>;
         expanded: true;
       }
     }

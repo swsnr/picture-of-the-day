@@ -1,12 +1,8 @@
 <schemalist>
   <schema id="de.swsnr.pictureoftheday" path="/de/swsnr/pictureoftheday/">
-    <key name="last-source" type="s">
+    <key name="selected-source" type="s">
       <default>"wikimedia"</default>
-      <description>The identifier of the last selected source in a window.</description>
-    </key>
-    <key name="automatic-source" type="s">
-      <default>"wikimedia"</default>
-      <description>The identifier of the source for automatic wallpapers.</description>
+      <description>The identifier the selected source.</description>
     </key>
     <key name="set-wallpaper-automatically" type="b">
       <default>false</default>
