@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-08 14:24+0000\n"
+"PO-Revision-Date: 2025-03-21 13:21+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,11 +39,8 @@ msgid "Preferences"
 msgstr "Einstellungen"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:6
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Failed to set wallpaper"
 msgid "Your daily wallpaper"
-msgstr "Setzen des Bildschirmhintergrunds fehlgeschlagen"
+msgstr "Dein täglicher Bildschirmhintergrund"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
 msgid ""
@@ -103,6 +100,9 @@ msgid ""
 "Picture Of The Day can now set the daily wallpaper automatically in "
 "background. For this purpose, it now requests to be autostarted."
 msgstr ""
+"Bild des Tags kann den täglichen Bildschirmhintergrund automatisch im "
+"Hintergrund setzen. Zu diesem Zweck fragt die Anwendung jetzt an, "
+"automatisch gestartet zu werden."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:57
 msgid ""
@@ -283,8 +283,6 @@ msgid "Picture Sources"
 msgstr "Bildquellen"
 
 #: resources/ui/preferences-dialog.blp:11
-#, fuzzy
-#| msgid "Configure sources for the Picture of the Day."
 msgid "Configure sources for the Picture Of The Day."
 msgstr "Quellen für das Bild des Tages konfigurieren."
 
@@ -301,43 +299,32 @@ msgid "Enabled collections"
 msgstr "Ausgewählte Sammlungen"
 
 #: resources/ui/preferences-dialog.blp:37
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Failed to set wallpaper"
 msgid "Automatic wallpaper"
-msgstr "Setzen des Bildschirmhintergrunds fehlgeschlagen"
+msgstr "Automatischer Bildschirmhintergrund"
 
 #: resources/ui/preferences-dialog.blp:41
 msgid "Set wallpaper automatically"
-msgstr ""
+msgstr "Bildschirmhintergrund automatisch setzen"
 
 #: resources/ui/preferences-dialog.blp:42
-#, fuzzy
-#| msgid ""
-#| "Get a picture of the day from any of the following sources as your daily "
-#| "wallpaper."
 msgid ""
 "If enabled automatically get the picture of the day from the following "
 "source and set it as wallpaper."
 msgstr ""
-"Erhalte ein Bild des Tages aus einer der folgenden Quellen als täglichen "
-"Bildschirmhintergrund."
+"Wenn aktiviert, wird das Bild des Tags automatisch aus folgender Quelle "
+"heruntergeladen und als Bildschirmhintergrund gesetzt."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:5
-#, fuzzy
-#| msgid "The identifier of the last selected source."
 msgid "The identifier of the last selected source in a window."
-msgstr "Der Name der zuletzt gewählten Quelle."
+msgstr "Der Name der zuletzt gewählten Quelle in einem Fenster."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:9
-#, fuzzy
-#| msgid "The identifier of the last selected source."
 msgid "The identifier of the source for automatic wallpapers."
-msgstr "Der Name der zuletzt gewählten Quelle."
+msgstr "Der Name der Quelle für automatische Bildschirmhintergründe."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:13
 msgid "Whether to set the wallpaper automatically."
-msgstr ""
+msgstr "Ob der Bildschirmhintergrund automatisch gesetzt werden soll."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
@@ -377,23 +364,16 @@ msgid "Helpful services"
 msgstr "Hilfreiche Dienste"
 
 #: src/app.rs:176
-#, fuzzy
-#| msgid "Contact information"
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Kontaktinformationen"
 
 #: src/app.rs:181
-#, fuzzy
-#| msgid "Open preferences"
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
 #: src/app.rs:185
-#, fuzzy
-#| msgctxt "alert.response"
-#| msgid "Open URL"
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "URL öffnen"
@@ -406,7 +386,7 @@ msgstr "Einstellungen öffnen"
 #: src/app.rs:552
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
-msgstr ""
+msgstr "Bildschirmhintergrund im Hintergrund automatisch abrufen und setzen"
 
 #: src/app/model/error_notification.rs:41
 msgctxt "error-notification.title"
@@ -590,8 +570,6 @@ msgstr[0] "%1/%2 Sammlung aktiviert"
 msgstr[1] "%1/%2 Sammlungen aktiviert"
 
 #: src/main.rs:89
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr "Bild des Tages"
