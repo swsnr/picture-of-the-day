@@ -552,8 +552,7 @@ mod imp {
                             &window_handle,
                             &reason,
                             Some(&[crate::config::APP_ID, "--gapplication-service"]),
-                            RequestBackgroundFlags::DBUS_ACTIVATE
-                                | RequestBackgroundFlags::AUTOSTART,
+                            RequestBackgroundFlags::AUTOSTART,
                         )
                         .await
                     {
