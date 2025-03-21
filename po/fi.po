@@ -97,11 +97,15 @@ msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:47
 msgid ""
-"Picture Of The Day can now set the daily wallpaper automatically in "
-"background. For this purpose, it now requests to be autostarted."
+"Start automatically and refresh the daily wallpaper automatically every "
+"twelve hours."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:57
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
+msgid "No longer support multiple windows."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -109,17 +113,17 @@ msgstr ""
 "Ensimmäinen julkaisu neljän lähteen kera: APOD, Wikimedia, Simon Stålenhag "
 "ja Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:59
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:70
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:71
 msgid "A picture of the day from Wikimedia"
 msgstr "Päivän kuva Wikimediasta"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid "The empty greeting page with the application icon"
 msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
 
@@ -168,11 +172,6 @@ msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr "Sivupalkki päällä/pois"
 
-#: resources/gtk/help-overlay.blp:56
-msgctxt "shortcut description"
-msgid "New window"
-msgstr "Uusi ikkuna"
-
 #: resources/ui/application-window.blp:31
 msgctxt "main-window.toolbar.button.label"
 msgid "Source"
@@ -194,64 +193,67 @@ msgid "Set current image as wallpaper"
 msgstr "Aseta nykyinen kuva taustakuvaksi"
 
 #: resources/ui/application-window.blp:91
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Failed to set wallpaper"
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Set daily wallpaper automatically"
+msgstr "Taustakuvan asettaminen epäonnistui"
+
+#: resources/ui/application-window.blp:103
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "Näytä/piilota kuvan tietoja sisältävä sivupalkki"
 
-#: resources/ui/application-window.blp:131
+#: resources/ui/application-window.blp:143
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr "Nimi"
 
-#: resources/ui/application-window.blp:140
+#: resources/ui/application-window.blp:152
 msgid "Visit the source page of this image."
 msgstr "Vieraile tämän kuvan lähdesivulla."
 
-#: resources/ui/application-window.blp:149
+#: resources/ui/application-window.blp:161
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr "Tekijänoikeus"
 
-#: resources/ui/application-window.blp:160
+#: resources/ui/application-window.blp:172
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: resources/ui/application-window.blp:173
+#: resources/ui/application-window.blp:185
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr "Lähde"
 
-#: resources/ui/application-window.blp:181
+#: resources/ui/application-window.blp:193
 msgid "Visit the main page of the source of this image."
 msgstr "Vieraile tämän kuvan lähteen etusivulla."
 
-#: resources/ui/application-window.blp:200
+#: resources/ui/application-window.blp:212
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr "Nouda kuvia"
 
-#: resources/ui/application-window.blp:218
-msgctxt "main-window.menu.label"
-msgid "_New window"
-msgstr "_Uusi ikkuna"
-
-#: resources/ui/application-window.blp:223
+#: resources/ui/application-window.blp:230
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: resources/ui/application-window.blp:230
+#: resources/ui/application-window.blp:237
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: resources/ui/application-window.blp:235
+#: resources/ui/application-window.blp:242
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#: resources/ui/application-window.blp:240
+#: resources/ui/application-window.blp:247
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "_Tietoja - Päivän kuva"
@@ -273,77 +275,40 @@ msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
 msgstr "Lataa kuva…"
 
-#: resources/ui/preferences-dialog.blp:10
-msgid "Picture Sources"
-msgstr "Kuvalähteet"
-
-#: resources/ui/preferences-dialog.blp:11
-#, fuzzy
-#| msgid "Configure sources for the Picture of the Day."
-msgid "Configure sources for the Picture Of The Day."
-msgstr "Määritä päivän kuvan lähteet."
-
-#: resources/ui/preferences-dialog.blp:16
+#: resources/ui/preferences-dialog.blp:14
 msgid "API key"
 msgstr "API-avain"
 
-#: resources/ui/preferences-dialog.blp:21
+#: resources/ui/preferences-dialog.blp:19
 msgid "Get API key"
 msgstr "Hanki API-avain"
 
-#: resources/ui/preferences-dialog.blp:29
+#: resources/ui/preferences-dialog.blp:27
 msgid "Enabled collections"
 msgstr "Käytössä olevat kokoelmat"
-
-#: resources/ui/preferences-dialog.blp:37
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Failed to set wallpaper"
-msgid "Automatic wallpaper"
-msgstr "Taustakuvan asettaminen epäonnistui"
-
-#: resources/ui/preferences-dialog.blp:41
-msgid "Set wallpaper automatically"
-msgstr ""
-
-#: resources/ui/preferences-dialog.blp:42
-#, fuzzy
-#| msgid ""
-#| "Get a picture of the day from any of the following sources as your daily "
-#| "wallpaper."
-msgid ""
-"If enabled automatically get the picture of the day from the following "
-"source and set it as wallpaper."
-msgstr "Aseta taustakuvaksi päivän kuva seuraavista lähteistä."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:5
 #, fuzzy
 #| msgid "The identifier of the last selected source."
-msgid "The identifier of the last selected source in a window."
+msgid "The identifier the selected source."
 msgstr "Viimeksi valitun lähteen tunniste."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:9
-#, fuzzy
-#| msgid "The identifier of the last selected source."
-msgid "The identifier of the source for automatic wallpapers."
-msgstr "Viimeksi valitun lähteen tunniste."
-
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:13
 msgid "Whether to set the wallpaper automatically."
 msgstr ""
 
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:18
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:14
 msgid ""
 "The API key to use for requests to the APOD API. The default key is usually "
 "fine, but if you find that you are rate-limited, you may wish to use your "
 "own API key, which you can obtain free of charge at https://api.nasa.gov/."
 msgstr ""
 
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:28
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:24
 msgid "Collections from Stålenhag which to ignore."
 msgstr "Ohitettavat kokoelmat lähteestä Stålenhag."
 
-#: src/app.rs:105
+#: src/app.rs:99
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "Käännökset"
@@ -351,35 +316,35 @@ msgstr "Käännökset"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:114
+#: src/app.rs:108
 msgid "translator-credits"
 msgstr "Jiri Grönroos"
 
-#: src/app.rs:119
+#: src/app.rs:113
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "Tuki ja inspiraatio"
 
-#: src/app.rs:132
+#: src/app.rs:126
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Hyödylliset palvelut"
 
-#: src/app.rs:176
+#: src/app.rs:155
 #, fuzzy
 #| msgid "Contact information"
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
-#: src/app.rs:181
+#: src/app.rs:160
 #, fuzzy
 #| msgid "Open preferences"
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Avaa asetukset"
 
-#: src/app.rs:185
+#: src/app.rs:164
 #, fuzzy
 #| msgctxt "alert.response"
 #| msgid "Open URL"
@@ -387,12 +352,12 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Avaa osoite"
 
-#: src/app.rs:423
+#: src/app.rs:403
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Avaa asetukset"
 
-#: src/app.rs:552
+#: src/app.rs:546
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
@@ -543,12 +508,12 @@ msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Avaa osoite"
 
-#: src/app/widgets/application_window.rs:275
+#: src/app/widgets/application_window.rs:277
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Yksityiskohdat"
 
-#: src/app/widgets/preferences_dialog.rs:91
+#: src/app/widgets/preferences_dialog.rs:71
 msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
 msgstr[0] "%1/%2 kokoelma käytössä"
@@ -608,3 +573,39 @@ msgstr ""
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Tuntematon, kaikki oikeudet pidätetään"
+
+#~ msgctxt "shortcut description"
+#~ msgid "New window"
+#~ msgstr "Uusi ikkuna"
+
+#~ msgctxt "main-window.menu.label"
+#~ msgid "_New window"
+#~ msgstr "_Uusi ikkuna"
+
+#~ msgid "Picture Sources"
+#~ msgstr "Kuvalähteet"
+
+#, fuzzy
+#~| msgid "Configure sources for the Picture of the Day."
+#~ msgid "Configure sources for the Picture Of The Day."
+#~ msgstr "Määritä päivän kuvan lähteet."
+
+#, fuzzy
+#~| msgctxt "error-notification.title"
+#~| msgid "Failed to set wallpaper"
+#~ msgid "Automatic wallpaper"
+#~ msgstr "Taustakuvan asettaminen epäonnistui"
+
+#, fuzzy
+#~| msgid ""
+#~| "Get a picture of the day from any of the following sources as your daily "
+#~| "wallpaper."
+#~ msgid ""
+#~ "If enabled automatically get the picture of the day from the following "
+#~ "source and set it as wallpaper."
+#~ msgstr "Aseta taustakuvaksi päivän kuva seuraavista lähteistä."
+
+#, fuzzy
+#~| msgid "The identifier of the last selected source."
+#~ msgid "The identifier of the source for automatic wallpapers."
+#~ msgstr "Viimeksi valitun lähteen tunniste."
