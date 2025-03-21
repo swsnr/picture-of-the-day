@@ -15,6 +15,7 @@ use strum::EnumIter;
 
 use crate::config::G_LOG_DOMAIN;
 
+use super::background::{AutostartMode, RequestBackground, RequestBackgroundResult};
 use super::wallpaper::{Preview, SetOn, SetWallpaperFile};
 use super::window::PortalWindowHandle;
 
@@ -40,9 +41,14 @@ pub enum RequestResult {
 pub struct PortalResponse(RequestResult, VariantDict);
 
 impl PortalResponse {
-    /// Get the result of this request.
+    /// Get the result of the request.
     pub fn result(&self) -> RequestResult {
         self.0
+    }
+
+    /// Get the options returned along with the response.
+    pub fn options(&self) -> &VariantDict {
+        &self.1
     }
 }
 
@@ -199,7 +205,7 @@ impl PortalClient {
         }
     }
 
-    pub async fn invoke_with_unix_fd_list<C: PortalCall>(
+    async fn invoke_with_unix_fd_list<C: PortalCall>(
         &self,
         mut call: C,
         fd_list: Option<&(impl IsA<UnixFDList> + Clone + 'static)>,
@@ -283,6 +289,21 @@ impl PortalClient {
             .await?
             .result();
         Ok(result)
+    }
+
+    pub async fn request_background(
+        &self,
+        window: &PortalWindowHandle,
+        reason: &str,
+        autostart: AutostartMode<'_>,
+    ) -> Result<RequestBackgroundResult, glib::Error> {
+        let call = RequestBackground::new(window.identifier(), reason, autostart);
+        let response = self
+            .invoke_with_unix_fd_list(call, UnixFDList::NONE)
+            .await?
+            .receive_response()
+            .await?;
+        Ok(response.into())
     }
 }
 
