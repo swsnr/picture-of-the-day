@@ -303,7 +303,7 @@ mod imp {
         app::widgets::ApplicationWindow,
         config::G_LOG_DOMAIN,
         portal::{
-            background::AutostartMode,
+            background::RequestBackgroundFlags,
             client::{PortalClient, RequestResult},
             window::PortalWindowHandle,
         },
@@ -517,7 +517,7 @@ mod imp {
         }
 
         fn activate(&self) {
-            glib::debug!("Activating application");
+            glib::info!("Activating application");
             self.parent_activate();
 
             if let Some(window) = self.obj().active_window() {
@@ -548,7 +548,13 @@ mod imp {
                     let window_handle = PortalWindowHandle::new_for_native(&window).await;
                     glib::info!("Requesting permission to run in background and autostart");
                     match portal_client
-                        .request_background(&window_handle, &reason, AutostartMode::DBusActivate)
+                        .request_background(
+                            &window_handle,
+                            &reason,
+                            Some(&[crate::config::APP_ID, "--gapplication-service"]),
+                            RequestBackgroundFlags::DBUS_ACTIVATE
+                                | RequestBackgroundFlags::AUTOSTART,
+                        )
                         .await
                     {
                         Ok(response) => {

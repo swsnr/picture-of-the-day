@@ -15,7 +15,7 @@ use strum::EnumIter;
 
 use crate::config::G_LOG_DOMAIN;
 
-use super::background::{AutostartMode, RequestBackground, RequestBackgroundResult};
+use super::background::{RequestBackground, RequestBackgroundFlags, RequestBackgroundResult};
 use super::wallpaper::{Preview, SetOn, SetWallpaperFile};
 use super::window::PortalWindowHandle;
 
@@ -295,9 +295,10 @@ impl PortalClient {
         &self,
         window: &PortalWindowHandle,
         reason: &str,
-        autostart: AutostartMode<'_>,
+        command_line: Option<&[&str]>,
+        flags: RequestBackgroundFlags,
     ) -> Result<RequestBackgroundResult, glib::Error> {
-        let call = RequestBackground::new(window.identifier(), reason, autostart);
+        let call = RequestBackground::new(window.identifier(), reason, command_line, flags);
         let response = self
             .invoke_with_unix_fd_list(call, UnixFDList::NONE)
             .await?

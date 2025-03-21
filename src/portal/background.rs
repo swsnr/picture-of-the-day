@@ -4,7 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::{Variant, VariantDict};
+use glib::{Variant, VariantDict, bitflags::bitflags};
 
 use super::{
     client::{PortalCall, PortalResponse, RequestResult},
@@ -14,34 +14,31 @@ use super::{
 #[derive(Variant)]
 pub struct RequestBackground<'a>(PortalWindowIdentifier<'a>, VariantDict);
 
-#[derive(Debug, Copy, Clone)]
-pub enum AutostartMode<'a> {
-    NoAutostart,
-    CommandLine(Option<&'a [&'a str]>),
-    DBusActivate,
+bitflags! {
+    #[derive(Copy, Clone)]
+    pub struct RequestBackgroundFlags: u8 {
+        const AUTOSTART = 1;
+        const DBUS_ACTIVATE = 2;
+    }
 }
 
 impl<'a> RequestBackground<'a> {
     pub fn new(
         window: PortalWindowIdentifier<'a>,
         reason: &str,
-        auto_start: AutostartMode<'_>,
+        command_line: Option<&[&str]>,
+        flags: RequestBackgroundFlags,
     ) -> Self {
         let options = VariantDict::new(None);
         options.insert("reason", reason);
-        match auto_start {
-            AutostartMode::NoAutostart => {}
-            AutostartMode::CommandLine(None) => {
-                options.insert("autostart", true);
-            }
-            AutostartMode::CommandLine(Some(command_line)) => {
-                options.insert("autostart", true);
-                options.insert("commandline", command_line);
-            }
-            AutostartMode::DBusActivate => {
-                options.insert("autostart", true);
-                options.insert("dbus-activatable", true);
-            }
+        if let Some(command_line) = command_line {
+            options.insert("commandline", command_line);
+        }
+        if flags.contains(RequestBackgroundFlags::AUTOSTART) {
+            options.insert("autostart", true);
+        }
+        if flags.contains(RequestBackgroundFlags::DBUS_ACTIVATE) {
+            options.insert("dbus-activatable", true);
         }
         Self(window, options)
     }
