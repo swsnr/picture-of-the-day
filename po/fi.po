@@ -1,17 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Sebastian Wiesner <sebastian@swsnr.de>
-# This file is distributed under the same license as the de.swsnr.picture-of-the-day package.
+# This file is distributed under the same license as the de.swsnr.pictureoftheday package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: de.swsnr.picture-of-the-day\n"
+"Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-21 13:21+0000\n"
-"Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
-"Language: de\n"
+"PO-Revision-Date: 2025-03-10 10:21+0000\n"
+"Last-Translator: artnay <artnay@noreply.codeberg.org>\n"
+"Language-Team: Finnish <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
+"Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,36 +23,37 @@ msgstr ""
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:5
 #: resources/ui/application-window.blp:9
 msgid "Picture Of The Day"
-msgstr "Bild des Tages"
+msgstr "Päivän kuva"
 
 #: de.swsnr.pictureoftheday.desktop.in:5
 msgid "A daily picture as your wallpaper"
-msgstr "Ein tägliches Bild als Bildschirmhintergrund"
+msgstr "Päivän kuva taustakuvana"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: de.swsnr.pictureoftheday.desktop.in:11
 msgid "Gnome;GTK;Picture;Day;Wallpaper;"
-msgstr "Gnome;GTK;Bild;Tag;Bildschirmhintergrund;"
+msgstr "Gnome;GTK;Picture;Day;Wallpaper;taustakuva;kuva;"
 
 #: de.swsnr.pictureoftheday.desktop.in:18
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Asetukset"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:6
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Failed to set wallpaper"
 msgid "Your daily wallpaper"
-msgstr "Dein täglicher Bildschirmhintergrund"
+msgstr "Taustakuvan asettaminen epäonnistui"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
 msgid ""
 "Get a picture of the day from any of the following sources as your daily "
 "wallpaper."
-msgstr ""
-"Erhalte ein Bild des Tages aus einer der folgenden Quellen als täglichen "
-"Bildschirmhintergrund."
+msgstr "Aseta taustakuvaksi päivän kuva seuraavista lähteistä."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
 msgid "NASA Astronomy Picture Of The Day"
-msgstr "NASA Astronomie Bild des Tages"
+msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:11
 msgid "Bing"
@@ -60,271 +61,276 @@ msgstr "Bing"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:12
 msgid "Simon Stålenhag Artwork"
-msgstr "Simon Stålenhag Kunstwerke"
+msgstr "Simon Stålenhag Artwork"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
 msgid "Wikimedia Picture Of The Day"
-msgstr "Wikimedia Bild des Tages"
+msgstr "Wikimedian päivän kuva"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
 msgstr ""
-"Beachte dass alle Bilder urheberrechtlich geschützt sind; Du darfst die "
-"Bilder möglicherweise nicht nutzen oder verbreiten. Beachte die "
-"Lizenzbedingungen jedes einzelnen Bildes."
+"Huomioi, että kaikkia kuvia suojaa tekijänoikeus; sinulla ei välttämättä ole "
+"oikeutta käyttää tai jaella kuvia. Tutustu jokaisen kuvan lisenssiehtoihin."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:21
 msgid "Picture"
-msgstr "Bild"
+msgstr "Kuva"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
 msgid "Daily"
-msgstr "Täglich"
+msgstr "Päivittäin"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
 msgid "Wallpaper"
-msgstr "Bildschirmhintergrund"
+msgstr "Taustakuva"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
 msgid "Astronomy"
-msgstr "Astronomie"
+msgstr "Tähtitiede"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
 msgid "Artwork"
-msgstr "Kunstwerk"
+msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:47
 msgid ""
 "Picture Of The Day can now set the daily wallpaper automatically in "
 "background. For this purpose, it now requests to be autostarted."
 msgstr ""
-"Bild des Tags kann den täglichen Bildschirmhintergrund automatisch im "
-"Hintergrund setzen. Zu diesem Zweck fragt die Anwendung jetzt an, "
-"automatisch gestartet zu werden."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:57
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr ""
-"Die erste Veröffentlichung mit vier Bildquellen: APOD, Wikimedia, Simon "
-"Stålenhag, und Bing."
+"Ensimmäinen julkaisu neljän lähteen kera: APOD, Wikimedia, Simon Stålenhag "
+"ja Bing."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:58
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr ""
-"Ein Hauptfenster zur Anzeige des heutigen Bildes sowie eine Schaltfläche zum "
-"Setzen des Hintergrundbildes wurden hinzugefügt."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:70
 msgid "A picture of the day from Wikimedia"
-msgstr "Das Bild des Tages von Wikimedia"
+msgstr "Päivän kuva Wikimediasta"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid "The empty greeting page with the application icon"
-msgstr "Die leere Startseite mit dem Anwendungssymbol"
+msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
 
 #: resources/gtk/help-overlay.blp:14
 msgctxt "shortcuts group title"
 msgid "General"
-msgstr "Allgemein"
+msgstr "Yleiset"
 
 #: resources/gtk/help-overlay.blp:17
 msgctxt "shortcut description"
 msgid "Preferences"
-msgstr "Einstellungen"
+msgstr "Asetukset"
 
 #: resources/gtk/help-overlay.blp:22
 msgctxt "shortcut description"
 msgid "Show shortcuts"
-msgstr "Tastenkürzel anzeigen"
+msgstr "Näytä pikanäppäimet"
 
 #: resources/gtk/help-overlay.blp:27
 msgctxt "shortcut description"
 msgid "Quit application"
-msgstr "Anwendung beenden"
+msgstr "Lopeta sovellus"
 
 #: resources/gtk/help-overlay.blp:33
 msgctxt "shortcuts group title"
 msgid "Picture Of The Day Window"
-msgstr "Bild des Tages Fenster"
+msgstr "Päivän kuvan ikkuna"
 
 #: resources/gtk/help-overlay.blp:36
 msgctxt "shortcut description"
 msgid "Select source"
-msgstr "Quelle auswählen"
+msgstr "Valitse lähde"
 
 #: resources/gtk/help-overlay.blp:41
 msgctxt "shortcut description"
 msgid "Load images"
-msgstr "Bilder laden"
+msgstr "Lataa kuvat"
 
 #: resources/gtk/help-overlay.blp:46
 msgctxt "shortcut description"
 msgid "Cancel loading images"
-msgstr "Laden der Bilder abbrechen"
+msgstr "Peru kuvien lataaminen"
 
 #: resources/gtk/help-overlay.blp:51
 msgctxt "shortcut description"
 msgid "Toggle sidebar"
-msgstr "Seitenleiste umschalten"
+msgstr "Sivupalkki päällä/pois"
 
 #: resources/gtk/help-overlay.blp:56
 msgctxt "shortcut description"
 msgid "New window"
-msgstr "Neues Fenster"
+msgstr "Uusi ikkuna"
 
 #: resources/ui/application-window.blp:31
 msgctxt "main-window.toolbar.button.label"
 msgid "Source"
-msgstr "Quelle"
+msgstr "Lähde"
 
 #: resources/ui/application-window.blp:58
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Load images for selected source"
-msgstr "Bilder aus gewählter Quelle laden"
+msgstr "Lataa kuvat valitusta lähteestä"
 
 #: resources/ui/application-window.blp:64
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Cancel loading images"
-msgstr "Laden der Bilder abbrechen"
+msgstr "Peru kuvien lataaminen"
 
 #: resources/ui/application-window.blp:80
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
-msgstr "Aktuelles Bild als Bildschirmhintergrund setzen"
+msgstr "Aseta nykyinen kuva taustakuvaksi"
 
 #: resources/ui/application-window.blp:91
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
-msgstr "Seitenleiste mit Bildinformationen umschalten"
+msgstr "Näytä/piilota kuvan tietoja sisältävä sivupalkki"
 
 #: resources/ui/application-window.blp:131
 msgctxt "images-view.metadata.label"
 msgid "Title"
-msgstr "Titel"
+msgstr "Nimi"
 
 #: resources/ui/application-window.blp:140
 msgid "Visit the source page of this image."
-msgstr "Die Quellseite dieses Bildes besuchen."
+msgstr "Vieraile tämän kuvan lähdesivulla."
 
 #: resources/ui/application-window.blp:149
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
-msgstr "Urheberrecht"
+msgstr "Tekijänoikeus"
 
 #: resources/ui/application-window.blp:160
 msgctxt "images-view.metadata.label"
 msgid "Description"
-msgstr "Beschreibung"
+msgstr "Kuvaus"
 
 #: resources/ui/application-window.blp:173
 msgctxt "images-view.metadata.label"
 msgid "Source"
-msgstr "Quelle"
+msgstr "Lähde"
 
 #: resources/ui/application-window.blp:181
 msgid "Visit the main page of the source of this image."
-msgstr "Die Hauptseite der Quelle dieses Bildes besuchen."
+msgstr "Vieraile tämän kuvan lähteen etusivulla."
 
 #: resources/ui/application-window.blp:200
 msgctxt "start-page.button.label"
 msgid "Get images"
-msgstr "Bilder erhalten"
+msgstr "Nouda kuvia"
 
 #: resources/ui/application-window.blp:218
 msgctxt "main-window.menu.label"
 msgid "_New window"
-msgstr "_Neues Fenster"
+msgstr "_Uusi ikkuna"
 
 #: resources/ui/application-window.blp:223
 msgctxt "main-window.menu.label"
 msgid "_Quit"
-msgstr "_Beenden"
+msgstr "_Lopeta"
 
 #: resources/ui/application-window.blp:230
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
-msgstr "_Einstellungen"
+msgstr "_Asetukset"
 
 #: resources/ui/application-window.blp:235
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
-msgstr "_Tastenkürzel"
+msgstr "_Pikanäppäimet"
 
 #: resources/ui/application-window.blp:240
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
-msgstr "_Über Bild des Tages"
+msgstr "_Tietoja - Päivän kuva"
 
 #: resources/ui/error-notification-page.blp:20
 msgid "Open preferences"
-msgstr "Einstellungen öffnen"
+msgstr "Avaa asetukset"
 
 #: resources/ui/error-notification-page.blp:30
 msgid "Contact information"
-msgstr "Kontaktinformationen"
+msgstr "Yhteystiedot"
 
 #: resources/ui/error-notification-page.blp:40
 msgid "Open source"
-msgstr "Quelle öffnen"
+msgstr "Avaa lähde"
 
 #: resources/ui/image-page.blp:19
 msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
-msgstr "Bild wird heruntergeladen…"
+msgstr "Lataa kuva…"
 
 #: resources/ui/preferences-dialog.blp:10
 msgid "Picture Sources"
-msgstr "Bildquellen"
+msgstr "Kuvalähteet"
 
 #: resources/ui/preferences-dialog.blp:11
+#, fuzzy
+#| msgid "Configure sources for the Picture of the Day."
 msgid "Configure sources for the Picture Of The Day."
-msgstr "Quellen für das Bild des Tages konfigurieren."
+msgstr "Määritä päivän kuvan lähteet."
 
 #: resources/ui/preferences-dialog.blp:16
 msgid "API key"
-msgstr "API-Schlüssel"
+msgstr "API-avain"
 
 #: resources/ui/preferences-dialog.blp:21
 msgid "Get API key"
-msgstr "API-Schlüssel erhalten"
+msgstr "Hanki API-avain"
 
 #: resources/ui/preferences-dialog.blp:29
 msgid "Enabled collections"
-msgstr "Ausgewählte Sammlungen"
+msgstr "Käytössä olevat kokoelmat"
 
 #: resources/ui/preferences-dialog.blp:37
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Failed to set wallpaper"
 msgid "Automatic wallpaper"
-msgstr "Automatischer Bildschirmhintergrund"
+msgstr "Taustakuvan asettaminen epäonnistui"
 
 #: resources/ui/preferences-dialog.blp:41
 msgid "Set wallpaper automatically"
-msgstr "Bildschirmhintergrund automatisch setzen"
+msgstr ""
 
 #: resources/ui/preferences-dialog.blp:42
+#, fuzzy
+#| msgid ""
+#| "Get a picture of the day from any of the following sources as your daily "
+#| "wallpaper."
 msgid ""
 "If enabled automatically get the picture of the day from the following "
 "source and set it as wallpaper."
-msgstr ""
-"Wenn aktiviert, wird das Bild des Tags automatisch aus folgender Quelle "
-"heruntergeladen und als Bildschirmhintergrund gesetzt."
+msgstr "Aseta taustakuvaksi päivän kuva seuraavista lähteistä."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:5
+#, fuzzy
+#| msgid "The identifier of the last selected source."
 msgid "The identifier of the last selected source in a window."
-msgstr "Der Name der zuletzt gewählten Quelle in einem Fenster."
+msgstr "Viimeksi valitun lähteen tunniste."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:9
+#, fuzzy
+#| msgid "The identifier of the last selected source."
 msgid "The identifier of the source for automatic wallpapers."
-msgstr "Der Name der Quelle für automatische Bildschirmhintergründe."
+msgstr "Viimeksi valitun lähteen tunniste."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:13
 msgid "Whether to set the wallpaper automatically."
-msgstr "Ob der Bildschirmhintergrund automatisch gesetzt werden soll."
+msgstr ""
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
@@ -332,66 +338,69 @@ msgid ""
 "fine, but if you find that you are rate-limited, you may wish to use your "
 "own API key, which you can obtain free of charge at https://api.nasa.gov/."
 msgstr ""
-"Der API-Schlüssel für Anfragen an die APOD-API. Der Standardschlüssel reicht "
-"normalerweise aus, aber wenn Du beobachtest, dass Deine Zugriffsrate "
-"limitiert wird, möchtest Du eventuell Deinen eigenen API-Schlüssel nutzen, "
-"den Du kostenlos unter https://api.nasa.gov/ erhalten kannst."
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:28
 msgid "Collections from Stålenhag which to ignore."
-msgstr "Zu ignorierende Stålenhag-Sammlungen."
+msgstr "Ohitettavat kokoelmat lähteestä Stålenhag."
 
 #: src/app.rs:105
 msgctxt "about-dialog.link.label"
 msgid "Translations"
-msgstr "Übersetzungen"
+msgstr "Käännökset"
 
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
 #: src/app.rs:114
 msgid "translator-credits"
-msgstr "Sebastian Wiesner <sebastian@swsnr.de>"
+msgstr "Jiri Grönroos"
 
 #: src/app.rs:119
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
-msgstr "Hilfe und Inspiration"
+msgstr "Tuki ja inspiraatio"
 
 #: src/app.rs:132
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
-msgstr "Hilfreiche Dienste"
+msgstr "Hyödylliset palvelut"
 
 #: src/app.rs:176
+#, fuzzy
+#| msgid "Contact information"
 msgctxt "notification.button.label"
 msgid "Contact information"
-msgstr "Kontaktinformationen"
+msgstr "Yhteystiedot"
 
 #: src/app.rs:181
+#, fuzzy
+#| msgid "Open preferences"
 msgctxt "notification.button.label"
 msgid "Open preferences"
-msgstr "Einstellungen öffnen"
+msgstr "Avaa asetukset"
 
 #: src/app.rs:185
+#, fuzzy
+#| msgctxt "alert.response"
+#| msgid "Open URL"
 msgctxt "notification.button.label"
 msgid "Open URL"
-msgstr "URL öffnen"
+msgstr "Avaa osoite"
 
 #: src/app.rs:423
 msgctxt "command-line.option.description"
 msgid "Open preferences"
-msgstr "Einstellungen öffnen"
+msgstr "Avaa asetukset"
 
 #: src/app.rs:552
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
-msgstr "Bildschirmhintergrund im Hintergrund automatisch abrufen und setzen"
+msgstr ""
 
 #: src/app/model/error_notification.rs:41
 msgctxt "error-notification.title"
 msgid "Picture Of The Day needs an API key"
-msgstr "Bild des Tages benötigt einen API-Schlüssel"
+msgstr "Päivän kuva -sovellus tarvitsee API-avaimen"
 
 #: src/app/model/error_notification.rs:46
 msgctxt "error-notification.description"
@@ -399,13 +408,13 @@ msgid ""
 "Please configure a valid API key for %1 in the application preferences. The "
 "current key appears to be invalid."
 msgstr ""
-"Bitte konfiguriere einen gültigen API-Schlüssel für %1 in den Einstellungen "
-"der Anwendung."
+"Määritä lähteen %1 API-avain sovelluksen asetuksissa. Nykyinen avain "
+"vaikuttaa virheelliseltä."
 
 #: src/app/model/error_notification.rs:60
 msgctxt "error-notification.title"
 msgid "Picture Of The Day was rate-limited"
-msgstr "Die Zugriffsrate von Bild des Tages wurde beschränkt"
+msgstr ""
 
 #: src/app/model/error_notification.rs:65
 msgctxt "error-notification.description"
@@ -413,14 +422,12 @@ msgid ""
 "The %1 server is rate-limited and does currently not allow you to fetch an "
 "image. Try again later, or try a different source."
 msgstr ""
-"Der %1 Server beschränkt die Zugriffsrate und erlaubt Dir aktuell nicht, ein "
-"Bild abzurufen. Versuche es später erneut, oder wähle eine andere Quelle."
 
 #: src/app/model/error_notification.rs:74
 #: src/app/model/error_notification.rs:87
 msgctxt "error-notification.title"
 msgid "No image today"
-msgstr "Kein Bild heute"
+msgstr "Ei kuvaa tänään"
 
 #: src/app/model/error_notification.rs:78
 msgctxt "error-notification.description"
@@ -428,8 +435,8 @@ msgid ""
 "Currently, %1 does not provide an image for today. Try again later, or try a "
 "different source."
 msgstr ""
-"Aktuell stellt %1 kein Bild für heute zur Verfügung. Versuche es später "
-"erneut, oder wähle eine andere Quelle."
+"Tällä hetkellä %1 ei tarjoa päivän kuvaa. Yritä myöhemmin uudelleen, tai "
+"yritä käyttää toista lähdettä."
 
 #: src/app/model/error_notification.rs:91
 msgctxt "error-notification.description"
@@ -437,16 +444,13 @@ msgid ""
 "Today, %1 provides a video or another type of media which this application "
 "does not support. Try again tomorrow, or try a different source."
 msgstr ""
-"Heute stellt %1 ein Video oder eine andere Art von Medium zur Verfügung, das "
-"diese Anwendung nicht unterstützt. Versuche es morgen erneut, oder wähle "
-"eine andere Quelle."
 
 #: src/app/model/error_notification.rs:103
 #: src/app/model/error_notification.rs:121
 #: src/app/model/error_notification.rs:162
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
-msgstr "Abrufen der Bilder fehlgeschlagen"
+msgstr "Kuvien noutaminen epäonnistui"
 
 #: src/app/model/error_notification.rs:107
 msgctxt "error-notification.description"
@@ -455,9 +459,6 @@ msgid ""
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
 msgstr ""
-"Der %1 Server hat mit dem HTTP Status %2 geantwortet. Eventuell hat der "
-"Server aktuell Probleme. Versuche es später erneut, oder wähle eine andere "
-"Quelle. Falls das Problem bestehen bleibt, melde das Problem bitte."
 
 #: src/app/model/error_notification.rs:125
 msgctxt "error-notification.description"
@@ -466,24 +467,21 @@ msgid ""
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
 msgstr ""
-"Der %1 Server hat mit ungültige Daten geantwortet. Eventuell hat der Server "
-"aktuell Probleme. Versuche es später erneut, oder wähle eine andere Quelle. "
-"Falls das Problem bestehen bleibt, melde das Problem bitte."
 
 #: src/app/model/error_notification.rs:135
 msgctxt "error-notification.title"
 msgid "Cancelled"
-msgstr "Abgebrochen"
+msgstr "Peruttu"
 
 #: src/app/model/error_notification.rs:139
 msgctxt "error-notification.description"
 msgid "You cancelled loading images from %1."
-msgstr "Du hast das Laden der Bilder von %1 abgebrochen."
+msgstr "Peruit kuvien lataamisen lähteestä %1."
 
 #: src/app/model/error_notification.rs:153
 msgctxt "error-notification.title"
 msgid "Limited network connectivity"
-msgstr "Eingeschränkte Netzwerkverbindung"
+msgstr "Rajoitettu yhdistettävyys verkkoon"
 
 #: src/app/model/error_notification.rs:158
 msgctxt "error-notification.description"
@@ -492,10 +490,6 @@ msgid ""
 "following message: %2. Your system appears to have only limited network "
 "connectivity. Try to connect your system to the internet."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Anruf des heutigen Bildes von %1, mit "
-"der folgenden Fehlermeldung: %2. Dein System scheint nur eingeschränkte "
-"Verbindung zum Netzwerk zu haben. Versuche, Dein System mit dem Internet zu "
-"verbinden."
 
 #: src/app/model/error_notification.rs:166
 msgctxt "error-notification.description"
@@ -504,9 +498,6 @@ msgid ""
 "following message: %2. Try again later, or try a different source. If the "
 "issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Abrufen des heutigen Bildes von %1, mit "
-"der folgenden Fehlermeldung: %2. Versuche es morgen erneut, oder wähle eine "
-"andere Quelle. Falls das Problem bestehen bleibt, melde das Problem bitte."
 
 #: src/app/widgets/application_window.rs:70
 msgctxt "error-notification.description"
@@ -514,14 +505,11 @@ msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
 "the issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Öffnen von %1, mit der folgenden "
-"Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde das Problem "
-"bitte."
 
 #: src/app/widgets/application_window.rs:76
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
-msgstr "Öffnen der URL der Quelle fehlgeschlagen"
+msgstr "Lähdeosoitteen avaaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:95
 msgctxt "error-notification.description"
@@ -529,55 +517,54 @@ msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Setzen des Bildschirmhintergrunds, mit "
-"der folgenden Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde "
-"das Problem bitte."
 
 #: src/app/widgets/application_window.rs:101
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
-msgstr "Setzen des Bildschirmhintergrunds fehlgeschlagen"
+msgstr "Taustakuvan asettaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:117
 msgctxt "alert.response"
 msgid "Close"
-msgstr "Schließen"
+msgstr "Sulje"
 
 #: src/app/widgets/application_window.rs:124
 msgctxt "alert.response"
 msgid "Contact information"
-msgstr "Kontaktinformationen"
+msgstr "Yhteystiedot"
 
 #: src/app/widgets/application_window.rs:128
 msgctxt "alert.response"
 msgid "Open preferences"
-msgstr "Einstellungen öffnen"
+msgstr "Avaa asetukset"
 
 #: src/app/widgets/application_window.rs:132
 msgctxt "alert.response"
 msgid "Open URL"
-msgstr "URL öffnen"
+msgstr "Avaa osoite"
 
 #: src/app/widgets/application_window.rs:275
 msgctxt "toast.button.label"
 msgid "Details"
-msgstr "Details"
+msgstr "Yksityiskohdat"
 
 #: src/app/widgets/preferences_dialog.rs:91
 msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
-msgstr[0] "%1/%2 Sammlung aktiviert"
-msgstr[1] "%1/%2 Sammlungen aktiviert"
+msgstr[0] "%1/%2 kokoelma käytössä"
+msgstr[1] "%1/%2 kokoelmaa käytössä"
 
 #: src/main.rs:89
+#, fuzzy
+#| msgid "Picture Of The Day"
 msgctxt "application-name"
 msgid "Picture Of The Day"
-msgstr "Bild des Tages"
+msgstr "Päivän kuva"
 
 #: src/source.rs:60
 msgctxt "source name"
 msgid "NASA Astronomy Picture Of The Day"
-msgstr "NASA Astronomie Bild des Tages"
+msgstr ""
 
 #: src/source.rs:61
 msgctxt "source name"
@@ -587,7 +574,7 @@ msgstr "Bing"
 #: src/source.rs:62
 msgctxt "source name"
 msgid "Wikimedia Picture Of The Day"
-msgstr "Wikimedia Bild des Tages"
+msgstr "Wikimedian päivän kuva"
 
 #: src/source.rs:63
 msgctxt "source name"
@@ -597,49 +584,27 @@ msgstr "Simon Stålenhag"
 #: src/source/stalenhag.rs:101
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
-msgstr "Alle Rechte vorbehalten."
+msgstr "Kaikki oikeudet pidätetään."
 
 #: src/source/stalenhag.rs:102
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
-msgstr "Sammlung: %s"
+msgstr "Kokoelma: %s"
 
 #: src/source/wikimedia.rs:60
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
-msgstr "%artist (%credit, %license)"
+msgstr ""
 
 #: src/source/wikimedia.rs:66
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
-msgstr "%artist (%license)"
+msgstr ""
 
 #: src/source/wikimedia.rs:75
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
-msgstr "Unbekannt, alle Rechte vorbehalten"
-
-#~ msgid "NASA Earth Observatory Image Of The Day"
-#~ msgstr "NASA Erdbeobachtung Bild des Tages"
-
-#~ msgid "NASA Astronomy Picture of the Day"
-#~ msgstr "NASA Astronomie Bild des Tages"
-
-#~ msgctxt "main-window.toolbar.button.tooltip"
-#~ msgid "Stop loading images"
-#~ msgstr "Laden der Bilder abbrechen"
-
-#~ msgctxt "command-line.option.description"
-#~ msgid "Show preferences dialog"
-#~ msgstr "Einstellungen öffnen"
-
-#~ msgctxt "error-notification.description"
-#~ msgid ""
-#~ "An I/O error occurred while fetching today's image from %1, with the "
-#~ "following message: %2."
-#~ msgstr ""
-#~ "Ein I/O Fehler ist aufgetreten beim Anruf des heutigen Bildes von %1, mit "
-#~ "der folgenden Fehlermeldung: %2."
+msgstr "Tuntematon, kaikki oikeudet pidätetään"
