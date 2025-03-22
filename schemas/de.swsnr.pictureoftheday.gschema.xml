@@ -23,5 +23,17 @@
       <default>[]</default>
       <description>Collections from Stålenhag which to ignore.</description>
     </key>
+    <key name="main-window-width" type="i">
+      <default>1024</default>
+    </key>
+    <key name="main-window-height" type="i">
+      <default>768</default>
+    </key>
+    <key name="main-window-maximized" type="b">
+      <default>false</default>
+    </key>
+    <key name="main-window-fullscreen" type="b">
+      <default>false</default>
+    </key>
   </schema>
 </schemalist>
