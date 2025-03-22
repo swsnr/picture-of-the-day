@@ -21,6 +21,8 @@
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.Devel.svg</file>
         <file preprocess="xml-stripblanks">icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg</file>
+        <!-- Other app icons, for about dialog -->
+        <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.turnon.svg</file>
         <!-- Data files of sources -->
         <file preprocess="json-stripblanks" compressed="true">stalenhag/collections.json</file>
         <!-- Other data files -->

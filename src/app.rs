@@ -132,6 +132,12 @@ impl Application {
             ],
         );
 
+        dialog.add_other_app(
+            "de.swsnr.turnon",
+            "Turn On",
+            "Turn on devices in your network",
+        );
+
         dialog.present(self.active_window().as_ref());
     }
 
