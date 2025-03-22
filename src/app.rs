@@ -532,9 +532,23 @@ mod imp {
                 if crate::config::is_development() {
                     window.add_css_class("devel");
                 }
+
+                let settings = self.settings();
                 for setting in ["selected-source", "set-wallpaper-automatically"] {
-                    self.settings().bind(setting, &window, setting).build();
+                    settings.bind(setting, &window, setting).build();
                 }
+                settings
+                    .bind("main-window-width", &window, "default-width")
+                    .build();
+                settings
+                    .bind("main-window-height", &window, "default-height")
+                    .build();
+                settings
+                    .bind("main-window-maximized", &window, "maximized")
+                    .build();
+                settings
+                    .bind("main-window-fullscreen", &window, "fullscreened")
+                    .build();
                 window.present();
 
                 // Request background if the app gets activated the first time.

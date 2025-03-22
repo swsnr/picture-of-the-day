@@ -42,6 +42,15 @@
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
+        <release version="next" date="9999-01-01">
+            <description>
+                <p>Remember window size and state.</p>
+            </description>
+            <issues>
+                <issue url="https://github.com/swsnr/picture-of-the-day/issues/14">GH-14</issue>
+            </issues>
+            <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
+        </release>
         <release version="1.0.0" date="2025-03-22">
             <description>
                 <p>Start automatically and refresh the daily wallpaper automatically every twelve hours.</p>
