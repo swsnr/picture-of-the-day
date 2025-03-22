@@ -48,8 +48,8 @@
                 <p>No longer support multiple windows.</p>
             </description>
             <issues>
-                <issue url="https://github.com/swsnr/turnon/issues/13">GH-13</issue>
-                <issue url="https://github.com/swsnr/turnon/issues/25">GH-25</issue>
+                <issue url="https://github.com/swsnr/picture-of-the-day/issues/13">GH-13</issue>
+                <issue url="https://github.com/swsnr/picture-of-the-day/issues/25">GH-25</issue>
             </issues>
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
