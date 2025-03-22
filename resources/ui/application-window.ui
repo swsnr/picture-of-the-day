@@ -8,8 +8,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   <requires lib="gtk" version="4.0"/>
   <template class="PotDApplicationWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">Picture Of The Day</property>
-    <property name="default-width">1024</property>
-    <property name="default-height">768</property>
     <child>
       <object class="AdwBreakpoint">
         <condition>max-width: 400sp</condition>
