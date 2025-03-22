@@ -27,6 +27,18 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       Box {
         orientation: horizontal;
 
+        ToggleButton {
+          icon-name: "today-symbolic";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Set daily wallpaper automatically");
+          action-name: "win.set-wallpaper-automatically";
+        }
+
+        Separator {
+          styles [
+            "spacer",
+          ]
+        }
+
         MenuButton {
           label: C_("main-window.toolbar.button.label", "Source");
 
@@ -78,18 +90,6 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           icon-name: "image-symbolic";
           action-name: "win.set-as-wallpaper";
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Set current image as wallpaper");
-        }
-
-        Separator {
-          styles [
-            "spacer",
-          ]
-        }
-
-        ToggleButton {
-          icon-name: "today-symbolic";
-          tooltip-text: C_("main-window.toolbar.button.tooltip", "Set daily wallpaper automatically");
-          action-name: "win.set-wallpaper-automatically";
         }
 
         Separator {
