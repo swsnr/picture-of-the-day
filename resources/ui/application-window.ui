@@ -25,6 +25,20 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
               <object class="GtkBox">
                 <property name="orientation">0</property>
                 <child>
+                  <object class="GtkToggleButton">
+                    <property name="icon-name">today-symbolic</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set daily wallpaper automatically</property>
+                    <property name="action-name">win.set-wallpaper-automatically</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkMenuButton">
                     <property name="label" translatable="yes" context="main-window.toolbar.button.label">Source</property>
                     <child>
@@ -83,20 +97,6 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                     <property name="icon-name">image-symbolic</property>
                     <property name="action-name">win.set-as-wallpaper</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set current image as wallpaper</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkSeparator">
-                    <style>
-                      <class name="spacer"/>
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkToggleButton">
-                    <property name="icon-name">today-symbolic</property>
-                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Set daily wallpaper automatically</property>
-                    <property name="action-name">win.set-wallpaper-automatically</property>
                   </object>
                 </child>
                 <child>
