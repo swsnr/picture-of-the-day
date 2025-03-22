@@ -22,11 +22,11 @@ publish = false
 build = "build.rs"
 
 [dependencies]
-adw = { package = "libadwaita", version = "0.7.0", features = ["v1_6"] }
-glib = { version = "0.20.7", features = ["log", "log_macros"] }
-gtk = { package = "gtk4", version = "0.9.5", features = ["gnome_47"] }
-gdk4-wayland = { version = "0.9.6", features = ["v4_16"] }
-gdk4-x11 = { version = "0.9.6", features = ["v4_16"] }
+adw = { package = "libadwaita", version = "0.7.0", features = ["v1_7"] }
+glib = { version = "0.20.7", features = ["log", "log_macros", "v2_84"] }
+gtk = { package = "gtk4", version = "0.9.5", features = ["v4_18", "gnome_47"] }
+gdk4-wayland = { version = "0.9.6", features = ["v4_18"] }
+gdk4-x11 = { version = "0.9.6", features = ["v4_18"] }
 soup = { package = "soup3", version = "0.7.0", features = ["v3_6"] }
 log = "0.4.22"
 semver = "1.0.24"
