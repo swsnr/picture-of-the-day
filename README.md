@@ -6,7 +6,7 @@
 
 Your daily GNOME wallpaper:
 
-![The empty start page with the application icon on the left, and the Wikimedia picture of the day on the right](./screenshots/social-image.png)
+![The empty start page with the application icon on the left, and the Wikimedia picture of the day on the right](./social-image.png)
 
 Get a picture of the day from any of the following sources as your daily wallpaper.
 
