@@ -369,7 +369,7 @@ mod imp {
                     .obj()
                     .portal_client()
                     .unwrap()
-                    .set_wallpaper(&file, &window_handle, Preview::Preview, SetOn::Both)
+                    .set_wallpaper(&file, &window_handle, Preview::NoPreview, SetOn::Both)
                     .await?;
                 glib::info!("Request finished: {result:?}");
             }
