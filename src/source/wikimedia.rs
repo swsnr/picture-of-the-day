@@ -126,8 +126,7 @@ async fn fetch_featured_content(
     language_code: &str,
 ) -> Result<FeaturedContent, SourceError> {
     let url_date = date.format("%Y/%m/%d").unwrap();
-    let url =
-        format!("https://api.wikimedia.org/feed/v1/wikipedia/{language_code}/featured/{url_date}");
+    let url = format!("https://{language_code}.wikipedia.org/api/rest_v1/feed/featured/{url_date}");
     glib::info!("Fetching featured wikimedia content from {url}");
     let message = soup::Message::new("GET", &url).unwrap();
     Ok(session

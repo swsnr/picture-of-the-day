@@ -44,6 +44,7 @@
         -->
         <release version="next" date="9999-01-01">
             <description>
+                <p>Use a more reliable endpoint for Wikimedia images.</p>
                 <p>No longer show preview when setting a wallpaper.</p>
                 <p>Improve scheduling of automatic downloads.</p>
                 <p>Remember window size and state.</p>
