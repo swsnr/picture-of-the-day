@@ -16,7 +16,7 @@ jobs:
         with:
           args: appstreamcli metainfo-to-news resources/de.swsnr.pictureoftheday.metainfo.xml.in news.yaml
       - run: yq eval-all '[.]' -oj news.yaml > news.json
-      - run: jq -r --arg tag "${TAGNAME}" '$ENV.JSON | fromjson | .[] | select(.Version == ($tag | ltrimstr("v"))) | .Description | tostring' > relnotes.md < news.json
+      - run: jq -r --arg tag "${TAGNAME}" '.[] | select(.Version == ($tag | ltrimstr("v"))) | .Description | tostring' > relnotes.md < news.json
         env:
           TAGNAME: ${{ github.ref_name }}
       - run: cat relnotes.md
