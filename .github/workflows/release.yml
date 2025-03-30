@@ -42,14 +42,14 @@ jobs:
       - run: env LC_ALL=C TZ=UTC0 echo "timestamp=$(git show --quiet --date='format-local:%Y-%m-%dT%H:%M:%SZ' --format="%cd" "${GITHUB_SHA}")" >> "$GITHUB_OUTPUT"
         id: timestamp
       - run: cargo vendor --locked
-      - run: env LC_ALL=C tar --numeric-owner --owner 0 --group 0 --sort name --mode='go+u,go-w' --format=posix --pax-option=exthdr.name=%d/PaxHeaders/%f --pax-option=delete=atime,delete=ctime --mtime="${{ steps.timestamp.outputs.timestamp }}" -c -f vendor.tar.zst --zstd vendor
+      - run: env LC_ALL=C tar --numeric-owner --owner 0 --group 0 --sort name --mode='go+u,go-w' --format=posix --pax-option=exthdr.name=%d/PaxHeaders/%f --pax-option=delete=atime,delete=ctime --mtime="${{ steps.timestamp.outputs.timestamp }}" -c -f picture-of-the-day-${{ github.ref_name }}-vendor.tar.zst --zstd vendor
       - uses: actions/attest-build-provenance@v2
         with:
-          subject-path: vendor.tar.zst
+          subject-path: picture-of-the-day-${{ github.ref_name }}-vendor.tar.zst
       - uses: actions/upload-artifact@v4
         with:
-          name: vendor.tar.zst
-          path: vendor.tar.zst
+          name: picture-of-the-day-${{ github.ref_name }}-vendor.tar.zst
+          path: picture-of-the-day-${{ github.ref_name }}-vendor.tar.zst
 
   git-archive:
     permissions:
@@ -100,11 +100,11 @@ jobs:
           path: ./artifacts
           merge-multiple: true
       - run: echo ARCHIVE_SHA512="$(sha512sum artifacts/picture-of-the-day-${{ github.ref_name }}.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
-      - run: echo VENDOR_SHA512="$(sha512sum artifacts/vendor.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
+      - run: echo VENDOR_SHA512="$(sha512sum artifacts/picture-of-the-day-${{ github.ref_name }}-vendor.tar.zst | cut -d' ' -f1)" >> "$GITHUB_ENV"
       - run: rm -rf artifacts
       - run: yq eval -i '.modules.[0].sources.[0].url = "https://github.com/swsnr/picture-of-the-day/releases/download/$GITHUB_REF_NAME/picture-of-the-day-$GITHUB_REF_NAME.tar.zst"' flatpak/de.swsnr.pictureoftheday.yaml
       - run: yq eval -i '.modules.[0].sources.[0].sha512 = "$ARCHIVE_SHA512"' flatpak/de.swsnr.pictureoftheday.yaml
-      - run: yq eval -i '.modules.[0].sources.[1].url = "https://github.com/swsnr/picture-of-the-day/releases/download/$GITHUB_REF_NAME/vendor.tar.zst"' flatpak/de.swsnr.pictureoftheday.yaml
+      - run: yq eval -i '.modules.[0].sources.[1].url = "https://github.com/swsnr/picture-of-the-day/releases/download/$GITHUB_REF_NAME/picture-of-the-day-$GITHUB_REF_NAME-vendor.tar.zst"' flatpak/de.swsnr.pictureoftheday.yaml
       - run: yq eval -i '.modules.[0].sources.[1].sha512 = "$VENDOR_SHA512"' flatpak/de.swsnr.pictureoftheday.yaml
       - run: yq eval -i '(.. | select(tag == "!!str")) |= envsubst' flatpak/de.swsnr.pictureoftheday.yaml
       # A little sanity check
