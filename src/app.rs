@@ -179,10 +179,21 @@ impl Application {
         }
     }
 
-    async fn update_wallpaper_periodically(&self, source: Source, cancellable: Cancellable) {
+    /// Update wallpaper periodically.
+    ///
+    /// Periodically check whether `source` has a new wallpaper, and udpate it.
+    /// Do the first check after `initial_delay`.
+    ///
+    /// Stop updating when the given `cancellable` is triggered.
+    async fn update_wallpaper_periodically(
+        &self,
+        source: Source,
+        initial_delay: Duration,
+        cancellable: Cancellable,
+    ) {
         // Delay the initial wallpaper update a bit, this behaves nicer when the
         // user changes the corresponding setting.
-        stream::once(glib::timeout_future(Duration::from_secs(10)))
+        stream::once(glib::timeout_future(initial_delay))
             .chain(glib::interval_stream(Duration::from_secs(30 * 60)))
             .take_until(cancellable.future())
             .map(|()| glib::DateTime::now_utc().unwrap())
@@ -304,7 +315,7 @@ mod imp {
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
     use gtk::gio::{self, ApplicationHoldGuard, Cancellable};
     use soup::prelude::*;
-    use std::cell::RefCell;
+    use std::{cell::RefCell, time::Duration};
 
     use crate::{
         app::widgets::ApplicationWindow,
@@ -363,7 +374,7 @@ mod imp {
             }
         }
 
-        fn start_automatic_wallpaper_update(&self, source: Source) {
+        fn start_automatic_wallpaper_update(&self, source: Source, initial_delay: Duration) {
             self.stop_automatic_wallpaper_update();
 
             let guard = self.obj().hold();
@@ -373,14 +384,18 @@ mod imp {
 
             let app = self.obj().clone();
             glib::spawn_future_local(async move {
-                app.update_wallpaper_periodically(source, cancellable).await;
+                app.update_wallpaper_periodically(source, initial_delay, cancellable)
+                    .await;
             });
         }
 
-        fn start_stop_wallpaper_update(&self) {
+        fn start_stop_wallpaper_update(&self, initial_delay: Duration) {
             let settings = self.settings();
             if settings.boolean("set-wallpaper-automatically") {
-                self.start_automatic_wallpaper_update(settings.get::<Source>("selected-source"));
+                self.start_automatic_wallpaper_update(
+                    settings.get::<Source>("selected-source"),
+                    initial_delay,
+                );
             } else {
                 self.stop_automatic_wallpaper_update();
             }
@@ -458,15 +473,24 @@ mod imp {
             }
 
             glib::info!("Starting automatic updates");
-            self.start_stop_wallpaper_update();
-            for key in ["set-wallpaper-automatically", "selected-source"] {
+            // On startup check for a new wallpaper almost immediately (we wait
+            // 10 seconds for things to settle down in case we were auto-started)
+            self.start_stop_wallpaper_update(Duration::from_secs(10));
+            for (key, initial_delay) in [
+                // When the user enabled automatic wallpaper, update the wallpaper immediately
+                ("set-wallpaper-automatically", Duration::from_secs(1)),
+                // When the user changed the source we wait considerably longer before we
+                // schedule a new update, because the user may just have switched the source
+                // to see a preview of todays image.
+                ("selected-source", Duration::from_secs(30)),
+            ] {
                 settings.connect_changed(
                     Some(key),
                     glib::clone!(
                         #[weak(rename_to = app)]
                         self.obj(),
                         move |_, _| {
-                            app.imp().start_stop_wallpaper_update();
+                            app.imp().start_stop_wallpaper_update(initial_delay);
                         }
                     ),
                 );
