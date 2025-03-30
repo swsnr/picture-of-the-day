@@ -4,11 +4,21 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::{borrow::Cow, path::Path};
+use std::{
+    borrow::Cow,
+    path::{Path, PathBuf},
+};
 
-use gtk::gio::{self, Cancellable, prelude::FileExt};
+use gtk::gio::{
+    self, Cancellable, FileCopyFlags, IOErrorEnum,
+    prelude::{FileExt, FileExtManual},
+};
+use rand::distributions::{Alphanumeric, DistString};
 
-use crate::{config::G_LOG_DOMAIN, image::download::download_file, source::Source};
+use crate::{
+    config::G_LOG_DOMAIN, image::download::download_file, io::delete_file_ignore_error,
+    rng::GlibRng, source::Source,
+};
 
 pub mod download;
 
@@ -69,25 +79,65 @@ impl DownloadableImage {
         }
     }
 
-    pub async fn download_to(
+    /// Download this image to a directory.
+    ///
+    /// Download this image to `target_directory`, using the provided HTTP
+    /// `session.`
+    ///
+    /// Return the full path to the downloaded image if successful.
+    pub async fn download_to_directory(
         &self,
-        target: &Path,
+        target_directory: &Path,
         session: &soup::Session,
         cancellable: &Cancellable,
-    ) -> Result<(), glib::Error> {
-        let target_file = gio::File::for_path(target);
-        let exists = gio::spawn_blocking(glib::clone!(
-            #[strong]
-            cancellable,
-            move || target_file.query_exists(Some(&cancellable))
-        ))
-        .await
-        .unwrap();
+    ) -> Result<PathBuf, glib::Error> {
+        let file_name = self.filename();
+        let target_file = target_directory.join(file_name.as_ref());
+        let exists = {
+            let target_file = gio::File::for_path(&target_file);
+            gio::spawn_blocking(glib::clone!(
+                #[strong]
+                cancellable,
+                move || target_file.query_exists(Some(&cancellable))
+            ))
+            .await
+            .unwrap()
+        };
         if exists {
-            glib::debug!("Using existing file at {}", target.display());
+            // If the target file exists already just return it
+            glib::debug!("Using existing file at {}", target_file.display());
+            Ok(target_file)
         } else {
-            download_file(session, &self.image_url, target, cancellable).await?;
+            // Download to a random temp file in the target directory first
+            let temp_file = gio::File::for_path(target_directory.join(format!(
+                ".{file_name}.download.{}",
+                Alphanumeric.sample_string(&mut GlibRng, 5)
+            )));
+            glib::debug!("Downloading {} to {}", &self.image_url, temp_file.uri());
+            download_file(session, &self.image_url, &temp_file, cancellable).await?;
+
+            // Then attempt to atomically (NO_FALLBACK_FOR_MOVE) move the temp
+            // file to the target file
+            let flags = FileCopyFlags::NOFOLLOW_SYMLINKS | FileCopyFlags::NO_FALLBACK_FOR_MOVE;
+            glib::debug!("Moving {} to {}", temp_file.uri(), target_file.display());
+            match temp_file
+                .move_future(
+                    &gio::File::for_path(&target_file),
+                    flags,
+                    glib::Priority::DEFAULT,
+                )
+                .0
+                .await
+            {
+                Err(error) if error.matches(IOErrorEnum::Exists) => {
+                    // If the target file already exists, assume that a parallel download
+                    // finished first, and just delete our temp file.
+                    delete_file_ignore_error(&temp_file).await;
+                    Ok(target_file)
+                }
+                Err(error) => Err(error),
+                Ok(()) => Ok(target_file),
+            }
         }
-        Ok(())
     }
 }

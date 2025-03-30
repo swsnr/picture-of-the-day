@@ -30,3 +30,9 @@ pub async fn ensure_directory<P: AsRef<Path> + Send>(
     .await
     .unwrap()
 }
+
+pub async fn delete_file_ignore_error(target: &gio::File) {
+    if let Err(error) = target.delete_future(glib::Priority::DEFAULT).await {
+        glib::warn!("Failed to delete file {}: {error}", target.uri());
+    }
+}

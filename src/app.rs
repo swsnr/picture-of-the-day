@@ -259,9 +259,10 @@ impl Application {
         let image = images.choose(&mut GlibRng).unwrap();
 
         let target_directory = source.images_directory();
-        let target = target_directory.join(&*image.filename());
         ensure_directory(&target_directory, cancellable).await?;
-        image.download_to(&target, &session, cancellable).await?;
+        let target = image
+            .download_to_directory(&target_directory, &session, cancellable)
+            .await?;
 
         glib::info!("Setting wallpaper to {}", target.display());
         let window = PortalWindowHandle::new_for_app(self).await;

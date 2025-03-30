@@ -337,9 +337,11 @@ mod imp {
                     #[weak]
                     http_session,
                     async move {
-                        let target = target_directory.join(&*image.filename());
-                        match image.download_to(&target, &http_session, cancellable).await {
-                            Ok(()) => {
+                        match image
+                            .download_to_directory(&target_directory, &http_session, cancellable)
+                            .await
+                        {
+                            Ok(target) => {
                                 glib::info!("Displaying image from {}", target.display());
                                 image_obj.set_downloaded_file(Some(&gio::File::for_path(target)));
                             }

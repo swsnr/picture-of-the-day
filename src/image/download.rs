@@ -4,63 +4,46 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::path::Path;
-
 use glib::{Priority, object::IsA};
 use gtk::gio::{self, Cancellable, IOErrorEnum, prelude::*};
 use soup::prelude::SessionExt;
 
-use crate::config::G_LOG_DOMAIN;
-
-async fn delete_file_ignore_error(target: &Path) {
-    if let Err(error) = gio::File::for_path(target)
-        .delete_future(glib::Priority::DEFAULT)
-        .await
-    {
-        glib::warn!("Failed to delete file {}: {error}", target.display());
-    }
-}
+use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error};
 
 /// Download a file from `url` to `target`.
 ///
 /// `cancellable` allows to cancel the ongoing transfer; when the transfer failed
 /// or was cancelled, delete any partially downloaded `target` file.
-pub async fn download_file<P: AsRef<Path>>(
+pub async fn download_file(
     session: &soup::Session,
     url: &str,
-    target: P,
+    target: &gio::File,
     cancellable: &impl IsA<Cancellable>,
 ) -> Result<(), glib::Error> {
     let result = gio::CancellableFuture::new(
-        transfer_file(session, url, target.as_ref()),
+        transfer_file(session, url, target),
         cancellable.clone().into(),
     )
-    .await;
+    .await
+    .map_err(|_| {
+        glib::Error::new(
+            IOErrorEnum::Cancelled,
+            &format!("Download of {url} to {} was cancelled", target.uri()),
+        )
+    })
+    // Result::flatten is nightly only, see https://github.com/rust-lang/rust/issues/70142
+    .and_then(|r| r);
 
     match result {
-        Err(_) => {
-            glib::debug!(
-                "Download of {url} to {0} was cancelled, deleting partially downloaded {0}",
-                target.as_ref().display()
-            );
-            delete_file_ignore_error(target.as_ref()).await;
-            Err(glib::Error::new(
-                IOErrorEnum::Cancelled,
-                &format!(
-                    "Download of {url} to {} was cancelled",
-                    target.as_ref().display()
-                ),
-            ))
-        }
-        Ok(Err(error)) => {
+        Err(error) => {
             glib::warn!(
                 "Download of {url} to {0} failed, deleting partially downloaded {0}: {error}",
-                target.as_ref().display()
+                target.uri()
             );
-            delete_file_ignore_error(target.as_ref()).await;
+            delete_file_ignore_error(target).await;
             Err(error)
         }
-        Ok(Ok(_)) => Ok(()),
+        Ok(_) => Ok(()),
     }
 }
 
@@ -69,12 +52,11 @@ pub async fn download_file<P: AsRef<Path>>(
 /// Fails if `target` already exists.
 ///
 /// Return the amount of bytes transferred.
-async fn transfer_file<P: AsRef<Path>>(
+async fn transfer_file(
     session: &soup::Session,
     url: &str,
-    target: P,
+    target: &gio::File,
 ) -> Result<isize, glib::Error> {
-    glib::debug!("Downloading {url} to {}", target.as_ref().display());
     let message = soup::Message::new("GET", url).map_err(|error| {
         glib::Error::new(
             IOErrorEnum::InvalidArgument,
@@ -96,7 +78,7 @@ async fn transfer_file<P: AsRef<Path>>(
         ));
     }
 
-    let sink = gio::File::for_path(target.as_ref())
+    let sink = target
         .create_future(gio::FileCreateFlags::NONE, glib::Priority::DEFAULT)
         .await?;
     sink.splice_future(
