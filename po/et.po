@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-29 09:21+0000\n"
+"PO-Revision-Date: 2025-03-31 19:21+0000\n"
 "Last-Translator: Priit Jõerüüt <jrtcdbrg@noreply.codeberg.org>\n"
-"Language-Team: Estonian <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
+"Language-Team: Estonian <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,10 +45,6 @@ msgid "Your daily wallpaper"
 msgstr "Sinu igapäevane taustapilt"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
-#, fuzzy
-#| msgid ""
-#| "Get a picture of the day from any of the following sources as your daily "
-#| "wallpaper."
 msgid ""
 "Get a picture of the day from the following sources as your daily wallpaper."
 msgstr "Laadi igaks päevaks uus päevapilt neist andmeallikaist."
@@ -75,6 +71,8 @@ msgid ""
 "Preview images, pick your favorite source, enable automatic updates, and "
 "enjoy a fresh wallpaper every day."
 msgstr ""
+"Vaata piltide eelvaateid, vali endale meeldiv andmeallikas, kasuta "
+"automaatse uuendamise võimalust ja iga päev vaata rõõmuga uut taustapilti."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
 msgid ""
@@ -107,23 +105,23 @@ msgstr "Kunst"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
 msgid "Use a more reliable endpoint for Wikimedia images."
-msgstr ""
+msgstr "Kasutame Vikimeedia jaoks töökindlamat otspunkti."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid "No longer show preview when setting a wallpaper."
-msgstr ""
+msgstr "Taustapildi määramisel enam ei näita eelvaadet."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid "Improve scheduling of automatic downloads."
-msgstr ""
+msgstr "Parem automaatsete uuenduste ajastamine."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
 msgid "Remember window size and state."
-msgstr ""
+msgstr "Jätame nüüd meelde akna mõõdud ja oleku."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
 msgid "Update to GNOME 48."
-msgstr ""
+msgstr "Uuendus kasutab nüüd GNOME 48 teeke."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid ""
@@ -159,7 +157,7 @@ msgstr "Päevapilt Vikimeediast"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
 msgid "The preferences dialog with settings for image sources"
-msgstr ""
+msgstr "Eelistuste vaade andmeallikate seadistamiseks"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:94
 msgid "The empty greeting page with the application icon"
@@ -233,7 +231,7 @@ msgstr "Katkesta piltide laadimine"
 #: resources/ui/application-window.blp:90
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
-msgstr "Pane see pilt taustapildiks"
+msgstr "Kasuta seda pilti taustapildina"
 
 #: resources/ui/application-window.blp:101
 msgctxt "main-window.toolbar.button.tooltip"
