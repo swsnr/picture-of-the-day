@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-22 12:43+0000\n"
+"PO-Revision-Date: 2025-03-31 19:21+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,10 +43,6 @@ msgid "Your daily wallpaper"
 msgstr "Uw dagelijkse achtergrond"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
-#, fuzzy
-#| msgid ""
-#| "Get a picture of the day from any of the following sources as your daily "
-#| "wallpaper."
 msgid ""
 "Get a picture of the day from the following sources as your daily wallpaper."
 msgstr ""
@@ -74,6 +70,8 @@ msgid ""
 "Preview images, pick your favorite source, enable automatic updates, and "
 "enjoy a fresh wallpaper every day."
 msgstr ""
+"Bekijk afbeeldingen, kies uw voorkeursbron, schakel automatisch bijwerken in "
+"en geniet elke dag van een mooie, nieuwe achtergrond."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
 msgid ""
@@ -106,22 +104,24 @@ msgstr "Kunst"
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr ""
+"Verbeterd: een betrouwbaarder punt om Wikimedia-afbeeldingen van op te halen."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
+"Verbeterd: er wordt geen voorvertoning meer getoond tijdens het instellen."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid "Improve scheduling of automatic downloads."
-msgstr ""
+msgstr "Verbeterd: inplanning van automatische downloads."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
 msgid "Remember window size and state."
-msgstr ""
+msgstr "Verbeterd: de vensterafmetingen en -staat worden voortaan onthouden."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
 msgid "Update to GNOME 48."
-msgstr ""
+msgstr "Bijgewerkt: GNOME-versie naar 48."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid ""
@@ -156,7 +156,7 @@ msgstr "Afbeelding van de dag, afkomstig van Wikimedia"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
 msgid "The preferences dialog with settings for image sources"
-msgstr ""
+msgstr "Het voorkeurenvenster met voorkeuren voor afbeeldingsbronnen"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:94
 msgid "The empty greeting page with the application icon"
