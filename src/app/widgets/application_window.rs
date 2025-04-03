@@ -107,6 +107,40 @@ impl ApplicationWindow {
         }
     }
 
+    async fn open_current_image(&self) {
+        if let Some(file) = self.imp().current_image_file() {
+            let launcher = gtk::FileLauncher::new(Some(&file));
+            launcher.set_writable(false);
+            // Always ask so that I can choose which app I'd like to use the image with.
+            launcher.set_always_ask(true);
+            if let Err(error) = launcher.launch_future(Some(self)).await {
+                if error.matches(gtk::DialogError::Cancelled)
+                    || error.matches(gtk::DialogError::Dismissed)
+                {
+                    // The dialog was cancelled programmatically, or dismissed by the user; in these cases
+                    // we assume that this was deliberate, so we don't show an error notification.
+                    return;
+                }
+                glib::warn!("Failed to open current image: {error}");
+                let description = dpgettext2(
+                    None,
+                    "error-notification.description",
+                    "An I/O error occurred while opening the current image, with the following message: %1. If the issue persists please report the problem.",
+                );
+                let error = ErrorNotification::builder()
+                    .title(dpgettext2(
+                        None,
+                        "error-notification.title",
+                        "Failed to open image",
+                    ))
+                    .description(description.replace("%1", &error.to_string()))
+                    .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                    .build();
+                self.imp().show_error(&error);
+            }
+        }
+    }
+
     fn show_error_dialog(&self, error: &ErrorNotification) {
         let actions = error.actions();
         let dialog = adw::AlertDialog::builder()
@@ -214,6 +248,11 @@ mod imp {
     impl ApplicationWindow {
         pub fn current_image(&self) -> Option<Image> {
             self.images_carousel.current_image()
+        }
+
+        pub fn current_image_file(&self) -> Option<gio::File> {
+            self.current_image()
+                .and_then(|image| image.downloaded_file())
         }
 
         fn is_loading(&self) -> bool {
@@ -362,10 +401,7 @@ mod imp {
         }
 
         pub async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
-            if let Some(file) = self
-                .current_image()
-                .and_then(|image| image.downloaded_file())
-            {
+            if let Some(file) = self.current_image_file() {
                 let window_handle = PortalWindowHandle::new_for_native(&*self.obj()).await;
                 let result = self
                     .obj()
@@ -460,15 +496,28 @@ mod imp {
                     });
                 }
             ));
-            self.obj().add_action(&act_set_wallpaper);
-            act_set_wallpaper.set_enabled(false);
-            self.images_carousel
-                .property_expression("current-image")
-                .chain_property::<Image>("downloaded-file")
-                .chain_closure::<bool>(closure!(|_: Option<Object>, file: Option<&gio::File>| {
-                    file.is_some()
-                }))
-                .bind(&act_set_wallpaper, "enabled", Object::NONE);
+            let act_open_default = gio::SimpleAction::new("open-with-default-application", None);
+            act_open_default.connect_activate(glib::clone!(
+                #[weak(rename_to = window)]
+                self.obj(),
+                move |_, _| {
+                    glib::spawn_future_local(async move {
+                        window.open_current_image().await;
+                    });
+                }
+            ));
+
+            for action in &[act_set_wallpaper, act_open_default] {
+                self.obj().add_action(action);
+                action.set_enabled(false);
+                self.images_carousel
+                    .property_expression("current-image")
+                    .chain_property::<Image>("downloaded-file")
+                    .chain_closure::<bool>(closure!(
+                        |_: Option<Object>, file: Option<&gio::File>| { file.is_some() }
+                    ))
+                    .bind(action, "enabled", Object::NONE);
+            }
         }
     }
 
