@@ -105,6 +105,20 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                   </object>
                 </child>
                 <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">arrow-into-box-symbolic</property>
+                    <property name="action-name">win.open-with-default-application</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Open image with default application</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkSeparator">
+                    <style>
+                      <class name="spacer"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkToggleButton">
                     <property name="icon-name">info-outline-symbolic</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Toggle the sidebar with image information</property>
