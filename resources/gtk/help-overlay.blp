@@ -52,5 +52,29 @@ Gtk.ShortcutsWindow help_overlay {
         accelerator: "F9";
       }
     }
+
+    Gtk.ShortcutsGroup {
+      title: C_("shortcuts group title", "Navigate images");
+
+      Gtk.ShortcutsShortcut {
+        title: C_("shortcut description", "Previous image");
+        accelerator: "Left";
+      }
+
+      Gtk.ShortcutsShortcut {
+        title: C_("shortcut description", "Previous image");
+        accelerator: "Page_Up";
+      }
+
+      Gtk.ShortcutsShortcut {
+        title: C_("shortcut description", "Next image");
+        accelerator: "Right";
+      }
+
+      Gtk.ShortcutsShortcut {
+        title: C_("shortcut description", "Next image");
+        accelerator: "Page_Down";
+      }
+    }
   }
 }

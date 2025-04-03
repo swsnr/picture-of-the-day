@@ -125,7 +125,12 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           show-sidebar: bind template.show-image-properties bidirectional;
           sidebar-width-fraction: 0.33;
 
-          content: $PotDImagesCarousel images_carousel {};
+          content: $PotDImagesCarousel images_carousel {
+            margin-start: 6;
+            margin-end: 6;
+            margin-top: 6;
+            margin-bottom: 6;
+          };
 
           sidebar: Gtk.ScrolledWindow {
             Box {

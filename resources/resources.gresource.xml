@@ -17,6 +17,8 @@
         <file preprocess="xml-stripblanks">icons/scalable/actions/sad-computer-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/image-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/today-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/left-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/right-symbolic.svg</file>
         <!-- App Icon -->
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.Devel.svg</file>

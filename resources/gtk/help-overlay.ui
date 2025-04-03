@@ -63,6 +63,35 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
             </child>
           </object>
         </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes" context="shortcuts group title">Navigate images</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut description">Previous image</property>
+                <property name="accelerator">Left</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut description">Previous image</property>
+                <property name="accelerator">Page_Up</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut description">Next image</property>
+                <property name="accelerator">Right</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut description">Next image</property>
+                <property name="accelerator">Page_Down</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
   </object>

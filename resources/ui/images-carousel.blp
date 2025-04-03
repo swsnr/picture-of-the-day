@@ -6,20 +6,66 @@ using Gtk 4.0;
 using Adw 1;
 
 template $PotDImagesCarousel: Adw.Bin {
-  Gtk.Box {
-    orientation: vertical;
-
-    Adw.Carousel images_carousel {
-      hexpand: true;
-      vexpand: true;
+  Gtk.Overlay {
+    [overlay]
+    Gtk.Revealer {
+      halign: center;
+      valign: end;
       margin-start: 6;
       margin-end: 6;
-      margin-top: 6;
       margin-bottom: 6;
+      margin-top: 6;
+      reveal-child: bind $show_nav(carousel.n-pages, template.show-nav) as <bool>;
+      transition-duration: 500;
+      transition-type: crossfade;
+
+      child: Gtk.Box {
+        margin-start: 6;
+        margin-end: 6;
+        margin-bottom: 6;
+        margin-top: 6;
+
+        Gtk.Button {
+          icon-name: "left-symbolic";
+          action-name: "image.previous";
+
+          styles [
+            "flat",
+            "circular",
+          ]
+        }
+
+        Adw.CarouselIndicatorDots {
+          carousel: carousel;
+        }
+
+        Gtk.Button {
+          icon-name: "right-symbolic";
+          action-name: "image.next";
+
+          styles [
+            "flat",
+            "circular",
+          ]
+        }
+
+        styles [
+          "osd",
+          "toolbar",
+        ]
+      };
     }
 
-    Adw.CarouselIndicatorDots {
-      carousel: images_carousel;
+    Adw.Carousel carousel {
+      hexpand: true;
+      vexpand: true;
+      focusable: true;
+    }
+
+    Gtk.EventControllerMotion motion_events {
+      enter => $pointer_enter_or_move() swapped;
+      leave => $pointer_leave() swapped;
+      motion => $pointer_enter_or_move() swapped;
     }
   }
 }
