@@ -83,7 +83,7 @@ impl ApplicationWindow {
                 .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
                 .build();
             self.imp().show_error(&error);
-        };
+        }
     }
 
     async fn set_current_image_as_wallpaper(&self) {
