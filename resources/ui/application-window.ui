@@ -140,7 +140,12 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                     <property name="show-sidebar" bind-source="PotDApplicationWindow" bind-property="show-image-properties" bind-flags="sync-create|bidirectional"/>
                     <property name="sidebar-width-fraction">0.33</property>
                     <property name="content">
-                      <object class="PotDImagesCarousel" id="images_carousel"></object>
+                      <object class="PotDImagesCarousel" id="images_carousel">
+                        <property name="margin-start">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
+                      </object>
                     </property>
                     <property name="sidebar">
                       <object class="GtkScrolledWindow">

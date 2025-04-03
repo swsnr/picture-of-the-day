@@ -8,21 +8,78 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
   <requires lib="gtk" version="4.0"/>
   <template class="PotDImagesCarousel" parent="AdwBin">
     <child>
-      <object class="GtkBox">
-        <property name="orientation">1</property>
-        <child>
-          <object class="AdwCarousel" id="images_carousel">
-            <property name="hexpand">true</property>
-            <property name="vexpand">true</property>
+      <object class="GtkOverlay">
+        <child type="overlay">
+          <object class="GtkRevealer">
+            <property name="halign">3</property>
+            <property name="valign">2</property>
             <property name="margin-start">6</property>
             <property name="margin-end">6</property>
-            <property name="margin-top">6</property>
             <property name="margin-bottom">6</property>
+            <property name="margin-top">6</property>
+            <binding name="reveal-child">
+              <closure function="show_nav" type="gboolean">
+                <lookup name="n-pages" type="AdwCarousel">
+                  <constant>carousel</constant>
+                </lookup>
+                <lookup name="show-nav" type="PotDImagesCarousel">
+                  <constant>PotDImagesCarousel</constant>
+                </lookup>
+              </closure>
+            </binding>
+            <property name="transition-duration">500</property>
+            <property name="transition-type">1</property>
+            <property name="child">
+              <object class="GtkBox">
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-bottom">6</property>
+                <property name="margin-top">6</property>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">left-symbolic</property>
+                    <property name="action-name">image.previous</property>
+                    <style>
+                      <class name="flat"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwCarouselIndicatorDots">
+                    <property name="carousel">carousel</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">right-symbolic</property>
+                    <property name="action-name">image.next</property>
+                    <style>
+                      <class name="flat"/>
+                      <class name="circular"/>
+                    </style>
+                  </object>
+                </child>
+                <style>
+                  <class name="osd"/>
+                  <class name="toolbar"/>
+                </style>
+              </object>
+            </property>
           </object>
         </child>
         <child>
-          <object class="AdwCarouselIndicatorDots">
-            <property name="carousel">images_carousel</property>
+          <object class="AdwCarousel" id="carousel">
+            <property name="hexpand">true</property>
+            <property name="vexpand">true</property>
+            <property name="focusable">true</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkEventControllerMotion" id="motion_events">
+            <signal name="enter" handler="pointer_enter_or_move" swapped="True"/>
+            <signal name="leave" handler="pointer_leave" swapped="True"/>
+            <signal name="motion" handler="pointer_enter_or_move" swapped="True"/>
           </object>
         </child>
       </object>
