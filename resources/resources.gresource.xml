@@ -10,15 +10,15 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/images-carousel.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/error-notification-page.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
-        <!-- Action icons-->
-        <file preprocess="xml-stripblanks">icons/scalable/actions/external-link-symbolic.svg</file>
-        <file preprocess="xml-stripblanks">icons/scalable/actions/info-outline-symbolic.svg</file>
+        <!-- Action icons (keep sorted) -->
         <file preprocess="xml-stripblanks">icons/scalable/actions/cross-large-symbolic.svg</file>
-        <file preprocess="xml-stripblanks">icons/scalable/actions/sad-computer-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/external-link-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/image-symbolic.svg</file>
-        <file preprocess="xml-stripblanks">icons/scalable/actions/today-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/info-outline-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/left-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/right-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/sad-computer-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/today-symbolic.svg</file>
         <!-- App Icon -->
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.pictureoftheday.Devel.svg</file>
