@@ -245,7 +245,7 @@ msgstr ""
 
 #: resources/ui/application-window.blp:102
 msgctxt "main-window.toolbar.button.tooltip"
-msgid "Open image with default application"
+msgid "Open image with external application"
 msgstr ""
 
 #: resources/ui/application-window.blp:113
