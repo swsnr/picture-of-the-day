@@ -112,6 +112,13 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                   </object>
                 </child>
                 <child>
+                  <object class="GtkButton">
+                    <property name="icon-name">arrow-pointing-at-line-down-symbolic</property>
+                    <property name="action-name">win.save-image</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Save image</property>
+                  </object>
+                </child>
+                <child>
                   <object class="GtkSeparator">
                     <style>
                       <class name="spacer"/>
