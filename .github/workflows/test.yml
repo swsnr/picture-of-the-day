@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # Our own CI base image for Gtk and libsoup3
-      image: ghcr.io/swsnr/picture-of-the-day/ci:main
+      image: ghcr.io/swsnr/picture-of-the-day/ci-sim:ci-alpine
     env:
       # Skip blueprint compilation because the gtk4-rs container lacks the
       # typelib files required for blueprint to resolve imports.
