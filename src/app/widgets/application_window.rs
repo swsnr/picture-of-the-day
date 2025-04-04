@@ -496,7 +496,7 @@ mod imp {
                     });
                 }
             ));
-            let act_open_default = gio::SimpleAction::new("open-with-default-application", None);
+            let act_open_default = gio::SimpleAction::new("open-with-external-application", None);
             act_open_default.connect_activate(glib::clone!(
                 #[weak(rename_to = window)]
                 self.obj(),

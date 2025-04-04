@@ -107,8 +107,8 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <child>
                   <object class="GtkButton">
                     <property name="icon-name">arrow-into-box-symbolic</property>
-                    <property name="action-name">win.open-with-default-application</property>
-                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Open image with default application</property>
+                    <property name="action-name">win.open-with-external-application</property>
+                    <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Open image with external application</property>
                   </object>
                 </child>
                 <child>
