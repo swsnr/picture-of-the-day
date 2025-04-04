@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-04-02 08:21+0000\n"
 "Last-Translator: Ricky-Tigg <ricky-tigg@noreply.codeberg.org>\n"
-"Language-Team: Finnish <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
+"Language-Team: Finnish <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +45,8 @@ msgstr "Päivittäinen taustakuva"
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
 msgid ""
 "Get a picture of the day from the following sources as your daily wallpaper."
-msgstr "Hanki kuva päivästä seuraavista lähteistä päivittäiseksi taustakuvaksi."
+msgstr ""
+"Hanki kuva päivästä seuraavista lähteistä päivittäiseksi taustakuvaksi."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
 msgid "NASA Astronomy Picture Of The Day"
@@ -100,26 +101,36 @@ msgid "Artwork"
 msgstr "Taideteos"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
+msgid ""
+"Add overlay toolbar to go to the previous or next image to the image view."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+msgid ""
+"Add toolbar button to open the current image in an external application."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:59
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Käytä luotettavampaa päätepistettä Wikimedia-kuville."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
 msgid "No longer show preview when setting a wallpaper."
 msgstr "Älä enää näytä esikatselua taustakuvaa asetettaessa."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
 msgid "Improve scheduling of automatic downloads."
 msgstr "Paranna automaattisten latausten ajoitusta."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid "Remember window size and state."
 msgstr "Muista ikkunan koko ja tila."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
 msgid "Update to GNOME 48."
 msgstr "Päivitys GNOME 48:aan."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -127,11 +138,11 @@ msgstr ""
 "Käynnistä automaattisesti ja päivitä päivittäinen taustakuva 12 tunnin "
 "välein."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid "No longer support multiple windows."
 msgstr "Ei enää tue useita ikkunoita."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:84
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -139,7 +150,7 @@ msgstr ""
 "Ensimmäinen julkaisu neljän lähteen kera: APOD, Wikimedia, Simon Stålenhag "
 "ja Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:85
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -147,15 +158,15 @@ msgstr ""
 "Lisää pääikkuna näyttääksesi tämän päivän kuvan ja painike asettaaksesi sen "
 "nykyiseksi taustakuvaksi."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:86
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:97
 msgid "A picture of the day from Wikimedia"
 msgstr "Päivän kuva Wikimediasta"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:101
 msgid "The preferences dialog with settings for image sources"
 msgstr "Asetukset-valintaikkuna, jossa on kuvalähteiden asetukset"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:94
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:105
 msgid "The empty greeting page with the application icon"
 msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
 
@@ -204,6 +215,27 @@ msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr "Sivupalkki päällä/pois"
 
+#: resources/gtk/help-overlay.blp:57
+#, fuzzy
+#| msgctxt "start-page.button.label"
+#| msgid "Get images"
+msgctxt "shortcuts group title"
+msgid "Navigate images"
+msgstr "Nouda kuvia"
+
+#: resources/gtk/help-overlay.blp:60 resources/gtk/help-overlay.blp:65
+msgctxt "shortcut description"
+msgid "Previous image"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:70 resources/gtk/help-overlay.blp:75
+#, fuzzy
+#| msgctxt "start-page.button.label"
+#| msgid "Get images"
+msgctxt "shortcut description"
+msgid "Next image"
+msgstr "Nouda kuvia"
+
 #: resources/ui/application-window.blp:30
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set daily wallpaper automatically"
@@ -229,60 +261,67 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
 msgstr "Aseta nykyinen kuva taustakuvaksi"
 
-#: resources/ui/application-window.blp:101
+#: resources/ui/application-window.blp:102
+#, fuzzy
+#| msgid "The empty greeting page with the application icon"
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Open image with default application"
+msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
+
+#: resources/ui/application-window.blp:113
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "Näytä/piilota kuvan tietoja sisältävä sivupalkki"
 
-#: resources/ui/application-window.blp:141
+#: resources/ui/application-window.blp:158
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr "Nimi"
 
-#: resources/ui/application-window.blp:150
+#: resources/ui/application-window.blp:167
 msgid "Visit the source page of this image."
 msgstr "Vieraile tämän kuvan lähdesivulla."
 
-#: resources/ui/application-window.blp:159
+#: resources/ui/application-window.blp:176
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr "Tekijänoikeus"
 
-#: resources/ui/application-window.blp:170
+#: resources/ui/application-window.blp:187
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr "Kuvaus"
 
-#: resources/ui/application-window.blp:183
+#: resources/ui/application-window.blp:200
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr "Lähde"
 
-#: resources/ui/application-window.blp:191
+#: resources/ui/application-window.blp:208
 msgid "Visit the main page of the source of this image."
 msgstr "Vieraile tämän kuvan lähteen etusivulla."
 
-#: resources/ui/application-window.blp:210
+#: resources/ui/application-window.blp:227
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr "Nouda kuvia"
 
-#: resources/ui/application-window.blp:228
+#: resources/ui/application-window.blp:245
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "_Lopeta"
 
-#: resources/ui/application-window.blp:235
+#: resources/ui/application-window.blp:252
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "_Asetukset"
 
-#: resources/ui/application-window.blp:240
+#: resources/ui/application-window.blp:257
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
-#: resources/ui/application-window.blp:245
+#: resources/ui/application-window.blp:262
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "_Tietoja - Päivän kuva"
@@ -531,27 +570,49 @@ msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Taustakuvan asettaminen epäonnistui"
 
-#: src/app/widgets/application_window.rs:117
+#: src/app/widgets/application_window.rs:128
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while opening %1, with the following message: %2. "
+#| "If the issue persists please report the problem."
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening the current image, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+"Tapahtui syöttö/lähtövirhe avattaessa %1, seuraavalla viestillä: %2. Jos "
+"ongelma jatkuu, ilmoita ongelmasta."
+
+#: src/app/widgets/application_window.rs:134
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Failed to open source URL"
+msgctxt "error-notification.title"
+msgid "Failed to open image"
+msgstr "Lähdeosoitteen avaaminen epäonnistui"
+
+#: src/app/widgets/application_window.rs:151
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Sulje"
 
-#: src/app/widgets/application_window.rs:124
+#: src/app/widgets/application_window.rs:158
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Yhteystiedot"
 
-#: src/app/widgets/application_window.rs:128
+#: src/app/widgets/application_window.rs:162
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Avaa asetukset"
 
-#: src/app/widgets/application_window.rs:132
+#: src/app/widgets/application_window.rs:166
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Avaa osoite"
 
-#: src/app/widgets/application_window.rs:277
+#: src/app/widgets/application_window.rs:316
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Yksityiskohdat"

@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-03-30 16:26+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,27 +103,37 @@ msgid "Artwork"
 msgstr "Kunstwerk"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
+msgid ""
+"Add overlay toolbar to go to the previous or next image to the image view."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+msgid ""
+"Add toolbar button to open the current image in an external application."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:59
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Für Wikimedia Bilder wird ein zuverlässigerer Endpunkt genutzt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 "Beim Setzen des Hintergrundbilds wird keine separate Vorschau mehr angezeigt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
 msgid "Improve scheduling of automatic downloads."
 msgstr "Die Planung automatischer Downloads wurde verbessert."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid "Remember window size and state."
 msgstr "Die Größe und der Zustand des Fensters werden gespeichert."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
 msgid "Update to GNOME 48."
 msgstr "Die Anwendung wurde auf GNOME 48 aktualisiert."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -131,11 +141,11 @@ msgstr ""
 "Starte automatisch und aktualisiere das tägliche Hintergrundbild alle zwölf "
 "Stunden."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid "No longer support multiple windows."
 msgstr "Mehrere Fenster werden nicht länger unterstützt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:84
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -143,7 +153,7 @@ msgstr ""
 "Die erste Veröffentlichung mit vier Bildquellen: APOD, Wikimedia, Simon "
 "Stålenhag, und Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:85
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -151,15 +161,15 @@ msgstr ""
 "Ein Hauptfenster zur Anzeige des heutigen Bildes sowie eine Schaltfläche zum "
 "Setzen des Hintergrundbildes wurden hinzugefügt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:86
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:97
 msgid "A picture of the day from Wikimedia"
 msgstr "Das Bild des Tages von Wikimedia"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:101
 msgid "The preferences dialog with settings for image sources"
 msgstr "Der Einstellungsdialog mit Einstellungen der Bildquellen"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:94
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:105
 msgid "The empty greeting page with the application icon"
 msgstr "Die leere Startseite mit dem Anwendungssymbol"
 
@@ -208,6 +218,27 @@ msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr "Seitenleiste umschalten"
 
+#: resources/gtk/help-overlay.blp:57
+#, fuzzy
+#| msgctxt "start-page.button.label"
+#| msgid "Get images"
+msgctxt "shortcuts group title"
+msgid "Navigate images"
+msgstr "Bilder erhalten"
+
+#: resources/gtk/help-overlay.blp:60 resources/gtk/help-overlay.blp:65
+msgctxt "shortcut description"
+msgid "Previous image"
+msgstr ""
+
+#: resources/gtk/help-overlay.blp:70 resources/gtk/help-overlay.blp:75
+#, fuzzy
+#| msgctxt "start-page.button.label"
+#| msgid "Get images"
+msgctxt "shortcut description"
+msgid "Next image"
+msgstr "Bilder erhalten"
+
 #: resources/ui/application-window.blp:30
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set daily wallpaper automatically"
@@ -233,60 +264,67 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
 msgstr "Aktuelles Bild als Bildschirmhintergrund setzen"
 
-#: resources/ui/application-window.blp:101
+#: resources/ui/application-window.blp:102
+#, fuzzy
+#| msgid "The empty greeting page with the application icon"
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Open image with default application"
+msgstr "Die leere Startseite mit dem Anwendungssymbol"
+
+#: resources/ui/application-window.blp:113
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "Seitenleiste mit Bildinformationen umschalten"
 
-#: resources/ui/application-window.blp:141
+#: resources/ui/application-window.blp:158
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr "Titel"
 
-#: resources/ui/application-window.blp:150
+#: resources/ui/application-window.blp:167
 msgid "Visit the source page of this image."
 msgstr "Die Quellseite dieses Bildes besuchen."
 
-#: resources/ui/application-window.blp:159
+#: resources/ui/application-window.blp:176
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr "Urheberrecht"
 
-#: resources/ui/application-window.blp:170
+#: resources/ui/application-window.blp:187
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr "Beschreibung"
 
-#: resources/ui/application-window.blp:183
+#: resources/ui/application-window.blp:200
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr "Quelle"
 
-#: resources/ui/application-window.blp:191
+#: resources/ui/application-window.blp:208
 msgid "Visit the main page of the source of this image."
 msgstr "Die Hauptseite der Quelle dieses Bildes besuchen."
 
-#: resources/ui/application-window.blp:210
+#: resources/ui/application-window.blp:227
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr "Bilder erhalten"
 
-#: resources/ui/application-window.blp:228
+#: resources/ui/application-window.blp:245
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "_Beenden"
 
-#: resources/ui/application-window.blp:235
+#: resources/ui/application-window.blp:252
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "_Einstellungen"
 
-#: resources/ui/application-window.blp:240
+#: resources/ui/application-window.blp:257
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
-#: resources/ui/application-window.blp:245
+#: resources/ui/application-window.blp:262
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "_Über Bild des Tages"
@@ -540,27 +578,50 @@ msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Setzen des Bildschirmhintergrunds fehlgeschlagen"
 
-#: src/app/widgets/application_window.rs:117
+#: src/app/widgets/application_window.rs:128
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while opening %1, with the following message: %2. "
+#| "If the issue persists please report the problem."
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening the current image, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+"Ein I/O Fehler ist aufgetreten beim Öffnen von %1, mit der folgenden "
+"Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde das Problem "
+"bitte."
+
+#: src/app/widgets/application_window.rs:134
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Failed to open source URL"
+msgctxt "error-notification.title"
+msgid "Failed to open image"
+msgstr "Öffnen der URL der Quelle fehlgeschlagen"
+
+#: src/app/widgets/application_window.rs:151
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Schließen"
 
-#: src/app/widgets/application_window.rs:124
+#: src/app/widgets/application_window.rs:158
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Kontaktinformationen"
 
-#: src/app/widgets/application_window.rs:128
+#: src/app/widgets/application_window.rs:162
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
-#: src/app/widgets/application_window.rs:132
+#: src/app/widgets/application_window.rs:166
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "URL öffnen"
 
-#: src/app/widgets/application_window.rs:277
+#: src/app/widgets/application_window.rs:316
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Details"
