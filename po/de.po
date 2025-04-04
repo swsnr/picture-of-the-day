@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-04 08:39+0000\n"
+"PO-Revision-Date: 2025-04-04 08:44+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,11 +263,9 @@ msgid "Set current image as wallpaper"
 msgstr "Aktuelles Bild als Bildschirmhintergrund setzen"
 
 #: resources/ui/application-window.blp:102
-#, fuzzy
-#| msgid "The empty greeting page with the application icon"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
-msgstr "Die leere Startseite mit dem Anwendungssymbol"
+msgstr "Bild mit externer Anwendung öffnen"
 
 #: resources/ui/application-window.blp:113
 msgctxt "main-window.toolbar.button.tooltip"
