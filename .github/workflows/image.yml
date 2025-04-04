@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "main"
+      - "ci-alpine"
     paths:
       - "Dockerfile"
       - ".github/workflows/image.yml"
