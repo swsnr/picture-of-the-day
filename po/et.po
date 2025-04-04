@@ -268,7 +268,7 @@ msgstr "Kasuta seda pilti taustapildina"
 #, fuzzy
 #| msgid "The empty greeting page with the application icon"
 msgctxt "main-window.toolbar.button.tooltip"
-msgid "Open image with default application"
+msgid "Open image with external application"
 msgstr "Tühi avaleht rakenduse ikooniga"
 
 #: resources/ui/application-window.blp:113

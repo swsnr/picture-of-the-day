@@ -265,7 +265,7 @@ msgstr "Aseta nykyinen kuva taustakuvaksi"
 #, fuzzy
 #| msgid "The empty greeting page with the application icon"
 msgctxt "main-window.toolbar.button.tooltip"
-msgid "Open image with default application"
+msgid "Open image with external application"
 msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
 
 #: resources/ui/application-window.blp:113
