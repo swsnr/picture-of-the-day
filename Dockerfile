@@ -1,4 +1,5 @@
-FROM docker.io/archlinux:latest
+FROM docker.io/alpine:edge
 
-RUN pacman -Syu --noconfirm gcc pkgconf libadwaita blueprint-compiler libsoup3 && \
-    rm -rf /var/cache/pacman/pkg /var/lib/pacman/sync
+RUN apk upgrade --no-cache && apk add --nocache gcc pkgconf \
+    blueprint-compiler \
+    libadwaita-dev libsoup3-dev

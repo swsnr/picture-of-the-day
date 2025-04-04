@@ -15,7 +15,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}/ci
+  IMAGE_NAME: ${{ github.repository }}/ci-slim
 
 jobs:
   build-and-push-image:
