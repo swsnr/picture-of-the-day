@@ -49,11 +49,11 @@ impl ApplicationWindow {
         let cancellable = self.imp().start_loading();
 
         let source = self.selected_source();
-        if let Err(error) = self
-            .imp()
-            .load_images_for_source(source, &cancellable)
-            .await
-        {
+        let result =
+            gio::CancellableFuture::new(self.imp().load_images_for_source(source), cancellable)
+                .await;
+        // If loading was cancelled or successful we don't need to do anything here
+        if let Ok(Err(error)) = result {
             self.imp().show_source_error(source, &error);
         }
 
@@ -300,9 +300,10 @@ mod imp {
 
         pub fn cancel_loading(&self) {
             if let Some(cancellable) = self.is_loading.replace(None) {
+                glib::debug!("Cancelling image loading in window");
                 cancellable.cancel();
+                self.obj().notify_is_loading();
             }
-            self.obj().notify_is_loading();
         }
 
         fn switch_to_images_view(&self) {
@@ -326,7 +327,9 @@ mod imp {
 
         pub fn start_loading(&self) -> gio::Cancellable {
             let cancellable = gio::Cancellable::new();
-            self.is_loading.replace(Some(cancellable.clone()));
+            if let Some(old_cancellable) = self.is_loading.replace(Some(cancellable.clone())) {
+                old_cancellable.cancel();
+            }
             self.obj().notify_is_loading();
             cancellable
         }
@@ -337,14 +340,9 @@ mod imp {
         }
 
         pub fn show_source_error(&self, source: Source, error: &SourceError) {
-            if let SourceError::Cancelled = error {
-                glib::info!("Fetching images cancelled by user");
-                // Don't notify if the user just cancelled things
-            } else {
-                glib::error!("Fetching images failed: {error}");
-                let error = ErrorNotification::from_error(source, error);
-                self.show_error(&error);
-            }
+            glib::error!("Fetching images failed: {error}");
+            let error = ErrorNotification::from_error(source, error);
+            self.show_error(&error);
         }
 
         pub fn show_toast(&self, toast: adw::Toast) {
@@ -372,17 +370,9 @@ mod imp {
             self.show_toast(toast);
         }
 
-        pub async fn load_images_for_source(
-            &self,
-            source: Source,
-            cancellable: &Cancellable,
-        ) -> Result<(), SourceError> {
+        pub async fn load_images_for_source(&self, source: Source) -> Result<(), SourceError> {
             glib::info!("Fetching images for source {source:?}");
-            let images = gio::CancellableFuture::new(
-                source.get_images(&self.obj().http_session()),
-                cancellable.clone(),
-            )
-            .await??;
+            let images = source.get_images(&self.obj().http_session()).await?;
 
             // Create model objects for all images:  We create an image object
             // to expose the metadata as glib properties, and a download object
@@ -407,7 +397,7 @@ mod imp {
 
             // Create the download directory for the current source.
             let target_directory = source.images_directory();
-            ensure_directory(&target_directory, cancellable).await?;
+            ensure_directory(&target_directory).await?;
 
             // Download all images
             let http_session = self.http_session.borrow().clone();
@@ -420,7 +410,7 @@ mod imp {
                     http_session,
                     async move {
                         match image
-                            .download_to_directory(&target_directory, &http_session, cancellable)
+                            .download_to_directory(&target_directory, &http_session)
                             .await
                         {
                             Ok(target) => {
@@ -619,7 +609,15 @@ mod imp {
 
     impl ApplicationWindowImpl for ApplicationWindow {}
 
-    impl WindowImpl for ApplicationWindow {}
+    impl WindowImpl for ApplicationWindow {
+        fn close_request(&self) -> glib::Propagation {
+            let result = self.parent_close_request();
+            if result.is_proceed() {
+                self.cancel_loading();
+            }
+            result
+        }
+    }
 
     impl WidgetImpl for ApplicationWindow {}
 }

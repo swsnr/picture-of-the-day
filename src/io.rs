@@ -4,31 +4,32 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::object::IsA;
-use gtk::gio::{self, Cancellable, IOErrorEnum, prelude::*};
+use gtk::gio::{self, IOErrorEnum, prelude::*};
 
 use std::path::Path;
 
 use crate::config::G_LOG_DOMAIN;
 
-pub async fn ensure_directory<P: AsRef<Path> + Send>(
-    directory: P,
-    cancellable: &impl IsA<Cancellable>,
-) -> Result<(), glib::Error> {
-    glib::info!("Creating target directory {}", directory.as_ref().display());
+pub async fn ensure_directory<P: AsRef<Path> + Send>(directory: P) -> Result<(), glib::Error> {
     let target_directory = gio::File::for_path(directory);
-    gio::spawn_blocking(glib::clone!(
-        #[strong(rename_to = cancellable)]
-        cancellable.as_ref(),
-        move || {
-            match target_directory.make_directory_with_parents(Some(&cancellable)) {
-                Err(error) if error.matches(IOErrorEnum::Exists) => Ok(()),
-                res => res,
-            }
-        }
-    ))
+    gio::GioFuture::new(
+        &target_directory,
+        |target_directory, cancellable, result| {
+            gio::spawn_blocking(glib::clone!(
+                #[strong]
+                cancellable,
+                #[strong]
+                target_directory,
+                move || {
+                    match target_directory.make_directory_with_parents(Some(&cancellable)) {
+                        Err(error) if error.matches(IOErrorEnum::Exists) => result.resolve(Ok(())),
+                        res => result.resolve(res),
+                    }
+                }
+            ));
+        },
+    )
     .await
-    .unwrap()
 }
 
 pub async fn delete_file_ignore_error(target: &gio::File) {
