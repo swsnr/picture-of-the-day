@@ -10,7 +10,7 @@ use std::{
 };
 
 use download::download_file_to_directory;
-use gtk::gio::{self, Cancellable, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
+use gtk::gio::{self, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 
 use crate::config::G_LOG_DOMAIN;
 use crate::source::Source;
@@ -83,7 +83,6 @@ impl DownloadableImage {
         &self,
         directory: &Path,
         session: &soup::Session,
-        cancellable: &Cancellable,
     ) -> Result<PathBuf, glib::Error> {
         let file_name = self.filename();
         let target_file = directory.join(file_name.as_ref());
@@ -100,23 +99,16 @@ impl DownloadableImage {
             glib::debug!("Using existing file at {}", target_file.display());
             Ok(target_file)
         } else {
-            let result = gio::CancellableFuture::new(
-                download_file_to_directory(session, &self.image_url, directory, &file_name),
-                cancellable.clone(),
-            )
-            .await;
+            let result =
+                download_file_to_directory(session, &self.image_url, directory, &file_name).await;
             match result {
-                Err(_) => Err(glib::Error::new(
-                    IOErrorEnum::Cancelled,
-                    "download cancelled",
-                )),
-                Ok(Err(error)) if error.matches(IOErrorEnum::Exists) => {
+                Err(error) if error.matches(IOErrorEnum::Exists) => {
                     // If the target file already exists, assume that a parallel download
                     // finished first, i.e. that `target_file` was downloaded successfully
                     Ok(target_file)
                 }
-                Ok(Err(error)) => Err(error),
-                Ok(Ok(())) => Ok(target_file),
+                Err(error) => Err(error),
+                Ok(()) => Ok(target_file),
             }
         }
     }

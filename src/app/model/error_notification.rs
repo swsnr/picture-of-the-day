@@ -131,19 +131,6 @@ mod errors {
             .build()
     }
 
-    pub fn cancelled(source: Source) -> ErrorNotification {
-        let title = dpgettext2(None, "error-notification.title", "Cancelled");
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "You cancelled loading images from %1.",
-        );
-        ErrorNotification::builder()
-            .title(title)
-            .description(description.replace("%1", &source.i18n_name()))
-            .build()
-    }
-
     pub fn io_error(source: Source, error: &glib::Error) -> ErrorNotification {
         let connectivity = gio::NetworkMonitor::default().connectivity();
         let (title, description) = if connectivity == gio::NetworkConnectivity::Full {
@@ -192,7 +179,6 @@ impl ErrorNotification {
             SourceError::HttpStatus(status, _) => errors::http_status(source, *status),
             SourceError::InvalidJson(_) => errors::invalid_data(source),
             SourceError::IO(error) => errors::io_error(source, error),
-            SourceError::Cancelled => errors::cancelled(source),
         }
     }
 }

@@ -224,14 +224,23 @@ impl Application {
                         last update was more than {hours_since_last_update:?}\
                          hours (>= 12) ago"
                                 );
-                                match app.fetch_and_set_wallpaper(source, &cancellable).await {
-                                    Ok(()) => {
+                                let result = gio::CancellableFuture::new(
+                                    app.fetch_and_set_wallpaper(source),
+                                    cancellable,
+                                )
+                                .await;
+                                match result {
+                                    Err(_) => {
+                                        // Do nothing if automatic update was cancelled
+                                        last_update
+                                    }
+                                    Ok(Ok(())) => {
                                         // If we successfully updated the wallpaper,
                                         // automatically hide any previous error notification.
                                         app.withdraw_notification(ERROR_NOTIFICATION_ID);
                                         now
                                     }
-                                    Err(error) => {
+                                    Ok(Err(error)) => {
                                         glib::warn!(
                                             "Failed to fetch and set \
                                         wallpaper from {source:?}: \
@@ -259,15 +268,10 @@ impl Application {
             .await;
     }
 
-    async fn fetch_and_set_wallpaper(
-        &self,
-        source: Source,
-        cancellable: &Cancellable,
-    ) -> Result<(), SourceError> {
+    async fn fetch_and_set_wallpaper(&self, source: Source) -> Result<(), SourceError> {
         let session = self.http_session();
         glib::info!("Setting wallpaper from {source:?}");
-        let images =
-            gio::CancellableFuture::new(source.get_images(&session), cancellable.clone()).await??;
+        let images = source.get_images(&session).await?;
 
         // We can safely unwrap, because `get_images` will never return an empty list.
         let image = images.choose(&mut GlibRng).unwrap();
@@ -275,7 +279,7 @@ impl Application {
         let target_directory = source.images_directory();
         ensure_directory(&target_directory).await?;
         let target = image
-            .download_to_directory(&target_directory, &session, cancellable)
+            .download_to_directory(&target_directory, &session)
             .await?;
 
         glib::info!("Setting wallpaper to {}", target.display());

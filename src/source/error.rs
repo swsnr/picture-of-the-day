@@ -7,7 +7,6 @@
 use std::{error::Error, fmt::Display};
 
 use glib::GString;
-use gtk::gio::{Cancelled, IOErrorEnum};
 
 use super::http::HttpError;
 
@@ -15,8 +14,6 @@ use super::http::HttpError;
 pub enum SourceError {
     /// IO failed.
     IO(glib::Error),
-    /// An IO action was cancelled
-    Cancelled,
     /// An unexpected HTTP status code, with an optional reason.
     HttpStatus(soup::Status, Option<GString>),
     /// A deserialization error.
@@ -35,23 +32,13 @@ pub enum SourceError {
 
 impl From<glib::Error> for SourceError {
     fn from(error: glib::Error) -> Self {
-        if error.matches(IOErrorEnum::Cancelled) {
-            Self::Cancelled
-        } else {
-            Self::IO(error)
-        }
+        Self::IO(error)
     }
 }
 
 impl From<serde_json::Error> for SourceError {
     fn from(value: serde_json::Error) -> Self {
         Self::InvalidJson(value)
-    }
-}
-
-impl From<Cancelled> for SourceError {
-    fn from(_: Cancelled) -> Self {
-        Self::Cancelled
     }
 }
 
@@ -72,7 +59,6 @@ impl Display for SourceError {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             SourceError::IO(error) => write!(f, "{error}"),
-            SourceError::Cancelled => write!(f, "Cancelled"),
             #[allow(clippy::use_debug)]
             SourceError::HttpStatus(status, None) => write!(f, "HTTP status {status:?}"),
             #[allow(clippy::use_debug)]
