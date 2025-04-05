@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-04 08:39+0000\n"
+"PO-Revision-Date: 2025-04-05 10:21+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -262,12 +262,9 @@ msgid "Set current image as wallpaper"
 msgstr "Stel de huidige afbeelding in als achtergrond"
 
 #: resources/ui/application-window.blp:102
-#, fuzzy
-#| msgctxt "main-window.toolbar.button.tooltip"
-#| msgid "Open image with default application"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
-msgstr "Afbeelding openen in standaard fotoprogramma"
+msgstr "Afbeelding openen in ander fotoprogramma"
 
 #: resources/ui/application-window.blp:113
 msgctxt "main-window.toolbar.button.tooltip"
