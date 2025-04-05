@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-03-31 19:21+0000\n"
+"PO-Revision-Date: 2025-04-05 10:21+0000\n"
 "Last-Translator: Priit Jõerüüt <jrtcdbrg@noreply.codeberg.org>\n"
-"Language-Team: Estonian <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
+"Language-Team: Estonian <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,11 +107,15 @@ msgstr "Kunst"
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
+"Lisa piltide vaatesse ülekattega tööriistariba, mis võimaldab liikuda "
+"piltide vahel."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid ""
 "Add toolbar button to open the current image in an external application."
 msgstr ""
+"Lisa tööriistaribale nupp, mis võimaldab kuvatavat pilti avada välise "
+"rakendusega."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:59
 msgid "Use a more reliable endpoint for Wikimedia images."
@@ -219,25 +223,19 @@ msgid "Toggle sidebar"
 msgstr "Lülita külgpaan sisse/välja"
 
 #: resources/gtk/help-overlay.blp:57
-#, fuzzy
-#| msgctxt "start-page.button.label"
-#| msgid "Get images"
 msgctxt "shortcuts group title"
 msgid "Navigate images"
-msgstr "Laadi üks pilt"
+msgstr "Liigu piltide vahel"
 
 #: resources/gtk/help-overlay.blp:60 resources/gtk/help-overlay.blp:65
 msgctxt "shortcut description"
 msgid "Previous image"
-msgstr ""
+msgstr "Eelmine pilt"
 
 #: resources/gtk/help-overlay.blp:70 resources/gtk/help-overlay.blp:75
-#, fuzzy
-#| msgctxt "start-page.button.label"
-#| msgid "Get images"
 msgctxt "shortcut description"
 msgid "Next image"
-msgstr "Laadi üks pilt"
+msgstr "Järgmine pilt"
 
 #: resources/ui/application-window.blp:30
 msgctxt "main-window.toolbar.button.tooltip"
@@ -265,11 +263,9 @@ msgid "Set current image as wallpaper"
 msgstr "Kasuta seda pilti taustapildina"
 
 #: resources/ui/application-window.blp:102
-#, fuzzy
-#| msgid "The empty greeting page with the application icon"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
-msgstr "Tühi avaleht rakenduse ikooniga"
+msgstr "Ava pilt välise rakendusega"
 
 #: resources/ui/application-window.blp:113
 msgctxt "main-window.toolbar.button.tooltip"
@@ -578,27 +574,18 @@ msgid "Failed to set wallpaper"
 msgstr "Taustapildiks määramine ei toimi"
 
 #: src/app/widgets/application_window.rs:128
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Tänase pildi avamisel %1 serverist tekkis sisend/väljundviga järgneva "
-"veateatega: %2. Kui viga kestab pikemalt, siis palun anna sellest meile "
-"teada."
+"Selle pildi avamisel tekkis sisend/väljundviga järgneva veateatega: %1. Kui "
+"viga kestab pikemalt, siis palun anna sellest meile teada."
 
 #: src/app/widgets/application_window.rs:134
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Failed to open source URL"
 msgctxt "error-notification.title"
 msgid "Failed to open image"
-msgstr "Andmeallika võrguaadressi avamine ei õnnestunud"
+msgstr "Ei õnnestunud avada pilti"
 
 #: src/app/widgets/application_window.rs:151
 msgctxt "alert.response"
