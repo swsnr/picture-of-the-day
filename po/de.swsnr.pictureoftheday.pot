@@ -101,60 +101,66 @@ msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid ""
-"Add toolbar button to open the current image in an external application."
+"Add toolbar buttons to save the current image, and to open the current image "
+"in an external application."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:59
-msgid "Use a more reliable endpoint for Wikimedia images."
-msgstr ""
-
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
-msgid "No longer show preview when setting a wallpaper."
-msgstr ""
-
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
-msgid "Improve scheduling of automatic downloads."
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+msgid ""
+"Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
-msgid "Remember window size and state."
+msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
+msgid "No longer show preview when setting a wallpaper."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
+msgid "Improve scheduling of automatic downloads."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
+msgid "Remember window size and state."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:66
 msgid "Update to GNOME 48."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
 msgid "No longer support multiple windows."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:84
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:87
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:85
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:97
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
 msgid "A picture of the day from Wikimedia"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:101
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
 msgid "The preferences dialog with settings for image sources"
 msgstr ""
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:105
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:108
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
@@ -248,60 +254,65 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
 msgstr ""
 
-#: resources/ui/application-window.blp:113
+#: resources/ui/application-window.blp:108
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Save image"
+msgstr ""
+
+#: resources/ui/application-window.blp:119
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr ""
 
-#: resources/ui/application-window.blp:158
+#: resources/ui/application-window.blp:164
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr ""
 
-#: resources/ui/application-window.blp:167
+#: resources/ui/application-window.blp:173
 msgid "Visit the source page of this image."
 msgstr ""
 
-#: resources/ui/application-window.blp:176
+#: resources/ui/application-window.blp:182
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr ""
 
-#: resources/ui/application-window.blp:187
+#: resources/ui/application-window.blp:193
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr ""
 
-#: resources/ui/application-window.blp:200
+#: resources/ui/application-window.blp:206
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr ""
 
-#: resources/ui/application-window.blp:208
+#: resources/ui/application-window.blp:214
 msgid "Visit the main page of the source of this image."
 msgstr ""
 
-#: resources/ui/application-window.blp:227
+#: resources/ui/application-window.blp:233
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr ""
 
-#: resources/ui/application-window.blp:245
+#: resources/ui/application-window.blp:251
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr ""
 
-#: resources/ui/application-window.blp:252
+#: resources/ui/application-window.blp:258
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr ""
 
-#: resources/ui/application-window.blp:257
+#: resources/ui/application-window.blp:263
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: resources/ui/application-window.blp:262
+#: resources/ui/application-window.blp:268
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr ""
@@ -354,7 +365,7 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr ""
 
-#: src/app.rs:99
+#: src/app.rs:115
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr ""
@@ -362,41 +373,41 @@ msgstr ""
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:108
+#: src/app.rs:124
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.rs:113
+#: src/app.rs:129
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr ""
 
-#: src/app.rs:126
+#: src/app.rs:142
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
-#: src/app.rs:161
+#: src/app.rs:177
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr ""
 
-#: src/app.rs:166
+#: src/app.rs:182
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:170
+#: src/app.rs:186
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:425
+#: src/app.rs:431
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:591
+#: src/app.rs:592
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
@@ -447,7 +458,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:103
 #: src/app/model/error_notification.rs:121
-#: src/app/model/error_notification.rs:162
+#: src/app/model/error_notification.rs:149
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
 msgstr ""
@@ -468,22 +479,12 @@ msgid ""
 "please report the problem."
 msgstr ""
 
-#: src/app/model/error_notification.rs:135
-msgctxt "error-notification.title"
-msgid "Cancelled"
-msgstr ""
-
-#: src/app/model/error_notification.rs:139
-msgctxt "error-notification.description"
-msgid "You cancelled loading images from %1."
-msgstr ""
-
-#: src/app/model/error_notification.rs:153
+#: src/app/model/error_notification.rs:140
 msgctxt "error-notification.title"
 msgid "Limited network connectivity"
 msgstr ""
 
-#: src/app/model/error_notification.rs:158
+#: src/app/model/error_notification.rs:145
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
@@ -491,7 +492,7 @@ msgid ""
 "connectivity. Try to connect your system to the internet."
 msgstr ""
 
-#: src/app/model/error_notification.rs:166
+#: src/app/model/error_notification.rs:153
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
@@ -535,29 +536,50 @@ msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:151
+#: src/app/widgets/application_window.rs:149
+msgid "Saved image %1"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:167
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while saving the current image, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+
+#: src/app/widgets/application_window.rs:173
+msgctxt "error-notification.title"
+msgid "Failed to save image"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:190
 msgctxt "alert.response"
 msgid "Close"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:158
+#: src/app/widgets/application_window.rs:197
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:162
+#: src/app/widgets/application_window.rs:201
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:166
+#: src/app/widgets/application_window.rs:205
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:316
+#: src/app/widgets/application_window.rs:357
 msgctxt "toast.button.label"
 msgid "Details"
+msgstr ""
+
+#: src/app/widgets/application_window.rs:460
+msgctxt "file-dialog.title"
+msgid "Save image"
 msgstr ""
 
 #: src/app/widgets/preferences_dialog.rs:71
@@ -566,7 +588,7 @@ msgid_plural "%1/%2 collections enabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/main.rs:89
+#: src/main.rs:87
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr ""
