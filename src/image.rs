@@ -10,7 +10,7 @@ use std::{
 };
 
 use download::download_file_to_directory;
-use gtk::gio::{self, Cancellable, IOErrorEnum, prelude::FileExt};
+use gtk::gio::{self, Cancellable, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 
 use crate::config::G_LOG_DOMAIN;
 use crate::source::Source;
@@ -87,16 +87,14 @@ impl DownloadableImage {
     ) -> Result<PathBuf, glib::Error> {
         let file_name = self.filename();
         let target_file = directory.join(file_name.as_ref());
-        let exists = {
-            let target_file = gio::File::for_path(&target_file);
-            gio::spawn_blocking(glib::clone!(
-                #[strong]
-                cancellable,
-                move || target_file.query_exists(Some(&cancellable))
-            ))
+        let exists = gio::File::for_path(&target_file)
+            .query_info_future(
+                gio::FILE_ATTRIBUTE_STANDARD_TYPE,
+                FileQueryInfoFlags::NONE,
+                glib::Priority::DEFAULT,
+            )
             .await
-            .unwrap()
-        };
+            .is_ok();
         if exists {
             // If the target file exists already just return it
             glib::debug!("Using existing file at {}", target_file.display());
