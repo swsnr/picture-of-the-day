@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-04 08:44+0000\n"
+"PO-Revision-Date: 2025-04-05 14:00+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,20 +110,18 @@ msgstr ""
 "vorherigen und zum nächsten Bild zu springen."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
-#, fuzzy
-#| msgid ""
-#| "Add toolbar button to open the current image in an external application."
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr ""
-"Zur Werkzeugleiste wurde eine Schaltfläche hinzugefügt, um das aktuelle Bild "
-"in einer externen Anwendung zu öffnen."
+"Zur Werkzeugleiste wurden Schaltflächen hinzugefügt, um das aktuelle Bild zu "
+"speichern oder in einer externen Anwendung zu öffnen."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
+"Teilweise heruntergeladene Bilder werden beim Beenden gründlicher gelöscht."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid "Use a more reliable endpoint for Wikimedia images."
@@ -277,12 +275,9 @@ msgid "Open image with external application"
 msgstr "Bild mit externer Anwendung öffnen"
 
 #: resources/ui/application-window.blp:108
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Navigate images"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Save image"
-msgstr "Zwischen Bildern springen"
+msgstr "Bild speichern"
 
 #: resources/ui/application-window.blp:119
 msgctxt "main-window.toolbar.button.tooltip"
@@ -587,44 +582,33 @@ msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Öffnen des aktuellen Bilds, mit der "
+"Ein I/O Fehler ist aufgetreten beim Öffnen des aktuellen Bildes, mit der "
 "folgenden Fehlermeldung: %1. Falls das Problem bestehen bleibt, melde das "
 "Problem bitte."
 
 #: src/app/widgets/application_window.rs:134
 msgctxt "error-notification.title"
 msgid "Failed to open image"
-msgstr "Öffnen des Bilds fehlgeschlagen"
+msgstr "Öffnen des Bildes fehlgeschlagen"
 
 #: src/app/widgets/application_window.rs:149
-#, fuzzy
-#| msgctxt "shortcut description"
-#| msgid "Load images"
 msgid "Saved image %1"
-msgstr "Bilder laden"
+msgstr "Bild %1 gespeichert"
 
 #: src/app/widgets/application_window.rs:167
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Ein I/O Fehler ist aufgetreten beim Öffnen des aktuellen Bilds, mit der "
+"Ein I/O Fehler ist aufgetreten beim Speichern des aktuellen Bildes, mit der "
 "folgenden Fehlermeldung: %1. Falls das Problem bestehen bleibt, melde das "
 "Problem bitte."
 
 #: src/app/widgets/application_window.rs:173
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Failed to open image"
 msgctxt "error-notification.title"
 msgid "Failed to save image"
-msgstr "Öffnen des Bilds fehlgeschlagen"
+msgstr "Speichern des Bildes fehlgeschlagen"
 
 #: src/app/widgets/application_window.rs:190
 msgctxt "alert.response"
@@ -652,12 +636,9 @@ msgid "Details"
 msgstr "Details"
 
 #: src/app/widgets/application_window.rs:460
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Navigate images"
 msgctxt "file-dialog.title"
 msgid "Save image"
-msgstr "Zwischen Bildern springen"
+msgstr "Bild speichern"
 
 #: src/app/widgets/preferences_dialog.rs:71
 msgid "%1/%2 collection enabled"
