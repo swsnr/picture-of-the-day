@@ -45,6 +45,9 @@ impl Application {
     /// Setup actions of the application.
     ///
     /// - `app.quit` quits the application.
+    /// - `app.about` shows the about dialog over the active window if any.
+    /// - `app.about` shows the preferences dialog over the active window if any.
+    /// - `app.open-source-url` opens the main URL of the selected source.
     fn setup_actions(&self) {
         let actions = [
             ActionEntry::builder("quit")
