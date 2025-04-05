@@ -273,7 +273,7 @@ impl Application {
         let image = images.choose(&mut GlibRng).unwrap();
 
         let target_directory = source.images_directory();
-        ensure_directory(&target_directory, cancellable).await?;
+        ensure_directory(&target_directory).await?;
         let target = image
             .download_to_directory(&target_directory, &session, cancellable)
             .await?;

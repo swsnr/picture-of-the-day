@@ -407,7 +407,7 @@ mod imp {
 
             // Create the download directory for the current source.
             let target_directory = source.images_directory();
-            ensure_directory(&target_directory, cancellable).await?;
+            ensure_directory(&target_directory).await?;
 
             // Download all images
             let http_session = self.http_session.borrow().clone();
