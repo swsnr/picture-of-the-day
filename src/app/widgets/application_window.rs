@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
-use glib::dpgettext2;
+use glib::{dgettext, dpgettext2};
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::UriLauncher;
 use gtk::gio;
@@ -141,6 +141,45 @@ impl ApplicationWindow {
         }
     }
 
+    async fn save_current_image(&self) {
+        match self.imp().save_current_image().await {
+            Ok(None) => {}
+            Ok(Some(name)) => {
+                let toast = adw::Toast::builder()
+                    .title(dgettext(None, "Saved image %1").replace("%1", &name))
+                    .priority(adw::ToastPriority::Normal)
+                    .timeout(5)
+                    .build();
+                self.imp().show_toast(toast);
+            }
+            Err(error) => {
+                if error.matches(gtk::DialogError::Cancelled)
+                    || error.matches(gtk::DialogError::Dismissed)
+                {
+                    // The dialog was cancelled programmatically, or dismissed by the user; in these cases
+                    // we assume that this was deliberate, so we don't show an error notification.
+                    return;
+                }
+                glib::warn!("Failed to save current image: {error}");
+                let description = dpgettext2(
+                    None,
+                    "error-notification.description",
+                    "An I/O error occurred while saving the current image, with the following message: %1. If the issue persists please report the problem.",
+                );
+                let error = ErrorNotification::builder()
+                    .title(dpgettext2(
+                        None,
+                        "error-notification.title",
+                        "Failed to save image",
+                    ))
+                    .description(description.replace("%1", &error.to_string()))
+                    .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
+                    .build();
+                self.imp().show_error(&error);
+            }
+        }
+    }
+
     fn show_error_dialog(&self, error: &ErrorNotification) {
         let actions = error.actions();
         let dialog = adw::AlertDialog::builder()
@@ -196,7 +235,7 @@ mod imp {
     use glib::{Object, Properties, closure, dpgettext2};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
-    use gtk::gio::{self, Cancellable};
+    use gtk::gio::{self, Cancellable, FileCreateFlags, FileQueryInfoFlags};
     use strum::IntoEnumIterator;
 
     use crate::Source;
@@ -308,6 +347,10 @@ mod imp {
             }
         }
 
+        pub fn show_toast(&self, toast: adw::Toast) {
+            self.toasts.add_toast(toast);
+        }
+
         pub fn show_error(&self, error: &ErrorNotification) {
             let toast = adw::Toast::builder()
                 .title(error.title())
@@ -326,7 +369,7 @@ mod imp {
                     window.show_error_dialog(&error);
                 }
             ));
-            self.toasts.add_toast(toast);
+            self.show_toast(toast);
         }
 
         pub async fn load_images_for_source(
@@ -412,6 +455,47 @@ mod imp {
                 glib::info!("Request finished: {result:?}");
             }
             Ok(())
+        }
+
+        pub async fn save_current_image(&self) -> Result<Option<glib::GString>, glib::Error> {
+            if let Some(file) = self.current_image_file() {
+                let info = file
+                    .query_info_future(
+                        gio::FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
+                        FileQueryInfoFlags::NONE,
+                        glib::Priority::DEFAULT,
+                    )
+                    .await?;
+                let dialog = gtk::FileDialog::new();
+                dialog.set_title(&dpgettext2(None, "file-dialog.title", "Save image"));
+                dialog.set_initial_name(Some(info.display_name().as_str()));
+                let target = dialog.save_future(Some(&*self.obj())).await?;
+                let target_info = file
+                    .query_info_future(
+                        gio::FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
+                        FileQueryInfoFlags::NONE,
+                        glib::Priority::DEFAULT,
+                    )
+                    .await?;
+                target
+                    .replace_future(
+                        None,
+                        false,
+                        FileCreateFlags::PRIVATE | FileCreateFlags::REPLACE_DESTINATION,
+                        glib::Priority::DEFAULT,
+                    )
+                    .await?
+                    .splice_future(
+                        &file.read_future(glib::Priority::DEFAULT).await?,
+                        gio::OutputStreamSpliceFlags::CLOSE_SOURCE
+                            | gio::OutputStreamSpliceFlags::CLOSE_TARGET,
+                        glib::Priority::DEFAULT,
+                    )
+                    .await?;
+                Ok(Some(target_info.display_name()))
+            } else {
+                Ok(None)
+            }
         }
     }
 
@@ -506,8 +590,18 @@ mod imp {
                     });
                 }
             ));
+            let act_save_image = gio::SimpleAction::new("save-image", None);
+            act_save_image.connect_activate(glib::clone!(
+                #[weak(rename_to = window)]
+                self.obj(),
+                move |_, _| {
+                    glib::spawn_future_local(async move {
+                        window.save_current_image().await;
+                    });
+                }
+            ));
 
-            for action in &[act_set_wallpaper, act_open_default] {
+            for action in &[act_set_wallpaper, act_open_default, act_save_image] {
                 self.obj().add_action(action);
                 action.set_enabled(false);
                 self.images_carousel

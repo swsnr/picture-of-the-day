@@ -102,6 +102,12 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           tooltip-text: C_("main-window.toolbar.button.tooltip", "Open image with external application");
         }
 
+        Button {
+          icon-name: "arrow-pointing-at-line-down-symbolic";
+          action-name: "win.save-image";
+          tooltip-text: C_("main-window.toolbar.button.tooltip", "Save image");
+        }
+
         Separator {
           styles [
             "spacer",

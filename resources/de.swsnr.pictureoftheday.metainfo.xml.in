@@ -46,10 +46,11 @@
         <release version="next" date="9999-01-01">
             <description>
                 <p>Add overlay toolbar to go to the previous or next image to the image view.</p>
-                <p>Add toolbar button to open the current image in an external application.</p>
+                <p>Add toolbar buttons to save the current image, and to open the current image in an external application.</p>
             </description>
             <issues>
                 <issue url="https://github.com/swsnr/picture-of-the-day/issues/15">GH-15</issue>
+                <issue url="https://github.com/swsnr/picture-of-the-day/issues/16">GH-16</issue>
                 <issue url="https://github.com/swsnr/picture-of-the-day/issues/18">GH-18</issue>
             </issues>
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>

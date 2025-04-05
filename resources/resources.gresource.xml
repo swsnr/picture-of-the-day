@@ -12,6 +12,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
         <!-- Action icons (keep sorted) -->
         <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-into-box-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-pointing-at-line-down-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/cross-large-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/external-link-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/image-symbolic.svg</file>
