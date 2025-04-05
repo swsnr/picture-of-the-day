@@ -748,6 +748,7 @@ dependencies = [
  "glob",
  "gtk4",
  "libadwaita",
+ "libc",
  "log",
  "rand",
  "rand_core",

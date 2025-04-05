@@ -41,7 +41,6 @@
 
 use app::Application;
 use glib::dpgettext2;
-use glib::gstr;
 use gtk::gio;
 use gtk::prelude::*;
 
@@ -80,10 +79,9 @@ fn main() -> glib::ExitCode {
         "Initializing gettext with locale directory {}",
         locale_dir.display()
     );
-    gettext::bindtextdomain(config::APP_ID, locale_dir).unwrap();
-    gettext::textdomain(config::APP_ID).unwrap();
-    gettext::bind_textdomain_codeset(config::APP_ID, gstr!("UTF-8")).unwrap();
-    gettext::setlocale(gettext::LC_ALL, gstr!("")).unwrap();
+    if let Err(error) = gettext::init_gettext(config::APP_ID, locale_dir) {
+        glib::warn!("Failed to initialize gettext: {error}");
+    }
 
     gio::resources_register_include!("pictureoftheday.gresource").unwrap();
     glib::set_application_name(&dpgettext2(None, "application-name", "Picture Of The Day"));
