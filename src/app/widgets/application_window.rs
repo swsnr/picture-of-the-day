@@ -300,6 +300,7 @@ mod imp {
 
         pub fn cancel_loading(&self) {
             if let Some(cancellable) = self.is_loading.replace(None) {
+                glib::debug!("Cancelling image loading in window");
                 cancellable.cancel();
                 self.obj().notify_is_loading();
             }
@@ -608,7 +609,15 @@ mod imp {
 
     impl ApplicationWindowImpl for ApplicationWindow {}
 
-    impl WindowImpl for ApplicationWindow {}
+    impl WindowImpl for ApplicationWindow {
+        fn close_request(&self) -> glib::Propagation {
+            let result = self.parent_close_request();
+            if result.is_proceed() {
+                self.cancel_loading();
+            }
+            result
+        }
+    }
 
     impl WidgetImpl for ApplicationWindow {}
 }
