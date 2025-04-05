@@ -33,6 +33,9 @@ pub async fn ensure_directory<P: AsRef<Path> + Send>(
 
 pub async fn delete_file_ignore_error(target: &gio::File) {
     if let Err(error) = target.delete_future(glib::Priority::DEFAULT).await {
-        glib::warn!("Failed to delete file {}: {error}", target.uri());
+        // No need to warn of the target doesn't exist, that's what we're here for after all
+        if !error.matches(IOErrorEnum::NotFound) {
+            glib::warn!("Failed to delete file {}: {error}", target.uri());
+        }
     }
 }
