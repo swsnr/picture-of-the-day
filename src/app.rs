@@ -51,7 +51,20 @@ impl Application {
     fn setup_actions(&self) {
         let actions = [
             ActionEntry::builder("quit")
-                .activate(|app: &Self, _, _| app.quit())
+                .activate(|app: &Self, _, _| {
+                    glib::debug!("Quitting");
+                    // Close the active window if any, and stop automatic wallpaper
+                    // updates; this effectively drops all app guards and thus
+                    // makes the app quit.
+                    //
+                    // We explicitly don't use app.quit() here because it'd
+                    // immediately shut down the event loop, so any ongoing IO
+                    // operations don't have any change to clean up.
+                    if let Some(window) = app.active_window() {
+                        window.close();
+                    }
+                    app.imp().stop_automatic_wallpaper_update();
+                })
                 .build(),
             ActionEntry::builder("about")
                 .activate(|app: &Self, _, _| {
@@ -355,8 +368,9 @@ mod imp {
             drop(guard);
         }
 
-        fn stop_automatic_wallpaper_update(&self) {
+        pub fn stop_automatic_wallpaper_update(&self) {
             if let Some((cancellable, guard)) = self.automatic_wallpaper_update.take() {
+                glib::debug!("Canceling automatic wallpaper update");
                 cancellable.cancel();
                 // Redundant, but I like to see this explicitly.
                 drop(guard);
@@ -532,11 +546,6 @@ mod imp {
             self.portal_client
                 .replace(Some(PortalClient::new(connection)));
             Ok(())
-        }
-
-        fn shutdown(&self) {
-            self.parent_shutdown();
-            self.stop_automatic_wallpaper_update();
         }
 
         fn activate(&self) {
