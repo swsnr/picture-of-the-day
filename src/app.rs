@@ -11,7 +11,7 @@ use futures::{StreamExt, stream};
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gtk::{
     UriLauncher,
-    gio::{self, ActionEntry, ApplicationFlags, Cancellable},
+    gio::{self, ActionEntry, ApplicationFlags},
 };
 use model::{ErrorNotification, ErrorNotificationActions};
 use rand::seq::SliceRandom;
@@ -188,84 +188,66 @@ impl Application {
     /// Do the first check after `initial_delay`.
     ///
     /// Stop updating when the given `cancellable` is triggered.
-    async fn update_wallpaper_periodically(
-        &self,
-        source: Source,
-        initial_delay: Duration,
-        cancellable: Cancellable,
-    ) {
+    async fn update_wallpaper_periodically(&self, source: Source, initial_delay: Duration) {
         // Delay the initial wallpaper update a bit, this behaves nicer when the
         // user changes the corresponding setting.
-        stream::once(glib::timeout_future(initial_delay))
-            .chain(glib::interval_stream(Duration::from_secs(30 * 60)))
-            .take_until(cancellable.future())
-            .map(|()| glib::DateTime::now_utc().unwrap())
-            .fold(
-                // This is definitetly more than 12 hours ago ;)
-                glib::DateTime::from_unix_utc(0).unwrap(),
+        stream::once(glib::timeout_future_seconds(
+            initial_delay.as_secs().try_into().unwrap(),
+        ))
+        .chain(glib::interval_stream_seconds(30 * 60))
+        .map(|()| glib::DateTime::now_utc().unwrap())
+        .fold(
+            // This is definitetly more than 12 hours ago ;)
+            glib::DateTime::from_unix_utc(0).unwrap(),
+            move |last_update, now| {
                 // We keep the application alive through a hold handle,
                 // so we can just as well keep a strong reference here.
                 // We'll break the cycle explicitly when shutting down.
-                move |last_update, now| {
-                    glib::clone!(
-                        #[strong(rename_to=app)]
-                        self,
-                        #[strong]
-                        cancellable,
-                        async move {
-                            let hours_since_last_update = now.difference(&last_update).as_hours();
-                            if 12 < hours_since_last_update {
-                                // If the last update's more than twelve hours ago
-                                // pass true downstream to indicate that another
-                                // update is needed, and remember now as the time
-                                // of the last update
-                                glib::info!(
-                                    "Updating wallpaper, \
+                let app = self.clone();
+                async move {
+                    let hours_since_last_update = now.difference(&last_update).as_hours();
+                    if 12 < hours_since_last_update {
+                        // If the last update's more than twelve hours ago
+                        // pass true downstream to indicate that another
+                        // update is needed, and remember now as the time
+                        // of the last update
+                        glib::info!(
+                            "Updating wallpaper, \
                         last update was more than {hours_since_last_update:?}\
                          hours (>= 12) ago"
-                                );
-                                let result = gio::CancellableFuture::new(
-                                    app.fetch_and_set_wallpaper(source),
-                                    cancellable,
-                                )
-                                .await;
-                                match result {
-                                    Err(_) => {
-                                        // Do nothing if automatic update was cancelled
-                                        last_update
-                                    }
-                                    Ok(Ok(())) => {
-                                        // If we successfully updated the wallpaper,
-                                        // automatically hide any previous error notification.
-                                        app.withdraw_notification(ERROR_NOTIFICATION_ID);
-                                        now
-                                    }
-                                    Ok(Err(error)) => {
-                                        glib::warn!(
-                                            "Failed to fetch and set \
+                        );
+                        match app.fetch_and_set_wallpaper(source).await {
+                            Ok(()) => {
+                                // If we successfully updated the wallpaper,
+                                // automatically hide any previous error notification.
+                                app.withdraw_notification(ERROR_NOTIFICATION_ID);
+                                now
+                            }
+                            Err(error) => {
+                                glib::warn!(
+                                    "Failed to fetch and set \
                                         wallpaper from {source:?}: \
                                         {error}"
-                                        );
-                                        app.show_error_from_automatic_wallpaper(source, &error);
-                                        last_update
-                                    }
-                                }
-                            } else {
-                                // If the last update's less than twelve hours ago
-                                // pass false downstream to indicate that we should
-                                // skip this trigger.
-                                glib::info!(
-                                    "Not updating wallpaper, \
-                            last update was {hours_since_last_update:?} \
-                            hours (< 12) ago"
                                 );
+                                app.show_error_from_automatic_wallpaper(source, &error);
                                 last_update
                             }
                         }
-                    )
-                },
-            )
-            .await;
+                    } else {
+                        // If the last update's less than twelve hours ago
+                        // pass false downstream to indicate that we should
+                        // skip this trigger.
+                        glib::info!(
+                            "Not updating wallpaper, \
+                            last update was {hours_since_last_update:?} \
+                            hours (< 12) ago"
+                        );
+                        last_update
+                    }
+                }
+            },
+        )
+        .await;
     }
 
     async fn fetch_and_set_wallpaper(&self, source: Source) -> Result<(), SourceError> {
@@ -390,10 +372,13 @@ mod imp {
                 .replace(Some((cancellable.clone(), guard)));
 
             let app = self.obj().clone();
-            glib::spawn_future_local(async move {
-                app.update_wallpaper_periodically(source, initial_delay, cancellable)
-                    .await;
-            });
+            glib::spawn_future_local(gio::CancellableFuture::new(
+                async move {
+                    app.update_wallpaper_periodically(source, initial_delay)
+                        .await;
+                },
+                cancellable,
+            ));
         }
 
         fn start_stop_wallpaper_update(&self, initial_delay: Duration) {
