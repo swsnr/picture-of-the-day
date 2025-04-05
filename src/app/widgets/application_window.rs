@@ -326,7 +326,9 @@ mod imp {
 
         pub fn start_loading(&self) -> gio::Cancellable {
             let cancellable = gio::Cancellable::new();
-            self.is_loading.replace(Some(cancellable.clone()));
+            if let Some(old_cancellable) = self.is_loading.replace(Some(cancellable.clone())) {
+                old_cancellable.cancel();
+            }
             self.obj().notify_is_loading();
             cancellable
         }
