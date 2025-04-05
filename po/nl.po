@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-04 08:39+0000\n"
+"PO-Revision-Date: 2025-04-05 10:21+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
 "Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
 "pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
@@ -109,35 +109,44 @@ msgstr ""
 "te gaan."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+#, fuzzy
+#| msgid ""
+#| "Add toolbar button to open the current image in an external application."
 msgid ""
-"Add toolbar button to open the current image in an external application."
+"Add toolbar buttons to save the current image, and to open the current image "
+"in an external application."
 msgstr ""
 "Toon een werkbalkknop boven de huidige afbeelding om hem in een externe "
 "toepassing te openen."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:59
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+msgid ""
+"Try harder not to leave partially downloaded wallpapers behind when quitting."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr ""
 "Verbeterd: een betrouwbaarder punt om Wikimedia-afbeeldingen van op te halen."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 "Verbeterd: er wordt geen voorvertoning meer getoond tijdens het instellen."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
 msgid "Improve scheduling of automatic downloads."
 msgstr "Verbeterd: inplanning van automatische downloads."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
 msgid "Remember window size and state."
 msgstr "Verbeterd: de vensterafmetingen en -staat worden voortaan onthouden."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:66
 msgid "Update to GNOME 48."
 msgstr "Bijgewerkt: GNOME-versie naar 48."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -145,18 +154,18 @@ msgstr ""
 "Start de toepassing automatisch op en pas iedere twaalf uur de nieuwe, "
 "dagelijkse achtergrond toe."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
 msgid "No longer support multiple windows."
 msgstr "Meerdere vensters worden niet meer ondersteund."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:84
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:87
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr ""
 "Eerste versie, met vier bronnen: APOD, Wikimedia, Simon Stålenhag, Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:85
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -164,15 +173,15 @@ msgstr ""
 "Venster met afbeelding van de dag en een knop om deze in te stellen als "
 "bureaubladachtergrond."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:97
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
 msgid "A picture of the day from Wikimedia"
 msgstr "Afbeelding van de dag, afkomstig van Wikimedia"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:101
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
 msgid "The preferences dialog with settings for image sources"
 msgstr "Het voorkeurenvenster met voorkeuren voor afbeeldingsbronnen"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:105
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:108
 msgid "The empty greeting page with the application icon"
 msgstr "Welkomstscherm met toepassingspictogram"
 
@@ -262,67 +271,72 @@ msgid "Set current image as wallpaper"
 msgstr "Stel de huidige afbeelding in als achtergrond"
 
 #: resources/ui/application-window.blp:102
-#, fuzzy
-#| msgctxt "main-window.toolbar.button.tooltip"
-#| msgid "Open image with default application"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
-msgstr "Afbeelding openen in standaard fotoprogramma"
+msgstr "Afbeelding openen in ander fotoprogramma"
 
-#: resources/ui/application-window.blp:113
+#: resources/ui/application-window.blp:108
+#, fuzzy
+#| msgctxt "shortcuts group title"
+#| msgid "Navigate images"
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Save image"
+msgstr "Vorige/Volgende afbeelding"
+
+#: resources/ui/application-window.blp:119
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "Toon de zijbalk met afbeeldingsinformatie"
 
-#: resources/ui/application-window.blp:158
+#: resources/ui/application-window.blp:164
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr "Titel"
 
-#: resources/ui/application-window.blp:167
+#: resources/ui/application-window.blp:173
 msgid "Visit the source page of this image."
 msgstr "Open de bronpagina van de afbeelding."
 
-#: resources/ui/application-window.blp:176
+#: resources/ui/application-window.blp:182
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr "Auteursrecht/Copyright"
 
-#: resources/ui/application-window.blp:187
+#: resources/ui/application-window.blp:193
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr "Beschrijving"
 
-#: resources/ui/application-window.blp:200
+#: resources/ui/application-window.blp:206
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr "Bron"
 
-#: resources/ui/application-window.blp:208
+#: resources/ui/application-window.blp:214
 msgid "Visit the main page of the source of this image."
 msgstr "Open de pagina waarop de afbeelding staat."
 
-#: resources/ui/application-window.blp:227
+#: resources/ui/application-window.blp:233
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr "Afbeeldingen ophalen"
 
-#: resources/ui/application-window.blp:245
+#: resources/ui/application-window.blp:251
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "A_fsluiten"
 
-#: resources/ui/application-window.blp:252
+#: resources/ui/application-window.blp:258
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "_Voorkeuren"
 
-#: resources/ui/application-window.blp:257
+#: resources/ui/application-window.blp:263
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "_Sneltoetsen"
 
-#: resources/ui/application-window.blp:262
+#: resources/ui/application-window.blp:268
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "Over _Afbeelding van de dag"
@@ -379,7 +393,7 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr "Te negeren collecties van Stålenhag."
 
-#: src/app.rs:99
+#: src/app.rs:115
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "Vertalingen"
@@ -387,41 +401,41 @@ msgstr "Vertalingen"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:108
+#: src/app.rs:124
 msgid "translator-credits"
 msgstr "Heimen Stoffels <vistausss@fastmail.com>"
 
-#: src/app.rs:113
+#: src/app.rs:129
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "Hulp en inspiratie"
 
-#: src/app.rs:126
+#: src/app.rs:142
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Nuttige diensten"
 
-#: src/app.rs:161
+#: src/app.rs:177
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Contactgegevens"
 
-#: src/app.rs:166
+#: src/app.rs:182
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Voorkeuren openen"
 
-#: src/app.rs:170
+#: src/app.rs:186
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Link openen"
 
-#: src/app.rs:425
+#: src/app.rs:431
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Voorkeuren openen"
 
-#: src/app.rs:591
+#: src/app.rs:592
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Haal de achtergrond automatisch op en stel deze in"
@@ -482,7 +496,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:103
 #: src/app/model/error_notification.rs:121
-#: src/app/model/error_notification.rs:162
+#: src/app/model/error_notification.rs:149
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
 msgstr "Ophalen mislukt"
@@ -511,22 +525,12 @@ msgstr ""
 "andere bron. Als het probleem zich blijft voordoen, maak hier dan melding "
 "van."
 
-#: src/app/model/error_notification.rs:135
-msgctxt "error-notification.title"
-msgid "Cancelled"
-msgstr "Afgebroken"
-
-#: src/app/model/error_notification.rs:139
-msgctxt "error-notification.description"
-msgid "You cancelled loading images from %1."
-msgstr "Het ophalen van afbeeldingen van %1 is afgebroken."
-
-#: src/app/model/error_notification.rs:153
+#: src/app/model/error_notification.rs:140
 msgctxt "error-notification.title"
 msgid "Limited network connectivity"
 msgstr "Beperkte internetverbinding"
 
-#: src/app/model/error_notification.rs:158
+#: src/app/model/error_notification.rs:145
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
@@ -537,7 +541,7 @@ msgstr ""
 "De precieze foutmelding is “%2”. Maak verbinding met het internet en probeer "
 "het opnieuw."
 
-#: src/app/model/error_notification.rs:166
+#: src/app/model/error_notification.rs:153
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
@@ -594,30 +598,68 @@ msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "Openen van afbeelding mislukt"
 
-#: src/app/widgets/application_window.rs:151
+#: src/app/widgets/application_window.rs:149
+#, fuzzy
+#| msgctxt "shortcut description"
+#| msgid "Load images"
+msgid "Saved image %1"
+msgstr "Afbeeldingen laden"
+
+#: src/app/widgets/application_window.rs:167
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while opening the current image, with the following "
+#| "message: %1. If the issue persists please report the problem."
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while saving the current image, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+"Er is een i/o-fout opgetreden tijdens het ophalen van de huidige afbeelding. "
+"De precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, "
+"maak hier dan melding van."
+
+#: src/app/widgets/application_window.rs:173
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Failed to open image"
+msgctxt "error-notification.title"
+msgid "Failed to save image"
+msgstr "Openen van afbeelding mislukt"
+
+#: src/app/widgets/application_window.rs:190
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Sluiten"
 
-#: src/app/widgets/application_window.rs:158
+#: src/app/widgets/application_window.rs:197
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Contactgegevens"
 
-#: src/app/widgets/application_window.rs:162
+#: src/app/widgets/application_window.rs:201
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Voorkeuren openen"
 
-#: src/app/widgets/application_window.rs:166
+#: src/app/widgets/application_window.rs:205
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Link openen"
 
-#: src/app/widgets/application_window.rs:316
+#: src/app/widgets/application_window.rs:357
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Details"
+
+#: src/app/widgets/application_window.rs:460
+#, fuzzy
+#| msgctxt "shortcuts group title"
+#| msgid "Navigate images"
+msgctxt "file-dialog.title"
+msgid "Save image"
+msgstr "Vorige/Volgende afbeelding"
 
 #: src/app/widgets/preferences_dialog.rs:71
 msgid "%1/%2 collection enabled"
@@ -625,7 +667,7 @@ msgid_plural "%1/%2 collections enabled"
 msgstr[0] "%1/%2 collectie ingeschakeld"
 msgstr[1] "%1/%2 collecties ingeschakeld"
 
-#: src/main.rs:89
+#: src/main.rs:87
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr "Afbeelding van de dag"
@@ -677,6 +719,14 @@ msgstr "%artiest (%licentie)"
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Onbekend - alle rechten voorbehouden"
+
+#~ msgctxt "error-notification.title"
+#~ msgid "Cancelled"
+#~ msgstr "Afgebroken"
+
+#~ msgctxt "error-notification.description"
+#~ msgid "You cancelled loading images from %1."
+#~ msgstr "Het ophalen van afbeeldingen van %1 is afgebroken."
 
 #~ msgctxt "shortcut description"
 #~ msgid "New window"
