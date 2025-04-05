@@ -9,16 +9,11 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use gtk::gio::{
-    self, Cancellable, FileCopyFlags, IOErrorEnum,
-    prelude::{FileExt, FileExtManual},
-};
-use rand::distributions::{Alphanumeric, DistString};
+use download::download_file_to_directory;
+use gtk::gio::{self, Cancellable, IOErrorEnum, prelude::FileExt};
 
-use crate::{
-    config::G_LOG_DOMAIN, image::download::download_file, io::delete_file_ignore_error,
-    rng::GlibRng, source::Source,
-};
+use crate::config::G_LOG_DOMAIN;
+use crate::source::Source;
 
 pub mod download;
 
@@ -81,18 +76,17 @@ impl DownloadableImage {
 
     /// Download this image to a directory.
     ///
-    /// Download this image to `target_directory`, using the provided HTTP
-    /// `session.`
+    /// Download this image to `directory`, using the provided HTTP `session.`
     ///
     /// Return the full path to the downloaded image if successful.
     pub async fn download_to_directory(
         &self,
-        target_directory: &Path,
+        directory: &Path,
         session: &soup::Session,
         cancellable: &Cancellable,
     ) -> Result<PathBuf, glib::Error> {
         let file_name = self.filename();
-        let target_file = target_directory.join(file_name.as_ref());
+        let target_file = directory.join(file_name.as_ref());
         let exists = {
             let target_file = gio::File::for_path(&target_file);
             gio::spawn_blocking(glib::clone!(
@@ -108,35 +102,23 @@ impl DownloadableImage {
             glib::debug!("Using existing file at {}", target_file.display());
             Ok(target_file)
         } else {
-            // Download to a random temp file in the target directory first
-            let temp_file = gio::File::for_path(target_directory.join(format!(
-                ".{file_name}.download.{}",
-                Alphanumeric.sample_string(&mut GlibRng, 5)
-            )));
-            glib::debug!("Downloading {} to {}", &self.image_url, temp_file.uri());
-            download_file(session, &self.image_url, &temp_file, cancellable).await?;
-
-            // Then attempt to atomically (NO_FALLBACK_FOR_MOVE) move the temp
-            // file to the target file
-            let flags = FileCopyFlags::NOFOLLOW_SYMLINKS | FileCopyFlags::NO_FALLBACK_FOR_MOVE;
-            glib::debug!("Moving {} to {}", temp_file.uri(), target_file.display());
-            match temp_file
-                .move_future(
-                    &gio::File::for_path(&target_file),
-                    flags,
-                    glib::Priority::DEFAULT,
-                )
-                .0
-                .await
-            {
-                Err(error) if error.matches(IOErrorEnum::Exists) => {
+            let result = gio::CancellableFuture::new(
+                download_file_to_directory(session, &self.image_url, directory, &file_name),
+                cancellable.clone(),
+            )
+            .await;
+            match result {
+                Err(_) => Err(glib::Error::new(
+                    IOErrorEnum::Cancelled,
+                    "download cancelled",
+                )),
+                Ok(Err(error)) if error.matches(IOErrorEnum::Exists) => {
                     // If the target file already exists, assume that a parallel download
-                    // finished first, and just delete our temp file.
-                    delete_file_ignore_error(&temp_file).await;
+                    // finished first, i.e. that `target_file` was downloaded successfully
                     Ok(target_file)
                 }
-                Err(error) => Err(error),
-                Ok(()) => Ok(target_file),
+                Ok(Err(error)) => Err(error),
+                Ok(Ok(())) => Ok(target_file),
             }
         }
     }

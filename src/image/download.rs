@@ -4,47 +4,84 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::{Priority, object::IsA};
-use gtk::gio::{self, Cancellable, IOErrorEnum, prelude::*};
+use std::path::Path;
+
+use glib::Priority;
+use gtk::gio::{self, FileCopyFlags, IOErrorEnum, prelude::*};
+use rand::distributions::{Alphanumeric, DistString};
 use soup::prelude::SessionExt;
 
-use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error};
+use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error, rng::GlibRng};
 
-/// Download a file from `url` to `target`.
+/// A temporary target file for a download.
 ///
-/// `cancellable` allows to cancel the ongoing transfer; when the transfer failed
-/// or was cancelled, delete any partially downloaded `target` file.
-pub async fn download_file(
+/// When dropped the temporary file is scheduled to be deleted asynchronously
+/// on the glib main loop.
+struct TemporaryDownloadFile {
+    temp_file: gio::File,
+}
+
+impl TemporaryDownloadFile {
+    pub fn new(directory: &Path, name: &str) -> Self {
+        let temp_file = gio::File::for_path(directory.join(format!(
+            ".{name}.download.{}",
+            Alphanumeric.sample_string(&mut GlibRng, 5)
+        )));
+        Self { temp_file }
+    }
+
+    /// Move this temporary file to a final destination.
+    ///
+    /// Move this temporary file to `target` which must be on the same file system
+    /// or the move will fail.
+    ///
+    /// Consumes the temporary file since it no longer needs to be deleted
+    /// automatically on drop.
+    pub async fn move_to(self, target: &gio::File) -> Result<(), glib::Error> {
+        // Attempt to atomically (NO_FALLBACK_FOR_MOVE) move the temp file to the target file
+        let flags = FileCopyFlags::NOFOLLOW_SYMLINKS | FileCopyFlags::NO_FALLBACK_FOR_MOVE;
+        self.temp_file
+            .move_future(target, flags, glib::Priority::DEFAULT)
+            .0
+            .await?;
+        // Forget about
+        std::mem::forget(self);
+        Ok(())
+    }
+}
+
+impl Drop for TemporaryDownloadFile {
+    fn drop(&mut self) {
+        let file = self.temp_file.clone();
+
+        glib::spawn_future_local(async move {
+            glib::debug!("Deleting temporary download file {}", file.uri());
+            delete_file_ignore_error(&file).await;
+        });
+    }
+}
+
+impl AsRef<gio::File> for TemporaryDownloadFile {
+    fn as_ref(&self) -> &gio::File {
+        &self.temp_file
+    }
+}
+
+/// Download a file from an URL to a directory.
+///
+/// Download the contents of `url` to a new file named `filename` in the given
+/// `directory`.  Contents are written to a temporary file in `directory`, and
+/// atomically moved to `filename` only after the download is finished.
+pub async fn download_file_to_directory(
     session: &soup::Session,
     url: &str,
-    target: &gio::File,
-    cancellable: &impl IsA<Cancellable>,
+    directory: &Path,
+    filename: &str,
 ) -> Result<(), glib::Error> {
-    let result = gio::CancellableFuture::new(
-        transfer_file(session, url, target),
-        cancellable.clone().into(),
-    )
-    .await
-    .map_err(|_| {
-        glib::Error::new(
-            IOErrorEnum::Cancelled,
-            &format!("Download of {url} to {} was cancelled", target.uri()),
-        )
-    })
-    // Result::flatten is nightly only, see https://github.com/rust-lang/rust/issues/70142
-    .and_then(|r| r);
-
-    match result {
-        Err(error) => {
-            glib::warn!(
-                "Download of {url} to {0} failed, deleting partially downloaded {0}: {error}",
-                target.uri()
-            );
-            delete_file_ignore_error(target).await;
-            Err(error)
-        }
-        Ok(_) => Ok(()),
-    }
+    let temp_file = TemporaryDownloadFile::new(directory, filename);
+    transfer_file(session, url, temp_file.as_ref()).await?;
+    let target = gio::File::for_path(directory.join(filename));
+    temp_file.move_to(&target).await
 }
 
 /// Return a file from `url` to `target`.
