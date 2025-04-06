@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-05 14:00+0000\n"
+"PO-Revision-Date: 2025-04-06 09:02+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -434,12 +434,12 @@ msgstr "Einstellungen öffnen"
 #: src/app.rs:446
 msgctxt "command-line.option.description"
 msgid "Show image for DATE, parsed as ISO string"
-msgstr ""
+msgstr "Bild für DATUM (im ISO Format) anzeigen"
 
 #: src/app.rs:451
 msgctxt "command-line.option.arg.description"
 msgid "DATE"
-msgstr ""
+msgstr "DATUM"
 
 #: src/app.rs:624
 msgctxt "portal.request-background.reason"
