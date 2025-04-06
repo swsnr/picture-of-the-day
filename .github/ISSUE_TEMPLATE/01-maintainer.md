@@ -6,7 +6,7 @@ about: |-
 
 **PLEASE USE GITHUB DISCUSSIONS FOR BUG REPORTS AND FEATURE REQUESTS.**
 
-See <https://github.com/swsnr/turnon/discussions>.
+See <https://github.com/swsnr/picture-of-the-day/discussions>.
 
 As a maintainer, I reserve Github issues for fully specified actionable issues
 which are ready to be worked on, and which I intend to address sooner or later.
