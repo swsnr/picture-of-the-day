@@ -443,9 +443,13 @@ mod imp {
                 &dpgettext2(
                     None,
                     "command-line.option.description",
-                    "Show image for DATE as ISO string",
+                    "Show image for DATE, parsed as ISO string",
                 ),
-                Some("DATE"),
+                Some(&dpgettext2(
+                    None,
+                    "command-line.option.arg.description",
+                    "DATE",
+                )),
             );
         }
     }

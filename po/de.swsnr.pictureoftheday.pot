@@ -409,10 +409,15 @@ msgstr ""
 
 #: src/app.rs:446
 msgctxt "command-line.option.description"
-msgid "Show image for DATE as ISO string"
+msgid "Show image for DATE, parsed as ISO string"
 msgstr ""
 
-#: src/app.rs:620
+#: src/app.rs:451
+msgctxt "command-line.option.arg.description"
+msgid "DATE"
+msgstr ""
+
+#: src/app.rs:624
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
