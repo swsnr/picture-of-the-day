@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
-use glib::{dgettext, dpgettext2};
+use glib::{DateTime, dgettext, dpgettext2};
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::UriLauncher;
 use gtk::gio;
@@ -31,11 +31,13 @@ impl ApplicationWindow {
         application: &impl IsA<gtk::Application>,
         session: soup::Session,
         portal_client: PortalClient,
+        date: Option<DateTime>,
     ) -> Self {
         glib::Object::builder()
             .property("application", application)
             .property("http-session", session)
             .property("portal-client", portal_client)
+            .property("date", date)
             .build()
     }
 
@@ -256,6 +258,8 @@ mod imp {
         http_session: RefCell<soup::Session>,
         #[property(get, construct_only)]
         portal_client: RefCell<Option<PortalClient>>,
+        #[property(get, construct_only, nullable)]
+        date: RefCell<Option<glib::DateTime>>,
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
         #[property(get, set)]
@@ -372,7 +376,10 @@ mod imp {
 
         pub async fn load_images_for_source(&self, source: Source) -> Result<(), SourceError> {
             glib::info!("Fetching images for source {source:?}");
-            let images = source.get_images(&self.obj().http_session()).await?;
+            let date = self.date.borrow().clone();
+            let images = source
+                .get_images(&self.obj().http_session(), date.as_ref())
+                .await?;
 
             // Create model objects for all images:  We create an image object
             // to expose the metadata as glib properties, and a download object

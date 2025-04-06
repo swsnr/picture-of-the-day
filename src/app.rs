@@ -266,7 +266,7 @@ impl Application {
     async fn fetch_and_set_wallpaper(&self, source: Source) -> Result<(), SourceError> {
         let session = self.http_session();
         glib::info!("Setting wallpaper from {source:?}");
-        let images = source.get_images(&session).await?;
+        let images = source.get_images(&session, None).await?;
 
         // We can safely unwrap, because `get_images` will never return an empty list.
         let image = images.choose(&mut GlibRng).unwrap();
@@ -339,6 +339,10 @@ mod imp {
         portal_client: RefCell<Option<PortalClient>>,
         #[property(get)]
         settings: RefCell<Option<gio::Settings>>,
+        /// The overridden date, if any.
+        ///
+        /// Set if the user specified --date on the command line.
+        date: RefCell<Option<glib::DateTime>>,
         /// State of automatic wallpaper update.
         ///
         /// If `None` automatic wallpaper update is off.  If set contains a
@@ -430,6 +434,18 @@ mod imp {
                 OptionArg::None,
                 &dpgettext2(None, "command-line.option.description", "Open preferences"),
                 None,
+            );
+            app.add_main_option(
+                "date",
+                0.into(),
+                OptionFlags::NONE,
+                OptionArg::String,
+                &dpgettext2(
+                    None,
+                    "command-line.option.description",
+                    "Show image for DATE as ISO string",
+                ),
+                Some("DATE"),
             );
         }
     }
@@ -531,6 +547,17 @@ mod imp {
                     }
                 ));
                 ExitCode::SUCCESS
+            } else if let Ok(Some(date)) = options.lookup::<String>("date") {
+                if let Ok(date) = glib::DateTime::from_iso8601(&date, None) {
+                    glib::warn!("Overriding date to {}", date.format_iso8601().unwrap());
+                    self.date.replace(Some(date));
+                    self.obj().activate();
+                    ExitCode::SUCCESS
+                } else {
+                    command_line.printerr_literal(&format!("Invalid date: {date}"));
+                    command_line.set_exit_status(ExitCode::FAILURE.into());
+                    ExitCode::FAILURE
+                }
             } else {
                 self.obj().activate();
                 ExitCode::SUCCESS
@@ -560,6 +587,7 @@ mod imp {
                     &*self.obj(),
                     self.obj().http_session(),
                     self.obj().portal_client().unwrap(),
+                    self.date.borrow().clone(),
                 );
                 if crate::config::is_development() {
                     window.add_css_class("devel");
