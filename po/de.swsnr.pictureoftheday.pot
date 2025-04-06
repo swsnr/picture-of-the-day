@@ -402,12 +402,17 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:431
+#: src/app.rs:435
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:592
+#: src/app.rs:446
+msgctxt "command-line.option.description"
+msgid "Show image for DATE as ISO string"
+msgstr ""
+
+#: src/app.rs:620
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
@@ -500,84 +505,84 @@ msgid ""
 "issue persists please report the problem."
 msgstr ""
 
-#: src/app/widgets/application_window.rs:70
+#: src/app/widgets/application_window.rs:72
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
 "the issue persists please report the problem."
 msgstr ""
 
-#: src/app/widgets/application_window.rs:76
+#: src/app/widgets/application_window.rs:78
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:95
+#: src/app/widgets/application_window.rs:97
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
 
-#: src/app/widgets/application_window.rs:101
+#: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:128
+#: src/app/widgets/application_window.rs:130
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
 
-#: src/app/widgets/application_window.rs:134
+#: src/app/widgets/application_window.rs:136
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:149
+#: src/app/widgets/application_window.rs:151
 msgid "Saved image %1"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:167
+#: src/app/widgets/application_window.rs:169
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
 
-#: src/app/widgets/application_window.rs:173
+#: src/app/widgets/application_window.rs:175
 msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:190
+#: src/app/widgets/application_window.rs:192
 msgctxt "alert.response"
 msgid "Close"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:197
+#: src/app/widgets/application_window.rs:199
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:201
+#: src/app/widgets/application_window.rs:203
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:205
+#: src/app/widgets/application_window.rs:207
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:357
+#: src/app/widgets/application_window.rs:361
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:460
+#: src/app/widgets/application_window.rs:467
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr ""
@@ -613,12 +618,12 @@ msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr ""
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:100
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr ""
 
-#: src/source/stalenhag.rs:102
+#: src/source/stalenhag.rs:101
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
