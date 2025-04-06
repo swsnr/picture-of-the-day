@@ -430,12 +430,22 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Link openen"
 
-#: src/app.rs:431
+#: src/app.rs:435
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Voorkeuren openen"
 
-#: src/app.rs:592
+#: src/app.rs:446
+msgctxt "command-line.option.description"
+msgid "Show image for DATE, parsed as ISO string"
+msgstr ""
+
+#: src/app.rs:451
+msgctxt "command-line.option.arg.description"
+msgid "DATE"
+msgstr ""
+
+#: src/app.rs:624
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Haal de achtergrond automatisch op en stel deze in"
@@ -553,7 +563,7 @@ msgstr ""
 "van een andere bron. Als het probleem zich blijft voordoen, maak hier dan "
 "melding van."
 
-#: src/app/widgets/application_window.rs:70
+#: src/app/widgets/application_window.rs:72
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
@@ -563,12 +573,12 @@ msgstr ""
 "De precieze foutmelding is “%2”. Als het probleem zich blijft voortdoen, "
 "maak hier dan melding van."
 
-#: src/app/widgets/application_window.rs:76
+#: src/app/widgets/application_window.rs:78
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "Openen van bron-url mislukt"
 
-#: src/app/widgets/application_window.rs:95
+#: src/app/widgets/application_window.rs:97
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
@@ -578,12 +588,12 @@ msgstr ""
 "precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, maak "
 "hier dan melding van."
 
-#: src/app/widgets/application_window.rs:101
+#: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Instellen mislukt"
 
-#: src/app/widgets/application_window.rs:128
+#: src/app/widgets/application_window.rs:130
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
@@ -593,19 +603,19 @@ msgstr ""
 "De precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, "
 "maak hier dan melding van."
 
-#: src/app/widgets/application_window.rs:134
+#: src/app/widgets/application_window.rs:136
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "Openen van afbeelding mislukt"
 
-#: src/app/widgets/application_window.rs:149
+#: src/app/widgets/application_window.rs:151
 #, fuzzy
 #| msgctxt "shortcut description"
 #| msgid "Load images"
 msgid "Saved image %1"
 msgstr "Afbeeldingen laden"
 
-#: src/app/widgets/application_window.rs:167
+#: src/app/widgets/application_window.rs:169
 #, fuzzy
 #| msgctxt "error-notification.description"
 #| msgid ""
@@ -620,7 +630,7 @@ msgstr ""
 "De precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, "
 "maak hier dan melding van."
 
-#: src/app/widgets/application_window.rs:173
+#: src/app/widgets/application_window.rs:175
 #, fuzzy
 #| msgctxt "error-notification.title"
 #| msgid "Failed to open image"
@@ -628,32 +638,32 @@ msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "Openen van afbeelding mislukt"
 
-#: src/app/widgets/application_window.rs:190
+#: src/app/widgets/application_window.rs:192
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Sluiten"
 
-#: src/app/widgets/application_window.rs:197
+#: src/app/widgets/application_window.rs:199
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Contactgegevens"
 
-#: src/app/widgets/application_window.rs:201
+#: src/app/widgets/application_window.rs:203
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Voorkeuren openen"
 
-#: src/app/widgets/application_window.rs:205
+#: src/app/widgets/application_window.rs:207
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Link openen"
 
-#: src/app/widgets/application_window.rs:357
+#: src/app/widgets/application_window.rs:361
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Details"
 
-#: src/app/widgets/application_window.rs:460
+#: src/app/widgets/application_window.rs:467
 #, fuzzy
 #| msgctxt "shortcuts group title"
 #| msgid "Navigate images"
@@ -692,12 +702,12 @@ msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:100
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr "Alle rechten voorbehouden."
 
-#: src/source/stalenhag.rs:102
+#: src/source/stalenhag.rs:101
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"

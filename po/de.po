@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-04-05 14:00+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -426,12 +426,22 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "URL öffnen"
 
-#: src/app.rs:431
+#: src/app.rs:435
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
-#: src/app.rs:592
+#: src/app.rs:446
+msgctxt "command-line.option.description"
+msgid "Show image for DATE, parsed as ISO string"
+msgstr ""
+
+#: src/app.rs:451
+msgctxt "command-line.option.arg.description"
+msgid "DATE"
+msgstr ""
+
+#: src/app.rs:624
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Bildschirmhintergrund im Hintergrund automatisch abrufen und setzen"
@@ -546,7 +556,7 @@ msgstr ""
 "der folgenden Fehlermeldung: %2. Versuche es morgen erneut, oder wähle eine "
 "andere Quelle. Falls das Problem bestehen bleibt, melde das Problem bitte."
 
-#: src/app/widgets/application_window.rs:70
+#: src/app/widgets/application_window.rs:72
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
@@ -556,12 +566,12 @@ msgstr ""
 "Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde das Problem "
 "bitte."
 
-#: src/app/widgets/application_window.rs:76
+#: src/app/widgets/application_window.rs:78
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "Öffnen der URL der Quelle fehlgeschlagen"
 
-#: src/app/widgets/application_window.rs:95
+#: src/app/widgets/application_window.rs:97
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
@@ -571,12 +581,12 @@ msgstr ""
 "der folgenden Fehlermeldung: %2. Falls das Problem bestehen bleibt, melde "
 "das Problem bitte."
 
-#: src/app/widgets/application_window.rs:101
+#: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Setzen des Bildschirmhintergrunds fehlgeschlagen"
 
-#: src/app/widgets/application_window.rs:128
+#: src/app/widgets/application_window.rs:130
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
@@ -586,16 +596,16 @@ msgstr ""
 "folgenden Fehlermeldung: %1. Falls das Problem bestehen bleibt, melde das "
 "Problem bitte."
 
-#: src/app/widgets/application_window.rs:134
+#: src/app/widgets/application_window.rs:136
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "Öffnen des Bildes fehlgeschlagen"
 
-#: src/app/widgets/application_window.rs:149
+#: src/app/widgets/application_window.rs:151
 msgid "Saved image %1"
 msgstr "Bild %1 gespeichert"
 
-#: src/app/widgets/application_window.rs:167
+#: src/app/widgets/application_window.rs:169
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
@@ -605,37 +615,37 @@ msgstr ""
 "folgenden Fehlermeldung: %1. Falls das Problem bestehen bleibt, melde das "
 "Problem bitte."
 
-#: src/app/widgets/application_window.rs:173
+#: src/app/widgets/application_window.rs:175
 msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "Speichern des Bildes fehlgeschlagen"
 
-#: src/app/widgets/application_window.rs:190
+#: src/app/widgets/application_window.rs:192
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Schließen"
 
-#: src/app/widgets/application_window.rs:197
+#: src/app/widgets/application_window.rs:199
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Kontaktinformationen"
 
-#: src/app/widgets/application_window.rs:201
+#: src/app/widgets/application_window.rs:203
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
-#: src/app/widgets/application_window.rs:205
+#: src/app/widgets/application_window.rs:207
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "URL öffnen"
 
-#: src/app/widgets/application_window.rs:357
+#: src/app/widgets/application_window.rs:361
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Details"
 
-#: src/app/widgets/application_window.rs:460
+#: src/app/widgets/application_window.rs:467
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr "Bild speichern"
@@ -671,12 +681,12 @@ msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:100
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr "Alle Rechte vorbehalten."
 
-#: src/source/stalenhag.rs:102
+#: src/source/stalenhag.rs:101
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"

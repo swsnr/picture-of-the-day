@@ -430,12 +430,22 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Ava võrguaadress"
 
-#: src/app.rs:431
+#: src/app.rs:435
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app.rs:592
+#: src/app.rs:446
+msgctxt "command-line.option.description"
+msgid "Show image for DATE, parsed as ISO string"
+msgstr ""
+
+#: src/app.rs:451
+msgctxt "command-line.option.arg.description"
+msgid "DATE"
+msgstr ""
+
+#: src/app.rs:624
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Laadi ja lisa taustapilt automaatselt"
@@ -550,7 +560,7 @@ msgstr ""
 "veateatega: %2. Proovi hiljem uuesti või kasuta muud andmeallikat. Kui viga "
 "kestab pikemalt, siis palun anna sellest meile teada."
 
-#: src/app/widgets/application_window.rs:70
+#: src/app/widgets/application_window.rs:72
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
@@ -560,12 +570,12 @@ msgstr ""
 "veateatega: %2. Kui viga kestab pikemalt, siis palun anna sellest meile "
 "teada."
 
-#: src/app/widgets/application_window.rs:76
+#: src/app/widgets/application_window.rs:78
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "Andmeallika võrguaadressi avamine ei õnnestunud"
 
-#: src/app/widgets/application_window.rs:95
+#: src/app/widgets/application_window.rs:97
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
@@ -575,12 +585,12 @@ msgstr ""
 "veateatega: %1. Kui viga kestab pikemalt, siis palun anna sellest meile "
 "teada."
 
-#: src/app/widgets/application_window.rs:101
+#: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Taustapildiks määramine ei toimi"
 
-#: src/app/widgets/application_window.rs:128
+#: src/app/widgets/application_window.rs:130
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
@@ -589,19 +599,19 @@ msgstr ""
 "Selle pildi avamisel tekkis sisend/väljundviga järgneva veateatega: %1. Kui "
 "viga kestab pikemalt, siis palun anna sellest meile teada."
 
-#: src/app/widgets/application_window.rs:134
+#: src/app/widgets/application_window.rs:136
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "Ei õnnestunud avada pilti"
 
-#: src/app/widgets/application_window.rs:149
+#: src/app/widgets/application_window.rs:151
 #, fuzzy
 #| msgctxt "shortcut description"
 #| msgid "Load images"
 msgid "Saved image %1"
 msgstr "Laadi pilte"
 
-#: src/app/widgets/application_window.rs:167
+#: src/app/widgets/application_window.rs:169
 #, fuzzy
 #| msgctxt "error-notification.description"
 #| msgid ""
@@ -615,7 +625,7 @@ msgstr ""
 "Selle pildi avamisel tekkis sisend/väljundviga järgneva veateatega: %1. Kui "
 "viga kestab pikemalt, siis palun anna sellest meile teada."
 
-#: src/app/widgets/application_window.rs:173
+#: src/app/widgets/application_window.rs:175
 #, fuzzy
 #| msgctxt "error-notification.title"
 #| msgid "Failed to open image"
@@ -623,32 +633,32 @@ msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "Ei õnnestunud avada pilti"
 
-#: src/app/widgets/application_window.rs:190
+#: src/app/widgets/application_window.rs:192
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Sulge"
 
-#: src/app/widgets/application_window.rs:197
+#: src/app/widgets/application_window.rs:199
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Kontaktteave"
 
-#: src/app/widgets/application_window.rs:201
+#: src/app/widgets/application_window.rs:203
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app/widgets/application_window.rs:205
+#: src/app/widgets/application_window.rs:207
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Ava võrguaadress"
 
-#: src/app/widgets/application_window.rs:357
+#: src/app/widgets/application_window.rs:361
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Üksikasjad"
 
-#: src/app/widgets/application_window.rs:460
+#: src/app/widgets/application_window.rs:467
 #, fuzzy
 #| msgctxt "shortcuts group title"
 #| msgid "Navigate images"
@@ -688,12 +698,12 @@ msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:100
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr "Kõik õigused kaitstud."
 
-#: src/source/stalenhag.rs:102
+#: src/source/stalenhag.rs:101
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
