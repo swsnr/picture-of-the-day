@@ -16,6 +16,7 @@ variables=(
     ADW_DISABLE_PORTAL=1
     XDG_CONFIG_HOME="${DIR}/config"
     XDG_DATA_HOME="${DIR}/share"
+    LC_MESSAGES=en_US.UTF-8
 )
 
-exec env "${variables[@]}" cargo run --
+exec env "${variables[@]}" cargo run -- --date=2025-03-08T12:00:00Z "${@}"
