@@ -86,12 +86,11 @@ fn images(collections: impl Iterator<Item = &'static Collection>) -> Vec<ImageIn
         .collect()
 }
 
-pub fn pick_todays_image() -> DownloadableImage {
+pub fn pick_image_for_date(date: &glib::DateTime) -> DownloadableImage {
     let all_images = images(enabled_collections());
     // The 84th anniversary of Georg Elsner's heroic act of resistance against the nazi regime
     let base_date = glib::DateTime::from_local(2023, 11, 8, 21, 20, 0.0).unwrap();
-    let now = glib::DateTime::now_local().unwrap();
-    let days = now.difference(&base_date).as_days();
+    let days = date.difference(&base_date).as_days();
     let index = usize::try_from(days.rem_euclid(i64::try_from(all_images.len()).unwrap())).unwrap();
     // The modulus above makes sure we don't index out of bounds here
     #[allow(clippy::indexing_slicing)]

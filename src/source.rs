@@ -88,12 +88,21 @@ impl Source {
     pub async fn get_images(
         self,
         session: &soup::Session,
+        date: Option<&glib::DateTime>,
     ) -> Result<Vec<DownloadableImage>, SourceError> {
+        let now = glib::DateTime::now_local().unwrap();
         let images = match self {
-            Source::Apod => vec![apod::fetch_picture_of_the_day(session).await?],
-            Source::Bing => bing::fetch_daily_images(session).await?,
-            Source::Wikimedia => vec![wikimedia::fetch_featured_image(session).await?],
-            Source::Stalenhag => vec![stalenhag::pick_todays_image()],
+            Source::Apod => vec![apod::fetch_picture_of_the_day(session, date).await?],
+            Source::Bing => {
+                date.inspect(|_| {
+                    glib::warn!("Bing does not support overriding the date");
+                });
+                bing::fetch_daily_images(session).await?
+            }
+            Source::Wikimedia => {
+                vec![wikimedia::fetch_featured_image(session, date.unwrap_or(&now)).await?]
+            }
+            Source::Stalenhag => vec![stalenhag::pick_image_for_date(date.unwrap_or(&now))],
         };
 
         if images.is_empty() {

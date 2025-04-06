@@ -72,13 +72,18 @@ fn to_source_error(error: HttpError) -> SourceError {
 /// Fetch the astronomy picture of the day.
 async fn query_metadata(
     session: &soup::Session,
+    date: Option<&glib::DateTime>,
     api_key: &str,
 ) -> Result<ApodMetadata, SourceError> {
-    let url = Url::parse_with_params(
+    let mut url = Url::parse_with_params(
         "https://api.nasa.gov/planetary/apod",
         &[("api_key", api_key)],
     )
     .unwrap();
+    if let Some(date) = date {
+        url.query_pairs_mut()
+            .append_pair("date", &date.format("%Y-%m-%d").unwrap());
+    }
     glib::info!("Querying APOD image metadata from {url}");
     // We can safely unwrap here, because `Url` already guarantees us that `url` is valid
     let message = soup::Message::new("GET", url.as_str()).unwrap();
@@ -91,9 +96,10 @@ async fn query_metadata(
 
 async fn fetch_apod(
     session: &soup::Session,
+    date: Option<&glib::DateTime>,
     api_key: &str,
 ) -> Result<DownloadableImage, SourceError> {
-    let metadata = query_metadata(session, api_key).await?;
+    let metadata = query_metadata(session, date, api_key).await?;
     let url_date = &metadata.date.replace('-', "")[2..];
     let url = format!("https://apod.nasa.gov/apod/ap{url_date}.html");
     if let MediaType::Image = metadata.media_type {
@@ -116,8 +122,9 @@ async fn fetch_apod(
 
 pub async fn fetch_picture_of_the_day(
     session: &soup::Session,
+    date: Option<&glib::DateTime>,
 ) -> Result<DownloadableImage, SourceError> {
     let settings = crate::config::get_settings();
     let api_key = settings.string("apod-api-key");
-    fetch_apod(session, &api_key).await
+    fetch_apod(session, date, &api_key).await
 }

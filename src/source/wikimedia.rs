@@ -151,17 +151,13 @@ async fn fetch_featured_image_at_date(
 
 pub async fn fetch_featured_image(
     session: &soup::Session,
+    date: &glib::DateTime,
 ) -> Result<DownloadableImage, SourceError> {
     let locales = glib::language_names_with_category("LC_MESSAGES");
     let language_code = locales
         .first()
         .map_or("en", |l| l.split('_').next().unwrap());
-    fetch_featured_image_at_date(
-        session,
-        &glib::DateTime::now_local().unwrap(),
-        language_code,
-    )
-    .await
+    fetch_featured_image_at_date(session, date, language_code).await
 }
 
 #[cfg(test)]
