@@ -42,11 +42,9 @@ async fn fetch_daily_bing_images(session: &soup::Session) -> Result<BingResponse
     //
     // With an invalid locale bing seems to fall back to geo-IP, and return an
     // image for the geopgraphic location of the user.
-    let locale = glib::language_names_with_category("LC_MESSAGES")
-        .first()
-        .and_then(|l| l.split_once('.'))
-        .map(|(h, _)| h)
-        .map(|s| s.replace('_', "-"));
+    let locale = crate::locale::language_and_territory_codes()
+        .next()
+        .map(|c| c.replace('_', "-"));
     let url = if let Some(locale) = locale {
         Cow::Owned(format!(
             "{url}&mkt={}",

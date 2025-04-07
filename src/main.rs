@@ -49,6 +49,7 @@ mod config;
 mod gettext;
 mod image;
 mod io;
+mod locale;
 mod portal;
 mod rng;
 mod source;
