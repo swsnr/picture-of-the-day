@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-05 10:21+0000\n"
+"PO-Revision-Date: 2025-04-07 10:21+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,20 +109,19 @@ msgstr ""
 "te gaan."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
-#, fuzzy
-#| msgid ""
-#| "Add toolbar button to open the current image in an external application."
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr ""
-"Toon een werkbalkknop boven de huidige afbeelding om hem in een externe "
-"toepassing te openen."
+"Toon een werkbalkknop boven de huidige afbeelding om hem op te slaan of in "
+"een externe toepassing te openen."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
+"Probeer om geen gedeeltelijk gedownloade achtergronden achter te laten "
+"tijdens het afsluiten."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid "Use a more reliable endpoint for Wikimedia images."
@@ -276,12 +275,9 @@ msgid "Open image with external application"
 msgstr "Afbeelding openen in ander fotoprogramma"
 
 #: resources/ui/application-window.blp:108
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Navigate images"
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Save image"
-msgstr "Vorige/Volgende afbeelding"
+msgstr "Afbeelding opslaan"
 
 #: resources/ui/application-window.blp:119
 msgctxt "main-window.toolbar.button.tooltip"
@@ -438,12 +434,12 @@ msgstr "Voorkeuren openen"
 #: src/app.rs:446
 msgctxt "command-line.option.description"
 msgid "Show image for DATE, parsed as ISO string"
-msgstr ""
+msgstr "Toon de afbeelding van DATUM, verwerkt als ISO-tekenreeks"
 
 #: src/app.rs:451
 msgctxt "command-line.option.arg.description"
 msgid "DATE"
-msgstr ""
+msgstr "DATUM"
 
 #: src/app.rs:624
 msgctxt "portal.request-background.reason"
@@ -609,34 +605,23 @@ msgid "Failed to open image"
 msgstr "Openen van afbeelding mislukt"
 
 #: src/app/widgets/application_window.rs:151
-#, fuzzy
-#| msgctxt "shortcut description"
-#| msgid "Load images"
 msgid "Saved image %1"
-msgstr "Afbeeldingen laden"
+msgstr "‘%1’ is opgeslagen"
 
 #: src/app/widgets/application_window.rs:169
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Er is een i/o-fout opgetreden tijdens het ophalen van de huidige afbeelding. "
+"Er is een i/o-fout opgetreden tijdens het opslaan van de huidige afbeelding. "
 "De precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, "
 "maak hier dan melding van."
 
 #: src/app/widgets/application_window.rs:175
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Failed to open image"
 msgctxt "error-notification.title"
 msgid "Failed to save image"
-msgstr "Openen van afbeelding mislukt"
+msgstr "Opslaan van afbeelding mislukt"
 
 #: src/app/widgets/application_window.rs:192
 msgctxt "alert.response"
@@ -664,12 +649,9 @@ msgid "Details"
 msgstr "Details"
 
 #: src/app/widgets/application_window.rs:467
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Navigate images"
 msgctxt "file-dialog.title"
 msgid "Save image"
-msgstr "Vorige/Volgende afbeelding"
+msgstr "Afbeelding opslaan"
 
 #: src/app/widgets/preferences_dialog.rs:71
 msgid "%1/%2 collection enabled"
