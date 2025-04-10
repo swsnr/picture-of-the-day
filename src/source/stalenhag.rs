@@ -13,16 +13,11 @@ use serde::Deserialize;
 use crate::image::{DownloadableImage, ImageMetadata};
 
 #[derive(Debug, Deserialize)]
-pub struct Image {
-    pub src: String,
-}
-
-#[derive(Debug, Deserialize)]
 pub struct Collection {
     pub title: String,
     pub tag: String,
     pub url: String,
-    pub images: Vec<Image>,
+    pub images: Vec<String>,
 }
 
 #[derive(Debug)]
@@ -30,7 +25,7 @@ struct ImageInCollection {
     title: &'static str,
     tag: &'static str,
     url: &'static str,
-    image: &'static Image,
+    image: &'static str,
 }
 
 pub static COLLECTIONS: LazyLock<Vec<Collection>> = LazyLock::new(|| {
@@ -96,7 +91,7 @@ pub fn pick_image_for_date(date: &glib::DateTime) -> DownloadableImage {
     #[allow(clippy::indexing_slicing)]
     let image = &all_images[index];
     // The URL of the image is guaranteed to have at least one slash.
-    let (_, base_name) = image.image.src.rsplit_once('/').unwrap();
+    let (_, base_name) = image.image.rsplit_once('/').unwrap();
     let copyright = dpgettext2(None, "source.stalenhag.copyright", "All rights reserved.");
     let description = dpgettext2(None, "source.stalenhag.description", "Collection: %s")
         .replace("%s", image.title);
@@ -108,7 +103,7 @@ pub fn pick_image_for_date(date: &glib::DateTime) -> DownloadableImage {
             url: Some(image.url.to_owned()),
             source: super::Source::Stalenhag,
         },
-        image_url: image.image.src.clone(),
+        image_url: image.image.to_owned(),
         // We do not add a date to the image here, because we cycle through these
         // images and will eventually hit this image again.
         pubdate: None,

@@ -74,9 +74,12 @@ jobs:
       - run: blueprint-compiler format resources/**/*.blp
         # Make the glob work
         shell: bash
+      # Check app binary
       - run: cargo build
       - run: cargo clippy --all-targets
       - run: cargo test
+      # Run clippy over the scraper binary
+      - run: cargo clippy --all-features --all-targets
       - name: cargo deny check
         uses: EmbarkStudios/cargo-deny-action@v2
         with:
