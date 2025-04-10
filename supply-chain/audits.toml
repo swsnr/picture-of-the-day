@@ -1,10 +1,35 @@
 
 # cargo-vet audits file
 
+[[audits.dtoa-short]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.3.3 -> 0.3.5"
+
+[[audits.ego-tree]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+version = "0.10.0"
+
+[[audits.futf]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+version = "0.1.5"
+notes = """
+Heavily relies on unsafe, prob. for performance.  unsafe decode looks good, but
+didn't audit the other unsafe code in detail.
+"""
+
 [[audits.litemap]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.7.4 -> 0.7.5"
+
+[[audits.mac]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+version = "0.1.1"
+notes = "Just a few trivial macros, no unsafe code, looks very safe to use."
 
 [[audits.pkg-config]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -32,11 +57,21 @@ criteria = "safe-to-deploy"
 delta = "1.0.19 -> 1.0.20"
 notes = "No code changes"
 
+[[audits.scraper]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+version = "0.23.1"
+
 [[audits.serde_json]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.0.138 -> 1.0.139"
 notes = "Only documentation changes and dependency updates."
+
+[[audits.siphasher]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+version = "1.0.1"
 
 [[audits.strum]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -47,6 +82,12 @@ delta = "0.26.3 -> 0.27.1"
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.26.4 -> 0.27.1"
+
+[[audits.utf-8]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+version = "0.7.6"
+notes = "Trace amounts of unsafe, didn't audit decoding logic."
 
 [[audits.zerofrom]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -69,6 +110,12 @@ criteria = "safe-to-run"
 user-id = 3623 # Sebastian Dröge (sdroege)
 start = "2021-10-16"
 end = "2026-02-12"
+
+[[trusted.dtoa]]
+criteria = "safe-to-run"
+user-id = 3618 # David Tolnay (dtolnay)
+start = "2019-05-02"
+end = "2026-04-10"
 
 [[trusted.gdk-pixbuf]]
 criteria = "safe-to-run"
@@ -202,6 +249,13 @@ user-id = 2915 # Amanieu d'Antras (Amanieu)
 start = "2019-04-02"
 end = "2026-02-12"
 
+[[trusted.html5ever]]
+criteria = "safe-to-run"
+user-id = 2396 # Josh Matthews (jdm)
+start = "2019-04-27"
+end = "2026-04-10"
+notes = "Respectable whatwg & servo person"
+
 [[trusted.libadwaita]]
 criteria = "safe-to-run"
 user-id = 54339 # Bilal Elmoussaoui (bilelmoussaoui)
@@ -216,7 +270,7 @@ end = "2026-02-12"
 
 [[trusted.libc]]
 criteria = "safe-to-run"
-user-id = 51017
+user-id = 51017 # Yuki Okushi (JohnTitor)
 start = "2020-03-17"
 end = "2026-02-12"
 
@@ -226,11 +280,37 @@ user-id = 55123 # rust-lang-owner
 start = "2024-08-15"
 end = "2026-03-08"
 
+[[trusted.lock_api]]
+criteria = "safe-to-run"
+user-id = 2915 # Amanieu d'Antras (Amanieu)
+start = "2019-05-04"
+end = "2026-04-10"
+
+[[trusted.markup5ever]]
+criteria = "safe-to-run"
+user-id = 2396 # Josh Matthews (jdm)
+start = "2019-04-27"
+end = "2026-04-10"
+notes = "Respectable whatwg & servo person"
+
+[[trusted.match_token]]
+criteria = "safe-to-run"
+user-id = 2396 # Josh Matthews (jdm)
+start = "2025-02-04"
+end = "2026-04-10"
+notes = "Respectable whatwg & servo person"
+
 [[trusted.memchr]]
 criteria = "safe-to-run"
 user-id = 189 # Andrew Gallant (BurntSushi)
 start = "2019-07-07"
 end = "2026-02-12"
+
+[[trusted.new_debug_unreachable]]
+criteria = "safe-to-run"
+user-id = 2017 # Matt Brubeck (mbrubeck)
+start = "2019-02-26"
+end = "2026-04-10"
 
 [[trusted.pango]]
 criteria = "safe-to-run"
@@ -243,6 +323,54 @@ criteria = "safe-to-run"
 user-id = 3623 # Sebastian Dröge (sdroege)
 start = "2022-01-15"
 end = "2026-02-12"
+
+[[trusted.parking_lot]]
+criteria = "safe-to-run"
+user-id = 2915 # Amanieu d'Antras (Amanieu)
+start = "2019-05-04"
+end = "2026-04-10"
+
+[[trusted.parking_lot_core]]
+criteria = "safe-to-run"
+user-id = 2915 # Amanieu d'Antras (Amanieu)
+start = "2019-05-04"
+end = "2026-04-10"
+
+[[trusted.phf]]
+criteria = "safe-to-run"
+user-id = 51017 # Yuki Okushi (JohnTitor)
+start = "2021-06-17"
+end = "2026-04-10"
+
+[[trusted.phf_codegen]]
+criteria = "safe-to-run"
+user-id = 51017 # Yuki Okushi (JohnTitor)
+start = "2021-06-17"
+end = "2026-04-10"
+
+[[trusted.phf_generator]]
+criteria = "safe-to-run"
+user-id = 51017 # Yuki Okushi (JohnTitor)
+start = "2021-06-17"
+end = "2026-04-10"
+
+[[trusted.phf_macros]]
+criteria = "safe-to-run"
+user-id = 51017 # Yuki Okushi (JohnTitor)
+start = "2021-06-17"
+end = "2026-04-10"
+
+[[trusted.phf_shared]]
+criteria = "safe-to-run"
+user-id = 51017 # Yuki Okushi (JohnTitor)
+start = "2021-06-17"
+end = "2026-04-10"
+
+[[trusted.scopeguard]]
+criteria = "safe-to-run"
+user-id = 2915 # Amanieu d'Antras (Amanieu)
+start = "2020-02-16"
+end = "2026-04-10"
 
 [[trusted.serde_spanned]]
 criteria = "safe-to-run"
@@ -268,6 +396,20 @@ user-id = 54339 # Bilal Elmoussaoui (bilelmoussaoui)
 start = "2022-10-10"
 end = "2026-02-22"
 
+[[trusted.string_cache]]
+criteria = "safe-to-run"
+user-id = 2396 # Josh Matthews (jdm)
+start = "2021-10-12"
+end = "2026-04-10"
+notes = "Respectable whatwg & servo person"
+
+[[trusted.string_cache_codegen]]
+criteria = "safe-to-run"
+user-id = 2396 # Josh Matthews (jdm)
+start = "2022-03-27"
+end = "2026-04-10"
+notes = "Respectable whatwg & servo person"
+
 [[trusted.syn]]
 criteria = "safe-to-run"
 user-id = 3618 # David Tolnay (dtolnay)
@@ -279,6 +421,13 @@ criteria = "safe-to-run"
 user-id = 696 # Nick Fitzgerald (fitzgen)
 start = "2024-07-30"
 end = "2026-02-12"
+
+[[trusted.tendril]]
+criteria = "safe-to-run"
+user-id = 2396 # Josh Matthews (jdm)
+start = "2022-03-27"
+end = "2026-04-10"
+notes = "Respectable whatwg & servo person"
 
 [[trusted.toml]]
 criteria = "safe-to-run"

@@ -20,6 +20,11 @@ version = "1.2.1"
 edition = "2024"
 publish = false
 build = "build.rs"
+default-run = "pictureoftheday"
+
+[features]
+# Guards the internal binary for scraping sources
+scraper = ["dep:scraper", "dep:indexmap", "indexmap/serde", "url/serde"]
 
 [dependencies]
 adw = { package = "libadwaita", version = "0.7.0", features = ["v1_7"] }
@@ -39,8 +44,16 @@ soup = { package = "soup3", version = "0.7.0", features = ["v3_6"] }
 strum = { version = "0.27.1", features = ["derive"] }
 url = "2.5.4"
 
+# Optional dependencies for the scraper binary
+scraper = { version = "0.23.1", optional = true }
+indexmap = { version = "2.7.1", optional = true }
+
 [build-dependencies]
 glob = "0.3.1"
+
+[[bin]]
+name = "scraper"
+required-features = ["scraper"]
 
 [package.metadata.release]
 pre-release-commit-message = "Release {{version}}"
