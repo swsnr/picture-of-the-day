@@ -47,16 +47,11 @@ const KNOWN_COLLECTIONS: [Collection; 7] = [
     },
 ];
 
-#[derive(Debug, Serialize, Eq, PartialEq, Hash)]
-struct Image {
-    src: Url,
-}
-
 #[derive(Debug, Serialize)]
 struct CollectionWithImages {
     #[serde(flatten)]
     collection: &'static Collection,
-    images: IndexSet<Image>,
+    images: IndexSet<Url>,
     url: Url,
 }
 
@@ -77,7 +72,7 @@ fn scrape_collection(
         let href = img_a.attr("href").unwrap();
         if href.ends_with(".jpg") {
             let src = base_url.join(href).unwrap();
-            images.insert(Image { src });
+            images.insert(src);
         }
     }
 
