@@ -1,6 +1,11 @@
 
 # cargo-vet audits file
 
+[[audits.derive_more]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.99.17 -> 0.99.19"
+
 [[audits.dtoa-short]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -72,6 +77,11 @@ notes = "Only documentation changes and dependency updates."
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "1.0.1"
+
+[[audits.smallvec]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "1.14.0 -> 1.15.0"
 
 [[audits.strum]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"

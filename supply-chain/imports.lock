@@ -204,8 +204,8 @@ user-login = "bilelmoussaoui"
 user-name = "Bilal Elmoussaoui"
 
 [[publisher.libc]]
-version = "0.2.170"
-when = "2025-02-23"
+version = "0.2.171"
+when = "2025-03-11"
 user-id = 55123
 user-login = "rust-lang-owner"
 
@@ -357,8 +357,8 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.syn]]
-version = "2.0.99"
-when = "2025-03-03"
+version = "2.0.100"
+when = "2025-03-09"
 user-id = 3618
 user-login = "dtolnay"
 user-name = "David Tolnay"
@@ -399,8 +399,8 @@ user-login = "Manishearth"
 user-name = "Manish Goregaokar"
 
 [[publisher.winnow]]
-version = "0.7.3"
-when = "2025-02-19"
+version = "0.7.6"
+when = "2025-04-07"
 user-id = 6743
 user-login = "epage"
 user-name = "Ed Page"
@@ -725,6 +725,18 @@ https://chromium-review.googlesource.com/c/chromium/src/+/6187726/2
 '''
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
+[[audits.google.audits.indexmap]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "2.7.1 -> 2.8.0"
+notes = """
+No `unsafe` introduced or affected in:
+* `indexmap_with_default!` and `indexset_with_default!` macros
+* New `PartialEq` implementations
+* `fn slice_eq` in `util.rs`
+"""
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
 [[audits.google.audits.itoa]]
 who = "Lukasz Anforowicz <lukasza@chromium.org>"
 criteria = "safe-to-deploy"
@@ -925,6 +937,16 @@ who = "Daniel Cheng <dcheng@chromium.org>"
 criteria = "safe-to-deploy"
 delta = "1.0.38 -> 1.0.39"
 notes = "Only minor changes for clippy lints and documentation."
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.quote]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.39 -> 1.0.40"
+notes = """
+The delta is just a simplification of how `tokens.extend(...)` call is made.
+Still no `unsafe` anywhere.
+"""
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
 [[audits.google.audits.rand]]
@@ -1205,6 +1227,13 @@ delta = "1.0.217 -> 1.0.218"
 notes = "No changes outside comments and documentation."
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
+[[audits.google.audits.serde]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.218 -> 1.0.219"
+notes = "Just allowing `clippy::elidable_lifetime_names`."
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
 [[audits.google.audits.serde_derive]]
 who = "Lukasz Anforowicz <lukasza@chromium.org>"
 criteria = "safe-to-deploy"
@@ -1303,6 +1332,13 @@ who = "Daniel Cheng <dcheng@chromium.org>"
 criteria = "safe-to-deploy"
 delta = "1.0.217 -> 1.0.218"
 notes = "No changes outside comments and documentation."
+aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
+
+[[audits.google.audits.serde_derive]]
+who = "Lukasz Anforowicz <lukasza@chromium.org>"
+criteria = "safe-to-deploy"
+delta = "1.0.218 -> 1.0.219"
+notes = "Minor changes (clippy tweaks, using `mem::take` instead of `mem::replace`)."
 aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
 [[audits.google.audits.serde_json]]
@@ -1467,17 +1503,6 @@ aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_p
 who = "danakj@chromium.org"
 criteria = "safe-to-deploy"
 version = "0.25.3"
-notes = """
-Reviewed in https://crrev.com/c/5171063
-
-Previously reviewed during security review and the audit is grandparented in.
-"""
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
-
-[[audits.google.audits.syn]]
-who = "danakj@chromium.org"
-criteria = "safe-to-run"
-version = "1.0.109"
 notes = """
 Reviewed in https://crrev.com/c/5171063
 
@@ -1904,6 +1929,30 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "0.3.6"
 notes = "Very simple crate which doesn't interact with the underlying system at all."
+aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.indexmap]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "2.8.0 -> 2.9.0"
+aggregated-from = "https://raw.githubusercontent.com/swsnr/darklightd/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.libadwaita]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.7.1 -> 0.7.2"
+aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.libadwaita-sys]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.7.1 -> 0.7.2"
+aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.log]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.4.26 -> 0.4.27"
 aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.memoffset]]
