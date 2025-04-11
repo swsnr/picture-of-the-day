@@ -61,11 +61,11 @@ pub fn running_in_flatpak() -> bool {
 /// Get the locale directory.
 ///
 /// Return the flatpak locale directory when in
-pub fn locale_directory() -> PathBuf {
+pub fn locale_directory() -> &'static GStr {
     if running_in_flatpak() {
-        "/app/share/locale".into()
+        gstr!("/app/share/locale")
     } else {
-        "/usr/share/locale".into()
+        gstr!("/usr/share/locale")
     }
 }
 
