@@ -8,10 +8,9 @@ use std::path::Path;
 
 use glib::Priority;
 use gtk::gio::{self, FileCopyFlags, IOErrorEnum, prelude::*};
-use rand::distributions::{Alphanumeric, DistString};
 use soup::prelude::SessionExt;
 
-use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error, rng::GlibRng};
+use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error};
 
 /// A temporary target file for a download.
 ///
@@ -23,10 +22,8 @@ struct TemporaryDownloadFile {
 
 impl TemporaryDownloadFile {
     pub fn new(directory: &Path, name: &str) -> Self {
-        let temp_file = gio::File::for_path(directory.join(format!(
-            ".{name}.download.{}",
-            Alphanumeric.sample_string(&mut GlibRng, 5)
-        )));
+        let temp_file =
+            gio::File::for_path(directory.join(format!(".{name}.download.{}", glib::random_int())));
         Self { temp_file }
     }
 

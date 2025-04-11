@@ -981,8 +981,6 @@ dependencies = [
  "libadwaita",
  "libc",
  "log",
- "rand",
- "rand_core",
  "scraper",
  "semver",
  "serde",

@@ -14,7 +14,6 @@ use gtk::{
     gio::{self, ActionEntry, ApplicationFlags},
 };
 use model::{ErrorNotification, ErrorNotificationActions};
-use rand::seq::SliceRandom;
 
 use crate::{
     config::G_LOG_DOMAIN,
@@ -24,7 +23,6 @@ use crate::{
         wallpaper::{Preview, SetOn},
         window::PortalWindowHandle,
     },
-    rng::GlibRng,
     source::{Source, SourceError},
 };
 
@@ -268,8 +266,18 @@ impl Application {
         glib::info!("Setting wallpaper from {source:?}");
         let images = source.get_images(&session, None).await?;
 
-        // We can safely unwrap, because `get_images` will never return an empty list.
-        let image = images.choose(&mut GlibRng).unwrap();
+        let image = if images.len() == 1 {
+            // This won't panic because  we just checked that we have one element
+            #[allow(clippy::indexing_slicing)]
+            &images[0]
+        } else {
+            // This won't panic because `get_images` never returns an empty list,
+            // never returns more images than i32::max, and we take care to
+            // generate a random index within bounds.
+            let index = glib::random_int_range(0, i32::try_from(images.len()).unwrap());
+            #[allow(clippy::indexing_slicing)]
+            &images[usize::try_from(index).unwrap()]
+        };
 
         let target_directory = source.images_directory();
         ensure_directory(&target_directory).await?;

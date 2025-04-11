@@ -51,7 +51,6 @@ mod image;
 mod io;
 mod locale;
 mod portal;
-mod rng;
 mod source;
 
 use config::G_LOG_DOMAIN;
