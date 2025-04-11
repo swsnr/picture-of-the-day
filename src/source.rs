@@ -24,6 +24,9 @@ mod bing;
 pub mod stalenhag;
 mod wikimedia;
 
+#[cfg(test)]
+mod testutil;
+
 pub use error::SourceError;
 
 #[derive(
