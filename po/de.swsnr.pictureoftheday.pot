@@ -365,7 +365,7 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr ""
 
-#: src/app.rs:115
+#: src/app.rs:113
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr ""
@@ -373,51 +373,51 @@ msgstr ""
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:124
+#: src/app.rs:122
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.rs:129
+#: src/app.rs:127
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr ""
 
-#: src/app.rs:142
+#: src/app.rs:140
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
-#: src/app.rs:177
+#: src/app.rs:175
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr ""
 
-#: src/app.rs:182
+#: src/app.rs:180
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:186
+#: src/app.rs:184
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:435
+#: src/app.rs:443
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:446
+#: src/app.rs:454
 msgctxt "command-line.option.description"
 msgid "Show image for DATE, parsed as ISO string"
 msgstr ""
 
-#: src/app.rs:451
+#: src/app.rs:459
 msgctxt "command-line.option.arg.description"
 msgid "DATE"
 msgstr ""
 
-#: src/app.rs:624
+#: src/app.rs:632
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
@@ -598,55 +598,55 @@ msgid_plural "%1/%2 collections enabled"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/main.rs:87
+#: src/main.rs:84
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr ""
 
-#: src/source.rs:60
+#: src/source.rs:63
 msgctxt "source name"
 msgid "NASA Astronomy Picture Of The Day"
 msgstr ""
 
-#: src/source.rs:61
+#: src/source.rs:64
 msgctxt "source name"
 msgid "Bing"
 msgstr ""
 
-#: src/source.rs:62
+#: src/source.rs:65
 msgctxt "source name"
 msgid "Wikimedia Picture Of The Day"
 msgstr ""
 
-#: src/source.rs:63
+#: src/source.rs:66
 msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr ""
 
-#: src/source/stalenhag.rs:100
+#: src/source/stalenhag.rs:95
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr ""
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:96
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
 msgstr ""
 
-#: src/source/wikimedia.rs:60
+#: src/source/wikimedia.rs:64
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
 msgstr ""
 
-#: src/source/wikimedia.rs:66
+#: src/source/wikimedia.rs:70
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
 msgstr ""
 
-#: src/source/wikimedia.rs:75
+#: src/source/wikimedia.rs:79
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr ""
