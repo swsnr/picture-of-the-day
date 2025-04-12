@@ -10,10 +10,10 @@ Your daily GNOME wallpaper:
 
 Get a picture of the day from any of the following sources as your daily wallpaper.
 
-- [NASA Astronomy Picture Of The Day](https://apod.nasa.gov/)
+- [NASA Astronomy Picture of the Day](https://apod.nasa.gov/)
 - [Bing](https://bing.com)
 - [Simon Stålenhag Artwork](https://simonstalenhag.se/)
-- [Wikimedia Picture Of The Day](https://commons.wikimedia.org/wiki/Main_Page)
+- [Wikimedia Picture of the Day](https://commons.wikimedia.org/wiki/Main_Page)
 
 Note that all images are protected by copyright; you may not be allowed to use or distribute them. Do take a look at the license terms for each image.
 

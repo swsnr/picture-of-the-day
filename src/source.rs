@@ -60,9 +60,9 @@ impl Default for Source {
 impl Source {
     pub fn i18n_name(self) -> GString {
         match self {
-            Source::Apod => dpgettext2(None, "source name", "NASA Astronomy Picture Of The Day"),
+            Source::Apod => dpgettext2(None, "source name", "NASA Astronomy Picture of the Day"),
             Source::Bing => dpgettext2(None, "source name", "Bing"),
-            Source::Wikimedia => dpgettext2(None, "source name", "Wikimedia Picture Of The Day"),
+            Source::Wikimedia => dpgettext2(None, "source name", "Wikimedia Picture of the Day"),
             Source::Stalenhag => dpgettext2(None, "source name", "Simon Stålenhag"),
         }
     }
