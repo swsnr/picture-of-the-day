@@ -18,6 +18,8 @@ pub enum SourceError {
     HttpStatus(soup::Status, Option<GString>),
     /// A deserialization error.
     InvalidJson(serde_json::Error),
+    /// A scraping error.
+    ScrapingFailed(String),
     /// No image was available.
     NoImage,
     /// Invalid API key for the source
@@ -72,6 +74,7 @@ impl Display for SourceError {
             SourceError::NotAnImage => {
                 write!(f, "The source return no image data but e.g. a video")
             }
+            SourceError::ScrapingFailed(message) => write!(f, "Failed to scrape data: {message}"),
         }
     }
 }

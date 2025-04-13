@@ -24,7 +24,7 @@ default-run = "pictureoftheday"
 
 [features]
 # Guards the internal binary for scraping sources
-scraper = ["dep:scraper", "dep:indexmap", "indexmap/serde", "url/serde"]
+scraper = ["dep:indexmap", "indexmap/serde", "url/serde"]
 
 [dependencies]
 adw = { package = "libadwaita", version = "0.7.0", features = ["v1_7"] }
@@ -39,6 +39,7 @@ glib = { version = "0.20.7", features = ["log", "log_macros", "v2_84"] }
 gtk = { package = "gtk4", version = "0.9.5", features = ["v4_18", "gnome_47"] }
 libc = "0.2.170"
 log = "0.4.22"
+scraper = "0.23.1"
 semver = "1.0.24"
 serde = { version = "1.0.128", features = ["derive"] }
 serde_json = "1.0.139"
@@ -47,7 +48,6 @@ strum = { version = "0.27.1", features = ["derive"] }
 url = "2.5.4"
 
 # Optional dependencies for the scraper binary
-scraper = { version = "0.23.1", optional = true }
 indexmap = { version = "2.7.1", optional = true }
 
 [build-dependencies]
