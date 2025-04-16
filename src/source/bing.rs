@@ -6,8 +6,9 @@
 
 use std::borrow::Cow;
 
+use chrono::NaiveDate;
 use glib::Priority;
-use serde::Deserialize;
+use serde::{Deserialize, Deserializer, de};
 use url::Url;
 
 use crate::{
@@ -23,8 +24,35 @@ struct BingImage {
     title: String,
     copyright: String,
     copyrightlink: String,
-    startdate: String,
+    #[serde(deserialize_with = "deserialize_date")]
+    startdate: NaiveDate,
     urlbase: String,
+}
+
+pub struct BingDateVisitor;
+
+const BING_DATE_FORMAT: &str = "%Y%m%d";
+
+impl de::Visitor<'_> for BingDateVisitor {
+    type Value = NaiveDate;
+
+    fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(formatter, "a date in {BING_DATE_FORMAT}")
+    }
+
+    fn visit_str<E>(self, v: &str) -> Result<Self::Value, E>
+    where
+        E: serde::de::Error,
+    {
+        NaiveDate::parse_from_str(v, BING_DATE_FORMAT).map_err(de::Error::custom)
+    }
+}
+
+fn deserialize_date<'de, D>(d: D) -> Result<NaiveDate, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    d.deserialize_str(BingDateVisitor)
 }
 
 fn bing_base_url() -> Url {
@@ -40,12 +68,6 @@ impl TryFrom<BingImage> for DownloadableImage {
         bing_base_url()
             .join(&urlbase)
             .map(|image_url| {
-                let pubdate = format!(
-                    "{}-{}-{}",
-                    &image.startdate[0..4],
-                    &image.startdate[4..6],
-                    &image.startdate[6..]
-                );
                 let suggested_filename = image_url
                     .query_pairs()
                     .find_map(|(key, value)| (key == "id").then(|| value.into_owned()));
@@ -59,7 +81,7 @@ impl TryFrom<BingImage> for DownloadableImage {
                         source: Source::Bing,
                     },
                     image_url: image_url.into(),
-                    pubdate: Some(pubdate),
+                    pubdate: Some(image.startdate),
                     suggested_filename,
                 }
             })

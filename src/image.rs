@@ -38,10 +38,10 @@ pub struct DownloadableImage {
     pub metadata: ImageMetadata,
     /// Download URL for this image.
     pub image_url: String,
-    /// The date this image was published at, as `YYYY-MM-DD`.
+    /// The date this image was published at.
     ///
     /// If set the downloaded users this data as prefix for filenames.
-    pub pubdate: Option<String>,
+    pub pubdate: Option<NaiveDate>,
     /// The suggested file name for this image.
     pub suggested_filename: Option<String>,
 }
@@ -59,7 +59,7 @@ impl DownloadableImage {
     }
 
     pub fn with_pubdate(mut self, date: NaiveDate) -> Self {
-        self.pubdate = Some(date.format("%Y-%m-%d").to_string());
+        self.pubdate = Some(date);
         self
     }
 

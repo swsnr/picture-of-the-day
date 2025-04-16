@@ -34,7 +34,7 @@ struct ApodMetadata {
     /// The title of the image.
     title: String,
     /// Date of image. Included in response because of default values.
-    date: String,
+    date: NaiveDate,
     /// The URL of the APOD image or video of the day.
     url: String,
     /// The URL for any high-resolution image for that day. Returned regardless of 'hd' param setting but will be omitted in the response IF it does not exist originally at APOD.
@@ -101,7 +101,7 @@ async fn fetch_apod(
     api_key: &str,
 ) -> Result<DownloadableImage, SourceError> {
     let metadata = query_metadata(session, date, api_key).await?;
-    let url_date = &metadata.date.replace('-', "")[2..];
+    let url_date = &metadata.date.format("%y%m%d");
     let url = format!("https://apod.nasa.gov/apod/ap{url_date}.html");
     if let MediaType::Image = metadata.media_type {
         Ok(DownloadableImage {
