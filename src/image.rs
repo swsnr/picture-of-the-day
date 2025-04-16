@@ -4,13 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use chrono::NaiveDate;
+use download::download_file_to_directory;
+use gtk::gio::{self, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 use std::{
     borrow::Cow,
     path::{Path, PathBuf},
 };
-
-use download::download_file_to_directory;
-use gtk::gio::{self, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 
 use crate::config::G_LOG_DOMAIN;
 use crate::source::Source;
@@ -58,8 +58,8 @@ impl DownloadableImage {
             )
     }
 
-    pub fn with_pubdate(mut self, date: &glib::DateTime) -> Self {
-        self.pubdate = Some(date.format("%Y-%m-%d").unwrap().into());
+    pub fn with_pubdate(mut self, date: NaiveDate) -> Self {
+        self.pubdate = Some(date.format("%Y-%m-%d").to_string());
         self
     }
 

@@ -46,6 +46,7 @@ use gtk::prelude::*;
 
 mod app;
 mod config;
+mod date;
 mod gettext;
 mod image;
 mod io;

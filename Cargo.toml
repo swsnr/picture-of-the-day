@@ -28,6 +28,10 @@ scraper = ["dep:scraper", "dep:indexmap", "indexmap/serde", "url/serde"]
 
 [dependencies]
 adw = { package = "libadwaita", version = "0.7.0", features = ["v1_7"] }
+chrono = { version = "0.4.34", default-features = false, features = [
+    "std",
+    "serde",
+] }
 futures = "0.3.31"
 gdk4-wayland = { version = "0.9.6", features = ["v4_18"] }
 gdk4-x11 = { version = "0.9.6", features = ["v4_18"] }

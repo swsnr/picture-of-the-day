@@ -19,4 +19,4 @@ variables=(
     LC_MESSAGES=en_US.UTF-8
 )
 
-exec env "${variables[@]}" cargo run -- --date=2025-03-08T12:00:00Z "${@}"
+exec env "${variables[@]}" cargo run -- --date=2025-03-08 "${@}"

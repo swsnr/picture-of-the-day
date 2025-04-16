@@ -4,6 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use chrono::NaiveDate;
 use glib::Priority;
 use gtk::gio::prelude::SettingsExt;
 use serde::Deserialize;
@@ -72,7 +73,7 @@ fn to_source_error(error: HttpError) -> SourceError {
 /// Fetch the astronomy picture of the day.
 async fn query_metadata(
     session: &soup::Session,
-    date: Option<&glib::DateTime>,
+    date: Option<NaiveDate>,
     api_key: &str,
 ) -> Result<ApodMetadata, SourceError> {
     let mut url = Url::parse_with_params(
@@ -82,7 +83,7 @@ async fn query_metadata(
     .unwrap();
     if let Some(date) = date {
         url.query_pairs_mut()
-            .append_pair("date", &date.format("%Y-%m-%d").unwrap());
+            .append_pair("date", &date.format("%Y-%m-%d").to_string());
     }
     glib::info!("Querying APOD image metadata from {url}");
     // We can safely unwrap here, because `Url` already guarantees us that `url` is valid
@@ -96,7 +97,7 @@ async fn query_metadata(
 
 async fn fetch_apod(
     session: &soup::Session,
-    date: Option<&glib::DateTime>,
+    date: Option<NaiveDate>,
     api_key: &str,
 ) -> Result<DownloadableImage, SourceError> {
     let metadata = query_metadata(session, date, api_key).await?;
@@ -122,7 +123,7 @@ async fn fetch_apod(
 
 pub async fn fetch_picture_of_the_day(
     session: &soup::Session,
-    date: Option<&glib::DateTime>,
+    date: Option<NaiveDate>,
 ) -> Result<DownloadableImage, SourceError> {
     let settings = crate::config::get_settings();
     let api_key = settings.string("apod-api-key");

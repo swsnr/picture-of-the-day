@@ -318,15 +318,6 @@ impl Default for Application {
 }
 
 mod imp {
-    use adw::gio::ApplicationCommandLine;
-    use adw::prelude::*;
-    use adw::subclass::prelude::*;
-    use futures::StreamExt;
-    use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
-    use gtk::gio::{self, ApplicationHoldGuard, Cancellable};
-    use soup::prelude::*;
-    use std::{cell::RefCell, time::Duration};
-
     use crate::{
         app::widgets::ApplicationWindow,
         config::G_LOG_DOMAIN,
@@ -337,6 +328,17 @@ mod imp {
         },
         source::Source,
     };
+    use adw::gio::ApplicationCommandLine;
+    use adw::prelude::*;
+    use adw::subclass::prelude::*;
+    use chrono::NaiveDate;
+    use futures::StreamExt;
+    use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
+    use gtk::gio::{self, ApplicationHoldGuard, Cancellable};
+    use soup::prelude::*;
+    use std::cell::Cell;
+    use std::str::FromStr;
+    use std::{cell::RefCell, time::Duration};
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
@@ -350,7 +352,7 @@ mod imp {
         /// The overridden date, if any.
         ///
         /// Set if the user specified --date on the command line.
-        date: RefCell<Option<glib::DateTime>>,
+        date: Cell<Option<NaiveDate>>,
         /// State of automatic wallpaper update.
         ///
         /// If `None` automatic wallpaper update is off.  If set contains a
@@ -451,12 +453,12 @@ mod imp {
                 &dpgettext2(
                     None,
                     "command-line.option.description",
-                    "Show image for DATE, parsed as ISO string",
+                    "Show image for the given date",
                 ),
                 Some(&dpgettext2(
                     None,
                     "command-line.option.arg.description",
-                    "DATE",
+                    "YYYY-MM-DD",
                 )),
             );
         }
@@ -560,15 +562,18 @@ mod imp {
                 ));
                 ExitCode::SUCCESS
             } else if let Ok(Some(date)) = options.lookup::<String>("date") {
-                if let Ok(date) = glib::DateTime::from_iso8601(&date, None) {
-                    glib::warn!("Overriding date to {}", date.format_iso8601().unwrap());
-                    self.date.replace(Some(date));
-                    self.obj().activate();
-                    ExitCode::SUCCESS
-                } else {
-                    command_line.printerr_literal(&format!("Invalid date: {date}"));
-                    command_line.set_exit_status(ExitCode::FAILURE.into());
-                    ExitCode::FAILURE
+                match chrono::NaiveDate::from_str(&date) {
+                    Ok(date) => {
+                        glib::warn!("Overriding date to {date}");
+                        self.date.replace(Some(date));
+                        self.obj().activate();
+                        ExitCode::SUCCESS
+                    }
+                    Err(error) => {
+                        command_line.printerr_literal(&format!("Invalid date '{date}': {error}"));
+                        command_line.set_exit_status(ExitCode::FAILURE.into());
+                        ExitCode::FAILURE
+                    }
                 }
             } else {
                 self.obj().activate();
@@ -599,7 +604,7 @@ mod imp {
                     &*self.obj(),
                     self.obj().http_session(),
                     self.obj().portal_client().unwrap(),
-                    self.date.borrow().clone(),
+                    self.date.get(),
                 );
                 if crate::config::is_development() {
                     window.add_css_class("devel");

@@ -9,9 +9,9 @@
 // See <https://github.com/gtk-rs/gtk-rs-core/discussions/1625>
 #![allow(clippy::as_conversions)]
 
-use std::path::PathBuf;
-
+use chrono::NaiveDate;
 use glib::{GString, dpgettext2};
+use std::path::PathBuf;
 
 use crate::config::G_LOG_DOMAIN;
 use crate::image::DownloadableImage;
@@ -91,9 +91,9 @@ impl Source {
     pub async fn get_images(
         self,
         session: &soup::Session,
-        date: Option<&glib::DateTime>,
+        date: Option<NaiveDate>,
     ) -> Result<Vec<DownloadableImage>, SourceError> {
-        let now = glib::DateTime::now_local().unwrap();
+        let today = crate::date::today_local();
         let images = match self {
             Source::Apod => vec![apod::fetch_picture_of_the_day(session, date).await?],
             Source::Bing => {
@@ -103,9 +103,9 @@ impl Source {
                 bing::fetch_daily_images(session).await?
             }
             Source::Wikimedia => {
-                vec![wikimedia::fetch_featured_image(session, date.unwrap_or(&now)).await?]
+                vec![wikimedia::fetch_featured_image(session, date.unwrap_or(today)).await?]
             }
-            Source::Stalenhag => vec![stalenhag::pick_image_for_date(date.unwrap_or(&now))],
+            Source::Stalenhag => vec![stalenhag::pick_image_for_date(date.unwrap_or(today))],
         };
 
         if images.is_empty() {
