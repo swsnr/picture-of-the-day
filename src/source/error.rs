@@ -9,6 +9,7 @@ use std::{error::Error, fmt::Display};
 use glib::GString;
 
 use crate::http::HttpError;
+use crate::rss::RssError;
 
 #[derive(Debug)]
 pub enum SourceError {
@@ -18,6 +19,8 @@ pub enum SourceError {
     HttpStatus(soup::Status, Option<GString>),
     /// A deserialization error.
     InvalidJson(serde_json::Error),
+    /// A deserialization error.
+    InvalidRss(RssError),
     /// A scraping error.
     ScrapingFailed(String),
     /// No image was available.
@@ -39,8 +42,14 @@ impl From<glib::Error> for SourceError {
 }
 
 impl From<serde_json::Error> for SourceError {
-    fn from(value: serde_json::Error) -> Self {
-        Self::InvalidJson(value)
+    fn from(error: serde_json::Error) -> Self {
+        Self::InvalidJson(error)
+    }
+}
+
+impl From<RssError> for SourceError {
+    fn from(error: RssError) -> Self {
+        Self::InvalidRss(error)
     }
 }
 
@@ -68,6 +77,7 @@ impl Display for SourceError {
                 write!(f, "HTTP status {status:?} {reason}")
             }
             SourceError::InvalidJson(error) => write!(f, "Invalid JSON: {error}"),
+            SourceError::InvalidRss(error) => write!(f, "Invalid RSS: {error}"),
             SourceError::NoImage => write!(f, "No image available"),
             SourceError::InvalidApiKey => write!(f, "The API key used was invalid"),
             SourceError::RateLimited => write!(f, "The client was rate limited"),
@@ -84,6 +94,7 @@ impl Error for SourceError {
         match self {
             SourceError::IO(error) => Some(error),
             SourceError::InvalidJson(error) => Some(error),
+            SourceError::InvalidRss(error) => Some(error),
             _ => None,
         }
     }
