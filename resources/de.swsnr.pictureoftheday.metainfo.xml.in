@@ -11,6 +11,7 @@
             <li>Bing</li>
             <li>Simon Stålenhag Artwork</li>
             <li>Wikimedia Picture of the Day</li>
+            <li>Earth Science Picture of the Day</li>
         </ul>
         <p>Preview images, pick your favorite source, enable automatic updates, and enjoy a fresh wallpaper every day.</p>
         <p>Note that all images are protected by copyright; you may not be allowed to use or distribute them. Do take a look at the license terms for each image.</p>
@@ -43,6 +44,15 @@
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
+        <release version="next" date="9999-01-01">
+            <description>
+                <p>Add Earth Science Picture of the Day.</p>
+            </description>
+            <issues>
+                <issue url="https://github.com/swsnr/picture-of-the-day/issues/67">GH-67</issue>
+            </issues>
+            <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
+        </release>
         <release version="1.2.0" date="2025-04-06">
             <description>
                 <p>Add overlay toolbar to go to the previous or next image to the image view.</p>

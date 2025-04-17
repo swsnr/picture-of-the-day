@@ -177,7 +177,9 @@ impl ErrorNotification {
             SourceError::NoImage => errors::no_image(source),
             SourceError::NotAnImage => errors::not_an_image(source),
             SourceError::HttpStatus(status, _) => errors::http_status(source, *status),
-            SourceError::InvalidJson(_) => errors::invalid_data(source),
+            SourceError::InvalidJson(_) | SourceError::ScrapingFailed(_) => {
+                errors::invalid_data(source)
+            }
             SourceError::IO(error) => errors::io_error(source, error),
         }
     }

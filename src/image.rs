@@ -18,7 +18,7 @@ use crate::source::Source;
 pub mod download;
 
 /// Metadata of an image.
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Debug, Clone, Eq, PartialEq)]
 pub struct ImageMetadata {
     /// The image title.
     pub title: String,
@@ -32,7 +32,7 @@ pub struct ImageMetadata {
     pub source: Source,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DownloadableImage {
     /// Metadata for this image.
     pub metadata: ImageMetadata,
