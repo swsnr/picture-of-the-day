@@ -21,6 +21,7 @@ mod http;
 
 mod apod;
 mod bing;
+mod eoiod;
 mod epod;
 pub mod stalenhag;
 mod wikimedia;
@@ -49,6 +50,7 @@ pub enum Source {
     Wikimedia,
     Stalenhag,
     Eopd,
+    Eoiod,
 }
 
 impl Default for Source {
@@ -67,6 +69,7 @@ impl Source {
             Source::Wikimedia => dpgettext2(None, "source name", "Wikimedia Picture of the Day"),
             Source::Stalenhag => dpgettext2(None, "source name", "Simon Stålenhag"),
             Source::Eopd => dpgettext2(None, "source name", "Earth Science Picture of the Day"),
+            Source::Eoiod => dpgettext2(None, "source name", "Earth Observatory Image of the Day"),
         }
     }
 
@@ -81,6 +84,7 @@ impl Source {
             Source::Wikimedia => "https://commons.wikimedia.org/wiki/Main_Page",
             Source::Stalenhag => "https://simonstalenhag.se/",
             Source::Eopd => "https://epod.usra.edu/blog/",
+            Source::Eoiod => "https://earthobservatory.nasa.gov",
         }
     }
 
@@ -117,6 +121,14 @@ impl Source {
                     );
                 });
                 epod::fetch_picture_of_the_day(session).await?
+            }
+            Source::Eoiod => {
+                date.inspect(|_| {
+                    glib::warn!(
+                        "Earth Observatory Image of the Day does not support overriding the date"
+                    );
+                });
+                todo!()
             }
         };
 

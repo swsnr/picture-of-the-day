@@ -39,6 +39,7 @@ glib = { version = "0.20.7", features = ["log", "log_macros", "v2_84"] }
 gtk = { package = "gtk4", version = "0.9.5", features = ["v4_18", "gnome_47"] }
 libc = "0.2.170"
 log = "0.4.22"
+quick-xml = "0.30.0"
 scraper = "0.23.1"
 semver = "1.0.24"
 serde = { version = "1.0.128", features = ["derive"] }
