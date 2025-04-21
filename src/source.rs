@@ -68,7 +68,11 @@ impl Source {
             Source::Wikimedia => dpgettext2(None, "source name", "Wikimedia Picture of the Day"),
             Source::Stalenhag => dpgettext2(None, "source name", "Simon Stålenhag"),
             Source::Eopd => dpgettext2(None, "source name", "Earth Science Picture of the Day"),
-            Source::Eoiod => dpgettext2(None, "source name", "Earth Observatory Image of the Day"),
+            Source::Eoiod => dpgettext2(
+                None,
+                "source name",
+                "NASA Earth Observatory Image of the Day",
+            ),
         }
     }
 
@@ -124,7 +128,7 @@ impl Source {
             Source::Eoiod => {
                 date.inspect(|_| {
                     glib::warn!(
-                        "Earth Observatory Image of the Day does not support overriding the date"
+                        "NASA Earth Observatory Image of the Day does not support overriding the date"
                     );
                 });
                 vec![eoiod::fetch_image_of_the_day(session).await?]
