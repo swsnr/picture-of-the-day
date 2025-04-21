@@ -8,7 +8,7 @@ use std::{error::Error, fmt::Display};
 
 use glib::GString;
 
-use super::http::HttpError;
+use crate::http::HttpError;
 
 #[derive(Debug)]
 pub enum SourceError {

@@ -48,6 +48,7 @@ mod app;
 mod config;
 mod date;
 mod gettext;
+mod http;
 mod image;
 mod io;
 mod locale;

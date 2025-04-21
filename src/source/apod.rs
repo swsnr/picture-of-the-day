@@ -12,11 +12,9 @@ use url::Url;
 
 use crate::{
     config::G_LOG_DOMAIN,
+    http::{HttpError, SoupSessionExt},
     image::{DownloadableImage, ImageMetadata},
-    source::{
-        SourceError,
-        http::{HttpError, SoupSessionExt},
-    },
+    source::SourceError,
 };
 
 #[derive(Debug, Deserialize, Eq, PartialEq)]

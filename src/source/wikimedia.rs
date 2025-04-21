@@ -13,9 +13,9 @@ use glib::{Priority, dpgettext2};
 use serde::Deserialize;
 
 use crate::config::G_LOG_DOMAIN;
+use crate::http::SoupSessionExt;
 use crate::image::{DownloadableImage, ImageMetadata};
 use crate::source::SourceError;
-use crate::source::http::SoupSessionExt;
 
 #[derive(Debug, Deserialize)]
 struct FeaturedImageImage {

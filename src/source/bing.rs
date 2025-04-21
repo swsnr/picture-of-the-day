@@ -13,8 +13,8 @@ use url::Url;
 
 use crate::{
     config::G_LOG_DOMAIN,
+    http::SoupSessionExt,
     image::{DownloadableImage, ImageMetadata},
-    source::http::SoupSessionExt,
 };
 
 use super::{Source, SourceError};

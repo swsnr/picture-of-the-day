@@ -17,7 +17,6 @@ use crate::config::G_LOG_DOMAIN;
 use crate::image::DownloadableImage;
 
 mod error;
-mod http;
 
 mod apod;
 mod bing;
