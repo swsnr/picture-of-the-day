@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-04-07 10:21+0000\n"
 "Last-Translator: Priit Jõerüüt <jrtcdbrg@noreply.codeberg.org>\n"
-"Language-Team: Estonian <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
+"Language-Team: Estonian <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,24 +19,24 @@ msgstr ""
 "X-Generator: Weblate 5.10.2\n"
 
 #. Translators: Do feel free to translate the application name
-#: de.swsnr.pictureoftheday.desktop.in:4
+#: de.swsnr.pictureoftheday.desktop.in:3
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:5
 #: resources/ui/application-window.blp:9
 msgid "Picture Of The Day"
 msgstr "Päevapilt"
 
-#: de.swsnr.pictureoftheday.desktop.in:5
+#: de.swsnr.pictureoftheday.desktop.in:4
 msgid "A daily picture as your wallpaper"
 msgstr "Iga päev uus pilt töölaua taustapildina"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: de.swsnr.pictureoftheday.desktop.in:11
+#: de.swsnr.pictureoftheday.desktop.in:10
 msgid "Gnome;GTK;Picture;Day;Wallpaper;"
 msgstr ""
 "Gnome;GTK;Picture;Day;Wallpaper;pilt;taustapilt;töölaud;kujundus;päeva;pildi;"
 "taust:tausta;taustal;"
 
-#: de.swsnr.pictureoftheday.desktop.in:18
+#: de.swsnr.pictureoftheday.desktop.in:17
 msgid "Preferences"
 msgstr "Eelistused"
 
@@ -45,12 +45,19 @@ msgid "Your daily wallpaper"
 msgstr "Sinu igapäevane taustapilt"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
+#, fuzzy
+#| msgid ""
+#| "Get a picture of the day from the following sources as your daily "
+#| "wallpaper."
 msgid ""
-"Get a picture of the day from the following sources as your daily wallpaper."
+"Get a picture of the day from the following sources and use as your daily "
+"wallpaper."
 msgstr "Laadi igaks päevaks uus päevapilt neist andmeallikaist."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
-msgid "NASA Astronomy Picture Of The Day"
+#, fuzzy
+#| msgid "NASA Astronomy Picture Of The Day"
+msgid "NASA Astronomy Picture of the Day"
 msgstr ""
 "NASA astronoomiateemaline päevapilt (NASA Astronomy Picture Of The Day)"
 
@@ -63,10 +70,22 @@ msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhagi tööd"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
-msgid "Wikimedia Picture Of The Day"
+#, fuzzy
+#| msgid "Wikimedia Picture Of The Day"
+msgid "Wikimedia Picture of the Day"
 msgstr "Vikimeedia päevapilt (Wikimedia Picture Of The Day)"
 
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
+#, fuzzy
+#| msgid "Picture Of The Day"
+msgid "Earth Science Picture of the Day"
+msgstr "Päevapilt"
+
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
+msgid "NASA Earth Observatory Image of the Day"
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:17
 msgid ""
 "Preview images, pick your favorite source, enable automatic updates, and "
 "enjoy a fresh wallpaper every day."
@@ -74,7 +93,7 @@ msgstr ""
 "Vaata piltide eelvaateid, vali endale meeldiv andmeallikas, kasuta "
 "automaatse uuendamise võimalust ja iga päev vaata rõõmuga uut taustapilti."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:18
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
@@ -83,34 +102,39 @@ msgstr ""
 "olla õigust neid kasutada või levitada. Palun tutvu litsentsitingimustega "
 "enne iga pildi kasutamist."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
 msgid "Picture"
 msgstr "Pilt"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
 msgid "Daily"
 msgstr "Iga päev"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
 msgid "Wallpaper"
 msgstr "Taustapilt"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:27
 msgid "Astronomy"
 msgstr "Astronoomia"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:28
 msgid "Artwork"
 msgstr "Kunst"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+msgid ""
+"Add Earth Science Picture of the Day and Earth Observatory Image of the Day."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Lisa piltide vaatesse ülekattega tööriistariba, mis võimaldab liikuda "
 "piltide vahel."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -118,34 +142,34 @@ msgstr ""
 "Lisa tööriistaribale nupp, mis võimaldab kuvatavat pilti salvestada ja avada "
 "välise rakendusega."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Parandasime allaalaadimise kontrolli, et rakendusest väljumisel ei jääks "
 "alles pooleldi allalaaditud pilte."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Kasutame Vikimeedia jaoks töökindlamat otspunkti."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid "No longer show preview when setting a wallpaper."
 msgstr "Taustapildi määramisel enam ei näita eelvaadet."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid "Improve scheduling of automatic downloads."
 msgstr "Parem automaatsete uuenduste ajastamine."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
 msgid "Remember window size and state."
 msgstr "Jätame nüüd meelde akna mõõdud ja oleku."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:66
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:78
 msgid "Update to GNOME 48."
 msgstr "Uuendus kasutab nüüd GNOME 48 teeke."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -153,11 +177,11 @@ msgstr ""
 "Lisasime rakenduse automaatse käivituse ja uuendame igapäevast taustapilti "
 "12-tunnise välbaga."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
 msgid "No longer support multiple windows."
 msgstr "Lõpetasime mitme akna toe."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:87
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:99
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -165,7 +189,7 @@ msgstr ""
 "Esimene versioon nelja allika toega: APOD, Vikimeedia, Simon Stålenhag ja "
 "Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -173,15 +197,15 @@ msgstr ""
 "Lisasime põhivaate tänase päevapildi näitamiseks ja taustapildiks "
 "määramiseks."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:112
 msgid "A picture of the day from Wikimedia"
 msgstr "Päevapilt Vikimeediast"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:116
 msgid "The preferences dialog with settings for image sources"
 msgstr "Eelistuste vaade andmeallikate seadistamiseks"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:108
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:120
 msgid "The empty greeting page with the application icon"
 msgstr "Tühi avaleht rakenduse ikooniga"
 
@@ -389,7 +413,7 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr "Stålenhagi kogumikud, mida peaksime eirama."
 
-#: src/app.rs:115
+#: src/app.rs:113
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "Tõlked"
@@ -397,51 +421,51 @@ msgstr "Tõlked"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:124
+#: src/app.rs:122
 msgid "translator-credits"
 msgstr "Priit Jõerüüt 2025"
 
-#: src/app.rs:129
+#: src/app.rs:127
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "Abiteave ja inspiratsioon"
 
-#: src/app.rs:142
+#: src/app.rs:140
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Abiks olevad teenused"
 
-#: src/app.rs:177
+#: src/app.rs:175
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Kontaktteave"
 
-#: src/app.rs:182
+#: src/app.rs:180
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app.rs:186
+#: src/app.rs:184
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Ava võrguaadress"
 
-#: src/app.rs:435
+#: src/app.rs:445
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app.rs:446
+#: src/app.rs:456
 msgctxt "command-line.option.description"
-msgid "Show image for DATE, parsed as ISO string"
-msgstr "Näita pilti kindlast KUUPÄEVast, kus KUUPÄEV on ISO vormingus"
+msgid "Show image for the given date"
+msgstr ""
 
-#: src/app.rs:451
+#: src/app.rs:461
 msgctxt "command-line.option.arg.description"
-msgid "DATE"
-msgstr "KUUPÄEV"
+msgid "YYYY-MM-DD"
+msgstr ""
 
-#: src/app.rs:624
+#: src/app.rs:637
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Laadi ja lisa taustapilt automaatselt"
@@ -556,7 +580,7 @@ msgstr ""
 "veateatega: %2. Proovi hiljem uuesti või kasuta muud andmeallikat. Kui viga "
 "kestab pikemalt, siis palun anna sellest meile teada."
 
-#: src/app/widgets/application_window.rs:72
+#: src/app/widgets/application_window.rs:74
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
@@ -566,12 +590,12 @@ msgstr ""
 "veateatega: %2. Kui viga kestab pikemalt, siis palun anna sellest meile "
 "teada."
 
-#: src/app/widgets/application_window.rs:78
+#: src/app/widgets/application_window.rs:80
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "Andmeallika võrguaadressi avamine ei õnnestunud"
 
-#: src/app/widgets/application_window.rs:97
+#: src/app/widgets/application_window.rs:99
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
@@ -581,12 +605,12 @@ msgstr ""
 "veateatega: %1. Kui viga kestab pikemalt, siis palun anna sellest meile "
 "teada."
 
-#: src/app/widgets/application_window.rs:103
+#: src/app/widgets/application_window.rs:105
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Taustapildiks määramine ei toimi"
 
-#: src/app/widgets/application_window.rs:130
+#: src/app/widgets/application_window.rs:132
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
@@ -595,16 +619,16 @@ msgstr ""
 "Selle pildi avamisel tekkis sisend/väljundviga järgneva veateatega: %1. Kui "
 "viga kestab pikemalt, siis palun anna sellest meile teada."
 
-#: src/app/widgets/application_window.rs:136
+#: src/app/widgets/application_window.rs:138
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "Ei õnnestunud avada pilti"
 
-#: src/app/widgets/application_window.rs:151
+#: src/app/widgets/application_window.rs:153
 msgid "Saved image %1"
 msgstr "%1 pilt on salvestatud"
 
-#: src/app/widgets/application_window.rs:169
+#: src/app/widgets/application_window.rs:171
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
@@ -613,37 +637,37 @@ msgstr ""
 "Selle pildi salvestamisel tekkis sisend/väljundviga järgneva veateatega: %1. "
 "Kui viga kestab pikemalt, siis palun anna sellest meile teada."
 
-#: src/app/widgets/application_window.rs:175
+#: src/app/widgets/application_window.rs:177
 msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "Ei õnnestunud salvestada pilti"
 
-#: src/app/widgets/application_window.rs:192
+#: src/app/widgets/application_window.rs:194
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Sulge"
 
-#: src/app/widgets/application_window.rs:199
+#: src/app/widgets/application_window.rs:201
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Kontaktteave"
 
-#: src/app/widgets/application_window.rs:203
+#: src/app/widgets/application_window.rs:205
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app/widgets/application_window.rs:207
+#: src/app/widgets/application_window.rs:209
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Ava võrguaadress"
 
-#: src/app/widgets/application_window.rs:361
+#: src/app/widgets/application_window.rs:364
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Üksikasjad"
 
-#: src/app/widgets/application_window.rs:467
+#: src/app/widgets/application_window.rs:469
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr "Salvesta pilt"
@@ -654,59 +678,105 @@ msgid_plural "%1/%2 collections enabled"
 msgstr[0] "Kasutusel kogumik: %1/%2"
 msgstr[1] "Kasutusel kogumikud: %1/%2"
 
-#: src/main.rs:87
+#: src/main.rs:88
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr "Päevapilt"
 
-#: src/source.rs:60
+#: src/source.rs:66
+#, fuzzy
+#| msgid "NASA Astronomy Picture Of The Day"
 msgctxt "source name"
-msgid "NASA Astronomy Picture Of The Day"
+msgid "NASA Astronomy Picture of the Day"
 msgstr ""
 "NASA astronoomiateemaline päevapilt (NASA Astronomy Picture Of The Day)"
 
-#: src/source.rs:61
+#: src/source.rs:67
 msgctxt "source name"
 msgid "Bing"
 msgstr "Otsingumootor Bing"
 
-#: src/source.rs:62
+#: src/source.rs:68
+#, fuzzy
+#| msgid "Wikimedia Picture Of The Day"
 msgctxt "source name"
-msgid "Wikimedia Picture Of The Day"
+msgid "Wikimedia Picture of the Day"
 msgstr "Vikimeedia päevapilt (Wikimedia Picture Of The Day)"
 
-#: src/source.rs:63
+#: src/source.rs:69
 msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/source/stalenhag.rs:100
+#: src/source.rs:70
+#, fuzzy
+#| msgid "Picture Of The Day"
+msgctxt "source name"
+msgid "Earth Science Picture of the Day"
+msgstr "Päevapilt"
+
+#: src/source.rs:71
+msgctxt "source name"
+msgid "Earth Observatory Image of the Day"
+msgstr ""
+
+#: src/source/bing.rs:81
+#, fuzzy
+#| msgctxt "source.stalenhag.copyright"
+#| msgid "All rights reserved."
+msgctxt "source.bing.copyright"
+msgid "All rights reserved."
+msgstr "Kõik õigused kaitstud."
+
+#: src/source/eoiod.rs:37
+msgctxt "source.eoiod.copyright"
+msgid "NASA Earth Observatory"
+msgstr ""
+
+#: src/source/stalenhag.rs:95
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr "Kõik õigused kaitstud."
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:96
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
 msgstr "Kogumik: %s"
 
-#: src/source/wikimedia.rs:60
+#: src/source/wikimedia.rs:65
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
 msgstr "%artist (%credit, %license)"
 
-#: src/source/wikimedia.rs:66
+#: src/source/wikimedia.rs:71
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
 msgstr "%artist (%license)"
 
-#: src/source/wikimedia.rs:75
+#: src/source/wikimedia.rs:80
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Teadmata autor, kõik õigused kaitstud"
+
+#~ msgctxt "command-line.option.description"
+#~ msgid "Show image for DATE, parsed as ISO string"
+#~ msgstr "Näita pilti kindlast KUUPÄEVast, kus KUUPÄEV on ISO vormingus"
+
+#~ msgctxt "command-line.option.arg.description"
+#~ msgid "DATE"
+#~ msgstr "KUUPÄEV"
+
+#~ msgctxt "source name"
+#~ msgid "NASA Astronomy Picture Of The Day"
+#~ msgstr ""
+#~ "NASA astronoomiateemaline päevapilt (NASA Astronomy Picture Of The Day)"
+
+#~ msgctxt "source name"
+#~ msgid "Wikimedia Picture Of The Day"
+#~ msgstr "Vikimeedia päevapilt (Wikimedia Picture Of The Day)"
 
 #~ msgctxt "error-notification.title"
 #~ msgid "Cancelled"
