@@ -121,7 +121,8 @@ msgstr "Taideteos"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid ""
-"Add Earth Science Picture of the Day and Earth Observatory Image of the Day."
+"Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
+"Day."
 msgstr ""
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
@@ -734,10 +735,12 @@ msgctxt "source name"
 msgid "Earth Science Picture of the Day"
 msgstr "Päivän kuva"
 
-#: src/source.rs:71
+#: src/source.rs:74
+#, fuzzy
+#| msgid "NASA Astronomy Picture Of The Day"
 msgctxt "source name"
-msgid "Earth Observatory Image of the Day"
-msgstr ""
+msgid "NASA Earth Observatory Image of the Day"
+msgstr "NASA-tähtitieteen päivän kuva"
 
 #: src/source/bing.rs:81
 #, fuzzy
