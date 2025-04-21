@@ -67,7 +67,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 </child>
                 <child>
                   <object class="GtkButton">
-                    <property name="icon-name">view-refresh-symbolic</property>
+                    <property name="icon-name">arrow-circular-top-right-symbolic</property>
                     <property name="action-name">win.load-images</property>
                     <property name="tooltip-text" translatable="yes" context="main-window.toolbar.button.tooltip">Load images for selected source</property>
                   </object>
@@ -142,7 +142,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <child>
                   <object class="GtkMenuButton" id="button_menu">
                     <property name="menu-model">main_menu</property>
-                    <property name="icon-name">open-menu-symbolic</property>
+                    <property name="icon-name">menu-large-symbolic</property>
                     <property name="primary">true</property>
                   </object>
                 </child>

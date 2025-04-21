@@ -11,6 +11,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/error-notification-page.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
         <!-- Action icons (keep sorted) -->
+        <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-circular-top-right-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-into-box-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-pointing-at-line-down-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/cross-large-symbolic.svg</file>
@@ -18,6 +19,7 @@
         <file preprocess="xml-stripblanks">icons/scalable/actions/image-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/info-outline-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/left-symbolic.svg</file>
+        <file preprocess="xml-stripblanks">icons/scalable/actions/menu-large-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/right-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/sad-computer-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/today-symbolic.svg</file>
