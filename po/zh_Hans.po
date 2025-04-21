@@ -7,11 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-10 01:21+0000\n"
+"PO-Revision-Date: 2025-04-12 09:21+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
-"de-swsnr-pictureoftheday/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.codeberg."
+"org/projects/de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,22 +19,22 @@ msgstr ""
 "X-Generator: Weblate 5.10.2\n"
 
 #. Translators: Do feel free to translate the application name
-#: de.swsnr.pictureoftheday.desktop.in:4
+#: de.swsnr.pictureoftheday.desktop.in:3
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:5
 #: resources/ui/application-window.blp:9
 msgid "Picture Of The Day"
 msgstr "今日图片"
 
-#: de.swsnr.pictureoftheday.desktop.in:5
+#: de.swsnr.pictureoftheday.desktop.in:4
 msgid "A daily picture as your wallpaper"
 msgstr "每日一张图片作为壁纸"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: de.swsnr.pictureoftheday.desktop.in:11
+#: de.swsnr.pictureoftheday.desktop.in:10
 msgid "Gnome;GTK;Picture;Day;Wallpaper;"
 msgstr "Gnome;GTK;Picture;Day;Wallpaper;图片;壁纸;"
 
-#: de.swsnr.pictureoftheday.desktop.in:18
+#: de.swsnr.pictureoftheday.desktop.in:17
 msgid "Preferences"
 msgstr "首选项"
 
@@ -44,12 +43,19 @@ msgid "Your daily wallpaper"
 msgstr "您的每日壁纸"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
+#, fuzzy
+#| msgid ""
+#| "Get a picture of the day from the following sources as your daily "
+#| "wallpaper."
 msgid ""
-"Get a picture of the day from the following sources as your daily wallpaper."
+"Get a picture of the day from the following sources and use as your daily "
+"wallpaper."
 msgstr "从以下来源获取当天的图片作为您的每日壁纸。"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
-msgid "NASA Astronomy Picture Of The Day"
+#, fuzzy
+#| msgid "NASA Astronomy Picture Of The Day"
+msgid "NASA Astronomy Picture of the Day"
 msgstr "NASA 今日天文图片"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:11
@@ -61,109 +67,128 @@ msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhag 作品"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
-msgid "Wikimedia Picture Of The Day"
+#, fuzzy
+#| msgid "Wikimedia Picture Of The Day"
+msgid "Wikimedia Picture of the Day"
 msgstr "维基媒体今日图片"
 
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
+#, fuzzy
+#| msgid "Picture Of The Day"
+msgid "Earth Science Picture of the Day"
+msgstr "今日图片"
+
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
+msgid "NASA Earth Observatory Image of the Day"
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:17
 msgid ""
 "Preview images, pick your favorite source, enable automatic updates, and "
 "enjoy a fresh wallpaper every day."
 msgstr "预览图片，选择您最喜欢的来源，启用自动更新，即可每天享受全新壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:16
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:18
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
-msgstr "请注意，所有图片均受版权保护；您可能无权使用或分发。请务必查看每张图片的许可"
+msgstr ""
+"请注意，所有图片均受版权保护；您可能无权使用或分发。请务必查看每张图片的许可"
 "条款。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:22
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
 msgid "Picture"
 msgstr "图片"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:23
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
 msgid "Daily"
 msgstr "每日"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
 msgid "Wallpaper"
 msgstr "壁纸"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:27
 msgid "Astronomy"
 msgstr "天文"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:28
 msgid "Artwork"
 msgstr "作品"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:48
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+msgid ""
+"Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
+"Day."
+msgstr ""
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr "添加覆盖工具栏以转到图片视图的上一张或下一张图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr "添加工具栏按钮以保存当前图片，并在外部应用程序中打开当前图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr "退出时尽量避免残留部分下载的壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "为维基媒体图片使用更可靠的端点。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:63
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid "No longer show preview when setting a wallpaper."
 msgstr "设置壁纸时不再显示预览。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid "Improve scheduling of automatic downloads."
 msgstr "改进自动下载的调度。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
 msgid "Remember window size and state."
 msgstr "记住窗口大小和状态。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:66
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:78
 msgid "Update to GNOME 48."
 msgstr "更新到 GNOME 48。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr "自动启动并每十二小时自动刷新每日壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
 msgid "No longer support multiple windows."
 msgstr "不再支持多个窗口。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:87
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:99
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr "初始版本有四个来源：APOD、维基媒体、Simon Stålenhag 和必应。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr "添加一个主窗口显示当天的图片，并添加一个按钮将其设置为当前壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:112
 msgid "A picture of the day from Wikimedia"
 msgstr "来自维基媒体的每日图片"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:116
 msgid "The preferences dialog with settings for image sources"
 msgstr "带有图片源设置的首选项对话框"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:108
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:120
 msgid "The empty greeting page with the application icon"
 msgstr "带有应用程序图标的空白问候页面"
 
@@ -363,15 +388,15 @@ msgid ""
 "fine, but if you find that you are rate-limited, you may wish to use your "
 "own API key, which you can obtain free of charge at https://api.nasa.gov/."
 msgstr ""
-"请求 APOD API 时使用的 API "
-"密钥。通常使用默认密钥即可，但如果您发现自己受到速率限制，"
-"您可能想使用您自己的 API 密钥，您可以在 https://api.nasa.gov/ 免费获取。"
+"请求 APOD API 时使用的 API 密钥。通常使用默认密钥即可，但如果您发现自己受到速"
+"率限制，您可能想使用您自己的 API 密钥，您可以在 https://api.nasa.gov/ 免费获"
+"取。"
 
 #: schemas/de.swsnr.pictureoftheday.gschema.xml:24
 msgid "Collections from Stålenhag which to ignore."
 msgstr "要忽略的来自 Stålenhag 的集合。"
 
-#: src/app.rs:115
+#: src/app.rs:113
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "翻译"
@@ -379,51 +404,51 @@ msgstr "翻译"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:124
+#: src/app.rs:122
 msgid "translator-credits"
 msgstr "Outbreak2096"
 
-#: src/app.rs:129
+#: src/app.rs:127
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "帮助和灵感"
 
-#: src/app.rs:142
+#: src/app.rs:140
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "有用的服务"
 
-#: src/app.rs:177
+#: src/app.rs:175
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "联系信息"
 
-#: src/app.rs:182
+#: src/app.rs:180
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:186
+#: src/app.rs:184
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "打开 URL"
 
-#: src/app.rs:435
+#: src/app.rs:445
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:446
+#: src/app.rs:456
 msgctxt "command-line.option.description"
-msgid "Show image for DATE, parsed as ISO string"
-msgstr "显示对应日期的图片，解析为 ISO 字符串"
+msgid "Show image for the given date"
+msgstr ""
 
-#: src/app.rs:451
+#: src/app.rs:461
 msgctxt "command-line.option.arg.description"
-msgid "DATE"
-msgstr "日期"
+msgid "YYYY-MM-DD"
+msgstr ""
 
-#: src/app.rs:624
+#: src/app.rs:637
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "在后台自动获取并设置壁纸"
@@ -450,7 +475,8 @@ msgctxt "error-notification.description"
 msgid ""
 "The %1 server is rate-limited and does currently not allow you to fetch an "
 "image. Try again later, or try a different source."
-msgstr "%1 服务器有速率限制，目前不允许您获取图片。请稍后重试，或尝试其他来源。"
+msgstr ""
+"%1 服务器有速率限制，目前不允许您获取图片。请稍后重试，或尝试其他来源。"
 
 #: src/app/model/error_notification.rs:74
 #: src/app/model/error_notification.rs:87
@@ -470,8 +496,9 @@ msgctxt "error-notification.description"
 msgid ""
 "Today, %1 provides a video or another type of media which this application "
 "does not support. Try again tomorrow, or try a different source."
-msgstr "今天，%1 "
-"提供了本应用程序不支持的视频或其他类型的媒体。请明天重试，或尝试其他来源。"
+msgstr ""
+"今天，%1 提供了本应用程序不支持的视频或其他类型的媒体。请明天重试，或尝试其他"
+"来源。"
 
 #: src/app/model/error_notification.rs:103
 #: src/app/model/error_notification.rs:121
@@ -487,6 +514,8 @@ msgid ""
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
 msgstr ""
+"%s 服务器回复了 HTTP 状态 %2。服务器当前可能有问题。请稍后重试，或尝试其他来"
+"源。如果问题仍然存在，请报告问题。"
 
 #: src/app/model/error_notification.rs:125
 msgctxt "error-notification.description"
@@ -495,6 +524,8 @@ msgid ""
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
 msgstr ""
+"%1 服务器响应了无效数据。服务器当前可能有问题。请稍后重试，或尝试其他来源。如"
+"果问题仍然存在，请报告问题。"
 
 #: src/app/model/error_notification.rs:140
 msgctxt "error-notification.title"
@@ -508,6 +539,8 @@ msgid ""
 "following message: %2. Your system appears to have only limited network "
 "connectivity. Try to connect your system to the internet."
 msgstr ""
+"从 %1 获取今天的图片时发生 I/O 错误，消息如下：%2。您的系统网络连接似乎受限。"
+"请尝试将您的系统连接到互联网。"
 
 #: src/app/model/error_notification.rs:153
 msgctxt "error-notification.description"
@@ -516,85 +549,89 @@ msgid ""
 "following message: %2. Try again later, or try a different source. If the "
 "issue persists please report the problem."
 msgstr ""
+"从 %1 获取今天的图片时发生 I/O 错误，消息如下：%2。请稍后重试，或尝试其他来"
+"源。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:72
+#: src/app/widgets/application_window.rs:74
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
 "the issue persists please report the problem."
-msgstr ""
+msgstr "打开 %1 时发生 I/O 错误，消息如下：%2。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:78
+#: src/app/widgets/application_window.rs:80
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "无法打开源 URL"
 
-#: src/app/widgets/application_window.rs:97
+#: src/app/widgets/application_window.rs:99
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: %1. If the issue persists please report the problem."
-msgstr ""
+msgstr "设置壁纸时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:103
+#: src/app/widgets/application_window.rs:105
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "无法设置壁纸"
 
-#: src/app/widgets/application_window.rs:130
+#: src/app/widgets/application_window.rs:132
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
+"打开当前图片时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:136
+#: src/app/widgets/application_window.rs:138
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "无法打开图片"
 
-#: src/app/widgets/application_window.rs:151
+#: src/app/widgets/application_window.rs:153
 msgid "Saved image %1"
 msgstr "已保存图片 %1"
 
-#: src/app/widgets/application_window.rs:169
+#: src/app/widgets/application_window.rs:171
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
+"保存当前图片时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:175
+#: src/app/widgets/application_window.rs:177
 msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "无法保存图片"
 
-#: src/app/widgets/application_window.rs:192
+#: src/app/widgets/application_window.rs:194
 msgctxt "alert.response"
 msgid "Close"
 msgstr "关闭"
 
-#: src/app/widgets/application_window.rs:199
+#: src/app/widgets/application_window.rs:201
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "联系信息"
 
-#: src/app/widgets/application_window.rs:203
+#: src/app/widgets/application_window.rs:205
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app/widgets/application_window.rs:207
+#: src/app/widgets/application_window.rs:209
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "打开 URL"
 
-#: src/app/widgets/application_window.rs:361
+#: src/app/widgets/application_window.rs:364
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "详情"
 
-#: src/app/widgets/application_window.rs:467
+#: src/app/widgets/application_window.rs:469
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr "保存图片"
@@ -602,58 +639,104 @@ msgstr "保存图片"
 #: src/app/widgets/preferences_dialog.rs:71
 msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1/%2 集合已启用"
 
-#: src/main.rs:87
+#: src/main.rs:88
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr "今日图片"
 
-#: src/source.rs:60
+#: src/source.rs:66
+#, fuzzy
+#| msgid "NASA Astronomy Picture Of The Day"
 msgctxt "source name"
-msgid "NASA Astronomy Picture Of The Day"
+msgid "NASA Astronomy Picture of the Day"
 msgstr "NASA 今日天文图片"
 
-#: src/source.rs:61
+#: src/source.rs:67
 msgctxt "source name"
 msgid "Bing"
 msgstr "必应"
 
-#: src/source.rs:62
+#: src/source.rs:68
+#, fuzzy
+#| msgid "Wikimedia Picture Of The Day"
 msgctxt "source name"
-msgid "Wikimedia Picture Of The Day"
+msgid "Wikimedia Picture of the Day"
 msgstr "维基媒体今日图片"
 
-#: src/source.rs:63
+#: src/source.rs:69
 msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/source/stalenhag.rs:100
-msgctxt "source.stalenhag.copyright"
+#: src/source.rs:70
+#, fuzzy
+#| msgid "Picture Of The Day"
+msgctxt "source name"
+msgid "Earth Science Picture of the Day"
+msgstr "今日图片"
+
+#: src/source.rs:74
+#, fuzzy
+#| msgid "NASA Astronomy Picture Of The Day"
+msgctxt "source name"
+msgid "NASA Earth Observatory Image of the Day"
+msgstr "NASA 今日天文图片"
+
+#: src/source/bing.rs:81
+#, fuzzy
+#| msgctxt "source.stalenhag.copyright"
+#| msgid "All rights reserved."
+msgctxt "source.bing.copyright"
 msgid "All rights reserved."
+msgstr "版权所有。"
+
+#: src/source/eoiod.rs:37
+msgctxt "source.eoiod.copyright"
+msgid "NASA Earth Observatory"
 msgstr ""
 
-#: src/source/stalenhag.rs:101
+#: src/source/stalenhag.rs:95
+msgctxt "source.stalenhag.copyright"
+msgid "All rights reserved."
+msgstr "版权所有。"
+
+#: src/source/stalenhag.rs:96
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
-msgstr ""
+msgstr "集合：%s"
 
-#: src/source/wikimedia.rs:60
+#: src/source/wikimedia.rs:65
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
-msgstr ""
+msgstr "%artist (%credit, %license)"
 
-#: src/source/wikimedia.rs:66
+#: src/source/wikimedia.rs:71
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
-msgstr ""
+msgstr "%artist (%license)"
 
-#: src/source/wikimedia.rs:75
+#: src/source/wikimedia.rs:80
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
-msgstr ""
+msgstr "未知，版权所有"
+
+#~ msgctxt "command-line.option.description"
+#~ msgid "Show image for DATE, parsed as ISO string"
+#~ msgstr "显示对应日期的图片，解析为 ISO 字符串"
+
+#~ msgctxt "command-line.option.arg.description"
+#~ msgid "DATE"
+#~ msgstr "日期"
+
+#~ msgctxt "source name"
+#~ msgid "NASA Astronomy Picture Of The Day"
+#~ msgstr "NASA 今日天文图片"
+
+#~ msgctxt "source name"
+#~ msgid "Wikimedia Picture Of The Day"
+#~ msgstr "维基媒体今日图片"
