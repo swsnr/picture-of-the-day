@@ -84,4 +84,4 @@ jobs:
         uses: EmbarkStudios/cargo-deny-action@v2
         with:
           rust-version: stable
-      - run: appstreamcli validate --explain resources/de.swsnr.pictureoftheday.metainfo.xml
+      - run: appstreamcli validate --strict --explain resources/de.swsnr.pictureoftheday.metainfo.xml
