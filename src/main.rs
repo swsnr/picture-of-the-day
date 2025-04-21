@@ -53,7 +53,9 @@ mod image;
 mod io;
 mod locale;
 mod portal;
+mod rss;
 mod source;
+mod xml;
 
 use config::G_LOG_DOMAIN;
 use source::Source;
