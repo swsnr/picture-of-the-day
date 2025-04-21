@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-10 01:21+0000\n"
+"PO-Revision-Date: 2025-04-12 09:21+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
@@ -486,7 +486,9 @@ msgid ""
 "The %s server replied with HTTP status %2. The server may have issues "
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
-msgstr ""
+msgstr "%s 服务器回复了 HTTP 状态 "
+"%2。服务器当前可能有问题。请稍后重试，或尝试其他来源。如果问题仍然存在，请报"
+"告问题。"
 
 #: src/app/model/error_notification.rs:125
 msgctxt "error-notification.description"
@@ -494,7 +496,9 @@ msgid ""
 "The %1 server responded with invalid data. The server may have issues "
 "currently. Try again later, or try a different source. If the issue persists "
 "please report the problem."
-msgstr ""
+msgstr "%1 "
+"服务器响应了无效数据。服务器当前可能有问题。请稍后重试，或尝试其他来源。如果"
+"问题仍然存在，请报告问题。"
 
 #: src/app/model/error_notification.rs:140
 msgctxt "error-notification.title"
@@ -507,7 +511,8 @@ msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
 "following message: %2. Your system appears to have only limited network "
 "connectivity. Try to connect your system to the internet."
-msgstr ""
+msgstr "从 %1 获取今天的图片时发生 I/O "
+"错误，消息如下：%2。您的系统网络连接似乎受限。请尝试将您的系统连接到互联网。"
 
 #: src/app/model/error_notification.rs:153
 msgctxt "error-notification.description"
@@ -515,14 +520,16 @@ msgid ""
 "An I/O error occurred while fetching today's image from %1, with the "
 "following message: %2. Try again later, or try a different source. If the "
 "issue persists please report the problem."
-msgstr ""
+msgstr "从 %1 获取今天的图片时发生 I/O "
+"错误，消息如下：%2。请稍后重试，或尝试其他来源。如果问题仍然存在，请报告问题"
+"。"
 
 #: src/app/widgets/application_window.rs:72
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
 "the issue persists please report the problem."
-msgstr ""
+msgstr "打开 %1 时发生 I/O 错误，消息如下：%2。如果问题仍然存在，请报告问题。"
 
 #: src/app/widgets/application_window.rs:78
 msgctxt "error-notification.title"
@@ -534,7 +541,7 @@ msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: %1. If the issue persists please report the problem."
-msgstr ""
+msgstr "设置壁纸时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
 #: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
@@ -546,7 +553,7 @@ msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: %1. If the issue persists please report the problem."
-msgstr ""
+msgstr "打开当前图片时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
 #: src/app/widgets/application_window.rs:136
 msgctxt "error-notification.title"
@@ -562,7 +569,7 @@ msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: %1. If the issue persists please report the problem."
-msgstr ""
+msgstr "保存当前图片时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
 #: src/app/widgets/application_window.rs:175
 msgctxt "error-notification.title"
@@ -602,8 +609,7 @@ msgstr "保存图片"
 #: src/app/widgets/preferences_dialog.rs:71
 msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1/%2 集合已启用"
 
 #: src/main.rs:87
 msgctxt "application-name"
@@ -633,27 +639,27 @@ msgstr "Simon Stålenhag"
 #: src/source/stalenhag.rs:100
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
-msgstr ""
+msgstr "版权所有。"
 
 #: src/source/stalenhag.rs:101
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
-msgstr ""
+msgstr "集合：%s"
 
 #: src/source/wikimedia.rs:60
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
-msgstr ""
+msgstr "%artist (%credit, %license)"
 
 #: src/source/wikimedia.rs:66
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
-msgstr ""
+msgstr "%artist (%license)"
 
 #: src/source/wikimedia.rs:75
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
-msgstr ""
+msgstr "未知，版权所有"
