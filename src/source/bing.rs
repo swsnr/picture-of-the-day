@@ -7,7 +7,7 @@
 use std::borrow::Cow;
 
 use chrono::NaiveDate;
-use glib::Priority;
+use glib::{Priority, dpgettext2};
 use serde::{Deserialize, Deserializer, de};
 use url::Url;
 
@@ -77,7 +77,10 @@ impl TryFrom<BingImage> for DownloadableImage {
                         // The copyright fields really seem to be more of a description really
                         url: Some(image.copyrightlink),
                         description: Some(image.copyright),
-                        copyright: None,
+                        copyright: Some(
+                            dpgettext2(None, "source.bing.copyright", "All rights reserved.")
+                                .into(),
+                        ),
                         source: Source::Bing,
                     },
                     image_url: image_url.into(),
