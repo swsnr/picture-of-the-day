@@ -1,4 +1,5 @@
-FROM docker.io/archlinux:latest
+FROM docker.io/fedora:42
+LABEL org.opencontainers.image.description "CI image for de.swsnr.pictureoftheday"
 
-RUN pacman -Syu --noconfirm gcc pkgconf libadwaita blueprint-compiler libsoup3 && \
-    rm -rf /var/cache/pacman/pkg /var/lib/pacman/sync
+RUN dnf install -y blueprint-compiler libsoup3-devel libadwaita-devel gcc pkgconf git gettext make appstream && \
+    dnf clean all && rm -rf /var/cache/yum
