@@ -21,11 +21,11 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.2.1/picture-of-the-day-v1.2.1.tar.zst
-        sha512: "0e26e82fedf23cd58e5bf011344f388cbccd18f96a981a724ad16c13ea4c1ddbc267b3adfff2ecc480e8b1afb9f981de7d693a42c4f27f1e91311963dd2c2b0e"
+        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.3.0/picture-of-the-day-v1.3.0.tar.zst
+        sha512: "6abf3ffa1fd8117f57463c4460101257aefa78c816f8601fe39c3413f84f2df0dcbe74a969b15a6d8670fdfc8d3321e6455659fed72a7991bee3ac6edcd23b80"
       - type: archive
-        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.2.1/picture-of-the-day-v1.2.1-vendor.tar.zst
-        sha512: "c87a7c5f2cd7640ce3c3f5063a2d89bf2c638b70dc19b8e35aedc38dfcee7560c5e26919a87541bc02d300e04b61ed1f149a25c42ddbf53bb5df551e22ad9a56"
+        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.3.0/picture-of-the-day-v1.3.0-vendor.tar.zst
+        sha512: "995dc6779179ffcfdcc89c030e49446301275fc3491e432e5dd0115ad894f2d04f4dceba6ff5cf69d361c49be318020f50e2463f21e112b285ce7207592becee"
         dest: vendor/
       - type: inline
         dest: .cargo/
