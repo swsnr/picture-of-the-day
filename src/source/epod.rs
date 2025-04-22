@@ -77,15 +77,18 @@ fn scrape_page(data: &[u8]) -> Result<Vec<DownloadableImage>, ScraperError> {
     let mut document = Html::parse_document(&String::from_utf8_lossy(data));
     replace_br_with_linebreak(&mut document);
 
-    let header_selector = Selector::parse(".entry > .entry-header > a").unwrap();
+    let header_selector = Selector::parse(".entry > .entry-header").unwrap();
     let header = document
         .select(&header_selector)
         .next()
-        .ok_or(".entry > .entry-header > a not found")?;
+        .ok_or(".entry > .entry-header not found")?;
     let title = header.text().collect::<String>().trim().to_owned();
-    let url = header
-        .attr("href")
-        .ok_or(".entry > .entry-header > a had no href")?;
+
+    let header_link_selector = Selector::parse(".entry > .entry-header > a").unwrap();
+    let url = document
+        .select(&header_link_selector)
+        .next()
+        .and_then(|a| a.attr("href"));
 
     let body_paragraphs_selector = Selector::parse(".entry .entry-body > p").unwrap();
     let image_paragraph_selector = Selector::parse("p:has(a.asset-img-link)").unwrap();
@@ -113,7 +116,7 @@ fn scrape_page(data: &[u8]) -> Result<Vec<DownloadableImage>, ScraperError> {
         title,
         description: Some(description),
         copyright,
-        url: Some(url.to_owned()),
+        url: url.map(ToOwned::to_owned),
         source: Source::Eopd,
     };
 
