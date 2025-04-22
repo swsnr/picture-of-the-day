@@ -91,7 +91,8 @@ fn scrape_page(data: &[u8]) -> Result<Vec<DownloadableImage>, ScraperError> {
         .and_then(|a| a.attr("href"));
 
     let body_paragraphs_selector = Selector::parse(".entry .entry-body > p").unwrap();
-    let image_paragraph_selector = Selector::parse("p:has(a.asset-img-link)").unwrap();
+    let image_paragraph_selector =
+        Selector::parse("p:has(a.asset-img-link), p:has(img:only-child)").unwrap();
     let (images, paragraphs) = document
         .select(&body_paragraphs_selector)
         // Skip until we find the first image
@@ -120,12 +121,25 @@ fn scrape_page(data: &[u8]) -> Result<Vec<DownloadableImage>, ScraperError> {
         source: Source::Eopd,
     };
 
-    let image_selector = Selector::parse("a.asset-img-link").unwrap();
-    let image_urls = images
-        .iter()
-        .flat_map(|e| e.select(&image_selector))
-        .map(|e| e.attr("href").ok_or("a.asset-img-link had no href"))
-        .collect::<Result<Vec<_>, _>>()?;
+    let asset_link_selector = Selector::parse("a.asset-img-link").unwrap();
+    let image_urls = {
+        let asset_link_hrefs = images
+            .iter()
+            .flat_map(|e| e.select(&asset_link_selector))
+            .map(|e| e.attr("href").ok_or("a.asset-img-link had no href"))
+            .collect::<Result<Vec<_>, _>>()?;
+        if asset_link_hrefs.is_empty() {
+            // If we had no asset links to high-res images, look images themselves
+            let image_selector = Selector::parse("img:only-child").unwrap();
+            images
+                .iter()
+                .flat_map(|e| e.select(&image_selector))
+                .map(|e| e.attr("src").ok_or("img:only-child had no src"))
+                .collect::<Result<Vec<_>, _>>()?
+        } else {
+            asset_link_hrefs
+        }
+    };
 
     let images = image_urls
         .into_iter()
@@ -221,6 +235,56 @@ Photo Details: Canon 650D camera; Samyang 8 mm fisheye-lens.
         assert_eq!(
             image.pubdate.unwrap(),
             NaiveDate::from_ymd_opt(2025, 1, 3).unwrap()
+        );
+    }
+
+    #[test]
+    fn scrape_page_without_asset_link_and_copyright() {
+        let mut images = scrape_url(
+            "https://epod.usra.edu/blog/2025/04/archive-earth-day-and-red-deer-bridge.html",
+        );
+
+        let image = images.pop().unwrap();
+        assert!(images.is_empty(), "More than one image returned!");
+
+        let metadata = image.metadata;
+        assert_eq!(metadata.title, "Archive - Earth Day and Red Deer Bridge");
+        assert!(metadata.copyright.is_none(),);
+        assert_eq!(metadata.source, Source::Eopd);
+        assert_eq!(
+            metadata.description.unwrap(),
+            "\
+This EPOD was originally published April 22, 2005
+
+Provided by: Peg Zenko
+Summary authors & editors: Peg Zenko
+
+The photo above was taken on October 3, 2004 and shows the Red Deer River and \
+bridge at Yaha Tinda Ranch on the border of Banff National Park in Alberta, \
+Canada. Yaha Tinda is cited as one of the last remaining unspoiled mountain \
+elk habitats in Alberta, containing miles of beautiful winding horse trails. \
+These trails have a fair amount of traffic from recreational riders and \
+hunters, but everyone is very respectful of keeping it pristine. Our 15-mile \
+(24 km) trek took place on an absolutely stunning day. I've never been \
+anywhere that equals it for overall beauty, even Glacier National Park (in \
+Montana) or Jasper National Park (also in Alberta).
+
+In the 1960s, former U.S. Senator Gaylord Nelson first proposed that there \
+should be a designated day set aside to raise the concern about environmental \
+issues and to consciously conserve our natural resources. The very first Earth \
+Day was celebrated on April 22, 1970, so today (April 22, 2025) we're \
+celebrating its 55th observance. Note that while Earth Day is always on April \
+22, International Earth Day occurs on the day of the Vernal Equinox."
+        );
+        assert!(metadata.url.is_none());
+
+        assert_eq!(
+            image.image_url,
+            "https://epod.typepad.com/.a/6a0105371bb32c970b01157114b027970c-750wi"
+        );
+        assert_eq!(
+            image.pubdate.unwrap(),
+            NaiveDate::from_ymd_opt(2025, 4, 22).unwrap()
         );
     }
 
