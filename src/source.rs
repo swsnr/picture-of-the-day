@@ -115,7 +115,9 @@ impl Source {
             Source::Wikimedia => {
                 vec![wikimedia::fetch_featured_image(session, date.unwrap_or(today)).await?]
             }
-            Source::Stalenhag => vec![stalenhag::pick_image_for_date(date.unwrap_or(today))],
+            Source::Stalenhag => vec![stalenhag::pick_image_for_date_from_configured_collections(
+                date.unwrap_or(today),
+            )],
             Source::Eopd => {
                 date.inspect(|_| {
                     glib::warn!(

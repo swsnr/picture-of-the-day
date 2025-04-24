@@ -81,15 +81,14 @@ fn images(collections: impl Iterator<Item = &'static Collection>) -> Vec<ImageIn
         .collect()
 }
 
-pub fn pick_image_for_date(date: Date) -> DownloadableImage {
-    let all_images = images(enabled_collections());
+fn pick_image_for_date(date: Date, images: &[ImageInCollection]) -> DownloadableImage {
     // The 84th anniversary of Georg Elsner's heroic act of resistance against the nazi regime
     let base_date = jiff::civil::date(2023, 11, 8);
     let days = (date - base_date).get_days();
-    let index = usize::try_from(days.rem_euclid(i32::try_from(all_images.len()).unwrap())).unwrap();
+    let index = usize::try_from(days.rem_euclid(i32::try_from(images.len()).unwrap())).unwrap();
     // The modulus above makes sure we don't index out of bounds here
     #[allow(clippy::indexing_slicing)]
-    let image = &all_images[index];
+    let image = &images[index];
     // The URL of the image is guaranteed to have at least one slash.
     let (_, base_name) = image.image.rsplit_once('/').unwrap();
     let copyright = dpgettext2(None, "source.stalenhag.copyright", "All rights reserved.");
@@ -108,5 +107,53 @@ pub fn pick_image_for_date(date: Date) -> DownloadableImage {
         // images and will eventually hit this image again.
         pubdate: None,
         suggested_filename: Some(format!("{}-{base_name}", image.tag)),
+    }
+}
+
+fn pick_image_for_date_from_collections(
+    date: Date,
+    collections: impl Iterator<Item = &'static Collection>,
+) -> DownloadableImage {
+    pick_image_for_date(date, &images(collections))
+}
+
+pub fn pick_image_for_date_from_configured_collections(date: Date) -> DownloadableImage {
+    pick_image_for_date_from_collections(date, enabled_collections())
+}
+
+#[cfg(test)]
+mod tests {
+    use gtk::gio;
+    use jiff::civil::date;
+
+    use crate::source::Source;
+
+    use super::COLLECTIONS;
+
+    #[test]
+    fn pick_image_for_date_from_collections() {
+        gio::resources_register_include!("pictureoftheday.gresource").unwrap();
+        let collections = COLLECTIONS
+            .iter()
+            .filter(move |collection| collection.tag != "paleo");
+        let image = super::pick_image_for_date_from_collections(date(2025, 4, 24), collections);
+        let metadata = image.metadata;
+        assert_eq!(metadata.title, "Svema 19 Big");
+        assert_eq!(metadata.copyright.unwrap(), "All rights reserved.");
+        assert_eq!(
+            metadata.description.unwrap(),
+            "Collection: SWEDISH MACHINES (2024)"
+        );
+        assert_eq!(
+            metadata.url.unwrap(),
+            "https://simonstalenhag.se/svema.html"
+        );
+        assert_eq!(metadata.source, Source::Stalenhag);
+        assert!(image.pubdate.is_none());
+        assert_eq!(
+            image.image_url,
+            "https://simonstalenhag.se/4k/svema_19_big.jpg"
+        );
+        assert_eq!(image.suggested_filename.unwrap(), "svema-svema_19_big.jpg");
     }
 }
