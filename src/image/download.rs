@@ -4,13 +4,56 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::path::Path;
+use std::{fmt::Display, path::Path};
 
 use glib::Priority;
+use glib::translate::IntoGlib;
 use gtk::gio::{self, FileCopyFlags, IOErrorEnum, prelude::*};
 use soup::prelude::SessionExt;
 
 use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error};
+
+/// An error occurred while downloading.
+#[derive(Debug, Clone)]
+pub enum DownloadError {
+    Glib(glib::Error),
+    SoupStatus(soup::Status),
+}
+
+impl DownloadError {
+    pub fn matches<T: ErrorDomain>(&self, domain: T) -> bool {
+        match self {
+            DownloadError::Glib(error) => error.matches(domain),
+            DownloadError::SoupStatus(_) => false,
+        }
+    }
+}
+
+impl Display for DownloadError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            DownloadError::Glib(error) => write!(f, "{error}"),
+            DownloadError::SoupStatus(status) => {
+                write!(f, "Unexpected status: {}", status.into_glib())
+            }
+        }
+    }
+}
+
+impl std::error::Error for DownloadError {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            DownloadError::Glib(error) => Some(error),
+            DownloadError::SoupStatus(_) => None,
+        }
+    }
+}
+
+impl From<glib::Error> for DownloadError {
+    fn from(error: glib::Error) -> Self {
+        Self::Glib(error)
+    }
+}
 
 /// A temporary target file for a download.
 ///
@@ -74,11 +117,12 @@ pub async fn download_file_to_directory(
     url: &str,
     directory: &Path,
     filename: &str,
-) -> Result<(), glib::Error> {
+) -> Result<(), DownloadError> {
     let temp_file = TemporaryDownloadFile::new(directory, filename);
     transfer_file(session, url, temp_file.as_ref()).await?;
     let target = gio::File::for_path(directory.join(filename));
-    temp_file.move_to(&target).await
+    temp_file.move_to(&target).await?;
+    Ok(())
 }
 
 /// Return a file from `url` to `target`.
@@ -90,7 +134,7 @@ async fn transfer_file(
     session: &soup::Session,
     url: &str,
     target: &gio::File,
-) -> Result<isize, glib::Error> {
+) -> Result<isize, DownloadError> {
     let message = soup::Message::new("GET", url).map_err(|error| {
         glib::Error::new(
             IOErrorEnum::InvalidArgument,
@@ -99,26 +143,19 @@ async fn transfer_file(
     })?;
 
     let source = session.send_future(&message, Priority::DEFAULT).await?;
-    if message.status() == soup::Status::NotFound {
-        return Err(glib::Error::new(
-            IOErrorEnum::NotFound,
-            &format!("URL {url} responded with 404"),
-        ));
-    }
     if message.status() != soup::Status::Ok {
-        return Err(glib::Error::new(
-            IOErrorEnum::Failed,
-            &format!("URL {url} responded with status {:?}", message.status()),
-        ));
+        return Err(DownloadError::SoupStatus(message.status()));
     }
 
     let sink = target
         .create_future(gio::FileCreateFlags::NONE, glib::Priority::DEFAULT)
         .await?;
-    sink.splice_future(
-        &source,
-        gio::OutputStreamSpliceFlags::CLOSE_SOURCE | gio::OutputStreamSpliceFlags::CLOSE_TARGET,
-        glib::Priority::DEFAULT,
-    )
-    .await
+    let transferred = sink
+        .splice_future(
+            &source,
+            gio::OutputStreamSpliceFlags::CLOSE_SOURCE | gio::OutputStreamSpliceFlags::CLOSE_TARGET,
+            glib::Priority::DEFAULT,
+        )
+        .await?;
+    Ok(transferred)
 }

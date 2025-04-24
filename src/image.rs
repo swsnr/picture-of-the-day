@@ -5,7 +5,7 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use chrono::NaiveDate;
-use download::download_file_to_directory;
+use download::{DownloadError, download_file_to_directory};
 use gtk::gio::{self, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 use std::{
     borrow::Cow,
@@ -83,7 +83,7 @@ impl DownloadableImage {
         &self,
         directory: &Path,
         session: &soup::Session,
-    ) -> Result<PathBuf, glib::Error> {
+    ) -> Result<PathBuf, DownloadError> {
         let file_name = self.filename();
         let target_file = directory.join(file_name.as_ref());
         let exists = gio::File::for_path(&target_file)

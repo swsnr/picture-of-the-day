@@ -7,8 +7,10 @@
 use std::{error::Error, fmt::Display};
 
 use glib::GString;
+use gtk::gio::IOErrorEnum;
 
 use crate::http::HttpError;
+use crate::image::download::DownloadError;
 use crate::rss::RssError;
 
 #[derive(Debug)]
@@ -50,6 +52,18 @@ impl From<serde_json::Error> for SourceError {
 impl From<RssError> for SourceError {
     fn from(error: RssError) -> Self {
         Self::InvalidRss(error)
+    }
+}
+
+impl From<DownloadError> for SourceError {
+    fn from(error: DownloadError) -> Self {
+        match error {
+            DownloadError::Glib(error) => Self::IO(error),
+            DownloadError::SoupStatus(status) => match status {
+                soup::Status::NotFound => SourceError::NoImage,
+                _ => glib::Error::new(IOErrorEnum::Failed, &error.to_string()).into(),
+            },
+        }
     }
 }
 
