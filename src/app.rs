@@ -331,13 +331,12 @@ mod imp {
     use adw::gio::ApplicationCommandLine;
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use chrono::NaiveDate;
     use futures::StreamExt;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
     use gtk::gio::{self, ApplicationHoldGuard, Cancellable};
+    use jiff::civil::Date;
     use soup::prelude::*;
-    use std::cell::Cell;
-    use std::str::FromStr;
+    use std::{cell::Cell, str::FromStr};
     use std::{cell::RefCell, time::Duration};
 
     #[derive(Default, Properties)]
@@ -352,7 +351,7 @@ mod imp {
         /// The overridden date, if any.
         ///
         /// Set if the user specified --date on the command line.
-        date: Cell<Option<NaiveDate>>,
+        date: Cell<Option<Date>>,
         /// State of automatic wallpaper update.
         ///
         /// If `None` automatic wallpaper update is off.  If set contains a
@@ -562,7 +561,7 @@ mod imp {
                 ));
                 ExitCode::SUCCESS
             } else if let Ok(Some(date)) = options.lookup::<String>("date") {
-                match chrono::NaiveDate::from_str(&date) {
+                match jiff::civil::Date::from_str(&date) {
                     Ok(date) => {
                         glib::warn!("Overriding date to {date}");
                         self.date.replace(Some(date));

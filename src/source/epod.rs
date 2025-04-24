@@ -110,7 +110,7 @@ fn scrape_page(data: &[u8]) -> Result<Vec<DownloadableImage>, ScraperError> {
         .text()
         .next()
         .ok_or("No text in .entry > .date")?;
-    let pubdate = chrono::NaiveDate::parse_from_str(entry_date.trim(), "%B %d, %Y")
+    let pubdate = jiff::civil::Date::strptime("%B %d, %Y", entry_date.trim())
         .map_err(|_| "No valid date in .entry > .date")?;
 
     let metadata = ImageMetadata {
@@ -172,8 +172,8 @@ pub async fn fetch_picture_of_the_day(
 
 #[cfg(test)]
 mod tests {
-    use chrono::NaiveDate;
     use gtk::gio::Cancellable;
+    use jiff::civil::{Date, date};
     use soup::prelude::SessionExt;
 
     use crate::{
@@ -232,10 +232,7 @@ Photo Details: Canon 650D camera; Samyang 8 mm fisheye-lens.
             image.image_url,
             "https://epod.usra.edu/.a/6a0105371bb32c970b02c8d3c1bc3f200c-pi"
         );
-        assert_eq!(
-            image.pubdate.unwrap(),
-            NaiveDate::from_ymd_opt(2025, 1, 3).unwrap()
-        );
+        assert_eq!(image.pubdate.unwrap(), date(2025, 1, 3));
     }
 
     #[test]
@@ -282,10 +279,7 @@ celebrating its 55th observance. Note that while Earth Day is always on April \
             image.image_url,
             "https://epod.typepad.com/.a/6a0105371bb32c970b01157114b027970c-750wi"
         );
-        assert_eq!(
-            image.pubdate.unwrap(),
-            NaiveDate::from_ymd_opt(2025, 4, 22).unwrap()
-        );
+        assert_eq!(image.pubdate.unwrap(), date(2025, 4, 22));
     }
 
     #[test]

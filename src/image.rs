@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use chrono::NaiveDate;
 use download::{DownloadError, download_file_to_directory};
 use gtk::gio::{self, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 use std::{
@@ -41,7 +40,7 @@ pub struct DownloadableImage {
     /// The date this image was published at.
     ///
     /// If set the downloaded users this data as prefix for filenames.
-    pub pubdate: Option<NaiveDate>,
+    pub pubdate: Option<jiff::civil::Date>,
     /// The suggested file name for this image.
     pub suggested_filename: Option<String>,
 }
@@ -58,7 +57,7 @@ impl DownloadableImage {
             )
     }
 
-    pub fn with_pubdate(mut self, date: NaiveDate) -> Self {
+    pub fn with_pubdate(mut self, date: jiff::civil::Date) -> Self {
         self.pubdate = Some(date);
         self
     }

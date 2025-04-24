@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use chrono::NaiveDate;
 use glib::Priority;
 use gtk::gio::prelude::SettingsExt;
 use serde::Deserialize;
@@ -32,7 +31,7 @@ struct ApodMetadata {
     /// The title of the image.
     title: String,
     /// Date of image. Included in response because of default values.
-    date: NaiveDate,
+    date: jiff::civil::Date,
     /// The URL of the APOD image or video of the day.
     url: String,
     /// The URL for any high-resolution image for that day. Returned regardless of 'hd' param setting but will be omitted in the response IF it does not exist originally at APOD.
@@ -50,7 +49,7 @@ impl TryFrom<ApodMetadata> for DownloadableImage {
 
     fn try_from(metadata: ApodMetadata) -> Result<Self, Self::Error> {
         if let MediaType::Image = metadata.media_type {
-            let url_date = &metadata.date.format("%y%m%d");
+            let url_date = &metadata.date.strftime("%y%m%d");
             let url = format!("https://apod.nasa.gov/apod/ap{url_date}.html");
             Ok(DownloadableImage {
                 metadata: ImageMetadata {
@@ -93,7 +92,7 @@ fn to_source_error(error: HttpError) -> SourceError {
     error.into()
 }
 
-fn get_metadata_message(date: Option<NaiveDate>, api_key: &str) -> soup::Message {
+fn get_metadata_message(date: Option<jiff::civil::Date>, api_key: &str) -> soup::Message {
     let mut url = Url::parse_with_params(
         "https://api.nasa.gov/planetary/apod",
         &[("api_key", api_key)],
@@ -101,7 +100,7 @@ fn get_metadata_message(date: Option<NaiveDate>, api_key: &str) -> soup::Message
     .unwrap();
     if let Some(date) = date {
         url.query_pairs_mut()
-            .append_pair("date", &date.format("%Y-%m-%d").to_string());
+            .append_pair("date", &date.strftime("%Y-%m-%d").to_string());
     }
     glib::info!("Querying APOD image metadata from {url}");
     // We can safely unwrap here, because `Url` already guarantees us that `url` is valid
@@ -111,7 +110,7 @@ fn get_metadata_message(date: Option<NaiveDate>, api_key: &str) -> soup::Message
 /// Fetch the astronomy picture of the day.
 async fn query_metadata(
     session: &soup::Session,
-    date: Option<NaiveDate>,
+    date: Option<jiff::civil::Date>,
     api_key: &str,
 ) -> Result<ApodMetadata, SourceError> {
     let message = get_metadata_message(date, api_key);
@@ -123,7 +122,7 @@ async fn query_metadata(
 
 pub async fn fetch_picture_of_the_day(
     session: &soup::Session,
-    date: Option<NaiveDate>,
+    date: Option<jiff::civil::Date>,
 ) -> Result<DownloadableImage, SourceError> {
     let settings = crate::config::get_settings();
     let api_key = settings.string("apod-api-key");
@@ -132,7 +131,6 @@ pub async fn fetch_picture_of_the_day(
 
 #[cfg(test)]
 mod tests {
-    use chrono::NaiveDate;
     use gtk::gio::Cancellable;
     use soup::prelude::SessionExt;
 
@@ -146,7 +144,7 @@ mod tests {
         // We use a separate API key for testing, with account ID 431bacf7-4e26-407f-9ca3-06a17d8d7400
         let api_key = "74AFPeibYGYI13Efz7MrgtjJ1ozN3etA1Ggt87r6";
         // See https://apod.nasa.gov/apod/ap250327.html
-        let date = NaiveDate::from_ymd_opt(2025, 3, 27).unwrap();
+        let date = jiff::civil::date(2025, 3, 27);
         let message = super::get_metadata_message(Some(date), api_key);
         let response = soup_session()
             .send_and_read(&message, Cancellable::NONE)

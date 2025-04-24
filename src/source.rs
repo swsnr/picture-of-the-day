@@ -9,7 +9,6 @@
 // See <https://github.com/gtk-rs/gtk-rs-core/discussions/1625>
 #![allow(clippy::as_conversions)]
 
-use chrono::NaiveDate;
 use glib::{GString, dpgettext2};
 use std::path::PathBuf;
 
@@ -102,7 +101,7 @@ impl Source {
     pub async fn get_images(
         self,
         session: &soup::Session,
-        date: Option<NaiveDate>,
+        date: Option<jiff::civil::Date>,
     ) -> Result<Vec<DownloadableImage>, SourceError> {
         let today = crate::date::today_local();
         let images = match self {

@@ -266,6 +266,12 @@ start = "2019-04-27"
 end = "2026-04-10"
 notes = "Respectable whatwg & servo person"
 
+[[trusted.jiff]]
+criteria = "safe-to-run"
+user-id = 189 # Andrew Gallant (BurntSushi)
+start = "2024-02-17"
+end = "2026-04-24"
+
 [[trusted.libadwaita]]
 criteria = "safe-to-run"
 user-id = 54339 # Bilal Elmoussaoui (bilelmoussaoui)

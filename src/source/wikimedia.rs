@@ -8,8 +8,8 @@
 //!
 //! See <https://commons.m.wikimedia.org/wiki/Commons:Picture_of_the_day>.
 
-use chrono::NaiveDate;
 use glib::{Priority, dpgettext2};
+use jiff::civil::Date;
 use serde::Deserialize;
 
 use crate::config::G_LOG_DOMAIN;
@@ -129,15 +129,15 @@ fn cleanup_title(title: &str) -> &str {
 ///
 /// Create a [`soup::Message`] to get the content featured at the given `date`,
 /// on the Wikipedia for the given ISO `language_code`.
-fn get_feature_content_message(date: NaiveDate, language_code: &str) -> soup::Message {
-    let url_date = date.format("%Y/%m/%d");
+fn get_feature_content_message(date: Date, language_code: &str) -> soup::Message {
+    let url_date = date.strftime("%Y/%m/%d");
     let url = format!("https://{language_code}.wikipedia.org/api/rest_v1/feed/featured/{url_date}");
     soup::Message::new("GET", &url).unwrap()
 }
 
 async fn fetch_featured_content(
     session: &soup::Session,
-    date: NaiveDate,
+    date: Date,
     language_code: &str,
 ) -> Result<FeaturedContent, SourceError> {
     let message = get_feature_content_message(date, language_code);
@@ -152,7 +152,7 @@ async fn fetch_featured_content(
 
 async fn fetch_featured_image_at_date(
     session: &soup::Session,
-    date: NaiveDate,
+    date: Date,
     language_code: &str,
 ) -> Result<DownloadableImage, SourceError> {
     let content = fetch_featured_content(session, date, language_code).await?;
@@ -167,7 +167,7 @@ async fn fetch_featured_image_at_date(
 
 pub async fn fetch_featured_image(
     session: &soup::Session,
-    date: NaiveDate,
+    date: Date,
 ) -> Result<DownloadableImage, SourceError> {
     let language_code = crate::locale::language_codes().next();
     // Default to English wikimedia if we cannot derive a language from the locale environment.
@@ -177,8 +177,8 @@ pub async fn fetch_featured_image(
 
 #[cfg(test)]
 mod tests {
-    use chrono::NaiveDate;
     use gtk::gio::Cancellable;
+    use jiff::civil::date;
     use soup::prelude::SessionExt;
 
     use crate::{
@@ -200,7 +200,7 @@ mod tests {
     #[test]
     fn featured_image() {
         // See https://commons.m.wikimedia.org/wiki/Template:Potd/2025-03#/media/File%3AGeorge_Sand_by_Nadar%2C_1864.jpg
-        let date = NaiveDate::from_ymd_opt(2025, 3, 8).unwrap();
+        let date = date(2025, 3, 8);
         let message = super::get_feature_content_message(date, "en");
         let response = soup_session()
             .send_and_read(&message, Cancellable::NONE)

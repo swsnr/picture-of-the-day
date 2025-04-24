@@ -6,8 +6,8 @@
 
 use std::borrow::Cow;
 
-use chrono::NaiveDate;
 use glib::{Priority, dpgettext2};
+use jiff::civil::Date;
 use serde::{Deserialize, Deserializer, de};
 use url::Url;
 
@@ -24,8 +24,8 @@ struct BingImage {
     title: String,
     copyright: String,
     copyrightlink: String,
-    #[serde(deserialize_with = "deserialize_date")]
-    startdate: NaiveDate,
+    #[serde(deserialize_with = "deserialize_civil_date")]
+    startdate: jiff::civil::Date,
     urlbase: String,
 }
 
@@ -34,7 +34,7 @@ pub struct BingDateVisitor;
 const BING_DATE_FORMAT: &str = "%Y%m%d";
 
 impl de::Visitor<'_> for BingDateVisitor {
-    type Value = NaiveDate;
+    type Value = jiff::civil::Date;
 
     fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
         write!(formatter, "a date in {BING_DATE_FORMAT}")
@@ -44,11 +44,11 @@ impl de::Visitor<'_> for BingDateVisitor {
     where
         E: serde::de::Error,
     {
-        NaiveDate::parse_from_str(v, BING_DATE_FORMAT).map_err(de::Error::custom)
+        Date::strptime(BING_DATE_FORMAT, v).map_err(de::Error::custom)
     }
 }
 
-fn deserialize_date<'de, D>(d: D) -> Result<NaiveDate, D::Error>
+fn deserialize_civil_date<'de, D>(d: D) -> Result<jiff::civil::Date, D::Error>
 where
     D: Deserializer<'de>,
 {

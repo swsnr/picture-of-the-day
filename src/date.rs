@@ -4,23 +4,23 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use chrono::NaiveDate;
+use jiff::civil::Date;
 
-/// A boxed naive date.
+/// A boxed civil date.
 ///
-/// Make [`chrono::NaiveDate`] available as property.
+/// Make [`jiff::civil::Date`] available as property.
 #[derive(Debug, Copy, Clone, Eq, PartialEq, PartialOrd, Ord, glib::Boxed)]
-#[boxed_type(name = "PotDNaiveDate", nullable)]
-pub struct BoxedNaiveDate(NaiveDate);
+#[boxed_type(name = "PotDCivilDate", nullable)]
+pub struct BoxedCivilDate(Date);
 
-impl From<NaiveDate> for BoxedNaiveDate {
-    fn from(value: NaiveDate) -> Self {
+impl From<Date> for BoxedCivilDate {
+    fn from(value: Date) -> Self {
         Self(value)
     }
 }
 
-impl From<BoxedNaiveDate> for NaiveDate {
-    fn from(value: BoxedNaiveDate) -> Self {
+impl From<BoxedCivilDate> for Date {
+    fn from(value: BoxedCivilDate) -> Self {
         value.0
     }
 }
@@ -28,7 +28,12 @@ impl From<BoxedNaiveDate> for NaiveDate {
 /// Get the current date in the local timezone.
 ///
 /// Take the current date from [`glib::Datetime::now_local`].
-pub fn today_local() -> NaiveDate {
+pub fn today_local() -> Date {
     let now = glib::DateTime::now_local().unwrap();
-    NaiveDate::from_yo_opt(now.year(), u32::try_from(now.day_of_year()).unwrap()).unwrap()
+    Date::new(
+        i16::try_from(now.year()).unwrap(),
+        i8::try_from(now.month()).unwrap(),
+        i8::try_from(now.day_of_month()).unwrap(),
+    )
+    .unwrap()
 }

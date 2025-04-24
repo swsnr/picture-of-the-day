@@ -28,9 +28,12 @@ scraper = ["dep:indexmap", "indexmap/serde", "url/serde"]
 
 [dependencies]
 adw = { package = "libadwaita", version = "0.7.0", features = ["v1_7"] }
-chrono = { version = "0.4.34", default-features = false, features = [
+jiff = { version = "0.2.10", default-features = false, features = [
     "std",
     "serde",
+    "perf-inline",
+    # We deliberately enable none of the timezone features as we only handle
+    # civil dates and don't care about zones at all.
 ] }
 futures = "0.3.31"
 gdk4-wayland = { version = "0.9.6", features = ["v4_18"] }

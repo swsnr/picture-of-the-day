@@ -4,9 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use chrono::NaiveDate;
 use glib::dpgettext2;
 use gtk::gio::{self, ResourceLookupFlags, prelude::SettingsExtManual};
+use jiff::civil::Date;
 use serde::Deserialize;
 use std::sync::LazyLock;
 
@@ -81,12 +81,12 @@ fn images(collections: impl Iterator<Item = &'static Collection>) -> Vec<ImageIn
         .collect()
 }
 
-pub fn pick_image_for_date(date: NaiveDate) -> DownloadableImage {
+pub fn pick_image_for_date(date: Date) -> DownloadableImage {
     let all_images = images(enabled_collections());
     // The 84th anniversary of Georg Elsner's heroic act of resistance against the nazi regime
-    let base_date = NaiveDate::from_ymd_opt(2023, 11, 8).unwrap();
-    let days = (date - base_date).num_days();
-    let index = usize::try_from(days.rem_euclid(i64::try_from(all_images.len()).unwrap())).unwrap();
+    let base_date = jiff::civil::date(2023, 11, 8);
+    let days = (date - base_date).get_days();
+    let index = usize::try_from(days.rem_euclid(i32::try_from(all_images.len()).unwrap())).unwrap();
     // The modulus above makes sure we don't index out of bounds here
     #[allow(clippy::indexing_slicing)]
     let image = &all_images[index];

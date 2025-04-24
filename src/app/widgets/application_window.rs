@@ -5,7 +5,6 @@
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 use adw::prelude::*;
-use chrono::NaiveDate;
 use glib::{dgettext, dpgettext2};
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::UriLauncher;
@@ -13,7 +12,7 @@ use gtk::gio;
 
 use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
-use crate::date::BoxedNaiveDate;
+use crate::date::BoxedCivilDate;
 use crate::portal::client::PortalClient;
 
 glib::wrapper! {
@@ -33,13 +32,13 @@ impl ApplicationWindow {
         application: &impl IsA<gtk::Application>,
         session: soup::Session,
         portal_client: PortalClient,
-        date: Option<NaiveDate>,
+        date: Option<jiff::civil::Date>,
     ) -> Self {
         glib::Object::builder()
             .property("application", application)
             .property("http-session", session)
             .property("portal-client", portal_client)
-            .property("date", date.map(BoxedNaiveDate::from))
+            .property("date", date.map(BoxedCivilDate::from))
             .build()
     }
 
@@ -246,7 +245,7 @@ mod imp {
     use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
-    use crate::date::BoxedNaiveDate;
+    use crate::date::BoxedCivilDate;
     use crate::io::ensure_directory;
     use crate::portal::client::PortalClient;
     use crate::portal::wallpaper::{Preview, SetOn};
@@ -262,7 +261,7 @@ mod imp {
         #[property(get, construct_only)]
         portal_client: RefCell<Option<PortalClient>>,
         #[property(get, construct_only, nullable)]
-        date: Cell<Option<BoxedNaiveDate>>,
+        date: Cell<Option<BoxedCivilDate>>,
         #[property(get, set, builder(Source::default()))]
         selected_source: Cell<Source>,
         #[property(get, set)]

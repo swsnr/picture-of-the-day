@@ -8,7 +8,6 @@
 
 use std::{borrow::Cow, fmt::Display};
 
-use chrono::{DateTime, FixedOffset};
 use quick_xml::{
     NsReader,
     events::Event,
@@ -22,7 +21,7 @@ pub enum RssError {
     XmlError(quick_xml::Error),
     NoRssDocument,
     MissingChannel,
-    InvalidDateTime(chrono::ParseError),
+    InvalidDateTime(jiff::Error),
 }
 
 impl Display for RssError {
@@ -52,8 +51,8 @@ impl From<quick_xml::Error> for RssError {
     }
 }
 
-impl From<chrono::ParseError> for RssError {
-    fn from(error: chrono::ParseError) -> Self {
+impl From<jiff::Error> for RssError {
+    fn from(error: jiff::Error) -> Self {
         Self::InvalidDateTime(error)
     }
 }
@@ -66,7 +65,7 @@ pub struct RssItem {
     pub description: Option<String>,
     pub link: Option<String>,
     pub thumbnail: Option<String>,
-    pub pubdate: Option<DateTime<FixedOffset>>,
+    pub pubdate: Option<jiff::Zoned>,
 }
 
 fn read_item(reader: &mut NsReader<&[u8]>) -> Result<RssItem> {
@@ -86,7 +85,7 @@ fn read_item(reader: &mut NsReader<&[u8]>) -> Result<RssItem> {
             }
             (ResolveResult::Unbound, b"pubDate") => {
                 let text = read_text(reader)?;
-                let date = chrono::DateTime::parse_from_rfc2822(text.trim())?;
+                let date = jiff::fmt::rfc2822::parse(text.trim())?;
                 item.pubdate = Some(date);
             }
             (ResolveResult::Bound(Namespace(b"http://search.yahoo.com/mrss/")), b"thumbnail") => {
@@ -226,8 +225,8 @@ mod tests {
             "https://eoimages.gsfc.nasa.gov/images/imagerecords/154000/154195/iss072e034369_th.jpg"
         );
         assert_eq!(
-            item.pubdate.unwrap().to_rfc3339(),
-            "2025-04-20T00:00:00-04:00"
+            item.pubdate.unwrap().timestamp().to_string(),
+            "2025-04-20T04:00:00Z"
         );
     }
 
@@ -257,8 +256,8 @@ mod tests {
             "https://eoimages.gsfc.nasa.gov/images/imagerecords/154000/154195/iss072e034369_th.jpg"
         );
         assert_eq!(
-            item.pubdate.unwrap().to_rfc3339(),
-            "2025-04-20T00:00:00-04:00"
+            item.pubdate.unwrap().timestamp().to_string(),
+            "2025-04-20T04:00:00Z"
         );
     }
 }

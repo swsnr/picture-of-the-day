@@ -47,7 +47,7 @@ fn image_from_item(item: RssItem) -> Result<DownloadableImage, SourceError> {
     let image = DownloadableImage {
         metadata,
         image_url: thumbnail.replace("_th.", "_lrg."),
-        pubdate: item.pubdate.map(|dt| dt.date_naive()),
+        pubdate: item.pubdate.map(|dt| dt.date()),
         suggested_filename: None,
     };
     Ok(image)
