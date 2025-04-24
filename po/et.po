@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-07 10:21+0000\n"
+"PO-Revision-Date: 2025-04-22 15:53+0000\n"
 "Last-Translator: Priit Jõerüüt <jrtcdbrg@noreply.codeberg.org>\n"
-"Language-Team: Estonian <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
+"Language-Team: Estonian <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,21 +45,16 @@ msgid "Your daily wallpaper"
 msgstr "Sinu igapäevane taustapilt"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
-#, fuzzy
-#| msgid ""
-#| "Get a picture of the day from the following sources as your daily "
-#| "wallpaper."
 msgid ""
 "Get a picture of the day from the following sources and use as your daily "
 "wallpaper."
-msgstr "Laadi igaks päevaks uus päevapilt neist andmeallikaist."
+msgstr ""
+"Laadi igaks päevaks uus päevapilt neist andmeallikaist ja kasuta seda iga "
+"päev muutuva taustapildina."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
-#, fuzzy
-#| msgid "NASA Astronomy Picture Of The Day"
 msgid "NASA Astronomy Picture of the Day"
-msgstr ""
-"NASA astronoomiateemaline päevapilt (NASA Astronomy Picture Of The Day)"
+msgstr "NASA astronoomiateemaline päevapilt (NASA Astronomy Picture of the Day)"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:11
 msgid "Bing"
@@ -70,20 +65,17 @@ msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhagi tööd"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
-#, fuzzy
-#| msgid "Wikimedia Picture Of The Day"
 msgid "Wikimedia Picture of the Day"
-msgstr "Vikimeedia päevapilt (Wikimedia Picture Of The Day)"
+msgstr "Vikimeedia päevapilt (Wikimedia Picture of the Day)"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgid "Earth Science Picture of the Day"
-msgstr "Päevapilt"
+msgstr "Earth Science Picture of the Day"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
 msgid "NASA Earth Observatory Image of the Day"
 msgstr ""
+"NASA Earth Observatory päevapilt (NASA Earth Observatory Image of the Day)"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:17
 msgid ""
@@ -127,6 +119,8 @@ msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr ""
+"Lisasime uute allikatena Earth Science Picture of the Day ja NASA Earth "
+"Observatory Image of the Day."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
 msgid ""
@@ -459,12 +453,12 @@ msgstr "Ava eelistused"
 #: src/app.rs:456
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
-msgstr ""
+msgstr "Näita antud kuupäeva päevapilti"
 
 #: src/app.rs:461
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "AAAA-KK-PP"
 
 #: src/app.rs:637
 msgctxt "portal.request-background.reason"
@@ -685,12 +679,9 @@ msgid "Picture Of The Day"
 msgstr "Päevapilt"
 
 #: src/source.rs:66
-#, fuzzy
-#| msgid "NASA Astronomy Picture Of The Day"
 msgctxt "source name"
 msgid "NASA Astronomy Picture of the Day"
-msgstr ""
-"NASA astronoomiateemaline päevapilt (NASA Astronomy Picture Of The Day)"
+msgstr "NASA astronoomiateemaline päevapilt (NASA Astronomy Picture of the Day)"
 
 #: src/source.rs:67
 msgctxt "source name"
@@ -698,11 +689,9 @@ msgid "Bing"
 msgstr "Otsingumootor Bing"
 
 #: src/source.rs:68
-#, fuzzy
-#| msgid "Wikimedia Picture Of The Day"
 msgctxt "source name"
 msgid "Wikimedia Picture of the Day"
-msgstr "Vikimeedia päevapilt (Wikimedia Picture Of The Day)"
+msgstr "Vikimeedia päevapilt (Wikimedia Picture of the Day)"
 
 #: src/source.rs:69
 msgctxt "source name"
@@ -710,24 +699,16 @@ msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
 #: src/source.rs:70
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "source name"
 msgid "Earth Science Picture of the Day"
-msgstr "Päevapilt"
+msgstr "Earth Science Picture of the Day"
 
 #: src/source.rs:74
-#, fuzzy
-#| msgid "NASA Astronomy Picture Of The Day"
 msgctxt "source name"
 msgid "NASA Earth Observatory Image of the Day"
-msgstr ""
-"NASA astronoomiateemaline päevapilt (NASA Astronomy Picture Of The Day)"
+msgstr "NASA Earth Observatory Image of the Day"
 
 #: src/source/bing.rs:81
-#, fuzzy
-#| msgctxt "source.stalenhag.copyright"
-#| msgid "All rights reserved."
 msgctxt "source.bing.copyright"
 msgid "All rights reserved."
 msgstr "Kõik õigused kaitstud."
@@ -735,7 +716,7 @@ msgstr "Kõik õigused kaitstud."
 #: src/source/eoiod.rs:37
 msgctxt "source.eoiod.copyright"
 msgid "NASA Earth Observatory"
-msgstr ""
+msgstr "NASA Earth Observatory"
 
 #: src/source/stalenhag.rs:95
 msgctxt "source.stalenhag.copyright"
