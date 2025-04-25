@@ -4,14 +4,13 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#![allow(unused)]
+//! Parse items from RSS channel documents.
 
-use std::{borrow::Cow, fmt::Display};
+use std::fmt::Display;
 
 use quick_xml::{
     NsReader,
-    events::Event,
-    name::{LocalName, Namespace, ResolveResult},
+    name::{Namespace, ResolveResult},
 };
 
 use crate::xml::{read_text, read_to_start};
@@ -152,7 +151,7 @@ pub fn read_rss_channel(mut reader: NsReader<&[u8]>) -> Result<RssItemIterator<&
         if ns == ResolveResult::Unbound && name.as_ref() == b"channel" {
             break;
         }
-        reader.read_to_end(start.name());
+        reader.read_to_end(start.name())?;
     }
 
     Ok(RssItemIterator(reader))
@@ -232,9 +231,7 @@ mod tests {
 
     #[test]
     fn read_channel() {
-        let mut reader = NsReader::from_str(XML);
-
-        let mut items = super::read_rss_channel(reader)
+        let mut items = super::read_rss_channel(NsReader::from_str(XML))
             .unwrap()
             .collect::<super::Result<Vec<_>>>()
             .unwrap();
