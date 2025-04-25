@@ -23,6 +23,8 @@ pub enum AutomaticWallpaperUpdateInhibitor {
     /// assuming that the user wishes to preview different sources before making
     /// their final decision on the preferred wallpaper.
     MainWindowActive = 0b0000_0010,
+    /// The system is in low power mode.
+    LowPower = 0b0000_0100,
 }
 
 impl Display for AutomaticWallpaperUpdateInhibitor {

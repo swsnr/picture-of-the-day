@@ -385,6 +385,20 @@ mod imp {
                 ),
             );
 
+            // Inhibit if the system is on low power
+            gio::PowerProfileMonitor::get_default().connect_power_saver_enabled_notify(
+                glib::clone!(
+                    #[weak]
+                    scheduler,
+                    move |monitor| {
+                        scheduler.set_inhibitor(
+                            AutomaticWallpaperUpdateInhibitor::LowPower,
+                            monitor.is_power_saver_enabled(),
+                        );
+                    }
+                ),
+            );
+
             // Listen to scheduled updates, and set the wallpaper in response
             let rx = self.scheduler.update_receiver();
             glib::spawn_future_local(glib::clone!(
