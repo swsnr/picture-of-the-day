@@ -15,6 +15,12 @@ use crate::source::{Source, SourceError};
 pub enum AutomaticWallpaperUpdateInhibitor {
     /// The user explicitly disabled automatic wallpaper updates in configuration.
     DisabledByUser = 0b0000_0001,
+    /// The main window is shown.
+    ///
+    /// While a main window is active we do not schedule automatic updates,
+    /// assuming that the user wishes to preview different sources before making
+    /// their final decision on the preferred wallpaper.
+    MainWindowActive = 0b0000_0010,
 }
 
 /// A message indicating that a scheduled wallpaper update is due.

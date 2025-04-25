@@ -352,6 +352,18 @@ mod imp {
                 }
             ));
 
+            self.obj().connect_active_window_notify(|app| {
+                if app.active_window().is_some() {
+                    app.imp()
+                        .scheduler
+                        .add_inhibitor(AutomaticWallpaperUpdateInhibitor::MainWindowActive);
+                } else {
+                    app.imp()
+                        .scheduler
+                        .clear_inhibitor(AutomaticWallpaperUpdateInhibitor::MainWindowActive);
+                }
+            });
+
             // Inhibit automatic updates if the user disables them.
             // We do this first, to make sure all inhibitors are in place before
             // we start updates by setting the source.
