@@ -341,19 +341,6 @@ mod imp {
         fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
             let scheduler = &self.scheduler;
 
-            // Hold on to the application whenever updates are scheduled
-            scheduler.connect_is_scheduled_notify(glib::clone!(
-                #[weak(rename_to = app)]
-                self.obj(),
-                move |scheduler| {
-                    app.imp().scheduled_updates_hold.take();
-                    if scheduler.is_scheduled() {
-                        glib::debug!("Automatic updates scheduling, holding app");
-                        app.imp().scheduled_updates_hold.replace(Some(app.hold()));
-                    }
-                }
-            ));
-
             self.obj().connect_active_window_notify(glib::clone!(
                 #[weak]
                 scheduler,
@@ -507,6 +494,27 @@ mod imp {
 
             glib::info!("Configuring automatic updates");
             self.setup_scheduled_wallpaper_updates(&settings);
+
+            // If the user enabled automatic udpates hold on to the application
+            // to keep it running in background.
+            if settings.boolean("set-wallpaper-automatically") {
+                self.scheduled_updates_hold.replace(Some(self.obj().hold()));
+            }
+
+            settings.connect_changed(
+                Some("set-wallpaper-automatically"),
+                glib::clone!(
+                    #[weak(rename_to = app)]
+                    self.obj(),
+                    move |settings, _| {
+                        if settings.boolean("set-wallpaper-automatically") {
+                            app.imp().scheduled_updates_hold.replace(Some(app.hold()));
+                        } else {
+                            app.imp().scheduled_updates_hold.take();
+                        }
+                    }
+                ),
+            );
         }
 
         fn command_line(&self, command_line: &ApplicationCommandLine) -> ExitCode {
