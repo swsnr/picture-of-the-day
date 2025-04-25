@@ -28,6 +28,7 @@ scraper = ["dep:indexmap", "indexmap/serde", "url/serde"]
 
 [dependencies]
 adw = { package = "libadwaita", version = "0.7.0", features = ["v1_7"] }
+async-channel = "2.3.1"
 jiff = { version = "0.2.10", default-features = false, features = [
     "std",
     "serde",

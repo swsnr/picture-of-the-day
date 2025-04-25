@@ -4,16 +4,14 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use std::time::Duration;
-
 use adw::prelude::*;
-use futures::{StreamExt, stream};
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gtk::{
     UriLauncher,
     gio::{self, ActionEntry, ApplicationFlags},
 };
 use model::{ErrorNotification, ErrorNotificationActions};
+use scheduler::ScheduledWallpaperUpdate;
 
 use crate::{
     config::G_LOG_DOMAIN,
@@ -27,6 +25,7 @@ use crate::{
 };
 
 mod model;
+mod scheduler;
 mod widgets;
 
 use widgets::PreferencesDialog;
@@ -51,17 +50,18 @@ impl Application {
             ActionEntry::builder("quit")
                 .activate(|app: &Self, _, _| {
                     glib::debug!("Quitting");
-                    // Close the active window if any, and stop automatic wallpaper
-                    // updates; this effectively drops all app guards and thus
-                    // makes the app quit.
-                    //
                     // We explicitly don't use app.quit() here because it'd
                     // immediately shut down the event loop, so any ongoing IO
                     // operations don't have any change to clean up.
+                    //
+                    // Instead, we close the active window, and explicitly take
+                    // our hold for scheduled wallpaper updates; this drops all
+                    // active holds, and thus the application will automatically
+                    // exit after a short timeout.
                     if let Some(window) = app.active_window() {
                         window.close();
                     }
-                    app.imp().stop_automatic_wallpaper_update();
+                    app.imp().scheduled_updates_hold.take();
                 })
                 .build(),
             ActionEntry::builder("about")
@@ -162,6 +162,32 @@ impl Application {
         prefs
     }
 
+    async fn handle_scheduled_wallpaper_update(&self, scheduled_update: ScheduledWallpaperUpdate) {
+        let source = scheduled_update.source;
+        let result = self.fetch_and_set_wallpaper(source).await;
+        match &result {
+            Ok(()) => {
+                // If we successfully updated the wallpaper,
+                // automatically hide any previous error notification.
+                self.withdraw_notification(ERROR_NOTIFICATION_ID);
+            }
+            Err(error) => {
+                glib::warn!(
+                    "Failed to fetch and set \
+                     wallpaper from {source:?}: \
+                     {error}"
+                );
+                self.show_error_from_automatic_wallpaper(source, error);
+            }
+        }
+        if scheduled_update.response.send(result).is_err() {
+            glib::warn!(
+                "Response channel for scheduled wallpaper \
+updated closed"
+            );
+        }
+    }
+
     fn show_error_from_automatic_wallpaper(&self, source: Source, error: &SourceError) {
         let error = ErrorNotification::from_error(source, error);
         if error.needs_attention() {
@@ -191,74 +217,6 @@ impl Application {
 
             self.send_notification(Some(ERROR_NOTIFICATION_ID), &notification);
         }
-    }
-
-    /// Update wallpaper periodically.
-    ///
-    /// Periodically check whether `source` has a new wallpaper, and udpate it.
-    /// Do the first check after `initial_delay`.
-    ///
-    /// Stop updating when the given `cancellable` is triggered.
-    async fn update_wallpaper_periodically(&self, source: Source, initial_delay: Duration) {
-        // Delay the initial wallpaper update a bit, this behaves nicer when the
-        // user changes the corresponding setting.
-        stream::once(glib::timeout_future_seconds(
-            initial_delay.as_secs().try_into().unwrap(),
-        ))
-        .chain(glib::interval_stream_seconds(30 * 60))
-        .map(|()| glib::DateTime::now_utc().unwrap())
-        .fold(
-            // This is definitetly more than 12 hours ago ;)
-            glib::DateTime::from_unix_utc(0).unwrap(),
-            move |last_update, now| {
-                // We keep the application alive through a hold handle,
-                // so we can just as well keep a strong reference here.
-                // We'll break the cycle explicitly when shutting down.
-                let app = self.clone();
-                async move {
-                    let hours_since_last_update = now.difference(&last_update).as_hours();
-                    if 12 < hours_since_last_update {
-                        // If the last update's more than twelve hours ago
-                        // pass true downstream to indicate that another
-                        // update is needed, and remember now as the time
-                        // of the last update
-                        glib::info!(
-                            "Updating wallpaper, \
-                        last update was more than {hours_since_last_update:?}\
-                         hours (>= 12) ago"
-                        );
-                        match app.fetch_and_set_wallpaper(source).await {
-                            Ok(()) => {
-                                // If we successfully updated the wallpaper,
-                                // automatically hide any previous error notification.
-                                app.withdraw_notification(ERROR_NOTIFICATION_ID);
-                                now
-                            }
-                            Err(error) => {
-                                glib::warn!(
-                                    "Failed to fetch and set \
-                                        wallpaper from {source:?}: \
-                                        {error}"
-                                );
-                                app.show_error_from_automatic_wallpaper(source, &error);
-                                last_update
-                            }
-                        }
-                    } else {
-                        // If the last update's less than twelve hours ago
-                        // pass false downstream to indicate that we should
-                        // skip this trigger.
-                        glib::info!(
-                            "Not updating wallpaper, \
-                            last update was {hours_since_last_update:?} \
-                            hours (< 12) ago"
-                        );
-                        last_update
-                    }
-                }
-            },
-        )
-        .await;
     }
 
     async fn fetch_and_set_wallpaper(&self, source: Source) -> Result<(), SourceError> {
@@ -319,25 +277,26 @@ impl Default for Application {
 
 mod imp {
     use crate::{
-        app::widgets::ApplicationWindow,
+        app::{scheduler::AutomaticWallpaperUpdateInhibitor, widgets::ApplicationWindow},
         config::G_LOG_DOMAIN,
         portal::{
             background::RequestBackgroundFlags,
             client::{PortalClient, RequestResult},
             window::PortalWindowHandle,
         },
-        source::Source,
     };
     use adw::gio::ApplicationCommandLine;
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use futures::StreamExt;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
-    use gtk::gio::{self, ApplicationHoldGuard, Cancellable};
+    use gtk::gio::{self, ApplicationHoldGuard};
     use jiff::civil::Date;
     use soup::prelude::*;
+    use std::cell::RefCell;
     use std::{cell::Cell, str::FromStr};
-    use std::{cell::RefCell, time::Duration};
+
+    use super::scheduler::AutomaticWallpaperUpdateScheduler;
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
@@ -352,12 +311,10 @@ mod imp {
         ///
         /// Set if the user specified --date on the command line.
         date: Cell<Option<Date>>,
-        /// State of automatic wallpaper update.
-        ///
-        /// If `None` automatic wallpaper update is off.  If set contains a
-        /// cancellable to stop wallpaper updates, and a guard keeping the
-        /// application alive and preventing it from quitting on idle.
-        automatic_wallpaper_update: RefCell<Option<(Cancellable, ApplicationHoldGuard)>>,
+        /// Scheduler used for automatic updates.
+        scheduler: AutomaticWallpaperUpdateScheduler,
+        /// Hold on to ourselves while automatic wallpaper updates are scheduled
+        pub scheduled_updates_hold: RefCell<Option<ApplicationHoldGuard>>,
     }
 
     impl Application {
@@ -381,43 +338,61 @@ mod imp {
             drop(guard);
         }
 
-        pub fn stop_automatic_wallpaper_update(&self) {
-            if let Some((cancellable, guard)) = self.automatic_wallpaper_update.take() {
-                glib::debug!("Canceling automatic wallpaper update");
-                cancellable.cancel();
-                // Redundant, but I like to see this explicitly.
-                drop(guard);
-            }
-        }
-
-        fn start_automatic_wallpaper_update(&self, source: Source, initial_delay: Duration) {
-            self.stop_automatic_wallpaper_update();
-
-            let guard = self.obj().hold();
-            let cancellable = gio::Cancellable::new();
-            self.automatic_wallpaper_update
-                .replace(Some((cancellable.clone(), guard)));
-
-            let app = self.obj().clone();
-            glib::spawn_future_local(gio::CancellableFuture::new(
-                async move {
-                    app.update_wallpaper_periodically(source, initial_delay)
-                        .await;
-                },
-                cancellable,
+        fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
+            // Hold on to the application whenever updates are scheduled
+            self.scheduler.connect_is_scheduled_notify(glib::clone!(
+                #[weak(rename_to = app)]
+                self.obj(),
+                move |scheduler| {
+                    app.imp().scheduled_updates_hold.take();
+                    if scheduler.is_scheduled() {
+                        glib::debug!("Automatic updates scheduling, holding app");
+                        app.imp().scheduled_updates_hold.replace(Some(app.hold()));
+                    }
+                }
             ));
-        }
 
-        fn start_stop_wallpaper_update(&self, initial_delay: Duration) {
-            let settings = self.settings();
-            if settings.boolean("set-wallpaper-automatically") {
-                self.start_automatic_wallpaper_update(
-                    settings.get::<Source>("selected-source"),
-                    initial_delay,
-                );
-            } else {
-                self.stop_automatic_wallpaper_update();
+            // Inhibit automatic updates if the user disables them.
+            // We do this first, to make sure all inhibitors are in place before
+            // we start updates by setting the source.
+            if !settings.boolean("set-wallpaper-automatically") {
+                self.scheduler
+                    .add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
             }
+            settings.connect_changed(
+                Some("set-wallpaper-automatically"),
+                glib::clone!(
+                    #[weak(rename_to = scheduler)]
+                    self.scheduler,
+                    move |settings, _| {
+                        if settings.boolean("set-wallpaper-automatically") {
+                            scheduler
+                                .clear_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
+                        } else {
+                            scheduler
+                                .add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
+                        }
+                    }
+                ),
+            );
+
+            // Listen to scheduled updates, and set the wallpaper in response
+            let rx = self.scheduler.update_receiver();
+            glib::spawn_future_local(glib::clone!(
+                #[weak(rename_to = app)]
+                self.obj(),
+                async move {
+                    while let Ok(update) = rx.recv().await {
+                        app.handle_scheduled_wallpaper_update(update).await;
+                    }
+                }
+            ));
+
+            // Finally, update the source for scheduled wallpaper updates.
+            // This implicit starts scheduled updates.
+            settings
+                .bind("selected-source", &self.scheduler, "source")
+                .build();
         }
     }
 
@@ -507,29 +482,8 @@ mod imp {
                 self.http_session.add_feature(&log);
             }
 
-            glib::info!("Starting automatic updates");
-            // On startup check for a new wallpaper almost immediately (we wait
-            // 10 seconds for things to settle down in case we were auto-started)
-            self.start_stop_wallpaper_update(Duration::from_secs(10));
-            for (key, initial_delay) in [
-                // When the user enabled automatic wallpaper, update the wallpaper immediately
-                ("set-wallpaper-automatically", Duration::from_secs(1)),
-                // When the user changed the source we wait considerably longer before we
-                // schedule a new update, because the user may just have switched the source
-                // to see a preview of todays image.
-                ("selected-source", Duration::from_secs(30)),
-            ] {
-                settings.connect_changed(
-                    Some(key),
-                    glib::clone!(
-                        #[weak(rename_to = app)]
-                        self.obj(),
-                        move |_, _| {
-                            app.imp().start_stop_wallpaper_update(initial_delay);
-                        }
-                    ),
-                );
-            }
+            glib::info!("Configuring automatic updates");
+            self.setup_scheduled_wallpaper_updates(&settings);
         }
 
         fn command_line(&self, command_line: &ApplicationCommandLine) -> ExitCode {
