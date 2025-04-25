@@ -339,8 +339,10 @@ mod imp {
         }
 
         fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
+            let scheduler = &self.scheduler;
+
             // Hold on to the application whenever updates are scheduled
-            self.scheduler.connect_is_scheduled_notify(glib::clone!(
+            scheduler.connect_is_scheduled_notify(glib::clone!(
                 #[weak(rename_to = app)]
                 self.obj(),
                 move |scheduler| {
@@ -352,38 +354,33 @@ mod imp {
                 }
             ));
 
-            self.obj().connect_active_window_notify(|app| {
-                if app.active_window().is_some() {
-                    app.imp()
-                        .scheduler
-                        .add_inhibitor(AutomaticWallpaperUpdateInhibitor::MainWindowActive);
-                } else {
-                    app.imp()
-                        .scheduler
-                        .clear_inhibitor(AutomaticWallpaperUpdateInhibitor::MainWindowActive);
+            self.obj().connect_active_window_notify(glib::clone!(
+                #[weak]
+                scheduler,
+                move |app| {
+                    scheduler.set_inhibitor(
+                        AutomaticWallpaperUpdateInhibitor::MainWindowActive,
+                        app.active_window().is_some(),
+                    );
                 }
-            });
+            ));
 
             // Inhibit automatic updates if the user disables them.
             // We do this first, to make sure all inhibitors are in place before
             // we start updates by setting the source.
             if !settings.boolean("set-wallpaper-automatically") {
-                self.scheduler
-                    .add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
+                scheduler.add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
             }
             settings.connect_changed(
                 Some("set-wallpaper-automatically"),
                 glib::clone!(
-                    #[weak(rename_to = scheduler)]
-                    self.scheduler,
+                    #[weak]
+                    scheduler,
                     move |settings, _| {
-                        if settings.boolean("set-wallpaper-automatically") {
-                            scheduler
-                                .clear_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
-                        } else {
-                            scheduler
-                                .add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
-                        }
+                        scheduler.set_inhibitor(
+                            AutomaticWallpaperUpdateInhibitor::DisabledByUser,
+                            !settings.boolean("set-wallpaper-automatically"),
+                        );
                     }
                 ),
             );
@@ -403,7 +400,7 @@ mod imp {
             // Finally, update the source for scheduled wallpaper updates.
             // This implicit starts scheduled updates.
             settings
-                .bind("selected-source", &self.scheduler, "source")
+                .bind("selected-source", scheduler, "source")
                 .build();
         }
     }
