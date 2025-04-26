@@ -386,18 +386,21 @@ mod imp {
             );
 
             // Inhibit if the system is on low power
-            gio::PowerProfileMonitor::get_default().connect_power_saver_enabled_notify(
-                glib::clone!(
-                    #[weak]
-                    scheduler,
-                    move |monitor| {
-                        scheduler.set_inhibitor(
-                            AutomaticWallpaperUpdateInhibitor::LowPower,
-                            monitor.is_power_saver_enabled(),
-                        );
-                    }
-                ),
+            let power_monitor = gio::PowerProfileMonitor::get_default();
+            scheduler.set_inhibitor(
+                AutomaticWallpaperUpdateInhibitor::LowPower,
+                power_monitor.is_power_saver_enabled(),
             );
+            power_monitor.connect_power_saver_enabled_notify(glib::clone!(
+                #[weak]
+                scheduler,
+                move |monitor| {
+                    scheduler.set_inhibitor(
+                        AutomaticWallpaperUpdateInhibitor::LowPower,
+                        monitor.is_power_saver_enabled(),
+                    );
+                }
+            ));
 
             // Inhibit if the network is down
             let network_monitor = gio::NetworkMonitor::default();
