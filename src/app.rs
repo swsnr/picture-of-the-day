@@ -187,10 +187,7 @@ impl Application {
                     }
                 }
                 if scheduled_update.response.send(result).is_err() {
-                    glib::warn!(
-                        "Response channel for scheduled wallpaper \
-        updated closed"
-                    );
+                    glib::warn!("Response channel for scheduled wallpaper updated closed");
                 }
             }
             Err(_) => {
