@@ -10,6 +10,7 @@ use std::fmt::Display;
 
 use futures::channel::oneshot;
 use glib::subclass::types::ObjectSubclassIsExt;
+use gtk::gio;
 
 use crate::source::{Source, SourceError};
 
@@ -38,14 +39,23 @@ impl Display for AutomaticWallpaperUpdateInhibitor {
 pub struct ScheduledWallpaperUpdate {
     /// The source to update the wallpaper from.
     pub source: Source,
+    /// A cancellable indicating when automatic updates are inhibited.
+    pub cancellable: gio::Cancellable,
     /// A channel to notify the scheduler about the result of the update.
     pub response: oneshot::Sender<Result<(), SourceError>>,
 }
 
 impl ScheduledWallpaperUpdate {
-    fn for_source(source: Source) -> (Self, oneshot::Receiver<Result<(), SourceError>>) {
+    fn for_source(
+        source: Source,
+        cancellable: gio::Cancellable,
+    ) -> (Self, oneshot::Receiver<Result<(), SourceError>>) {
         let (response, rx) = oneshot::channel();
-        let update = Self { source, response };
+        let update = Self {
+            source,
+            cancellable,
+            response,
+        };
         (update, rx)
     }
 }
@@ -121,6 +131,7 @@ mod imp {
     async fn schedule_automatic_updates(
         initial_delay: Duration,
         source: Source,
+        cancellable: Cancellable,
         tx: Sender<ScheduledWallpaperUpdate>,
     ) {
         // Delay the initial wallpaper update a bit, this behaves nicer when the
@@ -135,6 +146,7 @@ mod imp {
             glib::DateTime::from_unix_utc(0).unwrap(),
             move |last_update, now| {
                 let tx = tx.clone();
+                let cancellable = cancellable.clone();
                 async move {
                     let hours_since_last_update = now.difference(&last_update).as_hours();
                     if hours_since_last_update < 12 {
@@ -157,7 +169,7 @@ mod imp {
                          hours (>= 12) ago"
                         );
                         let (update, receive_response) =
-                            ScheduledWallpaperUpdate::for_source(source);
+                            ScheduledWallpaperUpdate::for_source(source, cancellable.clone());
                         // We can safely unwrap because we'll never drop this channel
                         // while before stopping the updates, as the scheduler itself
                         // retains a reference to one receiver
@@ -238,9 +250,7 @@ mod imp {
                     glib::info!("Scheduling automatic wallpaper updates from {source:?}");
                     let tx = self.update_tx.clone();
                     glib::spawn_future_local(gio::CancellableFuture::new(
-                        async move {
-                            schedule_automatic_updates(initial_delay, source, tx).await;
-                        },
+                        schedule_automatic_updates(initial_delay, source, cancellable.clone(), tx),
                         cancellable,
                     ));
                 }

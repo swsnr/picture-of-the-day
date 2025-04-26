@@ -164,27 +164,40 @@ impl Application {
 
     async fn handle_scheduled_wallpaper_update(&self, scheduled_update: ScheduledWallpaperUpdate) {
         let source = scheduled_update.source;
-        let result = self.fetch_and_set_wallpaper(source).await;
-        match &result {
-            Ok(()) => {
-                // If we successfully updated the wallpaper,
-                // automatically hide any previous error notification.
-                self.withdraw_notification(ERROR_NOTIFICATION_ID);
+        match gio::CancellableFuture::new(
+            self.fetch_and_set_wallpaper(source),
+            scheduled_update.cancellable,
+        )
+        .await
+        {
+            Ok(result) => {
+                match &result {
+                    Ok(()) => {
+                        // If we successfully updated the wallpaper,
+                        // automatically hide any previous error notification.
+                        self.withdraw_notification(ERROR_NOTIFICATION_ID);
+                    }
+                    Err(error) => {
+                        glib::warn!(
+                            "Failed to fetch and set \
+                             wallpaper from {source:?}: \
+                             {error}"
+                        );
+                        self.show_error_from_automatic_wallpaper(source, error);
+                    }
+                }
+                if scheduled_update.response.send(result).is_err() {
+                    glib::warn!(
+                        "Response channel for scheduled wallpaper \
+        updated closed"
+                    );
+                }
             }
-            Err(error) => {
-                glib::warn!(
-                    "Failed to fetch and set \
-                     wallpaper from {source:?}: \
-                     {error}"
-                );
-                self.show_error_from_automatic_wallpaper(source, error);
+            Err(_) => {
+                // We just do nothing and drop the response channel, to tell the
+                // receiver that we cancelled things
+                glib::info!("Scheduled wallpaper update cancelled");
             }
-        }
-        if scheduled_update.response.send(result).is_err() {
-            glib::warn!(
-                "Response channel for scheduled wallpaper \
-updated closed"
-            );
         }
     }
 
