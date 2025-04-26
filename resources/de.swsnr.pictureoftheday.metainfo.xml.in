@@ -48,10 +48,11 @@
         <release version="next" date="9999-01-01">
             <description>
                 <p>No longer set the wallpaper automatically while the main window is visible, to allow you to preview different sources without actually changing your desktop background.</p>
-                <p>No longer attempt to set update wallpaper automatically when the system is on low power.</p>
+                <p>No longer attempt to set update wallpaper automatically when the system is on low power or has no network connection.</p>
             </description>
             <issues>
                 <issue url="https://github.com/swsnr/picture-of-the-day/issues/77">GH-77</issue>
+                <issue url="https://github.com/swsnr/picture-of-the-day/issues/78">GH-78</issue>
             </issues>
             <url>https://github.com/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>

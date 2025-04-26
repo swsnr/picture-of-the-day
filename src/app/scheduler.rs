@@ -10,8 +10,9 @@ use std::fmt::Display;
 
 use futures::channel::oneshot;
 use glib::subclass::types::ObjectSubclassIsExt;
-use gtk::gio;
+use gtk::gio::{self, NetworkConnectivity};
 
+use crate::config::G_LOG_DOMAIN;
 use crate::source::{Source, SourceError};
 
 #[glib::flags(name = "PotDAutomaticWallpaperUpdateInhibitor")]
@@ -26,6 +27,8 @@ pub enum AutomaticWallpaperUpdateInhibitor {
     MainWindowActive = 0b0000_0010,
     /// The system is in low power mode.
     LowPower = 0b0000_0100,
+    /// The system has no network connectivity.
+    NoNetwork = 0b0000_1000,
 }
 
 impl Display for AutomaticWallpaperUpdateInhibitor {
@@ -76,6 +79,9 @@ impl AutomaticWallpaperUpdateScheduler {
         self.imp().update_rx.clone()
     }
 
+    /// Set or clear an inhibitor.
+    ///
+    /// If `set` is `true` add `inhibitor`, otherwise clear it.
     pub fn set_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor, set: bool) {
         if set {
             self.add_inhibitor(inhibitor);
@@ -96,6 +102,31 @@ impl AutomaticWallpaperUpdateScheduler {
     /// If it was the last inhibitor scheduled updates will commence again.
     pub fn clear_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor) {
         self.imp().clear_inhibitor(inhibitor);
+    }
+
+    /// Inhibit automatic wallpaper updates depending on network connectivity.
+    ///
+    /// If `connectivity` is limited or full, clear the [`AutomaticWallpaperUpdateInhibitor::NoNetwork`]
+    /// inhibitor, otherwise add it.
+    pub fn inhibit_according_to_network_connectivity(&self, connectivity: NetworkConnectivity) {
+        use gio::NetworkConnectivity::*;
+        self.set_inhibitor(
+            AutomaticWallpaperUpdateInhibitor::NoNetwork,
+            match connectivity {
+                // We do not inhibit on "limited" connectivity, because
+                // that just might be a badly configured proxy or
+                // captive portal, where we still might have success
+                // in updating the wallpaper.
+                Limited | Full => false,
+                other => {
+                    glib::info!(
+                        "Inibiting automatic wallpaper updates \
+due to network connectivity {other:?}"
+                    );
+                    true
+                }
+            },
+        );
     }
 }
 

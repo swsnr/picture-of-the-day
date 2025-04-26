@@ -399,6 +399,17 @@ mod imp {
                 ),
             );
 
+            // Inhibit if the network is down
+            let network_monitor = gio::NetworkMonitor::default();
+            scheduler.inhibit_according_to_network_connectivity(network_monitor.connectivity());
+            network_monitor.connect_connectivity_notify(glib::clone!(
+                #[weak]
+                scheduler,
+                move |monitor| {
+                    scheduler.inhibit_according_to_network_connectivity(monitor.connectivity());
+                }
+            ));
+
             // Listen to scheduled updates, and set the wallpaper in response
             let rx = self.scheduler.update_receiver();
             glib::spawn_future_local(glib::clone!(
