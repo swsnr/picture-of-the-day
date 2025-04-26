@@ -339,51 +339,49 @@ mod imp {
         }
 
         fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
-            // Hold on to the application whenever updates are scheduled
-            self.scheduler.connect_is_scheduled_notify(glib::clone!(
-                #[weak(rename_to = app)]
-                self.obj(),
-                move |scheduler| {
-                    app.imp().scheduled_updates_hold.take();
-                    if scheduler.is_scheduled() {
-                        glib::debug!("Automatic updates scheduling, holding app");
-                        app.imp().scheduled_updates_hold.replace(Some(app.hold()));
-                    }
+            let scheduler = &self.scheduler;
+
+            self.obj().connect_active_window_notify(glib::clone!(
+                #[weak]
+                scheduler,
+                move |app| {
+                    scheduler.set_inhibitor(
+                        AutomaticWallpaperUpdateInhibitor::MainWindowActive,
+                        app.active_window().is_some(),
+                    );
                 }
             ));
-
-            self.obj().connect_active_window_notify(|app| {
-                if app.active_window().is_some() {
-                    app.imp()
-                        .scheduler
-                        .add_inhibitor(AutomaticWallpaperUpdateInhibitor::MainWindowActive);
-                } else {
-                    app.imp()
-                        .scheduler
-                        .clear_inhibitor(AutomaticWallpaperUpdateInhibitor::MainWindowActive);
-                }
-            });
 
             // Inhibit automatic updates if the user disables them.
             // We do this first, to make sure all inhibitors are in place before
             // we start updates by setting the source.
             if !settings.boolean("set-wallpaper-automatically") {
-                self.scheduler
-                    .add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
+                scheduler.add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
             }
             settings.connect_changed(
                 Some("set-wallpaper-automatically"),
                 glib::clone!(
-                    #[weak(rename_to = scheduler)]
-                    self.scheduler,
+                    #[weak]
+                    scheduler,
                     move |settings, _| {
-                        if settings.boolean("set-wallpaper-automatically") {
-                            scheduler
-                                .clear_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
-                        } else {
-                            scheduler
-                                .add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
-                        }
+                        scheduler.set_inhibitor(
+                            AutomaticWallpaperUpdateInhibitor::DisabledByUser,
+                            !settings.boolean("set-wallpaper-automatically"),
+                        );
+                    }
+                ),
+            );
+
+            // Inhibit if the system is on low power
+            gio::PowerProfileMonitor::get_default().connect_power_saver_enabled_notify(
+                glib::clone!(
+                    #[weak]
+                    scheduler,
+                    move |monitor| {
+                        scheduler.set_inhibitor(
+                            AutomaticWallpaperUpdateInhibitor::LowPower,
+                            monitor.is_power_saver_enabled(),
+                        );
                     }
                 ),
             );
@@ -403,7 +401,7 @@ mod imp {
             // Finally, update the source for scheduled wallpaper updates.
             // This implicit starts scheduled updates.
             settings
-                .bind("selected-source", &self.scheduler, "source")
+                .bind("selected-source", scheduler, "source")
                 .build();
         }
     }
@@ -496,6 +494,27 @@ mod imp {
 
             glib::info!("Configuring automatic updates");
             self.setup_scheduled_wallpaper_updates(&settings);
+
+            // If the user enabled automatic udpates hold on to the application
+            // to keep it running in background.
+            if settings.boolean("set-wallpaper-automatically") {
+                self.scheduled_updates_hold.replace(Some(self.obj().hold()));
+            }
+
+            settings.connect_changed(
+                Some("set-wallpaper-automatically"),
+                glib::clone!(
+                    #[weak(rename_to = app)]
+                    self.obj(),
+                    move |settings, _| {
+                        if settings.boolean("set-wallpaper-automatically") {
+                            app.imp().scheduled_updates_hold.replace(Some(app.hold()));
+                        } else {
+                            app.imp().scheduled_updates_hold.take();
+                        }
+                    }
+                ),
+            );
         }
 
         fn command_line(&self, command_line: &ApplicationCommandLine) -> ExitCode {

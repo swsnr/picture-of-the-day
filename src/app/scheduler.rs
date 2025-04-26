@@ -6,6 +6,8 @@
 
 //! Schedule automatic wallpaper updates.
 
+use std::fmt::Display;
+
 use futures::channel::oneshot;
 use glib::subclass::types::ObjectSubclassIsExt;
 
@@ -21,6 +23,14 @@ pub enum AutomaticWallpaperUpdateInhibitor {
     /// assuming that the user wishes to preview different sources before making
     /// their final decision on the preferred wallpaper.
     MainWindowActive = 0b0000_0010,
+    /// The system is in low power mode.
+    LowPower = 0b0000_0100,
+}
+
+impl Display for AutomaticWallpaperUpdateInhibitor {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        glib::bitflags::parser::to_writer(self, f)
+    }
 }
 
 /// A message indicating that a scheduled wallpaper update is due.
@@ -54,6 +64,14 @@ impl AutomaticWallpaperUpdateScheduler {
     /// Get a channel receiver to be notified scheduled updates.
     pub fn update_receiver(&self) -> async_channel::Receiver<ScheduledWallpaperUpdate> {
         self.imp().update_rx.clone()
+    }
+
+    pub fn set_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor, set: bool) {
+        if set {
+            self.add_inhibitor(inhibitor);
+        } else {
+            self.clear_inhibitor(inhibitor);
+        }
     }
 
     /// Add an inhibitor to this scheduler.
@@ -179,12 +197,14 @@ mod imp {
         }
 
         pub fn add_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor) {
+            glib::info!("Adding inhibitor {inhibitor}");
             self.inhibitors.set(self.inhibitors.get() | inhibitor);
             self.obj().notify_inhibitors();
             self.cancel_scheduled_updates_if_inhibited();
         }
 
         pub fn clear_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor) {
+            glib::info!("Clearing inhibitor {inhibitor}");
             self.inhibitors.set(self.inhibitors.get() - inhibitor);
             self.obj().notify_inhibitors();
             self.schedule_updates_unless_inhibited(Duration::from_secs(10));
@@ -195,7 +215,7 @@ mod imp {
             if !inhibitors.is_empty() {
                 if let Some(cancellable) = self.is_scheduled.take() {
                     glib::info!(
-                        "Cancelling scheduled wallpaper updates, inhibited by {inhibitors:?}"
+                        "Cancelling scheduled wallpaper updates, inhibited by {inhibitors}"
                     );
                     cancellable.cancel();
                     self.obj().notify_is_scheduled();
@@ -226,8 +246,7 @@ mod imp {
                 }
             } else {
                 glib::info!(
-                    "Not scheduling automatic wallpaper updates, still inhibited by {:?}",
-                    inhibitors
+                    "Not scheduling automatic wallpaper updates, still inhibited by {inhibitors}",
                 );
             }
         }
