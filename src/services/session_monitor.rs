@@ -23,17 +23,20 @@ mod imp {
     use gio::prelude::*;
     use glib::Variant;
     use glib::subclass::prelude::*;
-    use gtk::gio::{self, DBusError, DBusSignalFlags, SignalSubscriptionId};
+    use gtk::gio::{self, DBusError, DBusSignalFlags};
 
-    use crate::{config::G_LOG_DOMAIN, services::logind};
+    use crate::{
+        config::G_LOG_DOMAIN,
+        dbus::{SignalSubscription, SignalSubscriptionIdExt},
+        services::logind,
+    };
 
     #[derive(Default, glib::Properties)]
     #[properties(wrapper_type = super::SessionMonitor)]
     pub struct SessionMonitor {
         #[property(get)]
         locked: Cell<bool>,
-        system_bus: RefCell<Option<gio::DBusConnection>>,
-        connected_properties_changed: Cell<Option<SignalSubscriptionId>>,
+        connected_properties_changed: RefCell<Option<SignalSubscription>>,
     }
 
     impl SessionMonitor {
@@ -42,12 +45,11 @@ mod imp {
             self.obj().notify_locked();
         }
 
-        /// Get the bus connection of this object.
-        fn get_bus(&self) -> gio::DBusConnection {
-            self.system_bus.borrow().as_ref().unwrap().clone()
-        }
-
-        fn handle_session_properties_changed(&self, params: &Variant) -> Result<(), glib::Error> {
+        fn handle_session_properties_changed(
+            &self,
+            bus: &gio::DBusConnection,
+            params: &Variant,
+        ) -> Result<(), glib::Error> {
             let params = params
                 .try_get::<logind::PropertiesChangedParameters>()
                 .map_err(|e| {
@@ -62,8 +64,8 @@ mod imp {
                 .iter()
                 .any(|x| x == "LockedHint")
             {
-                let bus = self.get_bus();
                 let monitor = self.obj().clone();
+                let bus = bus.clone();
                 glib::spawn_future_local(async move {
                     if let Ok(locked) =
                         logind::get_session_property(&bus, logind::AUTO_SESSION, "LockedHint").await
@@ -88,13 +90,11 @@ mod imp {
         }
 
         async fn start(&self) -> Result<(), glib::Error> {
-            if self.system_bus.borrow().is_some() {
+            if self.connected_properties_changed.borrow().is_some() {
                 return Ok(());
             }
 
             let system_bus = gio::bus_get_future(gio::BusType::System).await?;
-            self.system_bus.replace(Some(system_bus.clone()));
-
             let our_session_id =
                 logind::get_session_property::<String>(&system_bus, logind::AUTO_SESSION, "Id")
                     .await?;
@@ -103,23 +103,28 @@ mod imp {
             glib::debug!("Got session {our_session} for session ID {our_session_id}");
 
             let obj = self.obj();
-            let properties_changed_signal = system_bus.signal_subscribe(
-                Some("org.freedesktop.login1"),
-                Some("org.freedesktop.DBus.Properties"),
-                Some("PropertiesChanged"),
-                Some(&our_session),
-                None,
-                DBusSignalFlags::NONE,
-                glib::clone!(
-                    #[weak]
-                    obj,
-                    move |_connection, _sender, _path, _iface, _signal, params| {
-                        if let Err(error) = obj.imp().handle_session_properties_changed(params) {
-                            glib::warn!("Failed to handle changed session properties: {error}");
+            let properties_changed_signal = system_bus
+                .signal_subscribe(
+                    Some("org.freedesktop.login1"),
+                    Some("org.freedesktop.DBus.Properties"),
+                    Some("PropertiesChanged"),
+                    Some(&our_session),
+                    None,
+                    DBusSignalFlags::NONE,
+                    glib::clone!(
+                        #[weak]
+                        obj,
+                        move |connection, _sender, _path, _iface, _signal, params| {
+                            if let Err(error) = obj
+                                .imp()
+                                .handle_session_properties_changed(connection, params)
+                            {
+                                glib::warn!("Failed to handle changed session properties: {error}");
+                            }
                         }
-                    }
-                ),
-            );
+                    ),
+                )
+                .track_on(&system_bus);
             self.connected_properties_changed
                 .replace(Some(properties_changed_signal));
 
@@ -152,12 +157,8 @@ mod imp {
         }
 
         fn dispose(&self) {
-            if let Some(bus) = self.system_bus.take() {
-                if let Some(signal_id) = self.connected_properties_changed.take() {
-                    glib::debug!("Unsubscribing from changes to login session properties");
-                    bus.signal_unsubscribe(signal_id);
-                }
-            }
+            // Take and thus drop our signal subscription
+            self.connected_properties_changed.take();
         }
     }
 }

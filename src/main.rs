@@ -47,6 +47,7 @@ use gtk::prelude::*;
 mod app;
 mod config;
 mod date;
+mod dbus;
 mod i18n;
 mod images;
 mod io;

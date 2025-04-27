@@ -6,14 +6,15 @@
 
 use futures::StreamExt;
 use glib::variant::Handle;
-use glib::{Priority, VariantTy, WeakRef};
+use glib::{Priority, VariantTy};
 use glib::{Variant, VariantDict, object::IsA};
-use gtk::gio::{self, DBusSignalFlags, FileDescriptorBased, SignalSubscriptionId, UnixFDList};
+use gtk::gio::{self, DBusSignalFlags, FileDescriptorBased, UnixFDList};
 use gtk::gio::{DBusConnection, IOErrorEnum};
 use gtk::prelude::*;
 use strum::EnumIter;
 
 use crate::config::G_LOG_DOMAIN;
+use crate::dbus::{SignalSubscription, SignalSubscriptionIdExt};
 
 use super::background::{RequestBackground, RequestBackgroundFlags, RequestBackgroundResult};
 use super::wallpaper::{Preview, SetOn, SetWallpaperFile};
@@ -72,23 +73,6 @@ fn request_object_path(connection: &DBusConnection, handle_token: &str) -> Strin
     format!("/org/freedesktop/portal/desktop/request/{sender}/{handle_token}")
 }
 
-/// A subscription to a D-Bus signal.
-///
-/// When dropped unsubscribe from the signal.
-#[derive(Debug)]
-struct SignalSubscription(WeakRef<gio::DBusConnection>, Option<SignalSubscriptionId>);
-
-impl Drop for SignalSubscription {
-    fn drop(&mut self) {
-        if let Some(connection) = self.0.upgrade() {
-            if let Some(id) = self.1.take() {
-                glib::debug!("Dropping signal connection {id:?}");
-                connection.signal_unsubscribe(id);
-            }
-        }
-    }
-}
-
 #[derive(Debug)]
 pub struct PortalRequest {
     /// The handle token of this request.
@@ -115,34 +99,33 @@ impl PortalRequest {
         // We buffer only a single element, since the portal must only trigger
         // the response signal once.
         let (tx, rx) = futures::channel::mpsc::channel(1);
-        let signal_subscription_id = connection.signal_subscribe(
-            Some("org.freedesktop.portal.Desktop"),
-            Some("org.freedesktop.portal.Request"),
-            Some("Response"),
-            Some(&request_object_path(connection, &handle_token)),
-            None,
-            DBusSignalFlags::NO_MATCH_RULE,
-            move |_connection, _sender, _path, _interface, _signal, parameters| {
-                let mut tx = tx.clone();
-                let result = parameters.get::<PortalResponse>().ok_or_else(|| {
-                    glib::Error::new(
-                        IOErrorEnum::InvalidData,
-                        &format!("Unexpected parameters received: {parameters:?}"),
-                    )
-                });
-                if let Err(error) = tx.try_send(result) {
-                    glib::warn!("Channel for response already closed? {error}");
-                }
-            },
-        );
+        let response_signal_subscription = connection
+            .signal_subscribe(
+                Some("org.freedesktop.portal.Desktop"),
+                Some("org.freedesktop.portal.Request"),
+                Some("Response"),
+                Some(&request_object_path(connection, &handle_token)),
+                None,
+                DBusSignalFlags::NO_MATCH_RULE,
+                move |_connection, _sender, _path, _interface, _signal, parameters| {
+                    let mut tx = tx.clone();
+                    let result = parameters.get::<PortalResponse>().ok_or_else(|| {
+                        glib::Error::new(
+                            IOErrorEnum::InvalidData,
+                            &format!("Unexpected parameters received: {parameters:?}"),
+                        )
+                    });
+                    if let Err(error) = tx.try_send(result) {
+                        glib::warn!("Channel for response already closed? {error}");
+                    }
+                },
+            )
+            .track_on(connection);
         Self {
             handle_token,
             connection: connection.clone(),
             rx,
-            response_signal_subscription: SignalSubscription(
-                connection.downgrade(),
-                Some(signal_subscription_id),
-            ),
+            response_signal_subscription,
         }
     }
 
