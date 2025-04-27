@@ -45,11 +45,7 @@ mod imp {
             self.obj().notify_locked();
         }
 
-        fn handle_session_properties_changed(
-            &self,
-            bus: &gio::DBusConnection,
-            params: &Variant,
-        ) -> Result<(), glib::Error> {
+        fn handle_session_properties_changed(&self, params: &Variant) -> Result<(), glib::Error> {
             let params = params
                 .try_get::<logind::PropertiesChangedParameters>()
                 .map_err(|e| {
@@ -59,30 +55,14 @@ mod imp {
                     )
                 })?;
 
-            if params
-                .invalidated_properties
-                .iter()
-                .any(|x| x == "LockedHint")
-            {
-                let monitor = self.obj().clone();
-                let bus = bus.clone();
-                glib::spawn_future_local(async move {
-                    if let Ok(locked) =
-                        logind::get_session_property(&bus, logind::AUTO_SESSION, "LockedHint").await
-                    {
-                        monitor.imp().set_locked(locked);
-                    }
-                });
-            }
+            // We ignore invalidated properties: LockedHint is a simple property
+            // which can be directly changed; there's no reason why it would ever
+            // just be invalidated.
 
-            if let Some(locked) =
-                params
-                    .changed_properties
-                    .iter()
-                    .find_map(|entry| match entry.key().as_str() {
-                        "LockedHint" => entry.value().get::<bool>(),
-                        _ => None,
-                    })
+            if let Some(locked) = params
+                .changed_properties
+                .get("LockedHint")
+                .and_then(Variant::get::<bool>)
             {
                 self.set_locked(locked);
             }
@@ -114,10 +94,8 @@ mod imp {
                     glib::clone!(
                         #[weak]
                         obj,
-                        move |connection, _sender, _path, _iface, _signal, params| {
-                            if let Err(error) = obj
-                                .imp()
-                                .handle_session_properties_changed(connection, params)
+                        move |_connection, _sender, _path, _iface, _signal, params| {
+                            if let Err(error) = obj.imp().handle_session_properties_changed(params)
                             {
                                 glib::warn!("Failed to handle changed session properties: {error}");
                             }

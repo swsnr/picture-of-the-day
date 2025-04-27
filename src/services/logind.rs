@@ -4,10 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::{
-    Variant, VariantTy,
-    variant::{DictEntry, FromVariant},
-};
+use std::collections::HashMap;
+
+use glib::{Variant, VariantTy, variant::FromVariant};
 use gtk::gio::{self, DBusCallFlags, DBusError};
 
 /// Timeout for D-Bus calls to logind, in milliseconds.
@@ -79,13 +78,12 @@ pub async fn get_session_by_id(bus: &gio::DBusConnection, id: &str) -> Result<St
 /// Parameters for the `PropertiesChanged` signal.
 ///
 /// See <https://dbus.freedesktop.org/doc/dbus-specification.html#standard-interfaces-properties>
-// FIXME: Make Debug & Clone after https://github.com/gtk-rs/gtk-rs-core/pull/1708 got released
-#[derive(Variant)]
+#[derive(Variant, Debug, Clone)]
 pub struct PropertiesChangedParameters {
     /// The name of the interface whose properties changed.
     pub interface_name: String,
     /// Changed properties and their values.
-    pub changed_properties: Vec<DictEntry<String, Variant>>,
+    pub changed_properties: HashMap<String, Variant>,
     /// Changed properties whose value wasn't known at the time of change.
     ///
     /// Clients need to get the value of these properties explicitly.
