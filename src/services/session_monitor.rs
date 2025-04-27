@@ -82,7 +82,7 @@ mod imp {
             let our_session = logind::get_session_by_id(&system_bus, &our_session_id).await?;
             glib::debug!("Got session {our_session} for session ID {our_session_id}");
 
-            let obj = self.obj();
+            let monitor = self.obj();
             let properties_changed_signal = system_bus
                 .signal_subscribe(
                     Some("org.freedesktop.login1"),
@@ -93,9 +93,10 @@ mod imp {
                     DBusSignalFlags::NONE,
                     glib::clone!(
                         #[weak]
-                        obj,
+                        monitor,
                         move |_connection, _sender, _path, _iface, _signal, params| {
-                            if let Err(error) = obj.imp().handle_session_properties_changed(params)
+                            if let Err(error) =
+                                monitor.imp().handle_session_properties_changed(params)
                             {
                                 glib::warn!("Failed to handle changed session properties: {error}");
                             }
