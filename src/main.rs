@@ -47,10 +47,9 @@ use gtk::prelude::*;
 mod app;
 mod config;
 mod date;
-mod gettext;
+mod i18n;
 mod image;
 mod io;
-mod locale;
 mod net;
 mod rss;
 mod services;
@@ -58,6 +57,7 @@ mod source;
 mod xml;
 
 use config::G_LOG_DOMAIN;
+use i18n::gettext;
 use source::Source;
 
 fn main() -> glib::ExitCode {

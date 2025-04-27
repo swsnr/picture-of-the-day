@@ -169,7 +169,7 @@ pub async fn fetch_featured_image(
     session: &soup::Session,
     date: Date,
 ) -> Result<DownloadableImage, SourceError> {
-    let language_code = crate::locale::language_codes().next();
+    let language_code = crate::i18n::locale::language_codes().next();
     // Default to English wikimedia if we cannot derive a language from the locale environment.
     let language_code = language_code.as_ref().map_or("en", |s| s.as_str());
     fetch_featured_image_at_date(session, date, language_code).await
