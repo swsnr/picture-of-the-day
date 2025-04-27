@@ -59,10 +59,8 @@ pub trait PortalCall: ToVariant {
     /// The method name of this portal call.
     const METHOD_NAME: &'static str;
 
-    /// Get a mutable reference to the options of this request.
-    ///
-    /// The portal client inserts the request token into options using this reference.
-    fn options_mut(&mut self) -> &mut VariantDict;
+    /// Add an option to this portal call.
+    fn with_option(self, key: &str, value: Variant) -> Self;
 }
 
 fn request_object_path(connection: &DBusConnection, handle_token: &str) -> String {
@@ -207,15 +205,14 @@ impl PortalClient {
 
     async fn invoke_with_unix_fd_list<C: PortalCall>(
         &self,
-        mut call: C,
+        call: C,
         fd_list: Option<&(impl IsA<UnixFDList> + Clone + 'static)>,
     ) -> Result<PortalRequest, glib::Error> {
         // Subscribe to the request first
         let request = PortalRequest::subscribe(&self.connection);
 
         // Add the request handle token to the portal call.
-        call.options_mut()
-            .insert("handle_token", &request.handle_token);
+        let call = call.with_option("handle_token", request.handle_token.as_str().into());
 
         glib::debug!(
             "Calling {}.{}, with request {}",

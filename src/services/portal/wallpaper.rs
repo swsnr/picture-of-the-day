@@ -4,8 +4,10 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::variant::Handle;
-use glib::{Variant, VariantDict};
+use std::collections::HashMap;
+
+use glib::Variant;
+use glib::variant::{Handle, ToVariant};
 
 use super::client::PortalCall;
 use super::window::PortalWindowIdentifier;
@@ -38,7 +40,7 @@ pub enum Preview {
 }
 
 #[derive(Variant)]
-pub struct SetWallpaperFile<'a>(PortalWindowIdentifier<'a>, Handle, VariantDict);
+pub struct SetWallpaperFile<'a>(PortalWindowIdentifier<'a>, Handle, HashMap<String, Variant>);
 
 impl<'a> SetWallpaperFile<'a> {
     /// Create a request to set the wallpaper to a file.
@@ -58,10 +60,14 @@ impl<'a> SetWallpaperFile<'a> {
         show_preview: Preview,
         set_on: SetOn,
     ) -> Self {
-        let options = VariantDict::new(None);
         let set_on: &'static str = set_on.into();
-        options.insert("show-preview", matches!(show_preview, Preview::Preview));
-        options.insert("set-on", set_on);
+        let options = HashMap::from([
+            (
+                "show-preview".to_string(),
+                matches!(show_preview, Preview::Preview).to_variant(),
+            ),
+            ("set-on".to_string(), set_on.to_variant()),
+        ]);
         Self(window, file, options)
     }
 }
@@ -71,7 +77,8 @@ impl PortalCall for SetWallpaperFile<'_> {
 
     const METHOD_NAME: &'static str = "SetWallpaperFile";
 
-    fn options_mut(&mut self) -> &mut VariantDict {
-        &mut self.2
+    fn with_option(mut self, key: &str, value: Variant) -> Self {
+        self.2.insert(key.to_string(), value);
+        self
     }
 }

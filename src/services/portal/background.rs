@@ -4,7 +4,9 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use glib::{Variant, VariantDict, bitflags::bitflags};
+use std::collections::HashMap;
+
+use glib::{Variant, bitflags::bitflags, variant::ToVariant};
 
 use super::{
     client::{PortalCall, PortalResponse, RequestResult},
@@ -12,7 +14,7 @@ use super::{
 };
 
 #[derive(Variant)]
-pub struct RequestBackground<'a>(PortalWindowIdentifier<'a>, VariantDict);
+pub struct RequestBackground<'a>(PortalWindowIdentifier<'a>, HashMap<String, Variant>);
 
 bitflags! {
     #[derive(Copy, Clone)]
@@ -29,16 +31,15 @@ impl<'a> RequestBackground<'a> {
         command_line: Option<&[&str]>,
         flags: RequestBackgroundFlags,
     ) -> Self {
-        let options = VariantDict::new(None);
-        options.insert("reason", reason);
+        let mut options = HashMap::from([("reason".to_string(), reason.to_variant())]);
         if let Some(command_line) = command_line {
-            options.insert("commandline", command_line);
+            options.insert("commandline".to_string(), command_line.to_variant());
         }
         if flags.contains(RequestBackgroundFlags::AUTOSTART) {
-            options.insert("autostart", true);
+            options.insert("autostart".to_string(), true.to_variant());
         }
         if flags.contains(RequestBackgroundFlags::DBUS_ACTIVATE) {
-            options.insert("dbus-activatable", true);
+            options.insert("dbus-activatable".to_string(), true.to_variant());
         }
         Self(window, options)
     }
@@ -49,8 +50,9 @@ impl PortalCall for RequestBackground<'_> {
 
     const METHOD_NAME: &'static str = "RequestBackground";
 
-    fn options_mut(&mut self) -> &mut VariantDict {
-        &mut self.1
+    fn with_option(mut self, key: &str, value: Variant) -> Self {
+        self.1.insert(key.to_string(), value);
+        self
     }
 }
 
