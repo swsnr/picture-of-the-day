@@ -516,6 +516,19 @@ mod imp {
 
             self.obj().setup_actions();
 
+            // Properly quit the app on applicable unix signals
+            let app = self.obj().downgrade();
+            glib::spawn_future_local(async move {
+                futures::future::select(
+                    glib::unix_signal_future(libc::SIGINT),
+                    glib::unix_signal_future(libc::SIGTERM),
+                )
+                .await;
+                if let Some(app) = app.upgrade() {
+                    app.activate_action("quit", None);
+                }
+            });
+
             glib::info!("Loading settings");
             let settings = crate::config::get_settings();
             self.settings.replace(Some(settings.clone()));
