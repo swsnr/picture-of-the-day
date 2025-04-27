@@ -26,6 +26,7 @@ use crate::{
 
 mod model;
 mod scheduler;
+mod session_monitor;
 mod widgets;
 
 use widgets::PreferencesDialog;
@@ -306,7 +307,7 @@ mod imp {
     use std::cell::RefCell;
     use std::{cell::Cell, str::FromStr};
 
-    use super::scheduler::AutomaticWallpaperUpdateScheduler;
+    use super::{scheduler::AutomaticWallpaperUpdateScheduler, session_monitor::SessionMonitor};
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
@@ -323,6 +324,8 @@ mod imp {
         date: Cell<Option<Date>>,
         /// Scheduler used for automatic updates.
         scheduler: AutomaticWallpaperUpdateScheduler,
+        /// User session monitor.
+        session_monitor: SessionMonitor,
         /// Hold on to ourselves while automatic wallpaper updates are scheduled
         pub scheduled_updates_hold: RefCell<Option<ApplicationHoldGuard>>,
     }
@@ -407,6 +410,18 @@ mod imp {
                 scheduler,
                 move |monitor| {
                     scheduler.inhibit_according_to_network_connectivity(monitor.connectivity());
+                }
+            ));
+
+            // Inhibit while the session is locked
+            self.session_monitor.connect_locked_notify(glib::clone!(
+                #[weak]
+                scheduler,
+                move |monitor| {
+                    scheduler.set_inhibitor(
+                        AutomaticWallpaperUpdateInhibitor::SessionLocked,
+                        monitor.locked(),
+                    );
                 }
             ));
 
