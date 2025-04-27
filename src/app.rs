@@ -428,15 +428,21 @@ mod imp {
 
             // Listen to scheduled updates, and set the wallpaper in response
             let rx = self.scheduler.update_receiver();
-            glib::spawn_future_local(glib::clone!(
-                #[weak(rename_to = app)]
-                self.obj(),
-                async move {
-                    while let Ok(update) = rx.recv().await {
+            // Explicitly pass a weak ref into the long running future, and
+            // attempt to upgrade for each iteration; glib::clone! #[weak]
+            // would upgrade when the future is polled for the first time: the
+            // future would then just continue to have a strong reference to the
+            // app
+            let app = self.obj().downgrade();
+            glib::spawn_future_local(async move {
+                while let Ok(update) = rx.recv().await {
+                    if let Some(app) = app.upgrade() {
                         app.handle_scheduled_wallpaper_update(update).await;
+                    } else {
+                        break;
                     }
                 }
-            ));
+            });
 
             // Finally, update the source for scheduled wallpaper updates.
             // This implicit starts scheduled updates.
