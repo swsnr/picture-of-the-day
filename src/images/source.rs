@@ -13,19 +13,12 @@ use glib::{GString, dpgettext2};
 use std::path::PathBuf;
 
 use crate::config::G_LOG_DOMAIN;
-use crate::image::DownloadableImage;
+
+use super::DownloadableImage;
 
 mod error;
-
-mod apod;
-mod bing;
-mod eoiod;
-mod epod;
-pub mod stalenhag;
-mod wikimedia;
-
 #[cfg(test)]
-mod testutil;
+pub mod testutil;
 
 pub use error::SourceError;
 
@@ -103,6 +96,9 @@ impl Source {
         session: &soup::Session,
         date: Option<jiff::civil::Date>,
     ) -> Result<Vec<DownloadableImage>, SourceError> {
+        #[allow(clippy::wildcard_imports)]
+        use super::sources::*;
+
         let today = crate::date::today_local();
         let images = match self {
             Source::Apod => vec![apod::fetch_picture_of_the_day(session, date).await?],

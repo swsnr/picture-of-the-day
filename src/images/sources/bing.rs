@@ -11,13 +11,9 @@ use jiff::civil::Date;
 use serde::{Deserialize, Deserializer, de};
 use url::Url;
 
-use crate::{
-    config::G_LOG_DOMAIN,
-    image::{DownloadableImage, ImageMetadata},
-    net::http::SoupSessionExt,
-};
+use crate::{config::G_LOG_DOMAIN, net::http::SoupSessionExt};
 
-use super::{Source, SourceError};
+use super::super::{DownloadableImage, ImageMetadata, Source, SourceError};
 
 #[derive(Debug, Deserialize)]
 struct BingImage {
@@ -159,13 +155,13 @@ mod tests {
     use gtk::gio::Cancellable;
     use soup::prelude::SessionExt;
 
-    use crate::{image::DownloadableImage, source::testutil::soup_session};
+    use crate::images::source::testutil::soup_session;
 
-    use super::BingResponse;
+    use super::*;
 
     #[test]
     fn fetch_daily_images() {
-        let message = super::get_daily_bing_images_message(Some("en_GB"));
+        let message = get_daily_bing_images_message(Some("en_GB"));
         let response = soup_session()
             .send_and_read(&message, Cancellable::NONE)
             .unwrap();

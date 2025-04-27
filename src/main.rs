@@ -48,16 +48,15 @@ mod app;
 mod config;
 mod date;
 mod i18n;
-mod image;
+mod images;
 mod io;
 mod net;
 mod services;
-mod source;
 mod xml;
 
 use config::G_LOG_DOMAIN;
 use i18n::gettext;
-use source::Source;
+use images::Source;
 
 fn main() -> glib::ExitCode {
     static GLIB_LOGGER: glib::GlibLogger = glib::GlibLogger::new(

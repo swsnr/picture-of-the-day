@@ -10,7 +10,7 @@ use jiff::civil::Date;
 use serde::Deserialize;
 use std::sync::LazyLock;
 
-use crate::image::{DownloadableImage, ImageMetadata};
+use super::super::{DownloadableImage, ImageMetadata, Source};
 
 #[derive(Debug, Deserialize)]
 pub struct Collection {
@@ -100,7 +100,7 @@ fn pick_image_for_date(date: Date, images: &[ImageInCollection]) -> Downloadable
             description: Some(description),
             copyright: Some(copyright.into()),
             url: Some(image.url.to_owned()),
-            source: super::Source::Stalenhag,
+            source: Source::Stalenhag,
         },
         image_url: image.image.to_owned(),
         // We do not add a date to the image here, because we cycle through these
@@ -126,9 +126,7 @@ mod tests {
     use gtk::gio;
     use jiff::civil::date;
 
-    use crate::source::Source;
-
-    use super::COLLECTIONS;
+    use super::*;
 
     #[test]
     fn pick_image_for_date_from_collections() {

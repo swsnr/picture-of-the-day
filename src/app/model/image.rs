@@ -9,7 +9,7 @@
 
 use glib::Object;
 
-use crate::image::{DownloadableImage, ImageMetadata};
+use crate::images::{DownloadableImage, ImageMetadata};
 
 #[derive(Copy, Clone, Debug, glib::Enum)]
 #[enum_type(name = "PotDImageDownloadState")]

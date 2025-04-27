@@ -13,9 +13,9 @@ use jiff::civil::Date;
 use serde::Deserialize;
 
 use crate::config::G_LOG_DOMAIN;
-use crate::image::{DownloadableImage, ImageMetadata};
 use crate::net::http::SoupSessionExt;
-use crate::source::SourceError;
+
+use super::super::{DownloadableImage, ImageMetadata, Source, SourceError};
 
 #[derive(Debug, Deserialize)]
 struct FeaturedImageImage {
@@ -101,7 +101,7 @@ impl From<FeaturedImage> for DownloadableImage {
                 description,
                 copyright,
                 url,
-                source: super::Source::Wikimedia,
+                source: Source::Wikimedia,
             },
             image_url,
             pubdate: None,
@@ -181,10 +181,9 @@ mod tests {
     use jiff::civil::date;
     use soup::prelude::SessionExt;
 
-    use crate::{
-        image::DownloadableImage,
-        source::{Source, testutil::soup_session},
-    };
+    use crate::images::source::testutil::soup_session;
+
+    use super::*;
 
     #[test]
     fn cleanup_title() {
@@ -201,13 +200,13 @@ mod tests {
     fn featured_image() {
         // See https://commons.m.wikimedia.org/wiki/Template:Potd/2025-03#/media/File%3AGeorge_Sand_by_Nadar%2C_1864.jpg
         let date = date(2025, 3, 8);
-        let message = super::get_feature_content_message(date, "en");
+        let message = get_feature_content_message(date, "en");
         let response = soup_session()
             .send_and_read(&message, Cancellable::NONE)
             .unwrap();
         assert_eq!(message.status(), soup::Status::Ok);
 
-        let content = serde_json::from_slice::<super::FeaturedContent>(&response).unwrap();
+        let content = serde_json::from_slice::<FeaturedContent>(&response).unwrap();
         let image = content.image.as_ref().unwrap();
         assert_eq!(image.title, "File:George Sand by Nadar, 1864.jpg");
         assert_eq!(

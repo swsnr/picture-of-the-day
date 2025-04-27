@@ -4,7 +4,7 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use crate::source::{Source, SourceError};
+use crate::images::{Source, SourceError};
 
 #[glib::flags(name = "PotDErrorNotificationActions")]
 pub enum ErrorNotificationActions {
@@ -30,7 +30,7 @@ mod errors {
     use gtk::gio;
     use gtk::gio::prelude::*;
 
-    use crate::source::Source;
+    use crate::images::Source;
 
     use super::{ErrorNotification, ErrorNotificationActions};
 

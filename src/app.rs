@@ -15,13 +15,13 @@ use scheduler::ScheduledWallpaperUpdate;
 
 use crate::{
     config::G_LOG_DOMAIN,
+    images::{Source, SourceError},
     io::ensure_directory,
     services::portal::{
         RequestResult,
         wallpaper::{Preview, SetOn},
         window::PortalWindowHandle,
     },
-    source::{Source, SourceError},
 };
 
 mod model;

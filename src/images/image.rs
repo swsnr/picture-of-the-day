@@ -12,7 +12,8 @@ use std::{
 
 use crate::config::G_LOG_DOMAIN;
 use crate::net::http::download::{DownloadError, download_file_to_directory};
-use crate::source::Source;
+
+use super::Source;
 
 /// Metadata of an image.
 #[derive(Debug, Clone, Eq, PartialEq)]
