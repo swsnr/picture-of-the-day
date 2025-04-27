@@ -13,7 +13,7 @@ use soup::prelude::SessionExt;
 use crate::{
     image::{DownloadableImage, ImageMetadata},
     net::http::HttpError,
-    rss::{RssItem, read_rss_channel},
+    xml::rss::{RssItem, read_rss_channel},
 };
 
 use super::{Source, SourceError};

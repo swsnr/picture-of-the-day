@@ -51,7 +51,6 @@ mod i18n;
 mod image;
 mod io;
 mod net;
-mod rss;
 mod services;
 mod source;
 mod xml;

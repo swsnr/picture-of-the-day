@@ -10,7 +10,7 @@ use glib::GString;
 use gtk::gio::IOErrorEnum;
 
 use crate::net::http::{HttpError, download::DownloadError};
-use crate::rss::RssError;
+use crate::xml::rss::RssError;
 
 #[derive(Debug)]
 pub enum SourceError {

@@ -11,6 +11,8 @@ use quick_xml::{
     events::{BytesStart, Event},
 };
 
+pub mod rss;
+
 /// Read to start of next element.
 ///
 /// Return the element start, or `None` when encountering [`Event::Eof`] or
