@@ -29,6 +29,8 @@ pub enum AutomaticWallpaperUpdateInhibitor {
     LowPower = 0b0000_0100,
     /// The system has no network connectivity.
     NoNetwork = 0b0000_1000,
+    /// The desktop session is locked.
+    SessionLocked = 0b0001_0000,
 }
 
 impl Display for AutomaticWallpaperUpdateInhibitor {
