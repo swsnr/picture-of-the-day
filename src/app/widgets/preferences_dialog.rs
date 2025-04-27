@@ -41,7 +41,7 @@ mod imp {
     use glib::{Properties, StrV, dngettext, subclass::InitializingObject};
     use gtk::CompositeTemplate;
 
-    use crate::source::{Source, stalenhag};
+    use crate::images::{Source, stalenhag};
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::PreferencesDialog)]

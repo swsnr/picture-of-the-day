@@ -47,19 +47,16 @@ use gtk::prelude::*;
 mod app;
 mod config;
 mod date;
-mod gettext;
-mod http;
-mod image;
+mod i18n;
+mod images;
 mod io;
-mod locale;
-mod logind;
-mod portal;
-mod rss;
-mod source;
+mod net;
+mod services;
 mod xml;
 
 use config::G_LOG_DOMAIN;
-use source::Source;
+use i18n::gettext;
+use images::Source;
 
 fn main() -> glib::ExitCode {
     static GLIB_LOGGER: glib::GlibLogger = glib::GlibLogger::new(

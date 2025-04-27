@@ -13,7 +13,7 @@ use glib::subclass::types::ObjectSubclassIsExt;
 use gtk::gio::{self, NetworkConnectivity};
 
 use crate::config::G_LOG_DOMAIN;
-use crate::source::{Source, SourceError};
+use crate::images::{Source, SourceError};
 
 #[glib::flags(name = "PotDAutomaticWallpaperUpdateInhibitor")]
 pub enum AutomaticWallpaperUpdateInhibitor {
@@ -144,7 +144,7 @@ mod imp {
     use glib::subclass::prelude::*;
     use gtk::gio::{self, Cancellable, prelude::CancellableExt};
 
-    use crate::{config::G_LOG_DOMAIN, source::Source};
+    use crate::{config::G_LOG_DOMAIN, images::Source};
 
     use super::{AutomaticWallpaperUpdateInhibitor, ScheduledWallpaperUpdate};
 

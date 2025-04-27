@@ -11,13 +11,9 @@ use jiff::civil::Date;
 use serde::{Deserialize, Deserializer, de};
 use url::Url;
 
-use crate::{
-    config::G_LOG_DOMAIN,
-    http::SoupSessionExt,
-    image::{DownloadableImage, ImageMetadata},
-};
+use crate::{config::G_LOG_DOMAIN, net::http::SoupSessionExt};
 
-use super::{Source, SourceError};
+use super::super::{DownloadableImage, ImageMetadata, Source, SourceError};
 
 #[derive(Debug, Deserialize)]
 struct BingImage {
@@ -140,7 +136,7 @@ async fn fetch_daily_bing_images(
 pub async fn fetch_daily_images(
     session: &soup::Session,
 ) -> Result<Vec<DownloadableImage>, SourceError> {
-    let language_code = crate::locale::language_and_territory_codes().next();
+    let language_code = crate::i18n::locale::language_and_territory_codes().next();
     let images = fetch_daily_bing_images(session, language_code.as_deref())
         .await?
         .images;
@@ -159,13 +155,13 @@ mod tests {
     use gtk::gio::Cancellable;
     use soup::prelude::SessionExt;
 
-    use crate::{image::DownloadableImage, source::testutil::soup_session};
+    use crate::images::source::testutil::soup_session;
 
-    use super::BingResponse;
+    use super::*;
 
     #[test]
     fn fetch_daily_images() {
-        let message = super::get_daily_bing_images_message(Some("en_GB"));
+        let message = get_daily_bing_images_message(Some("en_GB"));
         let response = soup_session()
             .send_and_read(&message, Cancellable::NONE)
             .unwrap();

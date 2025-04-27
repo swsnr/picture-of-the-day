@@ -11,10 +11,10 @@ use url::Url;
 
 use crate::{
     config::G_LOG_DOMAIN,
-    http::{HttpError, SoupSessionExt},
-    image::{DownloadableImage, ImageMetadata},
-    source::SourceError,
+    net::http::{HttpError, SoupSessionExt},
 };
+
+use super::super::{DownloadableImage, ImageMetadata, Source, SourceError};
 
 #[derive(Debug, Deserialize, Eq, PartialEq)]
 #[serde(rename_all = "lowercase")]
@@ -57,7 +57,7 @@ impl TryFrom<ApodMetadata> for DownloadableImage {
                     description: Some(metadata.explanation),
                     copyright: metadata.copyright,
                     url: Some(url),
-                    source: super::Source::Apod,
+                    source: Source::Apod,
                 },
                 image_url: metadata.hdurl.unwrap_or(metadata.url),
                 pubdate: Some(metadata.date),
@@ -134,10 +134,8 @@ mod tests {
     use gtk::gio::Cancellable;
     use soup::prelude::SessionExt;
 
-    use crate::{
-        image::DownloadableImage,
-        source::{Source, testutil::soup_session},
-    };
+    use super::*;
+    use crate::images::source::testutil::soup_session;
 
     #[test]
     fn fetch_apod() {
@@ -145,13 +143,13 @@ mod tests {
         let api_key = "74AFPeibYGYI13Efz7MrgtjJ1ozN3etA1Ggt87r6";
         // See https://apod.nasa.gov/apod/ap250327.html
         let date = jiff::civil::date(2025, 3, 27);
-        let message = super::get_metadata_message(Some(date), api_key);
+        let message = get_metadata_message(Some(date), api_key);
         let response = soup_session()
             .send_and_read(&message, Cancellable::NONE)
             .unwrap();
         assert_eq!(message.status(), soup::Status::Ok);
 
-        let metadata = serde_json::from_slice::<super::ApodMetadata>(&response).unwrap();
+        let metadata = serde_json::from_slice::<ApodMetadata>(&response).unwrap();
         let image = DownloadableImage::try_from(metadata).unwrap();
         let metadata = image.metadata;
 

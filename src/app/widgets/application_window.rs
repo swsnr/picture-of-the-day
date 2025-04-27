@@ -13,7 +13,7 @@ use gtk::gio;
 use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
 use crate::date::BoxedCivilDate;
-use crate::portal::client::PortalClient;
+use crate::services::portal::PortalClient;
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -241,16 +241,17 @@ mod imp {
     use gtk::gio::{self, Cancellable, FileCreateFlags, FileQueryInfoFlags};
     use strum::IntoEnumIterator;
 
-    use crate::Source;
     use crate::app::model::{ErrorNotification, Image};
     use crate::app::widgets::{ErrorNotificationPage, ImagesCarousel, SourceRow};
     use crate::config::G_LOG_DOMAIN;
     use crate::date::BoxedCivilDate;
+    use crate::images::{Source, SourceError};
     use crate::io::ensure_directory;
-    use crate::portal::client::PortalClient;
-    use crate::portal::wallpaper::{Preview, SetOn};
-    use crate::portal::window::PortalWindowHandle;
-    use crate::source::SourceError;
+    use crate::services::portal::{
+        PortalClient,
+        wallpaper::{Preview, SetOn},
+        window::PortalWindowHandle,
+    };
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ApplicationWindow)]

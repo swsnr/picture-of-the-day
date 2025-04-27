@@ -10,9 +10,7 @@ use gtk::gio;
 use scraper::{ElementRef, Html, Node, Selector};
 use soup::prelude::SessionExt;
 
-use crate::image::{DownloadableImage, ImageMetadata};
-
-use super::{Source, SourceError};
+use super::super::{DownloadableImage, ImageMetadata, Source, SourceError};
 
 #[derive(Debug)]
 struct ScraperError {
@@ -176,21 +174,20 @@ mod tests {
     use jiff::civil::{Date, date};
     use soup::prelude::SessionExt;
 
-    use crate::{
-        image::ImageMetadata,
-        source::{Source, testutil::soup_session},
-    };
+    use crate::images::source::testutil::soup_session;
 
-    fn scrape_url(url: &str) -> Vec<crate::image::DownloadableImage> {
+    use super::*;
+
+    fn scrape_page_at_url(url: &str) -> Vec<DownloadableImage> {
         let session = soup_session();
         let message = soup::Message::new("GET", url).unwrap();
         let data = session.send_and_read(&message, Cancellable::NONE).unwrap();
-        super::scrape_page(&data).unwrap()
+        scrape_page(&data).unwrap()
     }
 
     #[test]
     fn scrape_page_with_asset_link_and_photographer() {
-        let mut images = scrape_url(
+        let mut images = scrape_page_at_url(
             "https://epod.usra.edu/blog/2025/01/aurora-borealis-and-an-east-west-oriented-arc-september-1314-2024.html",
         );
         let image = images.pop().unwrap();
@@ -237,7 +234,7 @@ Photo Details: Canon 650D camera; Samyang 8 mm fisheye-lens.
 
     #[test]
     fn scrape_page_without_asset_link_and_copyright() {
-        let mut images = scrape_url(
+        let mut images = scrape_page_at_url(
             "https://epod.usra.edu/blog/2025/04/archive-earth-day-and-red-deer-bridge.html",
         );
 
@@ -285,9 +282,9 @@ celebrating its 55th observance. Note that while Earth Day is always on April \
     #[test]
     fn fetch_picture_of_the_day() {
         let session = soup_session();
-        let message = super::get_blog_message();
+        let message = get_blog_message();
         let data = session.send_and_read(&message, Cancellable::NONE).unwrap();
-        let images = super::scrape_page(&data).unwrap();
+        let images = scrape_page(&data).unwrap();
 
         assert!(!images.is_empty());
         for image in &images {

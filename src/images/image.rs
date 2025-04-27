@@ -4,7 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-use download::{DownloadError, download_file_to_directory};
 use gtk::gio::{self, FileQueryInfoFlags, IOErrorEnum, prelude::FileExt};
 use std::{
     borrow::Cow,
@@ -12,9 +11,9 @@ use std::{
 };
 
 use crate::config::G_LOG_DOMAIN;
-use crate::source::Source;
+use crate::net::http::download::{DownloadError, download_file_to_directory};
 
-pub mod download;
+use super::Source;
 
 /// Metadata of an image.
 #[derive(Debug, Clone, Eq, PartialEq)]

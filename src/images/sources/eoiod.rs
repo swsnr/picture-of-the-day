@@ -11,12 +11,11 @@ use quick_xml::NsReader;
 use soup::prelude::SessionExt;
 
 use crate::{
-    http::HttpError,
-    image::{DownloadableImage, ImageMetadata},
-    rss::{RssItem, read_rss_channel},
+    net::http::HttpError,
+    xml::rss::{RssItem, read_rss_channel},
 };
 
-use super::{Source, SourceError};
+use super::super::{DownloadableImage, ImageMetadata, Source, SourceError};
 
 fn get_feed_message() -> soup::Message {
     soup::Message::new(

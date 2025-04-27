@@ -15,18 +15,17 @@ use scheduler::ScheduledWallpaperUpdate;
 
 use crate::{
     config::G_LOG_DOMAIN,
+    images::{Source, SourceError},
     io::ensure_directory,
-    portal::{
-        client::RequestResult,
+    services::portal::{
+        RequestResult,
         wallpaper::{Preview, SetOn},
         window::PortalWindowHandle,
     },
-    source::{Source, SourceError},
 };
 
 mod model;
 mod scheduler;
-mod session_monitor;
 mod widgets;
 
 use widgets::PreferencesDialog;
@@ -290,10 +289,12 @@ mod imp {
     use crate::{
         app::{scheduler::AutomaticWallpaperUpdateInhibitor, widgets::ApplicationWindow},
         config::G_LOG_DOMAIN,
-        portal::{
-            background::RequestBackgroundFlags,
-            client::{PortalClient, RequestResult},
-            window::PortalWindowHandle,
+        services::{
+            SessionMonitor,
+            portal::{
+                PortalClient, RequestResult, background::RequestBackgroundFlags,
+                window::PortalWindowHandle,
+            },
         },
     };
     use adw::gio::ApplicationCommandLine;
@@ -307,7 +308,7 @@ mod imp {
     use std::cell::RefCell;
     use std::{cell::Cell, str::FromStr};
 
-    use super::{scheduler::AutomaticWallpaperUpdateScheduler, session_monitor::SessionMonitor};
+    use super::scheduler::AutomaticWallpaperUpdateScheduler;
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
