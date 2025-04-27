@@ -11,8 +11,8 @@ use url::Url;
 
 use crate::{
     config::G_LOG_DOMAIN,
-    http::{HttpError, SoupSessionExt},
     image::{DownloadableImage, ImageMetadata},
+    net::http::{HttpError, SoupSessionExt},
     source::SourceError,
 };
 

@@ -13,8 +13,8 @@ use jiff::civil::Date;
 use serde::Deserialize;
 
 use crate::config::G_LOG_DOMAIN;
-use crate::http::SoupSessionExt;
 use crate::image::{DownloadableImage, ImageMetadata};
+use crate::net::http::SoupSessionExt;
 use crate::source::SourceError;
 
 #[derive(Debug, Deserialize)]

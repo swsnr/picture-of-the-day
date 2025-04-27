@@ -8,6 +8,8 @@ use glib::{Bytes, GString};
 use serde::de::DeserializeOwned;
 use soup::prelude::SessionExt;
 
+pub mod download;
+
 /// An error during a HTTP request.
 #[derive(Debug)]
 pub enum HttpError {

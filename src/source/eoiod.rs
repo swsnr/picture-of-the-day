@@ -11,8 +11,8 @@ use quick_xml::NsReader;
 use soup::prelude::SessionExt;
 
 use crate::{
-    http::HttpError,
     image::{DownloadableImage, ImageMetadata},
+    net::http::HttpError,
     rss::{RssItem, read_rss_channel},
 };
 

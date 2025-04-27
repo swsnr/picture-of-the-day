@@ -9,8 +9,7 @@ use std::{error::Error, fmt::Display};
 use glib::GString;
 use gtk::gio::IOErrorEnum;
 
-use crate::http::HttpError;
-use crate::image::download::DownloadError;
+use crate::net::http::{HttpError, download::DownloadError};
 use crate::rss::RssError;
 
 #[derive(Debug)]
