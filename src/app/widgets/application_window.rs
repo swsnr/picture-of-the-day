@@ -13,7 +13,7 @@ use gtk::gio;
 use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
 use crate::date::BoxedCivilDate;
-use crate::portal::client::PortalClient;
+use crate::services::portal::PortalClient;
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -247,9 +247,9 @@ mod imp {
     use crate::config::G_LOG_DOMAIN;
     use crate::date::BoxedCivilDate;
     use crate::io::ensure_directory;
-    use crate::portal::client::PortalClient;
-    use crate::portal::wallpaper::{Preview, SetOn};
-    use crate::portal::window::PortalWindowHandle;
+    use crate::services::portal::PortalClient;
+    use crate::services::portal::wallpaper::{Preview, SetOn};
+    use crate::services::portal::window::PortalWindowHandle;
     use crate::source::SourceError;
 
     #[derive(Default, CompositeTemplate, Properties)]

@@ -25,7 +25,7 @@ mod imp {
     use glib::subclass::prelude::*;
     use gtk::gio::{self, DBusError, DBusSignalFlags, SignalSubscriptionId};
 
-    use crate::{config::G_LOG_DOMAIN, logind};
+    use crate::{config::G_LOG_DOMAIN, services::logind};
 
     #[derive(Default, glib::Properties)]
     #[properties(wrapper_type = super::SessionMonitor)]

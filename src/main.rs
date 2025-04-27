@@ -52,9 +52,8 @@ mod http;
 mod image;
 mod io;
 mod locale;
-mod logind;
-mod portal;
 mod rss;
+mod services;
 mod source;
 mod xml;
 
