@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-22 15:53+0000\n"
+"PO-Revision-Date: 2025-04-27 20:03+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
@@ -109,77 +109,91 @@ msgstr "作品"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid ""
+"No longer set the wallpaper automatically while the main window is visible, "
+"to allow you to preview different sources without actually changing your "
+"desktop background."
+msgstr "当主窗口可见时，不再自动设置壁纸，以允许您预览不同的来源，而无需实际更改您的"
+"桌面背景。"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+msgid ""
+"No longer attempt to set update wallpaper automatically while the session is "
+"locked, or the system is on low power or has no network connection."
+msgstr "当会话锁定、系统电量不足或无网络连接时，不再尝试自动设置更新壁纸。"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr "添加 Earth Science 今日图片和 NASA 地球观测站今日图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:60
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:72
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr "添加覆盖工具栏以转到图片视图的上一张或下一张图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:61
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:73
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr "添加工具栏按钮以保存当前图片，并在外部应用程序中打开当前图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:62
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr "退出时尽量避免残留部分下载的壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:86
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "为维基媒体图片使用更可靠的端点。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:87
 msgid "No longer show preview when setting a wallpaper."
 msgstr "设置壁纸时不再显示预览。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid "Improve scheduling of automatic downloads."
 msgstr "改进自动下载的调度。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
 msgid "Remember window size and state."
 msgstr "记住窗口大小和状态。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:78
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
 msgid "Update to GNOME 48."
 msgstr "更新到 GNOME 48。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr "自动启动并每十二小时自动刷新每日壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:101
 msgid "No longer support multiple windows."
 msgstr "不再支持多个窗口。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:99
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:111
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr "初始版本有四个来源：APOD、维基媒体、Simon Stålenhag 和必应。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:100
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:112
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr "添加一个主窗口显示当天的图片，并添加一个按钮将其设置为当前壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:112
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:124
 msgid "A picture of the day from Wikimedia"
 msgstr "来自维基媒体的每日图片"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:116
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:128
 msgid "The preferences dialog with settings for image sources"
 msgstr "带有图片源设置的首选项对话框"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:120
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:132
 msgid "The empty greeting page with the application icon"
 msgstr "带有应用程序图标的空白问候页面"
 
@@ -409,37 +423,37 @@ msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "有用的服务"
 
-#: src/app.rs:175
+#: src/app.rs:211
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "联系信息"
 
-#: src/app.rs:180
+#: src/app.rs:216
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:184
+#: src/app.rs:220
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "打开 URL"
 
-#: src/app.rs:445
+#: src/app.rs:469
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:456
+#: src/app.rs:480
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "显示给定日期的图片"
 
-#: src/app.rs:461
+#: src/app.rs:485
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
-#: src/app.rs:637
+#: src/app.rs:661
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "在后台自动获取并设置壁纸"
@@ -543,31 +557,31 @@ msgstr ""
 "从 %1 获取今天的图片时发生 I/O 错误，消息如下：%2。请稍后重试，或尝试其他来"
 "源。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:74
+#: src/app/widgets/application_window.rs:73
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening %1, with the following message: %2. If "
 "the issue persists please report the problem."
 msgstr "打开 %1 时发生 I/O 错误，消息如下：%2。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:80
+#: src/app/widgets/application_window.rs:79
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "无法打开源 URL"
 
-#: src/app/widgets/application_window.rs:99
+#: src/app/widgets/application_window.rs:98
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr "设置壁纸时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:105
+#: src/app/widgets/application_window.rs:104
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "无法设置壁纸"
 
-#: src/app/widgets/application_window.rs:132
+#: src/app/widgets/application_window.rs:131
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
@@ -575,16 +589,16 @@ msgid ""
 msgstr ""
 "打开当前图片时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:138
+#: src/app/widgets/application_window.rs:137
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "无法打开图片"
 
-#: src/app/widgets/application_window.rs:153
+#: src/app/widgets/application_window.rs:152
 msgid "Saved image %1"
 msgstr "已保存图片 %1"
 
-#: src/app/widgets/application_window.rs:171
+#: src/app/widgets/application_window.rs:170
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
@@ -592,27 +606,27 @@ msgid ""
 msgstr ""
 "保存当前图片时发生 I/O 错误，消息如下：%1。如果问题仍然存在，请报告问题。"
 
-#: src/app/widgets/application_window.rs:177
+#: src/app/widgets/application_window.rs:176
 msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "无法保存图片"
 
-#: src/app/widgets/application_window.rs:194
+#: src/app/widgets/application_window.rs:193
 msgctxt "alert.response"
 msgid "Close"
 msgstr "关闭"
 
-#: src/app/widgets/application_window.rs:201
+#: src/app/widgets/application_window.rs:200
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "联系信息"
 
-#: src/app/widgets/application_window.rs:205
+#: src/app/widgets/application_window.rs:204
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app/widgets/application_window.rs:209
+#: src/app/widgets/application_window.rs:208
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "打开 URL"
@@ -632,78 +646,78 @@ msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
 msgstr[0] "%1/%2 集合已启用"
 
-#: src/main.rs:88
-msgctxt "application-name"
-msgid "Picture Of The Day"
-msgstr "今日图片"
-
-#: src/source.rs:66
+#: src/images/source.rs:58
 msgctxt "source name"
 msgid "NASA Astronomy Picture of the Day"
 msgstr "NASA 今日天文图片"
 
-#: src/source.rs:67
+#: src/images/source.rs:59
 msgctxt "source name"
 msgid "Bing"
 msgstr "必应"
 
-#: src/source.rs:68
+#: src/images/source.rs:60
 msgctxt "source name"
 msgid "Wikimedia Picture of the Day"
 msgstr "维基媒体今日图片"
 
-#: src/source.rs:69
+#: src/images/source.rs:61
 msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/source.rs:70
+#: src/images/source.rs:62
 msgctxt "source name"
 msgid "Earth Science Picture of the Day"
 msgstr "Earth Science 今日图片"
 
-#: src/source.rs:74
+#: src/images/source.rs:66
 msgctxt "source name"
 msgid "NASA Earth Observatory Image of the Day"
 msgstr "NASA 地球观测站今日图片"
 
-#: src/source/bing.rs:81
+#: src/images/sources/bing.rs:77
 msgctxt "source.bing.copyright"
 msgid "All rights reserved."
 msgstr "版权所有。"
 
-#: src/source/eoiod.rs:37
+#: src/images/sources/eoiod.rs:36
 msgctxt "source.eoiod.copyright"
 msgid "NASA Earth Observatory"
 msgstr "NASA 地球观测站"
 
-#: src/source/stalenhag.rs:95
+#: src/images/sources/stalenhag.rs:94
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr "版权所有。"
 
-#: src/source/stalenhag.rs:96
+#: src/images/sources/stalenhag.rs:95
 #, c-format
 msgctxt "source.stalenhag.description"
 msgid "Collection: %s"
 msgstr "集合：%s"
 
-#: src/source/wikimedia.rs:65
+#: src/images/sources/wikimedia.rs:65
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%credit, %license)"
 msgstr "%artist (%credit, %license)"
 
-#: src/source/wikimedia.rs:71
+#: src/images/sources/wikimedia.rs:71
 #, c-format
 msgctxt "source.wikimedia.copyright"
 msgid "%artist (%license)"
 msgstr "%artist (%license)"
 
-#: src/source/wikimedia.rs:80
+#: src/images/sources/wikimedia.rs:80
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "未知，版权所有"
+
+#: src/main.rs:87
+msgctxt "application-name"
+msgid "Picture Of The Day"
+msgstr "今日图片"
 
 #~ msgctxt "command-line.option.description"
 #~ msgid "Show image for DATE, parsed as ISO string"
