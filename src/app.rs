@@ -26,6 +26,7 @@ use crate::{
 
 mod model;
 mod scheduler;
+mod updated_monitor;
 mod widgets;
 
 use widgets::PreferencesDialog;
@@ -308,7 +309,7 @@ mod imp {
     use std::cell::RefCell;
     use std::{cell::Cell, str::FromStr};
 
-    use super::scheduler::AutomaticWallpaperUpdateScheduler;
+    use super::{scheduler::AutomaticWallpaperUpdateScheduler, updated_monitor::AppUpdatedMonitor};
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
@@ -327,6 +328,8 @@ mod imp {
         scheduler: AutomaticWallpaperUpdateScheduler,
         /// User session monitor.
         session_monitor: SessionMonitor,
+        /// App updates monitor,
+        updated_monitor: AppUpdatedMonitor,
         /// Hold on to ourselves while automatic wallpaper updates are scheduled
         pub scheduled_updates_hold: RefCell<Option<ApplicationHoldGuard>>,
     }
@@ -537,7 +540,6 @@ mod imp {
                 "Initializing soup session with user agent {}",
                 crate::config::USER_AGENT
             );
-
             // If the default glib logger logs debug logs of our log domain
             // enable debug logging for soup
             self.http_session.set_user_agent(crate::config::USER_AGENT);
@@ -550,6 +552,29 @@ mod imp {
                     .build();
                 self.http_session.add_feature(&log);
             }
+
+            glib::info!("Monitoring app updates");
+            self.updated_monitor.connect_updated_notify(glib::clone!(
+                #[weak(rename_to = app)]
+                self.obj(),
+                move |monitor| {
+                    if monitor.updated() {
+                        glib::info!("App updated");
+                        let notification = gio::Notification::new(&dpgettext2(
+                            None,
+                            "notification.title",
+                            "Picture Of The Day updated",
+                        ));
+                        notification.set_body(Some(&dpgettext2(
+                            None,
+                            "notification.body",
+                            "Please restart the app to use the new version.",
+                        )));
+                        notification.set_priority(gio::NotificationPriority::High);
+                        app.send_notification(None, &notification);
+                    }
+                }
+            ));
 
             glib::info!("Configuring automatic updates");
             self.setup_scheduled_wallpaper_updates(&settings);
@@ -670,6 +695,11 @@ mod imp {
                     .bind("main-window-fullscreen", &window, "fullscreened")
                     .build();
                 window.present();
+
+                self.updated_monitor
+                    .bind_property("updated", &window, "show-update-indicator")
+                    .sync_create()
+                    .build();
 
                 // Request background if the app gets activated the first time.
                 let portal_client = self.obj().portal_client().unwrap();

@@ -131,6 +131,15 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
           icon-name: 'menu-large-symbolic';
           primary: true;
         }
+
+        Button {
+          icon-name: "up-arrow-in-a-star-symbolic";
+          visible: bind template.show-update-indicator;
+
+          styles [
+            "accent",
+          ]
+        }
       }
     }
 

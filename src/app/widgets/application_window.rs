@@ -269,6 +269,8 @@ mod imp {
         set_wallpaper_automatically: Cell<bool>,
         #[property(get, set)]
         show_image_properties: Cell<bool>,
+        #[property(get, set)]
+        show_update_indicator: Cell<bool>,
         #[property(get = Self::is_loading, type = bool)]
         is_loading: RefCell<Option<Cancellable>>,
         #[template_child]
