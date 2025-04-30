@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-29 05:53+0000\n"
+"PO-Revision-Date: 2025-04-30 19:34+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -133,6 +133,8 @@ msgstr ""
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
+"Wenn die Anwendungen im Hintergrund aktualisiert wurde, wird eine "
+"Benachrichtigung gezeigt und nach Neustart der Anwendung gefragt."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
 msgid ""
@@ -454,7 +456,7 @@ msgstr "Hilfreiche Dienste"
 #: src/app.rs:176
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
-msgstr ""
+msgstr "Nach Aktualisierung neu starten?"
 
 #: src/app.rs:181
 msgctxt "alert-dialog.body"
@@ -464,22 +466,20 @@ msgid ""
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
+"Bild des Tages wurde aktualisiert und muss neu gestartet werden.\n"
+"\n"
+"Der automatische Neustart wird noch nicht unterstützt, aber Du kannst die "
+"Anwendung jetzt beenden und manuell neu starten."
 
 #: src/app.rs:190
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Cancelled"
 msgctxt "alert-dialog.response"
 msgid "Cancel"
-msgstr "Abgebrochen"
+msgstr "Abbrechen"
 
 #: src/app.rs:192
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_Quit"
 msgctxt "alert-dialog.response"
 msgid "Quit"
-msgstr "_Beenden"
+msgstr "Beenden"
 
 #: src/app.rs:257
 msgctxt "notification.button.label"
@@ -512,16 +512,14 @@ msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
 #: src/app.rs:611
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
-msgstr "Bild des Tages"
+msgstr "Bild des Tages wurde aktualisiert"
 
 #: src/app.rs:616
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
-msgstr ""
+msgstr "Bitte starte die Anwendung neu, um die neueste Version zu nutzen."
 
 #: src/app.rs:755
 msgctxt "portal.request-background.reason"
