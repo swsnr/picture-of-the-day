@@ -97,6 +97,11 @@ impl Application {
                     }
                 })
                 .build(),
+            ActionEntry::builder("post-update")
+                .activate(|app: &Application, _, _| {
+                    app.ask_post_update_restart();
+                })
+                .build(),
         ];
         self.add_action_entries(actions);
         self.set_accels_for_action("app.quit", &["<Control>q"]);
@@ -161,6 +166,46 @@ impl Application {
         prefs.bind(&self.imp().settings());
         prefs.present(self.active_window().as_ref());
         prefs
+    }
+
+    fn ask_post_update_restart(&self) {
+        let dialog = adw::AlertDialog::new(
+            Some(&dpgettext2(
+                None,
+                "alert-dialog.title",
+                "Restart after update?",
+            )),
+            Some(&dpgettext2(
+                None,
+                "alert-dialog.body",
+                "\
+Picture Of The Day was updated, and needs to be restarted.
+
+Automatic restarting is not yet supported, but you can quit the app and start it again manually.",
+            )),
+        );
+        dialog.add_responses(&[
+            (
+                "cancel",
+                &dpgettext2(None, "alert-dialog.response", "Cancel"),
+            ),
+            ("quit", &dpgettext2(None, "alert-dialog.response", "Quit")),
+        ]);
+        dialog.set_body_use_markup(true);
+        dialog.set_response_appearance("quit", adw::ResponseAppearance::Destructive);
+        dialog.set_default_response(Some("quit"));
+        dialog.set_close_response("cancel");
+        dialog.connect_response(
+            Some("quit"),
+            glib::clone!(
+                #[weak(rename_to = app)]
+                self,
+                move |_, _| {
+                    app.activate_action("quit", None);
+                }
+            ),
+        );
+        dialog.present(self.active_window().as_ref());
     }
 
     async fn handle_scheduled_wallpaper_update(&self, scheduled_update: ScheduledWallpaperUpdate) {

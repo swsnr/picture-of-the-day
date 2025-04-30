@@ -134,6 +134,7 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
 
         Button {
           icon-name: "up-arrow-in-a-star-symbolic";
+          action-name: "app.post-update";
           visible: bind template.show-update-indicator;
 
           styles [

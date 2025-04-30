@@ -149,6 +149,7 @@ corresponding .blp file and regenerate this file with blueprint-compiler.
                 <child>
                   <object class="GtkButton">
                     <property name="icon-name">up-arrow-in-a-star-symbolic</property>
+                    <property name="action-name">app.post-update</property>
                     <property name="visible" bind-source="PotDApplicationWindow" bind-property="show-update-indicator" bind-flags="sync-create"/>
                     <style>
                       <class name="accent"/>
