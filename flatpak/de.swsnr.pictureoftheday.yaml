@@ -11,6 +11,9 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
+  # We need to talk to logind to monitor whether the session is locked, see
+  # https://github.com/swsnr/picture-of-the-day/issues/39
+  - --system-talk-name=org.freedesktop.login1
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
   env:
@@ -21,11 +24,11 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.3.2/picture-of-the-day-v1.3.2.tar.zst
-        sha512: "695b75e06d291a52289357ffa5408a901e3d8b69d6c902843943b24b664198e934168403ac654331fcc5b9c207c2f15938229a0a3f57c53f7701a621c59d293e"
+        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.4.0/picture-of-the-day-v1.4.0.tar.zst
+        sha512: "e9d6a301fd22de5f463f1d026ea726001b403ad25b6617c345ce0a8ecaee6d0c66294400249e4d8a045df13ca377ebf0f4abcf572d3b4d128d20943b87c74d7c"
       - type: archive
-        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.3.2/picture-of-the-day-v1.3.2-vendor.tar.zst
-        sha512: "703c60a4f81112c1051d73d0dfc0f4e89d7288a90f009892c991c75a4f3e8920b5fc0f8106645c29136c00a0746b844a4d3c87a27947896bcab826bc867bba63"
+        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.4.0/picture-of-the-day-v1.4.0-vendor.tar.zst
+        sha512: "fdbedeee8267cbaa13689032f8d85f2055aacdab154e9a03c64471c5bfab5230d11a780af3dc9fa3ed3d297561f9e0ba0bc5c4afb5df63529a12801ea52aea97"
         dest: vendor/
       - type: inline
         dest: .cargo/
