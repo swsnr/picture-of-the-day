@@ -48,7 +48,7 @@
         <release version="1.4.0" date="2025-04-30">
             <description>
                 <p>No longer set the wallpaper automatically while the main window is visible, to allow you to preview different sources without actually changing your desktop background.</p>
-                <p>No longer attempt to set update wallpaper automatically while the session is locked, or the system is on low power or has no network connection.</p>
+                <p>No longer attempt to set the wallpaper automatically while the session is locked, or the system is on low power or has no network connection.</p>
                 <p>Notify and ask to restart app when it was updated in the background.</p>
             </description>
             <issues>
