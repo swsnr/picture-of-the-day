@@ -7,10 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-27 20:03+0000\n"
+"PO-Revision-Date: 2025-05-02 06:53+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
-"Language-Team: Chinese (Simplified Han script) <https://translate.codeberg."
-"org/projects/de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
+"de-swsnr-pictureoftheday/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,11 +120,11 @@ msgstr ""
 msgid ""
 "No longer attempt to set update wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
-msgstr "当会话锁定、系统电量不足或无网络连接时，不再尝试自动设置更新壁纸。"
+msgstr "当会话锁定、系统电量不足或无网络连接时，不再尝试自动设置壁纸。"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
 msgid "Notify and ask to restart app when it was updated in the background."
-msgstr ""
+msgstr "在后台更新应用时，通知并要求重启应用。"
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
 msgid ""
@@ -430,7 +431,7 @@ msgstr "有用的服务"
 #: src/app.rs:176
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
-msgstr ""
+msgstr "更新后重启？"
 
 #: src/app.rs:181
 msgctxt "alert-dialog.body"
@@ -440,19 +441,19 @@ msgid ""
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
+"“今日图片”已更新，需要重启。\n"
+"\n"
+"尚不支持自动重启，但您可以退出应用并手动重启。"
 
 #: src/app.rs:190
 msgctxt "alert-dialog.response"
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/app.rs:192
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_Quit"
 msgctxt "alert-dialog.response"
 msgid "Quit"
-msgstr "退出(_Q)"
+msgstr "退出"
 
 #: src/app.rs:257
 msgctxt "notification.button.label"
@@ -485,16 +486,14 @@ msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
 #: src/app.rs:611
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
-msgstr "今日图片"
+msgstr "今日图片已更新"
 
 #: src/app.rs:616
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
-msgstr ""
+msgstr "请重启应用以使用新版本。"
 
 #: src/app.rs:755
 msgctxt "portal.request-background.reason"
