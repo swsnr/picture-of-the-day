@@ -1969,81 +1969,81 @@ aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-ch
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.8.0 -> 2.3.1"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.cfg-expr]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.15.8 -> 0.16.0"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.cfg-expr]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.16.0 -> 0.17.0"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.cfg-expr]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.17.0 -> 0.17.2"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/gnome-search-providers-vscode/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/gnome-search-providers-vscode/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.crossbeam-utils]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.8.15 -> 0.8.14"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.crossbeam-utils]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-deploy"
 delta = "0.8.20 -> 0.8.21"
 notes = "Only changes cfg and lint annotations, no other code change"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.event-listener]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "5.3.1 -> 5.4.0"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.field-offset]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "0.3.6"
 notes = "Very simple crate which doesn't interact with the underlying system at all."
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.indexmap]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "2.8.0 -> 2.9.0"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/darklightd/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/darklightd/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.libadwaita]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.7.1 -> 0.7.2"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.libadwaita-sys]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.7.1 -> 0.7.2"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.log]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.4.26 -> 0.4.27"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.memoffset]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.9.0 -> 0.9.1"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.parking]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -2054,29 +2054,29 @@ Contains no unsafe code, and does not access the system beyond parking.
 Thread locking and parking logic is a bit intricate, but well documented, and
 appears to be sound, superficially.
 """
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.pin-project-lite]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.2.14 -> 0.2.15"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.pin-project-lite]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.2.15 -> 0.2.16"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/gnome-search-providers-vscode/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/gnome-search-providers-vscode/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.system-deps]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "7.0.2"
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.system-deps]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-deploy"
 delta = "7.0.2 -> 7.0.3"
 notes = "The diff just updates a dependency version, and does not involve a code change."
-aggregated-from = "https://raw.githubusercontent.com/swsnr/turnon/refs/heads/main/supply-chain/audits.toml"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
