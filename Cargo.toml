@@ -68,7 +68,6 @@ tag-message = "Picture Of The Day {{tag_name}}"
 publish = false
 # The justfile runs all test before a release
 verify = false
-push = false
 sign-tag = true
 sign-commit = true
 pre-release-hook = ["scripts/prerelease.py", "{{tag_name}}", "{{date}}"]
