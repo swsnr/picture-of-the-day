@@ -146,9 +146,9 @@ impl Application {
                 "Helpful services",
             )),
             &[
+                "Codeberg https://codeberg.org",
                 "Flathub https://flathub.org/",
                 "Open Build Service https://build.opensuse.org/",
-                "GitHub actions https://github.com/features/actions",
             ],
         );
 
