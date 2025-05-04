@@ -1,3 +1,10 @@
+# The app ID to use (either de.swsnr.pictureoftheday or de.swsnr.pictureoftheday.Devel).
+APPID := 'de.swsnr.pictureoftheday'
+
+xgettext_opts := '--package-name=' + APPID + \
+    ' --foreign-user --copyright-holder "Sebastian Wiesner <sebastian@swsnr.de>"' + \
+    ' --sort-by-file --from-code=UTF-8 --add-comments'
+
 default:
     just --list
 
@@ -30,3 +37,21 @@ test-rust:
     cargo +stable test
 
 test-all: (vet "--locked") lint-all test-rust
+
+# Extract the message template from all source files.
+pot:
+    find src -name '*.rs' > po/POTFILES.rs
+    find resources/ -name '*.blp' > po/POTFILES.blp
+    xgettext {{xgettext_opts}} --language=C --keyword=dpgettext2:2c,3 --files-from=po/POTFILES.rs --output=po/de.swsnr.pictureoftheday.rs.pot
+    xgettext {{xgettext_opts}} --language=C --keyword=_ --keyword=C_:1c,2 --files-from=po/POTFILES.blp --output=po/de.swsnr.pictureoftheday.blp.pot
+    xgettext {{xgettext_opts}} --output=po/de.swsnr.pictureoftheday.pot \
+        po/de.swsnr.pictureoftheday.blp.pot \
+        po/de.swsnr.pictureoftheday.rs.pot \
+        resources/de.swsnr.pictureoftheday.metainfo.xml.in \
+        de.swsnr.pictureoftheday.desktop.in \
+        schemas/de.swsnr.pictureoftheday.gschema.xml
+    rm -f po/POTFILES* po/de.swsnr.pictureoftheday.rs.pot po/de.swsnr.pictureoftheday.blp.pot
+    @# We strip the POT-Creation-Date from the resulting POT because xgettext bumps
+    @# it everytime regardless if anything else changed, and this just generates
+    @# needless diffs.
+    sed -i /POT-Creation-Date/d po/de.swsnr.pictureoftheday.pot
