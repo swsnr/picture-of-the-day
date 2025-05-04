@@ -13,3 +13,7 @@ resources/*.metainfo.xml
 # Flatpak outputs
 /.flatpak-builder/
 /.flatpak-repo/
+
+# Distribution files and vendored crates
+/dist/
+/vendor/

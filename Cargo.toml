@@ -66,6 +66,7 @@ required-features = ["scraper"]
 pre-release-commit-message = "Release {{version}}"
 tag-message = "Picture Of The Day {{tag_name}}"
 publish = false
+# The justfile runs all test before a release
 verify = false
 push = false
 sign-tag = true
