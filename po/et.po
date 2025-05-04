@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-27 20:03+0000\n"
+"PO-Revision-Date: 2025-05-02 06:53+0000\n"
 "Last-Translator: Priit Jõerüüt <jrtcdbrg@noreply.codeberg.org>\n"
-"Language-Team: Estonian <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
+"Language-Team: Estonian <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -136,6 +136,8 @@ msgstr ""
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
+"Teavita olukorrast ja palu rakendus uuesti käivitada, kui ta on taustal "
+"uuendatud."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
 msgid ""
@@ -456,7 +458,7 @@ msgstr "Abiks olevad teenused"
 #: src/app.rs:176
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
-msgstr ""
+msgstr "Kas taaskäivitame rakenduse peale uuendust?"
 
 #: src/app.rs:181
 msgctxt "alert-dialog.body"
@@ -466,22 +468,20 @@ msgid ""
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
+"Päevapilt on uuendatud ja vajab taaskäivitust.\n"
+"\n"
+"Automaatne taaskäivitus pole veel toetatud, aga sa saad rakenduse sulged ja "
+"ise uuesti tööle panna."
 
 #: src/app.rs:190
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Cancelled"
 msgctxt "alert-dialog.response"
 msgid "Cancel"
-msgstr "Katkestatud"
+msgstr "Katkesta"
 
 #: src/app.rs:192
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_Quit"
 msgctxt "alert-dialog.response"
 msgid "Quit"
-msgstr "_Välju"
+msgstr "Välju"
 
 #: src/app.rs:257
 msgctxt "notification.button.label"
@@ -514,16 +514,14 @@ msgid "YYYY-MM-DD"
 msgstr "AAAA-KK-PP"
 
 #: src/app.rs:611
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
-msgstr "Päevapilt"
+msgstr "Päevapilt on uuendatud"
 
 #: src/app.rs:616
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
-msgstr ""
+msgstr "Rakenduse uue versiooni kasutamiseks palun käivita ta uuesti."
 
 #: src/app.rs:755
 msgctxt "portal.request-background.reason"
