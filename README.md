@@ -1,8 +1,6 @@
 # Picture Of The Day
 
-[![GitHub Release](https://img.shields.io/github/v/release/swsnr/picture-of-the-day)](https://github.com/swsnr/picture-of-the-day/releases)
 [![Translation status](https://translate.codeberg.org/widget/de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/svg-badge.svg)](https://translate.codeberg.org/engage/de-swsnr-pictureoftheday/)
-[![CI status](https://img.shields.io/github/actions/workflow/status/swsnr/picture-of-the-day/test.yml)](https://github.com/swsnr/picture-of-the-day/actions)
 
 Your daily GNOME wallpaper:
 
