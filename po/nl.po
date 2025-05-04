@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-29 05:53+0000\n"
+"PO-Revision-Date: 2025-05-02 06:53+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,20 +120,19 @@ msgstr ""
 "hoofdvenster zichtbaar is, zodat u eerst een keuze kunt maken."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
-#, fuzzy
-#| msgid ""
-#| "No longer attempt to set update wallpaper automatically while the session "
-#| "is locked, or the system is on low power or has no network connection."
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr ""
-"De achtergrond wordt niet meer automatisch bijgewerkt terwijl de sessie "
-"vergrendeld is, er onvoldoende accu is of de netwerkverbinding verbroken is."
+"De achtergrond wordt niet meer automatisch ingesteld terwijl de sessie "
+"vergrendeld is, er onvoldoende accuniveau is of de netwerkverbinding "
+"verbroken is."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
+"Toon een melding na automatisch instellen en vraag om de toepassing te "
+"herstarten."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
 msgid ""
@@ -454,7 +453,7 @@ msgstr "Nuttige diensten"
 #: src/app.rs:176
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
-msgstr ""
+msgstr "Herstarten na bijwerken?"
 
 #: src/app.rs:181
 msgctxt "alert-dialog.body"
@@ -464,22 +463,21 @@ msgid ""
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
+"De afbeelding van de dag is bijgewerkt, maar de toepassing moet worden "
+"herstart.\n"
+"\n"
+"Automatisch herstarten wordt nog niet ondersteund, dus u dient dit zelf te "
+"doen."
 
 #: src/app.rs:190
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Cancelled"
 msgctxt "alert-dialog.response"
 msgid "Cancel"
-msgstr "Afgebroken"
+msgstr "Annuleren"
 
 #: src/app.rs:192
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_Quit"
 msgctxt "alert-dialog.response"
 msgid "Quit"
-msgstr "A_fsluiten"
+msgstr "Afsluiten"
 
 #: src/app.rs:257
 msgctxt "notification.button.label"
@@ -512,16 +510,14 @@ msgid "YYYY-MM-DD"
 msgstr "JJJJ-MM-DD"
 
 #: src/app.rs:611
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
-msgstr "Afbeelding van de dag"
+msgstr "Afbeelding van de dag bijgewerkt"
 
 #: src/app.rs:616
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
-msgstr ""
+msgstr "Herstart de toepassing om de nieuwe versie in gebruik te nemen."
 
 #: src/app.rs:755
 msgctxt "portal.request-background.reason"
