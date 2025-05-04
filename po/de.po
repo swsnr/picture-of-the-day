@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-05-03 11:52+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +111,7 @@ msgstr "Astronomie"
 msgid "Artwork"
 msgstr "Kunstwerk"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -121,7 +121,7 @@ msgstr ""
 "Hauptfenster sichtbar ist, so dass verschiedene Bildquellen angeschaut "
 "werden können ohne dass das Hintergrundbild sofort aktualisiert wird."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
@@ -130,13 +130,13 @@ msgstr ""
 "Sitzung gesperrt ist, oder sich das System im Energiesparmodus befindet oder "
 "keine Netzwerkverbindung hat."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 "Wenn die Anwendungen im Hintergrund aktualisiert wurde, wird eine "
 "Benachrichtigung gezeigt und nach Neustart der Anwendung gefragt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
@@ -144,14 +144,14 @@ msgstr ""
 "Earth Science Bild des Tages und NASA-Erdobservatorium Bild des Tages "
 "hinzugefügt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Der Bildansicht wurde eine schwebende Werkzeugleiste hinzugefügt, um zum "
 "vorherigen und zum nächsten Bild zu springen."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -159,34 +159,34 @@ msgstr ""
 "Zur Werkzeugleiste wurden Schaltflächen hinzugefügt, um das aktuelle Bild zu "
 "speichern oder in einer externen Anwendung zu öffnen."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Teilweise heruntergeladene Bilder werden beim Beenden gründlicher gelöscht."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Für Wikimedia Bilder wird ein zuverlässigerer Endpunkt genutzt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 "Beim Setzen des Hintergrundbilds wird keine separate Vorschau mehr angezeigt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
 msgid "Improve scheduling of automatic downloads."
 msgstr "Die Planung automatischer Downloads wurde verbessert."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
 msgid "Remember window size and state."
 msgstr "Die Größe und der Zustand des Fensters werden gespeichert."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:93
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
 msgid "Update to GNOME 48."
 msgstr "Die Anwendung wurde auf GNOME 48 aktualisiert."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:102
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -194,11 +194,11 @@ msgstr ""
 "Starte automatisch und aktualisiere das tägliche Hintergrundbild alle zwölf "
 "Stunden."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
 msgid "No longer support multiple windows."
 msgstr "Mehrere Fenster werden nicht länger unterstützt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:113
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -206,7 +206,7 @@ msgstr ""
 "Die erste Veröffentlichung mit vier Bildquellen: APOD, Wikimedia, Simon "
 "Stålenhag, und Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:115
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -214,15 +214,15 @@ msgstr ""
 "Ein Hauptfenster zur Anzeige des heutigen Bildes sowie eine Schaltfläche zum "
 "Setzen des Hintergrundbildes wurden hinzugefügt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:127
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:126
 msgid "A picture of the day from Wikimedia"
 msgstr "Das Bild des Tages von Wikimedia"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:131
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:130
 msgid "The preferences dialog with settings for image sources"
 msgstr "Der Einstellungsdialog mit Einstellungen der Bildquellen"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:135
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:134
 msgid "The empty greeting page with the application icon"
 msgstr "Die leere Startseite mit dem Anwendungssymbol"
 

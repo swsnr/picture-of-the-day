@@ -106,7 +106,7 @@ msgstr "天文"
 msgid "Artwork"
 msgstr "作品"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -115,7 +115,7 @@ msgstr ""
 "当主窗口可见时，不再自动设置壁纸，以允许您预览不同的来源，而无需实际更改您的"
 "桌面背景。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 #, fuzzy
 #| msgid ""
 #| "No longer attempt to set update wallpaper automatically while the session "
@@ -125,83 +125,83 @@ msgid ""
 "locked, or the system is on low power or has no network connection."
 msgstr "当会话锁定、系统电量不足或无网络连接时，不再尝试自动设置壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr "在后台更新应用时，通知并要求重启应用。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr "添加 Earth Science 今日图片和 NASA 地球观测站今日图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr "添加覆盖工具栏以转到图片视图的上一张或下一张图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr "添加工具栏按钮以保存当前图片，并在外部应用程序中打开当前图片。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr "退出时尽量避免残留部分下载的壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "为维基媒体图片使用更可靠的端点。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
 msgid "No longer show preview when setting a wallpaper."
 msgstr "设置壁纸时不再显示预览。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
 msgid "Improve scheduling of automatic downloads."
 msgstr "改进自动下载的调度。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
 msgid "Remember window size and state."
 msgstr "记住窗口大小和状态。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:93
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
 msgid "Update to GNOME 48."
 msgstr "更新到 GNOME 48。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:102
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr "自动启动并每十二小时自动刷新每日壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
 msgid "No longer support multiple windows."
 msgstr "不再支持多个窗口。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:113
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr "初始版本有四个来源：APOD、维基媒体、Simon Stålenhag 和必应。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:115
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr "添加一个主窗口显示当天的图片，并添加一个按钮将其设置为当前壁纸。"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:127
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:126
 msgid "A picture of the day from Wikimedia"
 msgstr "来自维基媒体的每日图片"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:131
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:130
 msgid "The preferences dialog with settings for image sources"
 msgstr "带有图片源设置的首选项对话框"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:135
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:134
 msgid "The empty greeting page with the application icon"
 msgstr "带有应用程序图标的空白问候页面"
 

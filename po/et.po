@@ -115,7 +115,7 @@ msgstr "Astronoomia"
 msgid "Artwork"
 msgstr "Kunst"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -125,7 +125,7 @@ msgstr ""
 "automaatselt - see võimaldab kasutajatel valida erinevate allikate ja eri "
 "piltide vahel ilma koheseid muudatusi tegemata."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 #, fuzzy
 #| msgid ""
 #| "No longer attempt to set update wallpaper automatically while the session "
@@ -137,13 +137,13 @@ msgstr ""
 "Kui sessioon on lukustatud või arvuti/nutiseade on energiasäästurežimil, "
 "siis enam me ei uuenda taustapilti automaatselt."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:52
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 "Teavita olukorrast ja palu rakendus uuesti käivitada, kui ta on taustal "
 "uuendatud."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:65
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
@@ -151,14 +151,14 @@ msgstr ""
 "Lisasime uute allikatena Earth Science Picture of the Day ja NASA Earth "
 "Observatory Image of the Day."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Lisa piltide vaatesse ülekattega tööriistariba, mis võimaldab liikuda "
 "piltide vahel."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -166,34 +166,34 @@ msgstr ""
 "Lisa tööriistaribale nupp, mis võimaldab kuvatavat pilti salvestada ja avada "
 "välise rakendusega."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:77
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Parandasime allaalaadimise kontrolli, et rakendusest väljumisel ei jääks "
 "alles pooleldi allalaaditud pilte."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Kasutame Vikimeedia jaoks töökindlamat otspunkti."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
 msgid "No longer show preview when setting a wallpaper."
 msgstr "Taustapildi määramisel enam ei näita eelvaadet."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
 msgid "Improve scheduling of automatic downloads."
 msgstr "Parem automaatsete uuenduste ajastamine."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
 msgid "Remember window size and state."
 msgstr "Jätame nüüd meelde akna mõõdud ja oleku."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:93
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
 msgid "Update to GNOME 48."
 msgstr "Uuendus kasutab nüüd GNOME 48 teeke."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:102
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -201,11 +201,11 @@ msgstr ""
 "Lisasime rakenduse automaatse käivituse ja uuendame igapäevast taustapilti "
 "12-tunnise välbaga."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:104
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
 msgid "No longer support multiple windows."
 msgstr "Lõpetasime mitme akna toe."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:113
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -213,7 +213,7 @@ msgstr ""
 "Esimene versioon nelja allika toega: APOD, Vikimeedia, Simon Stålenhag ja "
 "Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:115
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -221,15 +221,15 @@ msgstr ""
 "Lisasime põhivaate tänase päevapildi näitamiseks ja taustapildiks "
 "määramiseks."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:127
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:126
 msgid "A picture of the day from Wikimedia"
 msgstr "Päevapilt Vikimeediast"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:131
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:130
 msgid "The preferences dialog with settings for image sources"
 msgstr "Eelistuste vaade andmeallikate seadistamiseks"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:135
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:134
 msgid "The empty greeting page with the application icon"
 msgstr "Tühi avaleht rakenduse ikooniga"
 
