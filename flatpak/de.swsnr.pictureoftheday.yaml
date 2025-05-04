@@ -20,15 +20,35 @@ build-options:
     # Tell build.rs not to regenerate the UI files from blueprint sources
     SKIP_BLUEPRINT: "1"
 modules:
+  # Install just for our build file
+  - name: just
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/casey/just/releases/download/1.40.0/just-1.40.0-aarch64-unknown-linux-musl.tar.gz
+        sha256: d065d0df1a1f99529869fba8a5b3e0a25c1795b9007099b00dfabe29c7c1f7b6
+        strip-components: 0
+        only-arches:
+          - aarch64
+      - type: archive
+        url: https://github.com/casey/just/releases/download/1.40.0/just-1.40.0-x86_64-unknown-linux-musl.tar.gz
+        sha256: 181b91d0ceebe8a57723fb648ed2ce1a44d849438ce2e658339df4f8db5f1263
+        strip-components: 0
+        only-arches:
+          - x86_64
+    build-commands:
+      - install -D -m755 just /app/bin/just
+    cleanup:
+      - /bin/just
   - name: pictureoftheday
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.4.0/picture-of-the-day-v1.4.0.tar.zst
-        sha512: "e9d6a301fd22de5f463f1d026ea726001b403ad25b6617c345ce0a8ecaee6d0c66294400249e4d8a045df13ca377ebf0f4abcf572d3b4d128d20943b87c74d7c"
+        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.1/picture-of-the-day-v1.4.1.tar.zst
+        sha256: "aea61282991bf6c9307295a395b335ae735d65d1c217a588fb9821b605835cae"
       - type: archive
-        url: https://github.com/swsnr/picture-of-the-day/releases/download/v1.4.0/picture-of-the-day-v1.4.0-vendor.tar.zst
-        sha512: "fdbedeee8267cbaa13689032f8d85f2055aacdab154e9a03c64471c5bfab5230d11a780af3dc9fa3ed3d297561f9e0ba0bc5c4afb5df63529a12801ea52aea97"
+        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.1/picture-of-the-day-v1.4.1-vendor.tar.zst
+        sha256: "a91192f2160baf15bc977ffbd150338144b6ed5b181db0b848593c7bd39f7823"
         dest: vendor/
       - type: inline
         dest: .cargo/
@@ -41,4 +61,4 @@ modules:
           directory = "vendor"
     build-commands:
       - cargo build --frozen --release --verbose
-      - make DESTPREFIX=/app install-flatpak
+      - just version= DESTPREFIX=/app install
