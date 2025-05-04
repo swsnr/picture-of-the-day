@@ -48,22 +48,6 @@ install: install-locale
 install-flatpak: install
 	glib-compile-schemas --strict $(DESTPREFIX)/share/glib-2.0/schemas
 
-# Patch the current git describe version into Picture Of The Day.
-.PHONY: patch-git-version
-patch-git-version:
-	sed -Ei 's/^version = "([^"]+)"/version = "\1+$(GIT_DESCRIBE)"/' Cargo.toml
-	cargo update -p pictureoftheday
-
-# Patch the app ID to use APPID in various files
-.PHONY: patch-appid
-patch-appid:
-	sed -i '/$(APPID)/! s/de\.swsnr\.pictureoftheday/$(APPID)/g' \
-		src/config.rs \
-		de.swsnr.pictureoftheday.desktop.in \
-		resources/de.swsnr.pictureoftheday.metainfo.xml.in \
-		dbus-1/de.swsnr.pictureoftheday.service \
-		schemas/de.swsnr.pictureoftheday.gschema.xml
-
 # Remove compiled message catalogs and other generated files, and flatpak
 # things
 .PHONY: clean
