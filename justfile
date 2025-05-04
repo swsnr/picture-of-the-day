@@ -172,3 +172,30 @@ flatpak-update-manifest:
     git add flatpak/de.swsnr.pictureoftheday.yaml
     git commit -m 'Update flatpak manifest for {{version}}'
     @echo "Run git push and trigger sync workflow at https://github.com/flathub/de.swsnr.pictureoftheday/actions/workflows/sync.yaml"
+
+build-social-image:
+    montage -geometry 602x602+19+19 \
+        screenshots/start-page.png screenshots/wikimedia.png \
+        social-image.png
+    oxipng social-image.png
+
+run-for-screenshots *ARGS:
+    #!/bin/bash
+    set -euo pipefail
+    DIR="$(mktemp -d)"
+    echo "Writing data to ${DIR}"
+    trap 'rm -rf -- "${DIR}"' EXIT
+    variables=(
+        # Run app with default settings: Force the in-memory gsettings backend to
+        # block access to standard Gtk settings, and tell Adwaita not to access
+        # portals to prevent it from getting dark mode and accent color from desktop
+        # settings.
+        #
+        # Effectively this makes our app run with default settings.
+        GSETTINGS_BACKEND=memory
+        ADW_DISABLE_PORTAL=1
+        XDG_CONFIG_HOME="${DIR}/config"
+        XDG_DATA_HOME="${DIR}/share"
+        LC_MESSAGES=en_US.UTF-8
+    )
+    env "${variables[@]}" cargo run -- --date=2025-03-08 "${@}"
