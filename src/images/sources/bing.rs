@@ -99,7 +99,7 @@ struct BingResponse {
 
 fn get_daily_bing_images_message(language_code: Option<&str>) -> soup::Message {
     // n means number of images, we fetch eight,
-    // see https://github.com/swsnr/gnome-shell-extension-picture-of-the-day/issues/27
+    // see https://codeberg.org/swsnr/gnome-shell-extension-picture-of-the-day/issues/27
     let url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8";
     // Bing has locale-dependent images; we take the current locale for this GNOME
     // shell process, and turn it into a format Bing understands (no encoding, and
