@@ -120,8 +120,12 @@ msgstr ""
 "hoofdvenster zichtbaar is, zodat u eerst een keuze kunt maken."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#, fuzzy
+#| msgid ""
+#| "No longer attempt to set update wallpaper automatically while the session "
+#| "is locked, or the system is on low power or has no network connection."
 msgid ""
-"No longer attempt to set update wallpaper automatically while the session is "
+"No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr ""
 "De achtergrond wordt niet meer automatisch bijgewerkt terwijl de sessie "
