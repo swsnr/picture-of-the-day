@@ -211,8 +211,8 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.jiff]]
-version = "0.2.10"
-when = "2025-04-21"
+version = "0.2.12"
+when = "2025-05-03"
 user-id = 189
 user-login = "BurntSushi"
 user-name = "Andrew Gallant"
@@ -232,8 +232,8 @@ user-login = "bilelmoussaoui"
 user-name = "Bilal Elmoussaoui"
 
 [[publisher.libc]]
-version = "0.2.171"
-when = "2025-03-11"
+version = "0.2.172"
+when = "2025-04-15"
 user-id = 55123
 user-login = "rust-lang-owner"
 
@@ -385,8 +385,8 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.syn]]
-version = "2.0.100"
-when = "2025-03-09"
+version = "2.0.101"
+when = "2025-04-26"
 user-id = 3618
 user-login = "dtolnay"
 user-name = "David Tolnay"
@@ -406,15 +406,15 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.toml]]
-version = "0.8.20"
-when = "2025-02-05"
+version = "0.8.22"
+when = "2025-04-28"
 user-id = 6743
 user-login = "epage"
 user-name = "Ed Page"
 
 [[publisher.toml_edit]]
-version = "0.22.24"
-when = "2025-02-10"
+version = "0.22.26"
+when = "2025-04-28"
 user-id = 6743
 user-login = "epage"
 user-name = "Ed Page"
@@ -427,8 +427,8 @@ user-login = "Manishearth"
 user-name = "Manish Goregaokar"
 
 [[publisher.winnow]]
-version = "0.7.6"
-when = "2025-04-07"
+version = "0.7.9"
+when = "2025-05-02"
 user-id = 6743
 user-login = "epage"
 user-name = "Ed Page"
@@ -2015,6 +2015,18 @@ version = "0.3.6"
 notes = "Very simple crate which doesn't interact with the underlying system at all."
 aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
+[[audits.swsnr.audits.hashbrown]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.15.2 -> 0.15.3"
+aggregated-from = "https://codeberg.org/swsnr/darklightd/raw/branch/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.icu_normalizer_data]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "1.5.0 -> 1.5.1"
+aggregated-from = "https://codeberg.org/swsnr/gnome-search-providers-vscode/raw/branch/main/supply-chain/audits.toml"
+
 [[audits.swsnr.audits.indexmap]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -2068,6 +2080,18 @@ criteria = "safe-to-run"
 delta = "0.2.15 -> 0.2.16"
 aggregated-from = "https://codeberg.org/swsnr/gnome-search-providers-vscode/raw/branch/main/supply-chain/audits.toml"
 
+[[audits.swsnr.audits.proc-macro2]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "1.0.94 -> 1.0.95"
+aggregated-from = "https://codeberg.org/swsnr/wol.rs/raw/branch/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.synstructure]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.13.1 -> 0.13.2"
+aggregated-from = "https://codeberg.org/swsnr/gnome-search-providers-vscode/raw/branch/main/supply-chain/audits.toml"
+
 [[audits.swsnr.audits.system-deps]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -2080,3 +2104,9 @@ criteria = "safe-to-deploy"
 delta = "7.0.2 -> 7.0.3"
 notes = "The diff just updates a dependency version, and does not involve a code change."
 aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.toml_datetime]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.6.8 -> 0.6.9"
+aggregated-from = "https://codeberg.org/swsnr/darklightd/raw/branch/main/supply-chain/audits.toml"
