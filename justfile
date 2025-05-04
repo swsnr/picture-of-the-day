@@ -55,3 +55,20 @@ pot:
     @# it everytime regardless if anything else changed, and this just generates
     @# needless diffs.
     sed -i /POT-Creation-Date/d po/de.swsnr.pictureoftheday.pot
+
+# Build and install development flatpak without sandboxing
+flatpak-devel-install:
+    flatpak run org.flatpak.Builder --force-clean --user --install \
+        --install-deps-from=flathub --repo=.flatpak-repo \
+        builddir flatpak/de.swsnr.pictureoftheday.Devel.yaml
+
+# Lint the flatpak repo (you must run flatpak-build first)
+lint-flatpak-repo:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo .flatpak-repo
+
+# Build (but not install) regular flatpak
+flatpak-build: && lint-flatpak-repo
+    flatpak run org.flatpak.Builder --force-clean --sandbox \
+        --install-deps-from=flathub --ccache \
+        --mirror-screenshots-url=https://dl.flathub.org/media/ --repo=.flatpak-repo \
+        builddir flatpak/de.swsnr.pictureoftheday.yaml
