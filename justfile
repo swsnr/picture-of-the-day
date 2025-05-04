@@ -1,5 +1,9 @@
 # The app ID to use (either de.swsnr.pictureoftheday or de.swsnr.pictureoftheday.Devel).
 APPID := 'de.swsnr.pictureoftheday'
+# The destination prefix to install files to.  Combines traditional DESTDIR and
+# PREFIX variables; picture-of-the-day does not encode the prefix into its binary
+# and thus does not need to distinguish between the prefix and the destdir.
+DESTPREFIX := '/app'
 
 xgettext_opts := '--package-name=' + APPID + \
     ' --foreign-user --copyright-holder "Sebastian Wiesner <sebastian@swsnr.de>"' + \
@@ -9,6 +13,10 @@ version := `git describe`
 
 default:
     just --list
+
+# Remove build files from source code tree
+clean:
+    rm -fr builddir .flatpak-repo .flatpak-builder
 
 vet *ARGS:
     @# Only consider Linux dependencies, as that's all I care for.
@@ -85,3 +93,20 @@ patch-devel:
         resources/de.swsnr.pictureoftheday.metainfo.xml.in \
         dbus-1/de.swsnr.pictureoftheday.service \
         schemas/de.swsnr.pictureoftheday.gschema.xml
+
+_install-po po_file:
+    install -dm0755 '{{DESTPREFIX}}/share/locale/{{file_stem(po_file)}}/LC_MESSAGES'
+    msgfmt -o '{{DESTPREFIX}}/share/locale/{{file_stem(po_file)}}/LC_MESSAGES/{{APPID}}.mo' '{{po_file}}'
+
+# Install after cargo build --release
+install:
+    find po/ -name '*.po' -exec just version= DESTPREFIX='{{DESTPREFIX}}' APPID='{{APPID}}' _install-po '{}' ';'
+    install -Dm0755 target/release/pictureoftheday '{{DESTPREFIX}}/bin/{{APPID}}'
+    install -Dm0644 -t '{{DESTPREFIX}}/share/icons/hicolor/scalable/apps/' 'resources/icons/scalable/apps/{{APPID}}.svg'
+    install -Dm0644 resources/icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg \
+        '{{DESTPREFIX}}/share/icons/hicolor/symbolic/apps/{{APPID}}-symbolic.svg'
+    install -Dm0644 de.swsnr.pictureoftheday.desktop '{{DESTPREFIX}}/share/applications/{{APPID}}.desktop'
+    install -Dm0644 resources/de.swsnr.pictureoftheday.metainfo.xml '{{DESTPREFIX}}/share/metainfo/{{APPID}}.metainfo.xml'
+    install -Dm0644 dbus-1/de.swsnr.pictureoftheday.service '{{DESTPREFIX}}/share/dbus-1/services/{{APPID}}.service'
+    install -Dm0644 schemas/de.swsnr.pictureoftheday.gschema.xml '{{DESTPREFIX}}/share/glib-2.0/schemas/{{APPID}}.gschema.xml'
+    glib-compile-schemas --strict '{{DESTPREFIX}}/share/glib-2.0/schemas'

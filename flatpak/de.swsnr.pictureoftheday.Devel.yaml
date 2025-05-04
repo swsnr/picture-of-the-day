@@ -51,4 +51,4 @@ modules:
     build-commands:
       - just APPID=de.swsnr.pictureoftheday.Devel patch-devel
       - cargo build --locked --release --verbose
-      - make DESTPREFIX=/app APPID=de.swsnr.pictureoftheday.Devel install-flatpak
+      - just version= DESTPREFIX=/app APPID=de.swsnr.pictureoftheday.Devel install
