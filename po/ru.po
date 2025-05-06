@@ -1,0 +1,806 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Sebastian Wiesner <sebastian@swsnr.de>
+# This file is distributed under the same license as the de.swsnr.pictureoftheday package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: de.swsnr.pictureoftheday\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-05-06 17:34+0000\n"
+"Last-Translator: analexey <analexey@noreply.codeberg.org>\n"
+"Language-Team: Russian <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/ru/>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.10.2\n"
+
+#. Translators: Do feel free to translate the application name
+#: de.swsnr.pictureoftheday.desktop.in:3
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:5
+#: resources/ui/application-window.blp:9
+msgid "Picture Of The Day"
+msgstr "Изображение дня"
+
+#: de.swsnr.pictureoftheday.desktop.in:4
+msgid "A daily picture as your wallpaper"
+msgstr "Обои в виде ежедневного изображения"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: de.swsnr.pictureoftheday.desktop.in:10
+msgid "Gnome;GTK;Picture;Day;Wallpaper;"
+msgstr "Gnome;Гном;GTK;ГТК;Картинка;Изображение;День;Дня;Обои;"
+
+#: de.swsnr.pictureoftheday.desktop.in:17
+msgid "Preferences"
+msgstr "Параметры"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:6
+msgid "Your daily wallpaper"
+msgstr "Ваши ежедневные обои"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
+msgid ""
+"Get a picture of the day from the following sources and use as your daily "
+"wallpaper."
+msgstr ""
+"Возьмите изображение дня из следующих источников и используйте его в "
+"качестве ежедневных обоев."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
+msgid "NASA Astronomy Picture of the Day"
+msgstr "Астрономическое изображение дня от НАСА"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:11
+msgid "Bing"
+msgstr "Bing"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:12
+msgid "Simon Stålenhag Artwork"
+msgstr "Художественные работы Симона Сталенхага"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
+msgid "Wikimedia Picture of the Day"
+msgstr "Изображение дня от Викимедиа"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
+msgid "Earth Science Picture of the Day"
+msgstr "Изображение дня по науке о Земле"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
+msgid "NASA Earth Observatory Image of the Day"
+msgstr "Изображение дня из обсерватории Земли НАСА"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:17
+msgid ""
+"Preview images, pick your favorite source, enable automatic updates, and "
+"enjoy a fresh wallpaper every day."
+msgstr ""
+"Просматривайте изображения, выбирайте любимый источник, включайте "
+"автоматическое обновление и наслаждайтесь свежими обоями каждый день."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:18
+msgid ""
+"Note that all images are protected by copyright; you may not be allowed to "
+"use or distribute them. Do take a look at the license terms for each image."
+msgstr ""
+"Обратите внимание, что все изображения защищены авторским правом; их "
+"использование или распространение может быть запрещено. Ознакомьтесь с "
+"условиями лицензии для каждого изображения."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
+msgid "Picture"
+msgstr "Изображение"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
+msgid "Daily"
+msgstr "Ежедневно"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
+msgid "Wallpaper"
+msgstr "Обои"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:27
+msgid "Astronomy"
+msgstr "Астрономия"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:28
+msgid "Artwork"
+msgstr "Художественные работы"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+msgid ""
+"No longer set the wallpaper automatically while the main window is visible, "
+"to allow you to preview different sources without actually changing your "
+"desktop background."
+msgstr ""
+"Теперь обои не устанавливаются автоматически при видимом главном окне, чтобы "
+"вы могли просматривать различные источники, не меняя фон рабочего стола."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+msgid ""
+"No longer attempt to set the wallpaper automatically while the session is "
+"locked, or the system is on low power or has no network connection."
+msgstr ""
+"Приложение больше не пытается автоматически устанавливать обои, если сеанс "
+"заблокирован, система работает в режиме низкого энергопотребления или не "
+"подключена к сети."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+msgid "Notify and ask to restart app when it was updated in the background."
+msgstr ""
+"Уведомление и просьба перезапустить приложение, если оно было обновлено в "
+"фоновом режиме."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
+msgid ""
+"Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
+"Day."
+msgstr ""
+"Добавлены «Изображение дня по наукам о Земле» и «Изображение дня по "
+"обсерватории Земли НАСА»."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+msgid ""
+"Add overlay toolbar to go to the previous or next image to the image view."
+msgstr ""
+"Добавлена панель инструментов наложения для перехода к предыдущему или "
+"следующему изображению в режиме просмотра изображений."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
+msgid ""
+"Add toolbar buttons to save the current image, and to open the current image "
+"in an external application."
+msgstr ""
+"Добавлены кнопки панели инструментов для сохранения текущего изображения и "
+"для открытия текущего изображения во внешнем приложении."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+msgid ""
+"Try harder not to leave partially downloaded wallpapers behind when quitting."
+msgstr ""
+"Большее стремление не оставлять частично загруженные обои при завершении."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
+msgid "Use a more reliable endpoint for Wikimedia images."
+msgstr "Использование более надежной конечной точки для изображений Викимедиа."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
+msgid "No longer show preview when setting a wallpaper."
+msgstr "Предварительный просмотр больше не отображается при установке обоев."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+msgid "Improve scheduling of automatic downloads."
+msgstr "Улучшено планирование автоматических загрузок."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
+msgid "Remember window size and state."
+msgstr "Запоминание размера и состояния окна."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
+msgid "Update to GNOME 48."
+msgstr "Обновление до GNOME 48."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:102
+msgid ""
+"Start automatically and refresh the daily wallpaper automatically every "
+"twelve hours."
+msgstr ""
+"Автоматический запуск и автоматическое обновление ежедневных обоев каждые "
+"двенадцать часов."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
+msgid "No longer support multiple windows."
+msgstr "Прекращена поддержка нескольких окон."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:113
+msgid ""
+"The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
+"and Bing."
+msgstr ""
+"Первоначальный выпуск с четырьмя источниками: APOD, Викимедиа, Симон "
+"Сталенхаг и Bing."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
+msgid ""
+"Add a main window to show today's picture of the day and a button to set it "
+"as current wallpaper."
+msgstr ""
+"Добавлено главное окно, в котором будет отображаться сегодняшняя картинка "
+"дня и кнопка, позволяющая установить ее в качестве текущих обоев."
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:126
+msgid "A picture of the day from Wikimedia"
+msgstr "Изображение дня от Викимедиа"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:130
+msgid "The preferences dialog with settings for image sources"
+msgstr "Диалог настроек с параметрами источников изображения"
+
+#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:134
+msgid "The empty greeting page with the application icon"
+msgstr "Пустая страница приветствия со значком приложения"
+
+#: resources/gtk/help-overlay.blp:14
+msgctxt "shortcuts group title"
+msgid "General"
+msgstr "Общие"
+
+#: resources/gtk/help-overlay.blp:17
+msgctxt "shortcut description"
+msgid "Preferences"
+msgstr "Параметры"
+
+#: resources/gtk/help-overlay.blp:22
+msgctxt "shortcut description"
+msgid "Show shortcuts"
+msgstr "Показать сочетания клавиш"
+
+#: resources/gtk/help-overlay.blp:27
+msgctxt "shortcut description"
+msgid "Quit application"
+msgstr "Завершить приложение"
+
+#: resources/gtk/help-overlay.blp:33
+msgctxt "shortcuts group title"
+msgid "Picture Of The Day Window"
+msgstr "Окно Изображение дня"
+
+#: resources/gtk/help-overlay.blp:36
+msgctxt "shortcut description"
+msgid "Select source"
+msgstr "Выбрать источник"
+
+#: resources/gtk/help-overlay.blp:41
+msgctxt "shortcut description"
+msgid "Load images"
+msgstr "Загрузить изображения"
+
+#: resources/gtk/help-overlay.blp:46
+msgctxt "shortcut description"
+msgid "Cancel loading images"
+msgstr "Отменить загрузку изображений"
+
+#: resources/gtk/help-overlay.blp:51
+msgctxt "shortcut description"
+msgid "Toggle sidebar"
+msgstr "Показ боковой панели"
+
+#: resources/gtk/help-overlay.blp:57
+msgctxt "shortcuts group title"
+msgid "Navigate images"
+msgstr "Навигация по изображениям"
+
+#: resources/gtk/help-overlay.blp:60 resources/gtk/help-overlay.blp:65
+msgctxt "shortcut description"
+msgid "Previous image"
+msgstr "Предыдущее изображение"
+
+#: resources/gtk/help-overlay.blp:70 resources/gtk/help-overlay.blp:75
+msgctxt "shortcut description"
+msgid "Next image"
+msgstr "Следующее изображение"
+
+#: resources/ui/application-window.blp:30
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Set daily wallpaper automatically"
+msgstr "Устанавливать ежедн. изображ. автоматически"
+
+#: resources/ui/application-window.blp:41
+msgctxt "main-window.toolbar.button.label"
+msgid "Source"
+msgstr "Источник"
+
+#: resources/ui/application-window.blp:68
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Load images for selected source"
+msgstr "Загрузить изображ. для источника"
+
+#: resources/ui/application-window.blp:74
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Cancel loading images"
+msgstr "Отменить загрузку изображений"
+
+#: resources/ui/application-window.blp:90
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Set current image as wallpaper"
+msgstr "Установить текущее изображ. как обои"
+
+#: resources/ui/application-window.blp:102
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Open image with external application"
+msgstr "Открыть используя другое приложение"
+
+#: resources/ui/application-window.blp:108
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Save image"
+msgstr "Сохранить изображение"
+
+#: resources/ui/application-window.blp:119
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Toggle the sidebar with image information"
+msgstr "Показ информации об изображении"
+
+#: resources/ui/application-window.blp:174
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr "Наименование"
+
+#: resources/ui/application-window.blp:183
+msgid "Visit the source page of this image."
+msgstr "Посетить страницу источника этого изображения."
+
+#: resources/ui/application-window.blp:192
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr "Авторское право"
+
+#: resources/ui/application-window.blp:203
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr "Описание"
+
+#: resources/ui/application-window.blp:216
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr "Источник"
+
+#: resources/ui/application-window.blp:224
+msgid "Visit the main page of the source of this image."
+msgstr "Посетить главную страницу источника этого изображения."
+
+#: resources/ui/application-window.blp:243
+msgctxt "start-page.button.label"
+msgid "Get images"
+msgstr "Получить изображения"
+
+#: resources/ui/application-window.blp:261
+msgctxt "main-window.menu.label"
+msgid "_Quit"
+msgstr "_Завершить"
+
+#: resources/ui/application-window.blp:268
+msgctxt "application-window.menu.label"
+msgid "_Preferences"
+msgstr "_Параметры"
+
+#: resources/ui/application-window.blp:273
+msgctxt "application-window.menu.label"
+msgid "_Keyboard Shortcuts"
+msgstr "_Сочетания клавиш"
+
+#: resources/ui/application-window.blp:278
+msgctxt "main-window.menu.label"
+msgid "_About Picture Of The Day"
+msgstr "_О приложении «Изображение дня»"
+
+#: resources/ui/error-notification-page.blp:20
+msgid "Open preferences"
+msgstr "Открыть параметры"
+
+#: resources/ui/error-notification-page.blp:30
+msgid "Contact information"
+msgstr "Контактная информация"
+
+#: resources/ui/error-notification-page.blp:40
+msgid "Open source"
+msgstr "Открытый исходный код"
+
+#: resources/ui/image-page.blp:19
+msgctxt "image-page.loading-message.title"
+msgid "Downloading image…"
+msgstr "Загрузка изображения…"
+
+#: resources/ui/preferences-dialog.blp:14
+msgid "API key"
+msgstr "API-ключ"
+
+#: resources/ui/preferences-dialog.blp:19
+msgid "Get API key"
+msgstr "Получить API-ключ"
+
+#: resources/ui/preferences-dialog.blp:27
+msgid "Enabled collections"
+msgstr "Используемые коллекции"
+
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:5
+msgid "The identifier the selected source."
+msgstr "Идентификатор выбранного источника."
+
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:9
+msgid "Whether to set the wallpaper automatically."
+msgstr "Устанавливать ли обои автоматически."
+
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:14
+msgid ""
+"The API key to use for requests to the APOD API. The default key is usually "
+"fine, but if you find that you are rate-limited, you may wish to use your "
+"own API key, which you can obtain free of charge at https://api.nasa.gov/."
+msgstr ""
+"Ключ API, который будет использоваться для запросов к API APOD. Ключ по "
+"умолчанию обычно подходит, но если вы обнаружите, что у вас ограничена "
+"скорость, вы можете использовать свой собственный ключ API, который можно "
+"получить бесплатно на сайте https://api.nasa.gov/."
+
+#: schemas/de.swsnr.pictureoftheday.gschema.xml:24
+msgid "Collections from Stålenhag which to ignore."
+msgstr "Игнорируемые коллекции от Сталенхага."
+
+#: src/app.rs:119
+msgctxt "about-dialog.link.label"
+msgid "Translations"
+msgstr "Переводы"
+
+#. Credits for the translator to the current language.
+#. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
+#. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
+#: src/app.rs:128
+msgid "translator-credits"
+msgstr "FAlexei"
+
+#: src/app.rs:133
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Help and inspiration"
+msgstr "Помощь и вдохновение"
+
+#: src/app.rs:146
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Helpful services"
+msgstr "Полезные сервисы"
+
+#: src/app.rs:176
+msgctxt "alert-dialog.title"
+msgid "Restart after update?"
+msgstr "Выполнить перезапуск после обновления?"
+
+#: src/app.rs:181
+msgctxt "alert-dialog.body"
+msgid ""
+"Picture Of The Day was updated, and needs to be restarted.\n"
+"\n"
+"Automatic restarting is not yet supported, but you can quit the app and "
+"start it again manually."
+msgstr ""
+"Приложение «Изображение дня» было обновлено, и его необходимо перезапустить."
+"\n"
+"\n"
+"Автоматический перезапуск пока не поддерживается, но вы можете в завершить "
+"приложение и запустить его снова вручную."
+
+#: src/app.rs:190
+msgctxt "alert-dialog.response"
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/app.rs:192
+msgctxt "alert-dialog.response"
+msgid "Quit"
+msgstr "Завершить"
+
+#: src/app.rs:257
+msgctxt "notification.button.label"
+msgid "Contact information"
+msgstr "Контактная информация"
+
+#: src/app.rs:262
+msgctxt "notification.button.label"
+msgid "Open preferences"
+msgstr "Открыть параметры"
+
+#: src/app.rs:266
+msgctxt "notification.button.label"
+msgid "Open URL"
+msgstr "Открыть URL-адрес"
+
+#: src/app.rs:523
+msgctxt "command-line.option.description"
+msgid "Open preferences"
+msgstr "Открыть параметры"
+
+#: src/app.rs:534
+msgctxt "command-line.option.description"
+msgid "Show image for the given date"
+msgstr "Показать изображение данной даты"
+
+#: src/app.rs:539
+msgctxt "command-line.option.arg.description"
+msgid "YYYY-MM-DD"
+msgstr "ГГГГ-ММ-ДД"
+
+#: src/app.rs:611
+msgctxt "notification.title"
+msgid "Picture Of The Day updated"
+msgstr "Приложение «Изображение дня» обновилось"
+
+#: src/app.rs:616
+msgctxt "notification.body"
+msgid "Please restart the app to use the new version."
+msgstr "Чтобы использовать новую версию, перезапустите приложение."
+
+#: src/app.rs:755
+msgctxt "portal.request-background.reason"
+msgid "Automatically fetch and set wallpaper in background"
+msgstr "Автоматическое получение и установка обоев в фоновом режиме"
+
+#: src/app/model/error_notification.rs:41
+msgctxt "error-notification.title"
+msgid "Picture Of The Day needs an API key"
+msgstr "Приложение «Изображение дня» нуждается в API-ключе"
+
+#: src/app/model/error_notification.rs:46
+msgctxt "error-notification.description"
+msgid ""
+"Please configure a valid API key for %1 in the application preferences. The "
+"current key appears to be invalid."
+msgstr ""
+"Пожалуйста, настройте действительный ключ API для %1 в параметрах "
+"приложения. Текущий ключ, по-видимому, недействителен."
+
+#: src/app/model/error_notification.rs:60
+msgctxt "error-notification.title"
+msgid "Picture Of The Day was rate-limited"
+msgstr "Приложение «Изображение дня» было ограничено по скорости"
+
+#: src/app/model/error_notification.rs:65
+msgctxt "error-notification.description"
+msgid ""
+"The %1 server is rate-limited and does currently not allow you to fetch an "
+"image. Try again later, or try a different source."
+msgstr ""
+"Сервер %1 ограничен по скорости и в данный момент не позволяет вам получить "
+"изображение. Повторите попытку позже или попробуйте другой источник."
+
+#: src/app/model/error_notification.rs:74
+#: src/app/model/error_notification.rs:87
+msgctxt "error-notification.title"
+msgid "No image today"
+msgstr "Сегодня нет изображения"
+
+#: src/app/model/error_notification.rs:78
+msgctxt "error-notification.description"
+msgid ""
+"Currently, %1 does not provide an image for today. Try again later, or try a "
+"different source."
+msgstr ""
+"В настоящее время %1 не предоставляет изображение на сегодня. Попробуйте "
+"позже или воспользуйтесь другим источником."
+
+#: src/app/model/error_notification.rs:91
+msgctxt "error-notification.description"
+msgid ""
+"Today, %1 provides a video or another type of media which this application "
+"does not support. Try again tomorrow, or try a different source."
+msgstr ""
+"Сегодня %1 предоставляет видео или другой тип медиафайла, который это "
+"приложение не поддерживает. Повторите попытку завтра или попробуйте другой "
+"источник."
+
+#: src/app/model/error_notification.rs:103
+#: src/app/model/error_notification.rs:121
+#: src/app/model/error_notification.rs:149
+msgctxt "error-notification.title"
+msgid "Fetching images failed"
+msgstr "Не удалось получить изображения"
+
+#: src/app/model/error_notification.rs:107
+msgctxt "error-notification.description"
+msgid ""
+"The %s server replied with HTTP status %2. The server may have issues "
+"currently. Try again later, or try a different source. If the issue persists "
+"please report the problem."
+msgstr ""
+"Сервер %s ответил со статусом HTTP %2. Возможно, в данный момент на сервере "
+"возникли проблемы. Повторите попытку позже или попробуйте использовать "
+"другой источник. Если проблема сохраняется, пожалуйста, сообщите о ней."
+
+#: src/app/model/error_notification.rs:125
+msgctxt "error-notification.description"
+msgid ""
+"The %1 server responded with invalid data. The server may have issues "
+"currently. Try again later, or try a different source. If the issue persists "
+"please report the problem."
+msgstr ""
+"Сервер %1 ответил неверными данными. Возможно, в данный момент на сервере "
+"возникли проблемы. Повторите попытку позже или попробуйте использовать "
+"другой источник. Если проблема сохраняется, сообщите о ней."
+
+#: src/app/model/error_notification.rs:140
+msgctxt "error-notification.title"
+msgid "Limited network connectivity"
+msgstr "Доступ к сети ограничен"
+
+#: src/app/model/error_notification.rs:145
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from %1, with the "
+"following message: %2. Your system appears to have only limited network "
+"connectivity. Try to connect your system to the internet."
+msgstr ""
+"При получении сегодняшнего изображения из %1 произошла ошибка ввода-вывода "
+"со следующим сообщением: %2. Похоже, что ваша система имеет ограниченное "
+"сетевое подключение. Попробуйте подключить систему к Интернету."
+
+#: src/app/model/error_notification.rs:153
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from %1, with the "
+"following message: %2. Try again later, or try a different source. If the "
+"issue persists please report the problem."
+msgstr ""
+"При получении сегодняшнего изображения из %1 произошла ошибка ввода-вывода "
+"со следующим сообщением: %2. Повторите попытку позже или попробуйте другой "
+"источник. Если проблема сохраняется, сообщите о ней."
+
+#: src/app/widgets/application_window.rs:73
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening %1, with the following message: %2. If "
+"the issue persists please report the problem."
+msgstr ""
+"При открытии %1 произошла ошибка ввода-вывода со следующим сообщением: %2. "
+"Если проблема сохраняется, сообщите о ней."
+
+#: src/app/widgets/application_window.rs:79
+msgctxt "error-notification.title"
+msgid "Failed to open source URL"
+msgstr "Не удалось открыть URL-адрес источника"
+
+#: src/app/widgets/application_window.rs:98
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while setting the wallpaper, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+"При установке обоев произошла ошибка ввода-вывода со следующим сообщением: "
+"%1. Если проблема сохраняется, сообщите о ней."
+
+#: src/app/widgets/application_window.rs:104
+msgctxt "error-notification.title"
+msgid "Failed to set wallpaper"
+msgstr "Не удалось установить обои"
+
+#: src/app/widgets/application_window.rs:131
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening the current image, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+"При открытии текущего изображения произошла ошибка ввода-вывода со следующим "
+"сообщением: %1. Если проблема сохраняется, сообщите о ней."
+
+#: src/app/widgets/application_window.rs:137
+msgctxt "error-notification.title"
+msgid "Failed to open image"
+msgstr "Не удалось открыть изображение"
+
+#: src/app/widgets/application_window.rs:152
+msgid "Saved image %1"
+msgstr "Сохраненное изображение: %1"
+
+#: src/app/widgets/application_window.rs:170
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while saving the current image, with the following "
+"message: %1. If the issue persists please report the problem."
+msgstr ""
+"При сохранении текущего изображения произошла ошибка ввода-вывода со "
+"следующим сообщением: %1. Если проблема сохраняется, сообщите о ней."
+
+#: src/app/widgets/application_window.rs:176
+msgctxt "error-notification.title"
+msgid "Failed to save image"
+msgstr "Не удалось сохранить изображение"
+
+#: src/app/widgets/application_window.rs:193
+msgctxt "alert.response"
+msgid "Close"
+msgstr "Закрыть"
+
+#: src/app/widgets/application_window.rs:200
+msgctxt "alert.response"
+msgid "Contact information"
+msgstr "Контактная информация"
+
+#: src/app/widgets/application_window.rs:204
+msgctxt "alert.response"
+msgid "Open preferences"
+msgstr "Открыть параметры"
+
+#: src/app/widgets/application_window.rs:208
+msgctxt "alert.response"
+msgid "Open URL"
+msgstr "Открыть URL-адрес"
+
+#: src/app/widgets/application_window.rs:366
+msgctxt "toast.button.label"
+msgid "Details"
+msgstr "Подробнее"
+
+#: src/app/widgets/application_window.rs:471
+msgctxt "file-dialog.title"
+msgid "Save image"
+msgstr "Сохранить изображение"
+
+#: src/app/widgets/preferences_dialog.rs:71
+msgid "%1/%2 collection enabled"
+msgid_plural "%1/%2 collections enabled"
+msgstr[0] "%1 из %2 коллекций используется"
+msgstr[1] "%1 из %2 коллекций используются"
+msgstr[2] "%1 из %2 коллекций используются"
+
+#: src/images/source.rs:58
+msgctxt "source name"
+msgid "NASA Astronomy Picture of the Day"
+msgstr "Астрономическое изображение дня от НАСА"
+
+#: src/images/source.rs:59
+msgctxt "source name"
+msgid "Bing"
+msgstr "Bing"
+
+#: src/images/source.rs:60
+msgctxt "source name"
+msgid "Wikimedia Picture of the Day"
+msgstr "Изображение дня от Викимедиа"
+
+#: src/images/source.rs:61
+msgctxt "source name"
+msgid "Simon Stålenhag"
+msgstr "Симон Сталенхаг"
+
+#: src/images/source.rs:62
+msgctxt "source name"
+msgid "Earth Science Picture of the Day"
+msgstr "Изображение дня по науке о Земле"
+
+#: src/images/source.rs:66
+msgctxt "source name"
+msgid "NASA Earth Observatory Image of the Day"
+msgstr "Изображение дня из обсерватории Земли НАСА"
+
+#: src/images/sources/bing.rs:77
+msgctxt "source.bing.copyright"
+msgid "All rights reserved."
+msgstr "Все права защищены."
+
+#: src/images/sources/eoiod.rs:36
+msgctxt "source.eoiod.copyright"
+msgid "NASA Earth Observatory"
+msgstr "Обсерватория Земли НАСА"
+
+#: src/images/sources/stalenhag.rs:94
+msgctxt "source.stalenhag.copyright"
+msgid "All rights reserved."
+msgstr "Все права защищены."
+
+#: src/images/sources/stalenhag.rs:95
+#, c-format
+msgctxt "source.stalenhag.description"
+msgid "Collection: %s"
+msgstr "Коллекция: %s"
+
+#: src/images/sources/wikimedia.rs:65
+#, c-format
+msgctxt "source.wikimedia.copyright"
+msgid "%artist (%credit, %license)"
+msgstr "%artist (%credit, %license)"
+
+#: src/images/sources/wikimedia.rs:71
+#, c-format
+msgctxt "source.wikimedia.copyright"
+msgid "%artist (%license)"
+msgstr "%artist (%license)"
+
+#: src/images/sources/wikimedia.rs:80
+msgctxt "source.wikimedia.copyright"
+msgid "Unknown, all rights reserved"
+msgstr "Неизвестен, все права защищены"
+
+#: src/main.rs:87
+msgctxt "application-name"
+msgid "Picture Of The Day"
+msgstr "Изображение дня"
