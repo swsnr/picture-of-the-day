@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-04-22 15:52+0000\n"
-"Last-Translator: artnay <artnay@noreply.codeberg.org>\n"
-"Language-Team: Finnish <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
+"PO-Revision-Date: 2025-05-06 07:53+0000\n"
+"Last-Translator: Ricky-Tigg <ricky-tigg@noreply.codeberg.org>\n"
+"Language-Team: Finnish <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,38 +116,52 @@ msgid ""
 "to allow you to preview different sources without actually changing your "
 "desktop background."
 msgstr ""
+"Taustakuvaa ei enää aseteta automaattisesti pääikkunan ollessa näkyvissä, "
+"joten voit esikatsella eri lähteitä ilman, että työpöydän taustakuvaa "
+"muutetaan."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr ""
+"Taustakuvaa ei enää yritetä asettaa automaattisesti, kun istunto on lukittu, "
+"järjestelmä on virransäästötilassa tai verkkoyhteyttä ei ole."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
+"Ilmoita ja pyydä käynnistämään sovellus uudelleen, kun se päivitettiin "
+"taustalla."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr ""
+"Lisää päivän maatieteen kuva ja NASA:n maapallon observatorion päivän kuva."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
+"Lisää päällekkäistyökalupalkki siirtyäksesi kuvanäkymän edelliseen tai "
+"seuraavaan näkymään."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr ""
+"Lisää työkalupalkin painikkeet nykyisen kuvan tallentamiseksi ja nykyisen "
+"kuvan avaamiseksi ulkoisessa sovelluksessa."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
+"Yritä ahkerammin olla jättämättä osittain ladattuja taustakuvia jälkeen "
+"lopettaessasi."
 
 #: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
 msgid "Use a more reliable endpoint for Wikimedia images."
@@ -438,7 +452,7 @@ msgstr "Hyödylliset palvelut"
 #: src/app.rs:176
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
-msgstr ""
+msgstr "Käynnistetäänkö uudelleen päivityksen jälkeen?"
 
 #: src/app.rs:181
 msgctxt "alert-dialog.body"
@@ -448,22 +462,20 @@ msgid ""
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
+"Päivän kuva päivitettiin ja se on käynnistettävä uudelleen.\n"
+"\n"
+"Automaattista uudelleenkäynnistystä ei vielä tueta, mutta voit sulkea "
+"sovelluksen ja käynnistää sen uudelleen manuaalisesti."
 
 #: src/app.rs:190
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Cancelled"
 msgctxt "alert-dialog.response"
 msgid "Cancel"
-msgstr "Peruttu"
+msgstr "Peruuta"
 
 #: src/app.rs:192
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_Quit"
 msgctxt "alert-dialog.response"
 msgid "Quit"
-msgstr "_Lopeta"
+msgstr "Lopeta"
 
 #: src/app.rs:257
 msgctxt "notification.button.label"
@@ -493,19 +505,17 @@ msgstr "Näytä määritetyn päivän kuva"
 #: src/app.rs:539
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
-msgstr ""
+msgstr "VVVV-KK-PP"
 
 #: src/app.rs:611
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
-msgstr "Päivän kuva"
+msgstr "Päivän kuva päivitetty"
 
 #: src/app.rs:616
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
-msgstr ""
+msgstr "Käynnistä sovellus uudelleen käyttääksesi uutta versiota."
 
 #: src/app.rs:755
 msgctxt "portal.request-background.reason"
@@ -649,18 +659,13 @@ msgid "Failed to set wallpaper"
 msgstr "Taustakuvan asettaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:131
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Tapahtui syöttö/lähtövirhe avattaessa %1, seuraavalla viestillä: %2. Jos "
-"ongelma jatkuu, ilmoita ongelmasta."
+"Nykyistä kuvaa avattaessa tapahtui syöttö-/lähtövirhe, josta tuli seuraava "
+"viesti: %1. Jos vika jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:137
 msgctxt "error-notification.title"
@@ -672,18 +677,13 @@ msgid "Saved image %1"
 msgstr "Tallennettin kuva %1"
 
 #: src/app/widgets/application_window.rs:170
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: %1. If the issue persists please report the problem."
 msgstr ""
-"Tapahtui syöttö/lähtövirhe avattaessa %1, seuraavalla viestillä: %2. Jos "
-"ongelma jatkuu, ilmoita ongelmasta."
+"Nykyistä kuvaa tallennettaessa tapahtui syöttö-/lähtövirhe, josta tuli "
+"seuraava viesti: %1. Jos vika jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:176
 msgctxt "error-notification.title"
@@ -764,7 +764,7 @@ msgstr "Kaikki oikeudet pidätetään."
 #: src/images/sources/eoiod.rs:36
 msgctxt "source.eoiod.copyright"
 msgid "NASA Earth Observatory"
-msgstr ""
+msgstr "NASAn Maan observatorio"
 
 #: src/images/sources/stalenhag.rs:94
 msgctxt "source.stalenhag.copyright"
