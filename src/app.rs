@@ -99,6 +99,10 @@ impl Application {
                 .build(),
             ActionEntry::builder("post-update")
                 .activate(|app: &Application, _, _| {
+                    // Activate the app to make sure we show the post-restart dialog on top of a visible window.
+                    // Having the dialog appear all on its own is probably quite confusing because it's not easy
+                    // to match it with a running app.
+                    app.activate();
                     app.ask_post_update_restart();
                 })
                 .build(),
@@ -166,6 +170,22 @@ impl Application {
         prefs.bind(&self.imp().settings());
         prefs.present(self.active_window().as_ref());
         prefs
+    }
+
+    fn notify_about_update(&self) {
+        let notification = gio::Notification::new(&dpgettext2(
+            None,
+            "notification.title",
+            "Picture Of The Day updated",
+        ));
+        notification.set_body(Some(&dpgettext2(
+            None,
+            "notification.body",
+            "Please restart the app to use the new version.",
+        )));
+        notification.set_priority(gio::NotificationPriority::High);
+        notification.set_default_action("app.post-update");
+        self.send_notification(None, &notification);
     }
 
     fn ask_post_update_restart(&self) {
@@ -639,18 +659,7 @@ mod imp {
                 move |monitor| {
                     if monitor.updated() {
                         glib::info!("App updated");
-                        let notification = gio::Notification::new(&dpgettext2(
-                            None,
-                            "notification.title",
-                            "Picture Of The Day updated",
-                        ));
-                        notification.set_body(Some(&dpgettext2(
-                            None,
-                            "notification.body",
-                            "Please restart the app to use the new version.",
-                        )));
-                        notification.set_priority(gio::NotificationPriority::High);
-                        app.send_notification(None, &notification);
+                        app.notify_about_update();
                     }
                 }
             ));
