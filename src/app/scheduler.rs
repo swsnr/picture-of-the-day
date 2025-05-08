@@ -10,9 +10,8 @@ use std::fmt::Display;
 
 use futures::channel::oneshot;
 use glib::subclass::types::ObjectSubclassIsExt;
-use gtk::gio::{self, NetworkConnectivity};
+use gtk::gio;
 
-use crate::config::G_LOG_DOMAIN;
 use crate::images::{Source, SourceError};
 
 #[glib::flags(name = "PotDAutomaticWallpaperUpdateInhibitor")]
@@ -80,56 +79,6 @@ impl AutomaticWallpaperUpdateScheduler {
     pub fn update_receiver(&self) -> async_channel::Receiver<ScheduledWallpaperUpdate> {
         self.imp().update_rx.clone()
     }
-
-    /// Set or clear an inhibitor.
-    ///
-    /// If `set` is `true` add `inhibitor`, otherwise clear it.
-    pub fn set_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor, set: bool) {
-        if set {
-            self.add_inhibitor(inhibitor);
-        } else {
-            self.clear_inhibitor(inhibitor);
-        }
-    }
-
-    /// Add an inhibitor to this scheduler.
-    ///
-    /// This disables scheduled updates until all inhibitors are cleared again.
-    pub fn add_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor) {
-        self.imp().add_inhibitor(inhibitor);
-    }
-
-    /// Clear the given `inhibitor` on this scheduler.
-    ///
-    /// If it was the last inhibitor scheduled updates will commence again.
-    pub fn clear_inhibitor(&self, inhibitor: AutomaticWallpaperUpdateInhibitor) {
-        self.imp().clear_inhibitor(inhibitor);
-    }
-
-    /// Inhibit automatic wallpaper updates depending on network connectivity.
-    ///
-    /// If `connectivity` is limited or full, clear the [`AutomaticWallpaperUpdateInhibitor::NoNetwork`]
-    /// inhibitor, otherwise add it.
-    pub fn inhibit_according_to_network_connectivity(&self, connectivity: NetworkConnectivity) {
-        use gio::NetworkConnectivity::*;
-        self.set_inhibitor(
-            AutomaticWallpaperUpdateInhibitor::NoNetwork,
-            match connectivity {
-                // We do not inhibit on "limited" connectivity, because
-                // that just might be a badly configured proxy or
-                // captive portal, where we still might have success
-                // in updating the wallpaper.
-                Limited | Full => false,
-                other => {
-                    glib::info!(
-                        "Inibiting automatic wallpaper updates \
-due to network connectivity {other:?}"
-                    );
-                    true
-                }
-            },
-        );
-    }
 }
 
 mod imp {
@@ -151,7 +100,7 @@ mod imp {
     #[derive(glib::Properties)]
     #[properties(wrapper_type = super::AutomaticWallpaperUpdateScheduler)]
     pub struct AutomaticWallpaperUpdateScheduler {
-        #[property(get)]
+        #[property(get, set = Self::set_inhibitors)]
         inhibitors: Cell<AutomaticWallpaperUpdateInhibitor>,
         #[property(get, set = Self::set_source, builder(Source::default()))]
         source: Cell<Source>,
@@ -229,6 +178,13 @@ mod imp {
     impl AutomaticWallpaperUpdateScheduler {
         fn get_is_scheduled(&self) -> bool {
             self.is_scheduled.borrow().is_some()
+        }
+
+        fn set_inhibitors(&self, inhibitors: AutomaticWallpaperUpdateInhibitor) {
+            glib::debug!("Updating inhibitors: {inhibitors}");
+            self.inhibitors.set(inhibitors);
+            self.cancel_scheduled_updates_if_inhibited();
+            self.schedule_updates_unless_inhibited(Duration::from_secs(10));
         }
 
         fn set_source(&self, source: Source) {

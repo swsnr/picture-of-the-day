@@ -348,7 +348,7 @@ mod imp {
     use adw::subclass::prelude::*;
     use futures::StreamExt;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
-    use gtk::gio::{self, ApplicationHoldGuard};
+    use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
     use soup::prelude::*;
     use std::cell::RefCell;
@@ -400,79 +400,113 @@ mod imp {
             drop(guard);
         }
 
+        fn inhibitors_for_binding_target(
+            binding: &glib::Binding,
+            inhibitor: AutomaticWallpaperUpdateInhibitor,
+            set: bool,
+        ) -> Option<AutomaticWallpaperUpdateInhibitor> {
+            let inhibitors = binding
+                .target()?
+                .downcast_ref::<AutomaticWallpaperUpdateScheduler>()?
+                .inhibitors();
+            if set {
+                Some(inhibitors | inhibitor)
+            } else {
+                Some(inhibitors - inhibitor)
+            }
+        }
+
         fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
-            let scheduler = &self.scheduler;
-
-            self.obj().connect_active_window_notify(glib::clone!(
-                #[weak]
-                scheduler,
-                move |app| {
-                    scheduler.set_inhibitor(
-                        AutomaticWallpaperUpdateInhibitor::MainWindowActive,
-                        app.active_window().is_some(),
-                    );
-                }
-            ));
-
             // Inhibit automatic updates if the user disables them.
             // We do this first, to make sure all inhibitors are in place before
             // we start updates by setting the source.
-            if !settings.boolean("set-wallpaper-automatically") {
-                scheduler.add_inhibitor(AutomaticWallpaperUpdateInhibitor::DisabledByUser);
-            }
-            settings.connect_changed(
-                Some("set-wallpaper-automatically"),
-                glib::clone!(
-                    #[weak]
-                    scheduler,
-                    move |settings, _| {
-                        scheduler.set_inhibitor(
-                            AutomaticWallpaperUpdateInhibitor::DisabledByUser,
-                            !settings.boolean("set-wallpaper-automatically"),
-                        );
+            settings
+                .bind("set-wallpaper-automatically", &self.scheduler, "inhibitors")
+                .get_only()
+                .mapping(glib::clone!(
+                    #[weak(rename_to = scheduler)]
+                    &self.scheduler,
+                    #[upgrade_or_default]
+                    move |value, _| {
+                        let inhibitors = scheduler
+                            .downcast_ref::<AutomaticWallpaperUpdateScheduler>()?
+                            .inhibitors();
+                        let set_automatically = value.get::<bool>()?;
+                        let inhibitors = if set_automatically {
+                            inhibitors - AutomaticWallpaperUpdateInhibitor::DisabledByUser
+                        } else {
+                            inhibitors | AutomaticWallpaperUpdateInhibitor::DisabledByUser
+                        };
+                        Some(inhibitors.into())
                     }
-                ),
-            );
+                ))
+                .build();
+
+            // Inhibit if the app has an active main window.
+            self.obj()
+                .bind_property("active-window", &self.scheduler, "inhibitors")
+                .sync_create()
+                .transform_to(|binding, window: Option<gtk::Window>| {
+                    Self::inhibitors_for_binding_target(
+                        binding,
+                        AutomaticWallpaperUpdateInhibitor::MainWindowActive,
+                        window.is_some(),
+                    )
+                })
+                .build();
 
             // Inhibit if the system is on low power
-            let power_monitor = gio::PowerProfileMonitor::get_default();
-            scheduler.set_inhibitor(
-                AutomaticWallpaperUpdateInhibitor::LowPower,
-                power_monitor.is_power_saver_enabled(),
-            );
-            power_monitor.connect_power_saver_enabled_notify(glib::clone!(
-                #[weak]
-                scheduler,
-                move |monitor| {
-                    scheduler.set_inhibitor(
+            gio::PowerProfileMonitor::get_default()
+                .bind_property("power-saver-enabled", &self.scheduler, "inhibitors")
+                .sync_create()
+                .transform_to(|binding, power_saver_enabled: bool| {
+                    Self::inhibitors_for_binding_target(
+                        binding,
                         AutomaticWallpaperUpdateInhibitor::LowPower,
-                        monitor.is_power_saver_enabled(),
-                    );
-                }
-            ));
+                        power_saver_enabled,
+                    )
+                })
+                .build();
 
             // Inhibit if the network is down
-            let network_monitor = gio::NetworkMonitor::default();
-            scheduler.inhibit_according_to_network_connectivity(network_monitor.connectivity());
-            network_monitor.connect_connectivity_notify(glib::clone!(
-                #[weak]
-                scheduler,
-                move |monitor| {
-                    scheduler.inhibit_according_to_network_connectivity(monitor.connectivity());
-                }
-            ));
+            gio::NetworkMonitor::default()
+                .bind_property("connectivity", &self.scheduler, "inhibitors")
+                .sync_create()
+                .transform_to(|binding, connectivity: NetworkConnectivity| {
+                    let no_network = match connectivity {
+                        // We do not inhibit on "limited" connectivity, because
+                        // that just might be a badly configured proxy or
+                        // captive portal, where we still might have success
+                        // in updating the wallpaper.
+                        NetworkConnectivity::Limited | NetworkConnectivity::Full => false,
+                        other => {
+                            glib::info!(
+                                "Inibiting automatic wallpaper updates \
+    due to network connectivity {other:?}"
+                            );
+                            true
+                        }
+                    };
+                    Self::inhibitors_for_binding_target(
+                        binding,
+                        AutomaticWallpaperUpdateInhibitor::NoNetwork,
+                        no_network,
+                    )
+                })
+                .build();
 
             // Inhibit while the session is locked
-            self.session_monitor.connect_locked_notify(glib::clone!(
-                #[weak]
-                scheduler,
-                move |monitor| {
-                    scheduler.set_inhibitor(
+            self.session_monitor
+                .bind_property("locked", &self.scheduler, "inhibitors")
+                .sync_create()
+                .transform_to(|binding, locked: bool| {
+                    Self::inhibitors_for_binding_target(
+                        binding,
                         AutomaticWallpaperUpdateInhibitor::SessionLocked,
-                        monitor.locked(),
-                    );
-                }
-            ));
+                        locked,
+                    )
+                })
+                .build();
 
             // Listen to scheduled updates, and set the wallpaper in response
             let rx = self.scheduler.update_receiver();
@@ -495,7 +529,7 @@ mod imp {
             // Finally, update the source for scheduled wallpaper updates.
             // This implicit starts scheduled updates.
             settings
-                .bind("selected-source", scheduler, "source")
+                .bind("selected-source", &self.scheduler, "source")
                 .build();
         }
     }
