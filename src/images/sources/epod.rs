@@ -4,8 +4,6 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-#![allow(unused)]
-
 use gtk::gio;
 use scraper::{ElementRef, Html, Node, Selector};
 use soup::prelude::SessionExt;
@@ -171,7 +169,7 @@ pub async fn fetch_picture_of_the_day(
 #[cfg(test)]
 mod tests {
     use gtk::gio::Cancellable;
-    use jiff::civil::{Date, date};
+    use jiff::civil::date;
     use soup::prelude::SessionExt;
 
     use crate::images::source::testutil::soup_session;
