@@ -212,6 +212,7 @@ it again manually.",
             ("quit", &dpgettext2(None, "alert-dialog.response", "Quit")),
         ]);
         dialog.set_body_use_markup(true);
+        dialog.set_prefer_wide_layout(true);
         dialog.set_response_appearance("quit", adw::ResponseAppearance::Destructive);
         dialog.set_default_response(Some("quit"));
         dialog.set_close_response("cancel");
