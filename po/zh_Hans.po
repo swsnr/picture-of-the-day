@@ -9,9 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-05-06 07:53+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
-"Language-Team: Chinese (Simplified Han script) <https://"
-"translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
-"de-swsnr-pictureoftheday/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://translate.codeberg."
+"org/projects/de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -406,7 +405,7 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr "要忽略的来自 Stålenhag 的集合。"
 
-#: src/app.rs:119
+#: src/app.rs:123
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "翻译"
@@ -414,26 +413,36 @@ msgstr "翻译"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:128
+#: src/app.rs:132
 msgid "translator-credits"
 msgstr "Outbreak2096"
 
-#: src/app.rs:133
+#: src/app.rs:137
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "帮助和灵感"
 
-#: src/app.rs:146
+#: src/app.rs:150
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "有用的服务"
 
-#: src/app.rs:176
+#: src/app.rs:179
+msgctxt "notification.title"
+msgid "Picture Of The Day updated"
+msgstr "今日图片已更新"
+
+#: src/app.rs:184
+msgctxt "notification.body"
+msgid "Please restart the app to use the new version."
+msgstr "请重启应用以使用新版本。"
+
+#: src/app.rs:196
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr "更新后重启？"
 
-#: src/app.rs:181
+#: src/app.rs:201
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture Of The Day was updated, and needs to be restarted.\n"
@@ -445,57 +454,47 @@ msgstr ""
 "\n"
 "尚不支持自动重启，但您可以退出应用并手动重启。"
 
-#: src/app.rs:190
+#: src/app.rs:210
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/app.rs:192
+#: src/app.rs:212
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr "退出"
 
-#: src/app.rs:257
+#: src/app.rs:278
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "联系信息"
 
-#: src/app.rs:262
+#: src/app.rs:283
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:266
+#: src/app.rs:287
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "打开 URL"
 
-#: src/app.rs:523
+#: src/app.rs:578
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:534
+#: src/app.rs:589
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "显示给定日期的图片"
 
-#: src/app.rs:539
+#: src/app.rs:594
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
-#: src/app.rs:611
-msgctxt "notification.title"
-msgid "Picture Of The Day updated"
-msgstr "今日图片已更新"
-
-#: src/app.rs:616
-msgctxt "notification.body"
-msgid "Please restart the app to use the new version."
-msgstr "请重启应用以使用新版本。"
-
-#: src/app.rs:755
+#: src/app.rs:799
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "在后台自动获取并设置壁纸"

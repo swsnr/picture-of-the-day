@@ -431,7 +431,7 @@ msgstr ""
 msgid "Collections from Stålenhag which to ignore."
 msgstr "Zu ignorierende Stålenhag-Sammlungen."
 
-#: src/app.rs:119
+#: src/app.rs:123
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "Übersetzungen"
@@ -439,26 +439,36 @@ msgstr "Übersetzungen"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:128
+#: src/app.rs:132
 msgid "translator-credits"
 msgstr "Sebastian Wiesner <sebastian@swsnr.de>"
 
-#: src/app.rs:133
+#: src/app.rs:137
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "Hilfe und Inspiration"
 
-#: src/app.rs:146
+#: src/app.rs:150
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Hilfreiche Dienste"
 
-#: src/app.rs:176
+#: src/app.rs:179
+msgctxt "notification.title"
+msgid "Picture Of The Day updated"
+msgstr "Bild des Tages wurde aktualisiert"
+
+#: src/app.rs:184
+msgctxt "notification.body"
+msgid "Please restart the app to use the new version."
+msgstr "Bitte starte die Anwendung neu, um die neueste Version zu nutzen."
+
+#: src/app.rs:196
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr "Nach Aktualisierung neu starten?"
 
-#: src/app.rs:181
+#: src/app.rs:201
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture Of The Day was updated, and needs to be restarted.\n"
@@ -471,57 +481,47 @@ msgstr ""
 "Der automatische Neustart wird noch nicht unterstützt, aber Du kannst die "
 "Anwendung jetzt beenden und manuell neu starten."
 
-#: src/app.rs:190
+#: src/app.rs:210
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: src/app.rs:192
+#: src/app.rs:212
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr "Beenden"
 
-#: src/app.rs:257
+#: src/app.rs:278
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Kontaktinformationen"
 
-#: src/app.rs:262
+#: src/app.rs:283
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
-#: src/app.rs:266
+#: src/app.rs:287
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "URL öffnen"
 
-#: src/app.rs:523
+#: src/app.rs:578
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Einstellungen öffnen"
 
-#: src/app.rs:534
+#: src/app.rs:589
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "Bild für das angegebene Datum zeigen"
 
-#: src/app.rs:539
+#: src/app.rs:594
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
-#: src/app.rs:611
-msgctxt "notification.title"
-msgid "Picture Of The Day updated"
-msgstr "Bild des Tages wurde aktualisiert"
-
-#: src/app.rs:616
-msgctxt "notification.body"
-msgid "Please restart the app to use the new version."
-msgstr "Bitte starte die Anwendung neu, um die neueste Version zu nutzen."
-
-#: src/app.rs:755
+#: src/app.rs:799
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Bildschirmhintergrund im Hintergrund automatisch abrufen und setzen"
