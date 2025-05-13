@@ -44,11 +44,11 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.3/picture-of-the-day-v1.4.3.tar.zst
-        sha256: "2d63a367dbf4007bbbdd621e18d9b6c502e7a794997161cdb585bb5c9b7ed505"
+        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.4/picture-of-the-day-v1.4.4.tar.zst
+        sha256: "6f3ca4468e17667bbfd48a26eb618368e248d8638c8b41cc6244b195d7c4287b"
       - type: archive
-        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.3/picture-of-the-day-v1.4.3-vendor.tar.zst
-        sha256: "2f43a62b476e11252454b0574697f53e8c8b81f5c6d1d5f680868101427491bb"
+        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.4/picture-of-the-day-v1.4.4-vendor.tar.zst
+        sha256: "e80e54df536684cb88e29b1119094ccf09eaaa4500025ec72226f34ed333ce15"
         dest: vendor/
       - type: inline
         dest: .cargo/
