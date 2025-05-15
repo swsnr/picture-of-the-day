@@ -67,13 +67,13 @@ impl From<PortalResponse> for RequestBackgroundResult {
     fn from(response: PortalResponse) -> Self {
         let background = response
             .options()
-            .lookup("background")
-            .unwrap_or_default()
+            .get("background")
+            .and_then(glib::Variant::get)
             .unwrap_or_default();
         let autostart = response
             .options()
-            .lookup("autostart")
-            .unwrap_or_default()
+            .get("autostart")
+            .and_then(glib::Variant::get)
             .unwrap_or_default();
         Self {
             request_result: response.result(),

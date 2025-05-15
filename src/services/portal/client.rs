@@ -4,10 +4,12 @@
 // License, v. 2.0. If a copy of the MPL was not distributed with this
 // file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
+use std::collections::HashMap;
+
 use futures::StreamExt;
 use glib::variant::Handle;
 use glib::{Priority, VariantTy};
-use glib::{Variant, VariantDict, object::IsA};
+use glib::{Variant, object::IsA};
 use gtk::gio::{self, DBusSignalFlags, FileDescriptorBased, UnixFDList};
 use gtk::gio::{DBusConnection, IOErrorEnum};
 use gtk::prelude::*;
@@ -39,7 +41,7 @@ pub enum RequestResult {
 ///
 /// See <https://flatpak.github.io/xdg-desktop-portal/docs/doc-org.freedesktop.portal.Request.html#org-freedesktop-portal-request-response>
 #[derive(Clone, glib::Variant)]
-pub struct PortalResponse(RequestResult, VariantDict);
+pub struct PortalResponse(RequestResult, HashMap<String, Variant>);
 
 impl PortalResponse {
     /// Get the result of the request.
@@ -48,7 +50,7 @@ impl PortalResponse {
     }
 
     /// Get the options returned along with the response.
-    pub fn options(&self) -> &VariantDict {
+    pub fn options(&self) -> &HashMap<String, Variant> {
         &self.1
     }
 }
