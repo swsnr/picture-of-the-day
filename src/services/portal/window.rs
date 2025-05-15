@@ -97,7 +97,6 @@ impl Drop for PortalWindowHandle {
         match self {
             PortalWindowHandle::None | PortalWindowHandle::X11(_) => {}
             PortalWindowHandle::Wayland(wayland_toplevel, handle) => {
-                glib::debug!("Dropping top-level window wayland handle {handle}");
                 wayland_toplevel.drop_exported_handle(handle);
             }
         }

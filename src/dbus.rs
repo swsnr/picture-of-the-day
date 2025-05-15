@@ -9,8 +9,6 @@
 use glib::{WeakRef, clone::Downgrade};
 use gtk::gio::{self, SignalSubscriptionId};
 
-use crate::config::G_LOG_DOMAIN;
-
 /// A subscription to a D-Bus signal.
 ///
 /// When dropped unsubscribe from the signal.
@@ -33,7 +31,6 @@ impl Drop for SignalSubscription {
     fn drop(&mut self) {
         if let Some(connection) = self.bus.upgrade() {
             if let Some(id) = self.id.take() {
-                glib::debug!("Dropping signal connection {id:?}");
                 connection.signal_unsubscribe(id);
             }
         }
