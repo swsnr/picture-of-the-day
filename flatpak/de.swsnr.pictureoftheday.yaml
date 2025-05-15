@@ -43,22 +43,12 @@ modules:
   - name: pictureoftheday
     buildsystem: simple
     sources:
-      - type: archive
-        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.4/picture-of-the-day-v1.4.4.tar.zst
-        sha256: "6f3ca4468e17667bbfd48a26eb618368e248d8638c8b41cc6244b195d7c4287b"
-      - type: archive
-        url: https://codeberg.org/swsnr/picture-of-the-day/releases/download/v1.4.4/picture-of-the-day-v1.4.4-vendor.tar.zst
-        sha256: "e80e54df536684cb88e29b1119094ccf09eaaa4500025ec72226f34ed333ce15"
-        dest: vendor/
-      - type: inline
-        dest: .cargo/
-        dest-filename: config.toml
-        contents: |
-          [source.crates-io]
-          replace-with = "vendored-sources"
-
-          [source.vendored-sources]
-          directory = "vendor"
+      - type: git
+        url: https://codeberg.org/swsnr/picture-of-the-day.git
+        tag: "v1.4.4-5-gdaa1960"
+        commit: "daa1960efb296dd416a5c2927f8a0b598bb418fe"
+      - de.swsnr.pictureoftheday.cargo-sources.json
     build-commands:
+      - install -Dm644 cargo/config .cargo/config.toml
       - cargo build --frozen --release --verbose
       - just version= DESTPREFIX=/app install
