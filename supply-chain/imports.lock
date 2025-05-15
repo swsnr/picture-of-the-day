@@ -2,15 +2,15 @@
 # cargo-vet imports lock
 
 [[publisher.cairo-rs]]
-version = "0.20.7"
-when = "2024-12-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.cairo-sys-rs]]
-version = "0.20.7"
-when = "2024-12-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -50,15 +50,15 @@ user-login = "taiki-e"
 user-name = "Taiki Endo"
 
 [[publisher.gdk-pixbuf]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gdk-pixbuf-sys]]
-version = "0.20.7"
-when = "2024-12-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -106,57 +106,57 @@ user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gio]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gio-sys]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.glib]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.glib-macros]]
-version = "0.20.7"
-when = "2024-12-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.glib-sys]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gobject-sys]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.graphene-rs]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.graphene-sys]]
-version = "0.20.7"
-when = "2024-12-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -211,8 +211,8 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.jiff]]
-version = "0.2.12"
-when = "2025-05-03"
+version = "0.2.13"
+when = "2025-05-06"
 user-id = 189
 user-login = "BurntSushi"
 user-name = "Andrew Gallant"
@@ -273,15 +273,15 @@ user-login = "mbrubeck"
 user-name = "Matt Brubeck"
 
 [[publisher.pango]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.pango-sys]]
-version = "0.20.9"
-when = "2025-02-16"
+version = "0.20.10"
+when = "2025-05-13"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -1969,6 +1969,12 @@ aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-ch
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.8.0 -> 2.3.1"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.bitflags]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "2.9.0 -> 2.9.1"
 aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.cfg-expr]]
