@@ -21,6 +21,7 @@ edition = "2024"
 publish = false
 build = "build.rs"
 default-run = "pictureoftheday"
+rust-version = "1.87"
 
 [features]
 # Guards the internal binary for scraping sources

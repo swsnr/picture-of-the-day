@@ -24,3 +24,7 @@ url = "https://codeberg.org/swsnr/rust-supply-chain/raw/branch/main/audits.toml"
 
 [policy.pictureoftheday]
 criteria = "safe-to-run"
+
+[[exemptions.redox_syscall]]
+version = "0.5.12"
+criteria = "safe-to-run"

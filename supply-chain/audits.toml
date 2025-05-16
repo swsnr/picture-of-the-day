@@ -305,6 +305,12 @@ user-id = 189 # Andrew Gallant (BurntSushi)
 start = "2024-02-17"
 end = "2026-04-24"
 
+[[trusted.jiff-static]]
+criteria = "safe-to-run"
+user-id = 189 # Andrew Gallant (BurntSushi)
+start = "2025-03-06"
+end = "2026-05-16"
+
 [[trusted.libadwaita]]
 criteria = "safe-to-run"
 user-id = 54339 # Bilal Elmoussaoui (bilelmoussaoui)
@@ -415,6 +421,18 @@ user-id = 51017 # Yuki Okushi (JohnTitor)
 start = "2021-06-17"
 end = "2026-04-10"
 
+[[trusted.portable-atomic]]
+criteria = "safe-to-run"
+user-id = 33035 # Taiki Endo (taiki-e)
+start = "2022-02-24"
+end = "2026-05-16"
+
+[[trusted.portable-atomic-util]]
+criteria = "safe-to-run"
+user-id = 33035 # Taiki Endo (taiki-e)
+start = "2023-01-15"
+end = "2026-05-16"
+
 [[trusted.scopeguard]]
 criteria = "safe-to-run"
 user-id = 2915 # Amanieu d'Antras (Amanieu)
@@ -489,6 +507,66 @@ criteria = "safe-to-run"
 user-id = 6743 # Ed Page (epage)
 start = "2021-09-13"
 end = "2026-02-12"
+
+[[trusted.windows-sys]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2021-11-15"
+end = "2026-05-16"
+
+[[trusted.windows-targets]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2022-09-09"
+end = "2026-05-16"
+
+[[trusted.windows_aarch64_gnullvm]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2022-09-01"
+end = "2026-05-16"
+
+[[trusted.windows_aarch64_msvc]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2021-11-05"
+end = "2026-05-16"
+
+[[trusted.windows_i686_gnu]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2021-10-28"
+end = "2026-05-16"
+
+[[trusted.windows_i686_gnullvm]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2024-04-02"
+end = "2026-05-16"
+
+[[trusted.windows_i686_msvc]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2021-10-27"
+end = "2026-05-16"
+
+[[trusted.windows_x86_64_gnu]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2021-10-28"
+end = "2026-05-16"
+
+[[trusted.windows_x86_64_gnullvm]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2022-09-01"
+end = "2026-05-16"
+
+[[trusted.windows_x86_64_msvc]]
+criteria = "safe-to-run"
+user-id = 64539 # Kenny Kerr (kennykerr)
+start = "2021-10-27"
+end = "2026-05-16"
 
 [[trusted.winnow]]
 criteria = "safe-to-run"
