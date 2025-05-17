@@ -19,30 +19,51 @@ msgstr ""
 "X-Generator: Weblate 5.10.2\n"
 
 #. Translators: Do feel free to translate the application name
-#: de.swsnr.pictureoftheday.desktop.in:3
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:5
+#: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:9
 msgid "Picture Of The Day"
 msgstr "Päivän kuva"
 
-#: de.swsnr.pictureoftheday.desktop.in:4
+#: de.swsnr.pictureoftheday.desktop:4
 msgid "A daily picture as your wallpaper"
 msgstr "Päivän kuva taustakuvana"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: de.swsnr.pictureoftheday.desktop.in:10
+#: de.swsnr.pictureoftheday.desktop:10
 msgid "Gnome;GTK;Picture;Day;Wallpaper;"
 msgstr "Gnome;GTK;Picture;Day;Wallpaper;taustakuva;kuva;"
 
-#: de.swsnr.pictureoftheday.desktop.in:17
+#: de.swsnr.pictureoftheday.desktop:17
 msgid "Preferences"
 msgstr "Asetukset"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:6
+#: de.swsnr.pictureoftheday.gschema.xml:5
+msgid "The identifier the selected source."
+msgstr "Valitun lähteen tunniste."
+
+#: de.swsnr.pictureoftheday.gschema.xml:9
+msgid "Whether to set the wallpaper automatically."
+msgstr "Asetetaanko taustakuva automaattisesti."
+
+#: de.swsnr.pictureoftheday.gschema.xml:14
+msgid ""
+"The API key to use for requests to the APOD API. The default key is usually "
+"fine, but if you find that you are rate-limited, you may wish to use your "
+"own API key, which you can obtain free of charge at https://api.nasa.gov/."
+msgstr ""
+"Käytettävä API-avain APOD API:n pyyntöihin. Oletusavain on yleensä sopiva, "
+"mutta jos huomaat, että nopeus on rajoitettu, voit halutessasi käyttää omaa "
+"API-avainta, jonka voit hankkia ilmaiseksi https://api.nasa.gov/ :sta."
+
+#: de.swsnr.pictureoftheday.gschema.xml:24
+msgid "Collections from Stålenhag which to ignore."
+msgstr "Ohitettavat kokoelmat lähteestä Stålenhag."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:6
 msgid "Your daily wallpaper"
 msgstr "Päivittäinen taustakuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:8
+#: de.swsnr.pictureoftheday.metainfo.xml:8
 msgid ""
 "Get a picture of the day from the following sources and use as your daily "
 "wallpaper."
@@ -50,31 +71,31 @@ msgstr ""
 "Hanki päivän kuva seuraavista lähteistä ja käytä sitä päivittäisenä "
 "taustakuvana."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:10
+#: de.swsnr.pictureoftheday.metainfo.xml:10
 msgid "NASA Astronomy Picture of the Day"
 msgstr "NASA-tähtitieteen päivän kuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:11
+#: de.swsnr.pictureoftheday.metainfo.xml:11
 msgid "Bing"
 msgstr "Bing"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:12
+#: de.swsnr.pictureoftheday.metainfo.xml:12
 msgid "Simon Stålenhag Artwork"
 msgstr "Simon Stålenhagin taideteos"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:13
+#: de.swsnr.pictureoftheday.metainfo.xml:13
 msgid "Wikimedia Picture of the Day"
 msgstr "Wikimedian päivän kuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:14
+#: de.swsnr.pictureoftheday.metainfo.xml:14
 msgid "Earth Science Picture of the Day"
 msgstr "Earth Sciencen päivän kuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:15
+#: de.swsnr.pictureoftheday.metainfo.xml:15
 msgid "NASA Earth Observatory Image of the Day"
 msgstr "NASA:n maaobservatorion päivän kuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:17
+#: de.swsnr.pictureoftheday.metainfo.xml:17
 msgid ""
 "Preview images, pick your favorite source, enable automatic updates, and "
 "enjoy a fresh wallpaper every day."
@@ -82,7 +103,7 @@ msgstr ""
 "Esikatsele kuvia, valitse suosikkilähteesi, ota käyttöön automaattiset "
 "päivitykset ja nauti uudesta taustakuvasta joka päivä."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:18
+#: de.swsnr.pictureoftheday.metainfo.xml:18
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
@@ -90,27 +111,27 @@ msgstr ""
 "Huomioi, että kaikkia kuvia suojaa tekijänoikeus; sinulla ei välttämättä ole "
 "oikeutta käyttää tai jaella kuvia. Tutustu jokaisen kuvan lisenssiehtoihin."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:24
+#: de.swsnr.pictureoftheday.metainfo.xml:24
 msgid "Picture"
 msgstr "Kuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:25
+#: de.swsnr.pictureoftheday.metainfo.xml:25
 msgid "Daily"
 msgstr "Päivittäin"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:26
+#: de.swsnr.pictureoftheday.metainfo.xml:26
 msgid "Wallpaper"
 msgstr "Taustakuva"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:27
+#: de.swsnr.pictureoftheday.metainfo.xml:27
 msgid "Astronomy"
 msgstr "Tähtitiede"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:28
+#: de.swsnr.pictureoftheday.metainfo.xml:28
 msgid "Artwork"
 msgstr "Taideteos"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:49
+#: de.swsnr.pictureoftheday.metainfo.xml:49
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -120,7 +141,7 @@ msgstr ""
 "joten voit esikatsella eri lähteitä ilman, että työpöydän taustakuvaa "
 "muutetaan."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:50
+#: de.swsnr.pictureoftheday.metainfo.xml:50
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
@@ -128,27 +149,27 @@ msgstr ""
 "Taustakuvaa ei enää yritetä asettaa automaattisesti, kun istunto on lukittu, "
 "järjestelmä on virransäästötilassa tai verkkoyhteyttä ei ole."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:51
+#: de.swsnr.pictureoftheday.metainfo.xml:51
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 "Ilmoita ja pyydä käynnistämään sovellus uudelleen, kun se päivitettiin "
 "taustalla."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:64
+#: de.swsnr.pictureoftheday.metainfo.xml:64
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr ""
 "Lisää päivän maatieteen kuva ja NASA:n maapallon observatorion päivän kuva."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:74
+#: de.swsnr.pictureoftheday.metainfo.xml:74
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Lisää päällekkäistyökalupalkki siirtyäksesi kuvanäkymän edelliseen tai "
 "seuraavaan näkymään."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:75
+#: de.swsnr.pictureoftheday.metainfo.xml:75
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -156,34 +177,34 @@ msgstr ""
 "Lisää työkalupalkin painikkeet nykyisen kuvan tallentamiseksi ja nykyisen "
 "kuvan avaamiseksi ulkoisessa sovelluksessa."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:76
+#: de.swsnr.pictureoftheday.metainfo.xml:76
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Yritä ahkerammin olla jättämättä osittain ladattuja taustakuvia jälkeen "
 "lopettaessasi."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:88
+#: de.swsnr.pictureoftheday.metainfo.xml:88
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Käytä luotettavampaa päätepistettä Wikimedia-kuville."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:89
+#: de.swsnr.pictureoftheday.metainfo.xml:89
 msgid "No longer show preview when setting a wallpaper."
 msgstr "Älä enää näytä esikatselua taustakuvaa asetettaessa."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:90
+#: de.swsnr.pictureoftheday.metainfo.xml:90
 msgid "Improve scheduling of automatic downloads."
 msgstr "Paranna automaattisten latausten ajoitusta."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:91
+#: de.swsnr.pictureoftheday.metainfo.xml:91
 msgid "Remember window size and state."
 msgstr "Muista ikkunan koko ja tila."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:92
+#: de.swsnr.pictureoftheday.metainfo.xml:92
 msgid "Update to GNOME 48."
 msgstr "Päivitys GNOME 48:aan."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:102
+#: de.swsnr.pictureoftheday.metainfo.xml:102
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -191,11 +212,11 @@ msgstr ""
 "Käynnistä automaattisesti ja päivitä päivittäinen taustakuva 12 tunnin "
 "välein."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:103
+#: de.swsnr.pictureoftheday.metainfo.xml:103
 msgid "No longer support multiple windows."
 msgstr "Ei enää tue useita ikkunoita."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:113
+#: de.swsnr.pictureoftheday.metainfo.xml:113
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -203,7 +224,7 @@ msgstr ""
 "Ensimmäinen julkaisu neljän lähteen kera: APOD, Wikimedia, Simon Stålenhag "
 "ja Bing."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:114
+#: de.swsnr.pictureoftheday.metainfo.xml:114
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -211,15 +232,15 @@ msgstr ""
 "Lisää pääikkuna näyttääksesi tämän päivän kuvan ja painike asettaaksesi sen "
 "nykyiseksi taustakuvaksi."
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:126
+#: de.swsnr.pictureoftheday.metainfo.xml:126
 msgid "A picture of the day from Wikimedia"
 msgstr "Päivän kuva Wikimediasta"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:130
+#: de.swsnr.pictureoftheday.metainfo.xml:130
 msgid "The preferences dialog with settings for image sources"
 msgstr "Asetukset-valintaikkuna, jossa on kuvalähteiden asetukset"
 
-#: resources/de.swsnr.pictureoftheday.metainfo.xml.in:134
+#: de.swsnr.pictureoftheday.metainfo.xml:134
 msgid "The empty greeting page with the application icon"
 msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
 
@@ -404,28 +425,6 @@ msgstr "Hanki API-avain"
 #: resources/ui/preferences-dialog.blp:27
 msgid "Enabled collections"
 msgstr "Käytössä olevat kokoelmat"
-
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:5
-msgid "The identifier the selected source."
-msgstr "Valitun lähteen tunniste."
-
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:9
-msgid "Whether to set the wallpaper automatically."
-msgstr "Asetetaanko taustakuva automaattisesti."
-
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:14
-msgid ""
-"The API key to use for requests to the APOD API. The default key is usually "
-"fine, but if you find that you are rate-limited, you may wish to use your "
-"own API key, which you can obtain free of charge at https://api.nasa.gov/."
-msgstr ""
-"Käytettävä API-avain APOD API:n pyyntöihin. Oletusavain on yleensä sopiva, "
-"mutta jos huomaat, että nopeus on rajoitettu, voit halutessasi käyttää omaa "
-"API-avainta, jonka voit hankkia ilmaiseksi https://api.nasa.gov/ :sta."
-
-#: schemas/de.swsnr.pictureoftheday.gschema.xml:24
-msgid "Collections from Stålenhag which to ignore."
-msgstr "Ohitettavat kokoelmat lähteestä Stålenhag."
 
 #: src/app.rs:123
 msgctxt "about-dialog.link.label"
@@ -794,7 +793,7 @@ msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Tuntematon, kaikki oikeudet pidätetään"
 
-#: src/main.rs:87
+#: src/main.rs:86
 msgctxt "application-name"
 msgid "Picture Of The Day"
 msgstr "Päivän kuva"
