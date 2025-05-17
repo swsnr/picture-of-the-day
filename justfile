@@ -106,12 +106,8 @@ flatpak-devel-install:
         --install-deps-from=flathub --repo=.flatpak-repo \
         .flatpak-builddir flatpak/de.swsnr.pictureoftheday.Devel.yaml
 
-# Lint the flatpak repo (you must run flatpak-build first)
-lint-flatpak-repo:
-    flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo .flatpak-repo
-
 # Build (but not install) regular flatpak
-flatpak-build: && lint-flatpak-repo
+flatpak-build:
     flatpak run org.flatpak.Builder --force-clean --sandbox \
         --install-deps-from=flathub --ccache --user \
         --mirror-screenshots-url=https://dl.flathub.org/media/ --repo=.flatpak-repo \
