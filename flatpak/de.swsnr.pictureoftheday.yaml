@@ -40,15 +40,25 @@ modules:
       - install -D -m755 just /app/bin/just
     cleanup:
       - /bin/just
+  - name: blueprint
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/blueprint-compiler.git
+        tag: "v0.16.0"
+        commit: "04ef0944db56ab01307a29aaa7303df6067cb3c0"
+    cleanup:
+      - "*"
   - name: pictureoftheday
     buildsystem: simple
     sources:
       - type: git
         url: https://codeberg.org/swsnr/picture-of-the-day.git
-        tag: "v1.4.5"
-        commit: "03d73d9dac9af75770e3a5cbfb3fb143189f1f30"
+        tag: "v1.4.6"
+        commit: "cd213be9c838fbad40f07ebd05bdd81c8d07cfc4"
       - de.swsnr.pictureoftheday.cargo-sources.json
     build-commands:
       - install -Dm644 cargo/config .cargo/config.toml
+      - just compile
       - cargo build --frozen --release --verbose
-      - just version= DESTPREFIX=/app install
+      - just DESTPREFIX=/app install

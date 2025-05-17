@@ -548,14 +548,14 @@
     {
         "type": "archive",
         "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/gio/gio-0.20.10.crate",
-        "sha256": "ab2a654c887546d14fdb214cc04641cd30450c9b4fa4525fd989d25fd5a5561e",
-        "dest": "cargo/vendor/gio-0.20.10"
+        "url": "https://static.crates.io/crates/gio/gio-0.20.11.crate",
+        "sha256": "d2a5c3829f5794cb15120db87707b2ec03720edff7ad09eb7b711b532e3fe747",
+        "dest": "cargo/vendor/gio-0.20.11"
     },
     {
         "type": "inline",
-        "contents": "{\"package\": \"ab2a654c887546d14fdb214cc04641cd30450c9b4fa4525fd989d25fd5a5561e\", \"files\": {}}",
-        "dest": "cargo/vendor/gio-0.20.10",
+        "contents": "{\"package\": \"d2a5c3829f5794cb15120db87707b2ec03720edff7ad09eb7b711b532e3fe747\", \"files\": {}}",
+        "dest": "cargo/vendor/gio-0.20.11",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -608,19 +608,6 @@
         "type": "inline",
         "contents": "{\"package\": \"8ab79e1ed126803a8fb827e3de0e2ff95191912b8db65cee467edb56fc4cc215\", \"files\": {}}",
         "dest": "cargo/vendor/glib-sys-0.20.10",
-        "dest-filename": ".cargo-checksum.json"
-    },
-    {
-        "type": "archive",
-        "archive-type": "tar-gzip",
-        "url": "https://static.crates.io/crates/glob/glob-0.3.2.crate",
-        "sha256": "a8d1add55171497b4705a648c6b583acafb01d58050a51727785f0b2c8e0a2b2",
-        "dest": "cargo/vendor/glob-0.3.2"
-    },
-    {
-        "type": "inline",
-        "contents": "{\"package\": \"a8d1add55171497b4705a648c6b583acafb01d58050a51727785f0b2c8e0a2b2\", \"files\": {}}",
-        "dest": "cargo/vendor/glob-0.3.2",
         "dest-filename": ".cargo-checksum.json"
     },
     {
