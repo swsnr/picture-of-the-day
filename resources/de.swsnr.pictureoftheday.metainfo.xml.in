@@ -114,7 +114,7 @@
                 <p>Add a main window to show today's picture of the day and a button to set it as current wallpaper.</p>
             </description>
             <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/v0.1.0</url>
-    </release>
+        </release>
     </releases>
     <project_license>MPL-2.0</project_license>
     <developer id="de.swsnr">
