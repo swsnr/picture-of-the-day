@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <!-- Resource definition for generated resource files -->
+    <gresource prefix="/de/swsnr/pictureoftheday/">
+        <!-- Predefined Gtk user interfaces -->
+        <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+        <!-- User interface templates -->
+        <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/source-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/image-page.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/images-carousel.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/error-notification-page.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
+        <!-- Other data files -->
+        <file compressed="true" preprocess="xml-stripblanks">de.swsnr.pictureoftheday.metainfo.xml</file>
+    </gresource>
+</gresources>

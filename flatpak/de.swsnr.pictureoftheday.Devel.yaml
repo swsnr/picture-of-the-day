@@ -16,9 +16,6 @@ finish-args:
   - --system-talk-name=org.freedesktop.login1
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
-  env:
-    # Tell build.rs not to regenerate the UI files from blueprint sources
-    SKIP_BLUEPRINT: "1"
 modules:
   # Install just for our build file
   - name: just
@@ -40,6 +37,15 @@ modules:
       - install -D -m755 just /app/bin/just
     cleanup:
       - /bin/just
+  - name: blueprint
+    buildsystem: meson
+    sources:
+      - type: git
+        url: https://gitlab.gnome.org/GNOME/blueprint-compiler.git
+        tag: "v0.16.0"
+        commit: "04ef0944db56ab01307a29aaa7303df6067cb3c0"
+    cleanup:
+      - "*"
   - name: pictureoftheday
     buildsystem: simple
     sources:
@@ -49,6 +55,7 @@ modules:
       build-args:
         - --share=network
     build-commands:
-      - just APPID=de.swsnr.pictureoftheday.Devel patch-devel
+      # Patch version number and app ID before building our binary, then compile
+      - just APPID=de.swsnr.pictureoftheday.Devel patch-devel compile
       - cargo build --locked --release --verbose
-      - just version= DESTPREFIX=/app APPID=de.swsnr.pictureoftheday.Devel install
+      - just DESTPREFIX=/app APPID=de.swsnr.pictureoftheday.Devel install

@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
+    <!-- Resource definition for static data files -->
     <gresource prefix="/de/swsnr/pictureoftheday/">
-        <!-- Predefined Gtk user interfaces -->
-        <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
-        <!-- User interface templates -->
-        <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/source-row.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/image-page.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/images-carousel.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/error-notification-page.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
         <!-- Action icons (keep sorted) -->
         <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-circular-top-right-symbolic.svg</file>
         <file preprocess="xml-stripblanks">icons/scalable/actions/arrow-into-box-symbolic.svg</file>
@@ -32,7 +24,5 @@
         <file preprocess="xml-stripblanks">icons/scalable/apps/de.swsnr.turnon.svg</file>
         <!-- Data files of sources -->
         <file preprocess="json-stripblanks" compressed="true">stalenhag/collections.json</file>
-        <!-- Other data files -->
-        <file compressed="true" preprocess="xml-stripblanks">de.swsnr.pictureoftheday.metainfo.xml</file>
     </gresource>
 </gresources>

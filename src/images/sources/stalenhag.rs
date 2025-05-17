@@ -123,14 +123,13 @@ pub fn pick_image_for_date_from_configured_collections(date: Date) -> Downloadab
 
 #[cfg(test)]
 mod tests {
-    use gtk::gio;
     use jiff::civil::date;
 
     use super::*;
 
     #[test]
     fn pick_image_for_date_from_collections() {
-        gio::resources_register_include!("pictureoftheday.gresource").unwrap();
+        crate::config::register_resources();
         let collections = COLLECTIONS
             .iter()
             .filter(move |collection| collection.tag != "paleo");

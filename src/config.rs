@@ -7,7 +7,7 @@
 use std::path::PathBuf;
 
 use glib::{GStr, gstr};
-use gtk::gio;
+use gtk::gio::{self, resources_register};
 
 pub static APP_ID: &GStr = gstr!("de.swsnr.pictureoftheday");
 
@@ -69,6 +69,48 @@ pub fn locale_directory() -> &'static GStr {
     }
 }
 
+/// Load and register resource files from manifest directory in a debug build.
+#[cfg(debug_assertions)]
+pub fn register_resources() {
+    let files = [
+        concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/",
+            "build/resources/resources.generated.gresource"
+        ),
+        concat!(
+            env!("CARGO_MANIFEST_DIR"),
+            "/",
+            "build/resources/resources.data.gresource"
+        ),
+    ];
+    for file in files {
+        let resource =
+            gio::Resource::load(file).expect("Fail to load resource, run 'just compile'!");
+        resources_register(&resource);
+    }
+}
+
+/// Register embedded resource data in a release build.
+#[cfg(not(debug_assertions))]
+pub fn register_resources() {
+    let generated = include_bytes!(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/",
+        "build/resources/resources.generated.gresource"
+    ));
+    let data = include_bytes!(concat!(
+        env!("CARGO_MANIFEST_DIR"),
+        "/",
+        "build/resources/resources.data.gresource"
+    ));
+    for resource in [generated.as_slice(), data.as_slice()] {
+        let bytes = glib::Bytes::from_static(resource);
+        let resource = gio::Resource::from_data(&bytes).unwrap();
+        resources_register(&resource);
+    }
+}
+
 /// Get a schema source for this application.
 ///
 /// In a debug build load compiled schemas from the manifest directory, to allow
@@ -78,7 +120,7 @@ pub fn locale_directory() -> &'static GStr {
 pub fn schema_source() -> gio::SettingsSchemaSource {
     let default = gio::SettingsSchemaSource::default().unwrap();
     if cfg!(debug_assertions) {
-        let directory = concat!(env!("CARGO_MANIFEST_DIR"), "/schemas");
+        let directory = concat!(env!("CARGO_MANIFEST_DIR"), "/build/schemas");
         if std::fs::exists(directory).unwrap_or_default() {
             gio::SettingsSchemaSource::from_directory(directory, Some(&default), false).unwrap()
         } else {
@@ -122,7 +164,7 @@ mod tests {
     fn release_notes_for_release_notes_version() {
         let metadata = std::fs::read_to_string(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/resources/de.swsnr.pictureoftheday.metainfo.xml.in"
+            "/de.swsnr.pictureoftheday.metainfo.xml"
         ))
         .unwrap();
         assert!(metadata.contains(&format!(
@@ -137,7 +179,7 @@ mod tests {
         if version != super::release_notes_version() {
             let metadata = std::fs::read_to_string(concat!(
                 env!("CARGO_MANIFEST_DIR"),
-                "/resources/de.swsnr.pictureoftheday.metainfo.xml.in"
+                "/de.swsnr.pictureoftheday.metainfo.xml"
             ))
             .unwrap();
             assert!(!metadata.contains(&format!("version=\"{version}\"")));

@@ -3,12 +3,8 @@
 /.vscode/
 /.idea/
 
-# Generated from i18n templates
-*.desktop
-resources/*.metainfo.xml
-
-# Compiled settings schemas
-/schemas/*.compiled
+# Build directory for just file
+/build/
 
 # Flatpak outputs
 /.flatpak-builddir/

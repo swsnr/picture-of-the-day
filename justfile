@@ -16,7 +16,43 @@ default:
 
 # Remove build files from source code tree
 clean:
-    rm -fr .flatpak-builddir .flatpak-repo .flatpak-builder
+    rm -fr .flatpak-builddir .flatpak-repo .flatpak-builder build
+
+# Compile all blueprint files to UI files.
+compile-blueprint:
+    mkdir -p build/resources-src/
+    blueprint-compiler batch-compile build/resources-src/ resources resources/**/*.blp
+
+# Compile the translated metainfo file.
+compile-metainfo:
+    mkdir -p build/resources-src/
+    msgfmt --xml --template de.swsnr.pictureoftheday.metainfo.xml -d po --output build/de.swsnr.pictureoftheday.metainfo.xml
+    @# Also add the translated metainfo file to resources
+    cp -t build/resources-src build/de.swsnr.pictureoftheday.metainfo.xml
+
+# Compile all Glib resources for this application.
+compile-resources: compile-blueprint compile-metainfo
+    mkdir -p build/resources
+    glib-compile-resources --sourcedir=build/resources-src \
+        --target build/resources/resources.generated.gresource \
+        resources/resources.generated.gresource.xml
+    glib-compile-resources --sourcedir=resources \
+        --target build/resources/resources.data.gresource \
+        resources/resources.data.gresource.xml
+
+# Compile the translated desktop file.
+compile-desktop-file:
+    mkdir -p build
+    msgfmt --desktop --template de.swsnr.pictureoftheday.desktop -d po --output build/de.swsnr.pictureoftheday.desktop
+
+# Compile the settings schema
+compile-schemas:
+    mkdir -p build/schemas
+    cp -t build/schemas de.swsnr.pictureoftheday.gschema.xml
+    glib-compile-schemas --strict build/schemas
+
+# Compile all extra files (resources, settings schemas, etc.)
+compile: compile-resources compile-desktop-file compile-schemas
 
 vet *ARGS:
     cargo vet {{ARGS}}
@@ -33,10 +69,10 @@ lint-rust:
 
 lint-flatpak:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.yaml
-    flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream resources/de.swsnr.pictureoftheday.metainfo.xml
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream de.swsnr.pictureoftheday.metainfo.xml
 
 lint-data:
-    appstreamcli validate --explain resources/de.swsnr.pictureoftheday.metainfo.xml
+    appstreamcli validate --explain de.swsnr.pictureoftheday.metainfo.xml
 
 lint-all: lint-rust lint-blueprint lint-data lint-flatpak
 
@@ -55,9 +91,9 @@ pot:
     xgettext {{xgettext_opts}} --output=po/de.swsnr.pictureoftheday.pot \
         po/de.swsnr.pictureoftheday.blp.pot \
         po/de.swsnr.pictureoftheday.rs.pot \
-        resources/de.swsnr.pictureoftheday.metainfo.xml.in \
-        de.swsnr.pictureoftheday.desktop.in \
-        schemas/de.swsnr.pictureoftheday.gschema.xml
+        de.swsnr.pictureoftheday.metainfo.xml \
+        de.swsnr.pictureoftheday.desktop \
+        de.swsnr.pictureoftheday.gschema.xml
     rm -f po/POTFILES* po/de.swsnr.pictureoftheday.rs.pot po/de.swsnr.pictureoftheday.blp.pot
     @# We strip the POT-Creation-Date from the resulting POT because xgettext bumps
     @# it everytime regardless if anything else changed, and this just generates
@@ -87,10 +123,10 @@ patch-devel:
     cargo update -p pictureoftheday
     sed -i '/{{APPID}}/! s/de\.swsnr\.pictureoftheday/{{APPID}}/g' \
         src/config.rs \
-        de.swsnr.pictureoftheday.desktop.in \
-        resources/de.swsnr.pictureoftheday.metainfo.xml.in \
+        de.swsnr.pictureoftheday.desktop \
+        de.swsnr.pictureoftheday.metainfo.xml \
         dbus-1/de.swsnr.pictureoftheday.service \
-        schemas/de.swsnr.pictureoftheday.gschema.xml
+        de.swsnr.pictureoftheday.gschema.xml
 
 _install-po po_file:
     install -dm0755 '{{DESTPREFIX}}/share/locale/{{file_stem(po_file)}}/LC_MESSAGES'
@@ -98,20 +134,25 @@ _install-po po_file:
 
 # Install after cargo build --release
 install:
+    @# Install all message catalogs
     find po/ -name '*.po' -exec just version= DESTPREFIX='{{DESTPREFIX}}' APPID='{{APPID}}' _install-po '{}' ';'
+    @# Install cargo build --release binary
     install -Dm0755 target/release/pictureoftheday '{{DESTPREFIX}}/bin/{{APPID}}'
+    @# Install translated appstream metadata and desktop file
+    install -Dm0644 build/de.swsnr.pictureoftheday.desktop '{{DESTPREFIX}}/share/applications/{{APPID}}.desktop'
+    install -Dm0644 build/de.swsnr.pictureoftheday.metainfo.xml '{{DESTPREFIX}}/share/metainfo/{{APPID}}.metainfo.xml'
+    @# Install static files (icons, etc.)
     install -Dm0644 -t '{{DESTPREFIX}}/share/icons/hicolor/scalable/apps/' 'resources/icons/scalable/apps/{{APPID}}.svg'
     install -Dm0644 resources/icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg \
         '{{DESTPREFIX}}/share/icons/hicolor/symbolic/apps/{{APPID}}-symbolic.svg'
-    install -Dm0644 de.swsnr.pictureoftheday.desktop '{{DESTPREFIX}}/share/applications/{{APPID}}.desktop'
-    install -Dm0644 resources/de.swsnr.pictureoftheday.metainfo.xml '{{DESTPREFIX}}/share/metainfo/{{APPID}}.metainfo.xml'
     install -Dm0644 dbus-1/de.swsnr.pictureoftheday.service '{{DESTPREFIX}}/share/dbus-1/services/{{APPID}}.service'
-    install -Dm0644 schemas/de.swsnr.pictureoftheday.gschema.xml '{{DESTPREFIX}}/share/glib-2.0/schemas/{{APPID}}.gschema.xml'
+    install -Dm0644 de.swsnr.pictureoftheday.gschema.xml '{{DESTPREFIX}}/share/glib-2.0/schemas/{{APPID}}.gschema.xml'
+    @# Compile settings schemas after installation
     glib-compile-schemas --strict '{{DESTPREFIX}}/share/glib-2.0/schemas'
 
 # Print release notes
 print-release-notes:
-    @appstreamcli metainfo-to-news --format yaml resources/de.swsnr.pictureoftheday.metainfo.xml.in - | \
+    @appstreamcli metainfo-to-news --format yaml de.swsnr.pictureoftheday.metainfo.xml - | \
         yq eval-all '[.]' -oj | jq -r --arg tag "{{version}}" \
         '.[] | select(.Version == ($tag | ltrimstr("v"))) | .Description | tostring'
 

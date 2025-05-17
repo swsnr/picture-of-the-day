@@ -41,7 +41,6 @@
 
 use app::Application;
 use glib::dpgettext2;
-use gtk::gio;
 use gtk::prelude::*;
 
 mod app;
@@ -83,7 +82,7 @@ fn main() -> glib::ExitCode {
         glib::warn!("Failed to initialize gettext: {error}");
     }
 
-    gio::resources_register_include!("pictureoftheday.gresource").unwrap();
+    config::register_resources();
     glib::set_application_name(&dpgettext2(None, "application-name", "Picture Of The Day"));
 
     let app = Application::default();
