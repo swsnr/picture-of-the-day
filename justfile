@@ -16,7 +16,7 @@ default:
 
 # Remove build files from source code tree
 clean:
-    rm -fr builddir .flatpak-repo .flatpak-builder dist vendor
+    rm -fr .flatpak-builddir .flatpak-repo .flatpak-builder
 
 vet *ARGS:
     cargo vet {{ARGS}}
@@ -68,7 +68,7 @@ pot:
 flatpak-devel-install:
     flatpak run org.flatpak.Builder --force-clean --user --install \
         --install-deps-from=flathub --repo=.flatpak-repo \
-        builddir flatpak/de.swsnr.pictureoftheday.Devel.yaml
+        .flatpak-builddir flatpak/de.swsnr.pictureoftheday.Devel.yaml
 
 # Lint the flatpak repo (you must run flatpak-build first)
 lint-flatpak-repo:
@@ -79,7 +79,7 @@ flatpak-build: && lint-flatpak-repo
     flatpak run org.flatpak.Builder --force-clean --sandbox \
         --install-deps-from=flathub --ccache --user \
         --mirror-screenshots-url=https://dl.flathub.org/media/ --repo=.flatpak-repo \
-        builddir flatpak/de.swsnr.pictureoftheday.yaml
+        .flatpak-builddir flatpak/de.swsnr.pictureoftheday.yaml
 
 # Patch files for the Devel build
 patch-devel:

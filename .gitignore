@@ -11,9 +11,6 @@ resources/*.metainfo.xml
 /schemas/*.compiled
 
 # Flatpak outputs
+/.flatpak-builddir/
 /.flatpak-builder/
 /.flatpak-repo/
-
-# Distribution files and vendored crates
-/dist/
-/vendor/
