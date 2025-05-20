@@ -3,7 +3,7 @@ name = "pictureoftheday"
 description = "A fresh picture of the day as your desktop wallpaper "
 homepage = "https://codeberg.org/swsnr/picture-of-the-day"
 repository = "https://codeberg.org/swsnr/picture-of-the-day"
-license = "MPL-2.0"
+license = "EUPL-1.2"
 authors = ["Sebastian Wiesner <sebastian@swsnr.de>"]
 # Our version number.  Since semver doesn't make much sense for UI applications
 # which have no API we repurpose the version numer as follows:

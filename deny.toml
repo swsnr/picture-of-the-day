@@ -18,4 +18,5 @@ allow = [
     "MPL-2.0",
     "Unicode-3.0",
     "ISC",
+    "EUPL-1.2",
 ]

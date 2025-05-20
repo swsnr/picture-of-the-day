@@ -35,4 +35,6 @@ $ flatpak run --env=G_MESSAGES_DEBUG=all de.swsnr.pictureoftheday
 
 ## License
 
-This Program is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <http://mozilla.org/MPL/2.0/>.
+Copyright Sebastian Wiesner <sebastian@swsnr.de>
+
+Licensed under the EUPL, see <https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12>
