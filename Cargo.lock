@@ -1041,7 +1041,7 @@ dependencies = [
 
 [[package]]
 name = "pictureoftheday"
-version = "1.4.6"
+version = "1.4.7"
 dependencies = [
  "async-channel",
  "futures",
