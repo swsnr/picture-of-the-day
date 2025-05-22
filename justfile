@@ -153,7 +153,7 @@ print-release-notes:
         '.[] | select(.Version == ($tag | ltrimstr("v"))) | .Description | tostring'
 
 _post-release:
-    @echo "Create new release at https://codeberg.org/swsnr/picture-of-the-day/tags"
+    @echo "Run 'git push' and create new release at https://codeberg.org/swsnr/picture-of-the-day/tags"
     @echo "Run 'just print-release-notes' to get Markdown release notes for the release"
     @echo "Run 'just flatpak-update-manifest' to update the flatpak manifest."
 
