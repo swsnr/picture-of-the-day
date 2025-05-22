@@ -21,7 +21,7 @@ msgstr ""
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
-#: resources/ui/application-window.blp:9
+#: resources/ui/application-window.blp:10
 msgid "Picture Of The Day"
 msgstr "今日图片"
 
@@ -129,6 +129,10 @@ msgid "Artwork"
 msgstr "作品"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
+msgid "Change license to European Union Public License 1.2."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:55
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -137,275 +141,275 @@ msgstr ""
 "当主窗口可见时，不再自动设置壁纸，以允许您预览不同的来源，而无需实际更改您的"
 "桌面背景。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:50
+#: de.swsnr.pictureoftheday.metainfo.xml:56
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr "当会话锁定、系统电量不足或无网络连接时，不再尝试自动设置壁纸。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:51
+#: de.swsnr.pictureoftheday.metainfo.xml:57
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr "在后台更新应用时，通知并要求重启应用。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:64
+#: de.swsnr.pictureoftheday.metainfo.xml:70
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr "添加 Earth Science 今日图片和 NASA 地球观测站今日图片。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:74
+#: de.swsnr.pictureoftheday.metainfo.xml:80
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr "添加覆盖工具栏以转到图片视图的上一张或下一张图片。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:75
+#: de.swsnr.pictureoftheday.metainfo.xml:81
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr "添加工具栏按钮以保存当前图片，并在外部应用程序中打开当前图片。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:76
+#: de.swsnr.pictureoftheday.metainfo.xml:82
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr "退出时尽量避免残留部分下载的壁纸。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:88
+#: de.swsnr.pictureoftheday.metainfo.xml:94
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "为维基媒体图片使用更可靠的端点。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:89
+#: de.swsnr.pictureoftheday.metainfo.xml:95
 msgid "No longer show preview when setting a wallpaper."
 msgstr "设置壁纸时不再显示预览。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:90
+#: de.swsnr.pictureoftheday.metainfo.xml:96
 msgid "Improve scheduling of automatic downloads."
 msgstr "改进自动下载的调度。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:91
+#: de.swsnr.pictureoftheday.metainfo.xml:97
 msgid "Remember window size and state."
 msgstr "记住窗口大小和状态。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:92
+#: de.swsnr.pictureoftheday.metainfo.xml:98
 msgid "Update to GNOME 48."
 msgstr "更新到 GNOME 48。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:102
+#: de.swsnr.pictureoftheday.metainfo.xml:108
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr "自动启动并每十二小时自动刷新每日壁纸。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:103
+#: de.swsnr.pictureoftheday.metainfo.xml:109
 msgid "No longer support multiple windows."
 msgstr "不再支持多个窗口。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:113
+#: de.swsnr.pictureoftheday.metainfo.xml:119
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr "初始版本有四个来源：APOD、维基媒体、Simon Stålenhag 和必应。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:114
+#: de.swsnr.pictureoftheday.metainfo.xml:120
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr "添加一个主窗口显示当天的图片，并添加一个按钮将其设置为当前壁纸。"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:126
+#: de.swsnr.pictureoftheday.metainfo.xml:132
 msgid "A picture of the day from Wikimedia"
 msgstr "来自维基媒体的每日图片"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:130
+#: de.swsnr.pictureoftheday.metainfo.xml:136
 msgid "The preferences dialog with settings for image sources"
 msgstr "带有图片源设置的首选项对话框"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:134
+#: de.swsnr.pictureoftheday.metainfo.xml:140
 msgid "The empty greeting page with the application icon"
 msgstr "带有应用程序图标的空白问候页面"
 
-#: resources/gtk/help-overlay.blp:14
+#: resources/gtk/help-overlay.blp:15
 msgctxt "shortcuts group title"
 msgid "General"
 msgstr "常规"
 
-#: resources/gtk/help-overlay.blp:17
+#: resources/gtk/help-overlay.blp:18
 msgctxt "shortcut description"
 msgid "Preferences"
 msgstr "首选项"
 
-#: resources/gtk/help-overlay.blp:22
+#: resources/gtk/help-overlay.blp:23
 msgctxt "shortcut description"
 msgid "Show shortcuts"
 msgstr "显示快捷键"
 
-#: resources/gtk/help-overlay.blp:27
+#: resources/gtk/help-overlay.blp:28
 msgctxt "shortcut description"
 msgid "Quit application"
 msgstr "退出应用程序"
 
-#: resources/gtk/help-overlay.blp:33
+#: resources/gtk/help-overlay.blp:34
 msgctxt "shortcuts group title"
 msgid "Picture Of The Day Window"
 msgstr "今日图片窗口"
 
-#: resources/gtk/help-overlay.blp:36
+#: resources/gtk/help-overlay.blp:37
 msgctxt "shortcut description"
 msgid "Select source"
 msgstr "选择来源"
 
-#: resources/gtk/help-overlay.blp:41
+#: resources/gtk/help-overlay.blp:42
 msgctxt "shortcut description"
 msgid "Load images"
 msgstr "加载图片"
 
-#: resources/gtk/help-overlay.blp:46
+#: resources/gtk/help-overlay.blp:47
 msgctxt "shortcut description"
 msgid "Cancel loading images"
 msgstr "取消加载图片"
 
-#: resources/gtk/help-overlay.blp:51
+#: resources/gtk/help-overlay.blp:52
 msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr "切换侧边栏"
 
-#: resources/gtk/help-overlay.blp:57
+#: resources/gtk/help-overlay.blp:58
 msgctxt "shortcuts group title"
 msgid "Navigate images"
 msgstr "导航图片"
 
-#: resources/gtk/help-overlay.blp:60 resources/gtk/help-overlay.blp:65
+#: resources/gtk/help-overlay.blp:61 resources/gtk/help-overlay.blp:66
 msgctxt "shortcut description"
 msgid "Previous image"
 msgstr "上一张图片"
 
-#: resources/gtk/help-overlay.blp:70 resources/gtk/help-overlay.blp:75
+#: resources/gtk/help-overlay.blp:71 resources/gtk/help-overlay.blp:76
 msgctxt "shortcut description"
 msgid "Next image"
 msgstr "下一张图片"
 
-#: resources/ui/application-window.blp:30
+#: resources/ui/application-window.blp:31
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set daily wallpaper automatically"
 msgstr "自动设置每日壁纸"
 
-#: resources/ui/application-window.blp:41
+#: resources/ui/application-window.blp:42
 msgctxt "main-window.toolbar.button.label"
 msgid "Source"
 msgstr "来源"
 
-#: resources/ui/application-window.blp:68
+#: resources/ui/application-window.blp:69
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Load images for selected source"
 msgstr "加载所选来源的图片"
 
-#: resources/ui/application-window.blp:74
+#: resources/ui/application-window.blp:75
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Cancel loading images"
 msgstr "取消加载图片"
 
-#: resources/ui/application-window.blp:90
+#: resources/ui/application-window.blp:91
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
 msgstr "将当前图片设置为壁纸"
 
-#: resources/ui/application-window.blp:102
+#: resources/ui/application-window.blp:103
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
 msgstr "使用外部应用程序打开图片"
 
-#: resources/ui/application-window.blp:108
+#: resources/ui/application-window.blp:109
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Save image"
 msgstr "保存图片"
 
-#: resources/ui/application-window.blp:119
+#: resources/ui/application-window.blp:120
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "切换带有图片信息的侧边栏"
 
-#: resources/ui/application-window.blp:174
+#: resources/ui/application-window.blp:175
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr "标题"
 
-#: resources/ui/application-window.blp:183
+#: resources/ui/application-window.blp:184
 msgid "Visit the source page of this image."
 msgstr "访问此图片的源页面。"
 
-#: resources/ui/application-window.blp:192
+#: resources/ui/application-window.blp:193
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr "版权"
 
-#: resources/ui/application-window.blp:203
+#: resources/ui/application-window.blp:204
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr "描述"
 
-#: resources/ui/application-window.blp:216
+#: resources/ui/application-window.blp:217
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr "来源"
 
-#: resources/ui/application-window.blp:224
+#: resources/ui/application-window.blp:225
 msgid "Visit the main page of the source of this image."
 msgstr "访问此图片来源的主页。"
 
-#: resources/ui/application-window.blp:243
+#: resources/ui/application-window.blp:244
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr "获取图片"
 
-#: resources/ui/application-window.blp:261
+#: resources/ui/application-window.blp:262
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: resources/ui/application-window.blp:268
+#: resources/ui/application-window.blp:269
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: resources/ui/application-window.blp:273
+#: resources/ui/application-window.blp:274
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
-#: resources/ui/application-window.blp:278
+#: resources/ui/application-window.blp:279
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "关于今日图片(_A)"
 
-#: resources/ui/error-notification-page.blp:20
+#: resources/ui/error-notification-page.blp:21
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: resources/ui/error-notification-page.blp:30
+#: resources/ui/error-notification-page.blp:31
 msgid "Contact information"
 msgstr "联系信息"
 
-#: resources/ui/error-notification-page.blp:40
+#: resources/ui/error-notification-page.blp:41
 msgid "Open source"
 msgstr "开放源代码"
 
-#: resources/ui/image-page.blp:19
+#: resources/ui/image-page.blp:20
 msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
 msgstr "正在下载图片…"
 
-#: resources/ui/preferences-dialog.blp:14
+#: resources/ui/preferences-dialog.blp:15
 msgid "API key"
 msgstr "API 密钥"
 
-#: resources/ui/preferences-dialog.blp:19
+#: resources/ui/preferences-dialog.blp:20
 msgid "Get API key"
 msgstr "获取 API 密钥"
 
-#: resources/ui/preferences-dialog.blp:27
+#: resources/ui/preferences-dialog.blp:28
 msgid "Enabled collections"
 msgstr "启用的集合"
 
-#: src/app.rs:123
+#: src/app.rs:126
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "翻译"
@@ -413,36 +417,48 @@ msgstr "翻译"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:132
+#: src/app.rs:135
 msgid "translator-credits"
 msgstr "Outbreak2096"
 
-#: src/app.rs:137
+#: src/app.rs:140
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "帮助和灵感"
 
-#: src/app.rs:150
+#: src/app.rs:153
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "有用的服务"
 
-#: src/app.rs:179
+#. Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
+#: src/app.rs:165
+msgctxt "about-dialog.other-app.name"
+msgid "Turn On"
+msgstr ""
+
+#. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
+#: src/app.rs:170
+msgctxt "about-dialog.other-app.summary"
+msgid "Turn on devices in your network"
+msgstr ""
+
+#: src/app.rs:188
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
 msgstr "今日图片已更新"
 
-#: src/app.rs:184
+#: src/app.rs:193
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
 msgstr "请重启应用以使用新版本。"
 
-#: src/app.rs:196
+#: src/app.rs:205
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr "更新后重启？"
 
-#: src/app.rs:201
+#: src/app.rs:210
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture Of The Day was updated, and needs to be restarted.\n"
@@ -454,47 +470,47 @@ msgstr ""
 "\n"
 "尚不支持自动重启，但您可以退出应用并手动重启。"
 
-#: src/app.rs:210
+#: src/app.rs:219
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr "取消"
 
-#: src/app.rs:212
+#: src/app.rs:221
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr "退出"
 
-#: src/app.rs:278
+#: src/app.rs:287
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "联系信息"
 
-#: src/app.rs:283
+#: src/app.rs:292
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:287
+#: src/app.rs:296
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "打开 URL"
 
-#: src/app.rs:578
+#: src/app.rs:587
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "打开首选项"
 
-#: src/app.rs:589
+#: src/app.rs:598
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "显示给定日期的图片"
 
-#: src/app.rs:594
+#: src/app.rs:603
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
-#: src/app.rs:799
+#: src/app.rs:808
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "在后台自动获取并设置壁纸"
@@ -686,6 +702,20 @@ msgstr "保存图片"
 msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
 msgstr[0] "%1/%2 集合已启用"
+
+#. Translators: This is Pango markup, be sure to escape appropriately
+#: src/config.rs:59
+msgctxt "about-dialog.license-text"
+msgid ""
+"Copyright Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
+"\n"
+"Licensed under the terms of the EUPL 1.2. You can find official translations "
+"of the license text at <a href=\"%1\">%1</a>.\n"
+"\n"
+"The full English text follows.\n"
+"\n"
+"%2"
+msgstr ""
 
 #: src/images/source.rs:58
 msgctxt "source name"
