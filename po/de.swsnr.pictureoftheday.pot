@@ -19,7 +19,7 @@ msgstr ""
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
-#: resources/ui/application-window.blp:9
+#: resources/ui/application-window.blp:10
 msgid "Picture Of The Day"
 msgstr ""
 
@@ -214,185 +214,185 @@ msgstr ""
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:14
+#: resources/gtk/help-overlay.blp:15
 msgctxt "shortcuts group title"
 msgid "General"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:17
+#: resources/gtk/help-overlay.blp:18
 msgctxt "shortcut description"
 msgid "Preferences"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:22
+#: resources/gtk/help-overlay.blp:23
 msgctxt "shortcut description"
 msgid "Show shortcuts"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:27
+#: resources/gtk/help-overlay.blp:28
 msgctxt "shortcut description"
 msgid "Quit application"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:33
+#: resources/gtk/help-overlay.blp:34
 msgctxt "shortcuts group title"
 msgid "Picture Of The Day Window"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:36
+#: resources/gtk/help-overlay.blp:37
 msgctxt "shortcut description"
 msgid "Select source"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:41
+#: resources/gtk/help-overlay.blp:42
 msgctxt "shortcut description"
 msgid "Load images"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:46
+#: resources/gtk/help-overlay.blp:47
 msgctxt "shortcut description"
 msgid "Cancel loading images"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:51
+#: resources/gtk/help-overlay.blp:52
 msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:57
+#: resources/gtk/help-overlay.blp:58
 msgctxt "shortcuts group title"
 msgid "Navigate images"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:60 resources/gtk/help-overlay.blp:65
+#: resources/gtk/help-overlay.blp:61 resources/gtk/help-overlay.blp:66
 msgctxt "shortcut description"
 msgid "Previous image"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:70 resources/gtk/help-overlay.blp:75
+#: resources/gtk/help-overlay.blp:71 resources/gtk/help-overlay.blp:76
 msgctxt "shortcut description"
 msgid "Next image"
 msgstr ""
 
-#: resources/ui/application-window.blp:30
+#: resources/ui/application-window.blp:31
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set daily wallpaper automatically"
 msgstr ""
 
-#: resources/ui/application-window.blp:41
+#: resources/ui/application-window.blp:42
 msgctxt "main-window.toolbar.button.label"
 msgid "Source"
 msgstr ""
 
-#: resources/ui/application-window.blp:68
+#: resources/ui/application-window.blp:69
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Load images for selected source"
 msgstr ""
 
-#: resources/ui/application-window.blp:74
+#: resources/ui/application-window.blp:75
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Cancel loading images"
 msgstr ""
 
-#: resources/ui/application-window.blp:90
+#: resources/ui/application-window.blp:91
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Set current image as wallpaper"
 msgstr ""
 
-#: resources/ui/application-window.blp:102
+#: resources/ui/application-window.blp:103
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Open image with external application"
 msgstr ""
 
-#: resources/ui/application-window.blp:108
+#: resources/ui/application-window.blp:109
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Save image"
 msgstr ""
 
-#: resources/ui/application-window.blp:119
+#: resources/ui/application-window.blp:120
 msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr ""
 
-#: resources/ui/application-window.blp:174
+#: resources/ui/application-window.blp:175
 msgctxt "images-view.metadata.label"
 msgid "Title"
 msgstr ""
 
-#: resources/ui/application-window.blp:183
+#: resources/ui/application-window.blp:184
 msgid "Visit the source page of this image."
 msgstr ""
 
-#: resources/ui/application-window.blp:192
+#: resources/ui/application-window.blp:193
 msgctxt "images-view.metadata.label"
 msgid "Copyright"
 msgstr ""
 
-#: resources/ui/application-window.blp:203
+#: resources/ui/application-window.blp:204
 msgctxt "images-view.metadata.label"
 msgid "Description"
 msgstr ""
 
-#: resources/ui/application-window.blp:216
+#: resources/ui/application-window.blp:217
 msgctxt "images-view.metadata.label"
 msgid "Source"
 msgstr ""
 
-#: resources/ui/application-window.blp:224
+#: resources/ui/application-window.blp:225
 msgid "Visit the main page of the source of this image."
 msgstr ""
 
-#: resources/ui/application-window.blp:243
+#: resources/ui/application-window.blp:244
 msgctxt "start-page.button.label"
 msgid "Get images"
 msgstr ""
 
-#: resources/ui/application-window.blp:261
+#: resources/ui/application-window.blp:262
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr ""
 
-#: resources/ui/application-window.blp:268
+#: resources/ui/application-window.blp:269
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr ""
 
-#: resources/ui/application-window.blp:273
+#: resources/ui/application-window.blp:274
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: resources/ui/application-window.blp:278
+#: resources/ui/application-window.blp:279
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr ""
 
-#: resources/ui/error-notification-page.blp:20
+#: resources/ui/error-notification-page.blp:21
 msgid "Open preferences"
 msgstr ""
 
-#: resources/ui/error-notification-page.blp:30
+#: resources/ui/error-notification-page.blp:31
 msgid "Contact information"
 msgstr ""
 
-#: resources/ui/error-notification-page.blp:40
+#: resources/ui/error-notification-page.blp:41
 msgid "Open source"
 msgstr ""
 
-#: resources/ui/image-page.blp:19
+#: resources/ui/image-page.blp:20
 msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
 msgstr ""
 
-#: resources/ui/preferences-dialog.blp:14
+#: resources/ui/preferences-dialog.blp:15
 msgid "API key"
 msgstr ""
 
-#: resources/ui/preferences-dialog.blp:19
+#: resources/ui/preferences-dialog.blp:20
 msgid "Get API key"
 msgstr ""
 
-#: resources/ui/preferences-dialog.blp:27
+#: resources/ui/preferences-dialog.blp:28
 msgid "Enabled collections"
 msgstr ""
 
@@ -418,22 +418,33 @@ msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
-#: src/app.rs:179
+#. Translators: Use translated app name from https://codeberg.org/swsnr/turnon
+#: src/app.rs:162
+msgctxt "about-dialog.other-app.name"
+msgid "Turn On"
+msgstr ""
+
+#: src/app.rs:167
+msgctxt "about-dialog.other-app.summary"
+msgid "Turn on devices in your network"
+msgstr ""
+
+#: src/app.rs:185
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
 msgstr ""
 
-#: src/app.rs:184
+#: src/app.rs:190
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
 msgstr ""
 
-#: src/app.rs:196
+#: src/app.rs:202
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr ""
 
-#: src/app.rs:201
+#: src/app.rs:207
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture Of The Day was updated, and needs to be restarted.\n"
@@ -442,47 +453,47 @@ msgid ""
 "start it again manually."
 msgstr ""
 
-#: src/app.rs:210
+#: src/app.rs:216
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr ""
 
-#: src/app.rs:212
+#: src/app.rs:218
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr ""
 
-#: src/app.rs:278
+#: src/app.rs:284
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr ""
 
-#: src/app.rs:283
+#: src/app.rs:289
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:287
+#: src/app.rs:293
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:578
+#: src/app.rs:584
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:589
+#: src/app.rs:595
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr ""
 
-#: src/app.rs:594
+#: src/app.rs:600
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr ""
 
-#: src/app.rs:799
+#: src/app.rs:805
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""

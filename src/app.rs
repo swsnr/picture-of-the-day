@@ -158,8 +158,14 @@ impl Application {
 
         dialog.add_other_app(
             "de.swsnr.turnon",
-            "Turn On",
-            "Turn on devices in your network",
+            // Translators: Use translated app name from https://codeberg.org/swsnr/turnon
+            &dpgettext2(None, "about-dialog.other-app.name", "Turn On"),
+            // Translators: Use translated app summary from https://codeberg.org/swsnr/turnon
+            &dpgettext2(
+                None,
+                "about-dialog.other-app.summary",
+                "Turn on devices in your network",
+            ),
         );
 
         dialog.present(self.active_window().as_ref());
