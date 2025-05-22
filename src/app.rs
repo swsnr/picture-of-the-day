@@ -161,9 +161,9 @@ impl Application {
 
         dialog.add_other_app(
             "de.swsnr.turnon",
-            // Translators: Use translated app name from https://codeberg.org/swsnr/turnon
+            // Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
             &dpgettext2(None, "about-dialog.other-app.name", "Turn On"),
-            // Translators: Use translated app summary from https://codeberg.org/swsnr/turnon
+            // Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
             &dpgettext2(
                 None,
                 "about-dialog.other-app.summary",
