@@ -80,7 +80,7 @@ test-rust:
     cargo +stable build
     cargo +stable test
 
-test-all: (vet "--locked") lint-all test-rust
+test-all: (vet "--locked") lint-all compile test-rust
 
 # Extract the message template from all source files.
 pot:
