@@ -163,10 +163,10 @@ impl Application {
             "de.swsnr.turnon",
             // Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
             &dpgettext2(None, "about-dialog.other-app.name", "Turn On"),
-            // Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
             &dpgettext2(
                 None,
                 "about-dialog.other-app.summary",
+                // Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
                 "Turn on devices in your network",
             ),
         );

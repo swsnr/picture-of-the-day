@@ -422,12 +422,13 @@ msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
-#. Translators: Use translated app name from https://codeberg.org/swsnr/turnon
+#. Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
 #: src/app.rs:165
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
 msgstr ""
 
+#. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
 #: src/app.rs:170
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
