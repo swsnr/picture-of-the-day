@@ -122,95 +122,99 @@ msgid "Artwork"
 msgstr ""
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
+msgid "Change license to European Union Public License 1.2."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:55
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
 "desktop background."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:50
+#: de.swsnr.pictureoftheday.metainfo.xml:56
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:51
+#: de.swsnr.pictureoftheday.metainfo.xml:57
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:64
+#: de.swsnr.pictureoftheday.metainfo.xml:70
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:74
+#: de.swsnr.pictureoftheday.metainfo.xml:80
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:75
+#: de.swsnr.pictureoftheday.metainfo.xml:81
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:76
+#: de.swsnr.pictureoftheday.metainfo.xml:82
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:88
+#: de.swsnr.pictureoftheday.metainfo.xml:94
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:89
+#: de.swsnr.pictureoftheday.metainfo.xml:95
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:90
+#: de.swsnr.pictureoftheday.metainfo.xml:96
 msgid "Improve scheduling of automatic downloads."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:91
+#: de.swsnr.pictureoftheday.metainfo.xml:97
 msgid "Remember window size and state."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:92
+#: de.swsnr.pictureoftheday.metainfo.xml:98
 msgid "Update to GNOME 48."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:102
+#: de.swsnr.pictureoftheday.metainfo.xml:108
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:103
+#: de.swsnr.pictureoftheday.metainfo.xml:109
 msgid "No longer support multiple windows."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:113
+#: de.swsnr.pictureoftheday.metainfo.xml:119
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:114
+#: de.swsnr.pictureoftheday.metainfo.xml:120
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:126
+#: de.swsnr.pictureoftheday.metainfo.xml:132
 msgid "A picture of the day from Wikimedia"
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:130
+#: de.swsnr.pictureoftheday.metainfo.xml:136
 msgid "The preferences dialog with settings for image sources"
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:134
+#: de.swsnr.pictureoftheday.metainfo.xml:140
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
@@ -396,7 +400,7 @@ msgstr ""
 msgid "Enabled collections"
 msgstr ""
 
-#: src/app.rs:123
+#: src/app.rs:126
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr ""
@@ -404,47 +408,47 @@ msgstr ""
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:132
+#: src/app.rs:135
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.rs:137
+#: src/app.rs:140
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr ""
 
-#: src/app.rs:150
+#: src/app.rs:153
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
 #. Translators: Use translated app name from https://codeberg.org/swsnr/turnon
-#: src/app.rs:162
+#: src/app.rs:165
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
 msgstr ""
 
-#: src/app.rs:167
+#: src/app.rs:170
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
 msgstr ""
 
-#: src/app.rs:185
+#: src/app.rs:188
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
 msgstr ""
 
-#: src/app.rs:190
+#: src/app.rs:193
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
 msgstr ""
 
-#: src/app.rs:202
+#: src/app.rs:205
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr ""
 
-#: src/app.rs:207
+#: src/app.rs:210
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture Of The Day was updated, and needs to be restarted.\n"
@@ -453,47 +457,47 @@ msgid ""
 "start it again manually."
 msgstr ""
 
-#: src/app.rs:216
+#: src/app.rs:219
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr ""
 
-#: src/app.rs:218
+#: src/app.rs:221
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr ""
 
-#: src/app.rs:284
+#: src/app.rs:287
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr ""
 
-#: src/app.rs:289
+#: src/app.rs:292
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:293
+#: src/app.rs:296
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:584
+#: src/app.rs:587
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:595
+#: src/app.rs:598
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr ""
 
-#: src/app.rs:600
+#: src/app.rs:603
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr ""
 
-#: src/app.rs:805
+#: src/app.rs:808
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
@@ -673,6 +677,20 @@ msgid "%1/%2 collection enabled"
 msgid_plural "%1/%2 collections enabled"
 msgstr[0] ""
 msgstr[1] ""
+
+#. Translators: This is Pango markup, be sure to escape appropriately
+#: src/config.rs:59
+msgctxt "about-dialog.license-text"
+msgid ""
+"Copyright Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
+"\n"
+"Licensed under the terms of the EUPL 1.2. You can find official translations "
+"of the license text at <a href=\"%1\">%1</a>.\n"
+"\n"
+"The full English text follows.\n"
+"\n"
+"%2"
+msgstr ""
 
 #: src/images/source.rs:58
 msgctxt "source name"

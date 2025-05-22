@@ -119,6 +119,9 @@ impl Application {
         );
         dialog.set_version(crate::config::CARGO_PKG_VERSION);
 
+        dialog.set_license_type(gtk::License::Custom);
+        dialog.set_license(&crate::config::license_text());
+
         dialog.add_link(
             &dpgettext2(None, "about-dialog.link.label", "Translations"),
             "https://translate.codeberg.org/engage/de-swsnr-pictureoftheday/",
