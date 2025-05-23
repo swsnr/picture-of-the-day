@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-05-02 06:53+0000\n"
+"PO-Revision-Date: 2025-05-23 15:58+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
@@ -135,6 +135,8 @@ msgstr "Kunst"
 #: de.swsnr.pictureoftheday.metainfo.xml:49
 msgid "Change license to European Union Public License 1.2."
 msgstr ""
+"De licentie is gewijzigd: voortaan wordt de toepassing uitgebracht onder de "
+"European Union Public License 1.2."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:55
 msgid ""
@@ -457,13 +459,13 @@ msgstr "Nuttige diensten"
 #: src/app.rs:165
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
-msgstr ""
+msgstr "Afbeelding van de dag"
 
 #. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
 #: src/app.rs:170
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
-msgstr ""
+msgstr "Uw dagelijkse achtergrond"
 
 #: src/app.rs:188
 msgctxt "notification.title"
@@ -765,6 +767,15 @@ msgid ""
 "\n"
 "%2"
 msgstr ""
+"Auteursrecht Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
+"\n"
+"Uitgebracht onder de voorwaarden van de EUPL 1.2-licentie. Officiële "
+"vertalingen van de licentievoorwaarden zijn te vinden op <a href=\"%1\""
+">%1</a>.\n"
+"\n"
+"Hieronder vindt u de Engelstalige tekst.\n"
+"\n"
+"%2"
 
 #: src/images/source.rs:58
 msgctxt "source name"
