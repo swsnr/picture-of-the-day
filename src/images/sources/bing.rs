@@ -136,7 +136,7 @@ async fn fetch_daily_bing_images(
 pub async fn fetch_daily_images(
     session: &soup::Session,
 ) -> Result<Vec<DownloadableImage>, SourceError> {
-    let language_code = crate::i18n::locale::language_and_territory_codes().next();
+    let language_code = gnome_app_utils::i18n::locale::language_and_territory_codes().next();
     let images = fetch_daily_bing_images(session, language_code.as_deref())
         .await?
         .images;

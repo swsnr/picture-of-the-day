@@ -41,13 +41,13 @@
 
 use app::Application;
 use glib::dpgettext2;
+use gnome_app_utils::i18n::gettext;
 use gtk::prelude::*;
 
 mod app;
 mod config;
 mod date;
 mod dbus;
-mod i18n;
 mod images;
 mod io;
 mod net;
@@ -55,7 +55,6 @@ mod services;
 mod xml;
 
 use config::G_LOG_DOMAIN;
-use i18n::gettext;
 use images::Source;
 
 fn main() -> glib::ExitCode {

@@ -497,6 +497,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "gnome-app-utils"
+version = "0.1.0"
+source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?branch=main#6e1785559fddb403d8bb5dc2d243f5a3a01acc66"
+dependencies = [
+ "glib",
+ "libc",
+]
+
+[[package]]
 name = "gobject-sys"
 version = "0.20.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1048,6 +1057,7 @@ dependencies = [
  "gdk4-wayland",
  "gdk4-x11",
  "glib",
+ "gnome-app-utils",
  "gtk4",
  "indexmap",
  "jiff",
