@@ -47,7 +47,6 @@ use gtk::prelude::*;
 mod app;
 mod config;
 mod date;
-mod dbus;
 mod images;
 mod net;
 mod services;

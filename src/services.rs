@@ -5,7 +5,6 @@
 // See https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
 mod logind;
-pub mod portal;
 mod session_monitor;
 
 pub use session_monitor::SessionMonitor;

@@ -23,13 +23,10 @@ mod imp {
     use gio::prelude::*;
     use glib::Variant;
     use glib::subclass::prelude::*;
+    use gnome_app_utils::dbus::{SignalSubscription, SignalSubscriptionIdExt};
     use gtk::gio::{self, DBusError, DBusSignalFlags};
 
-    use crate::{
-        config::G_LOG_DOMAIN,
-        dbus::{SignalSubscription, SignalSubscriptionIdExt},
-        services::logind,
-    };
+    use crate::{config::G_LOG_DOMAIN, services::logind};
 
     #[derive(Default, glib::Properties)]
     #[properties(wrapper_type = super::SessionMonitor)]

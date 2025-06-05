@@ -8,8 +8,8 @@
 
 use std::fmt::Display;
 
-use futures::channel::oneshot;
 use glib::subclass::types::ObjectSubclassIsExt;
+use gnome_app_utils::futures::channel::oneshot;
 use gtk::gio;
 
 use crate::images::{Source, SourceError};
@@ -88,9 +88,9 @@ mod imp {
     };
 
     use async_channel::{Receiver, Sender};
-    use futures::{StreamExt, stream};
     use glib::prelude::*;
     use glib::subclass::prelude::*;
+    use gnome_app_utils::futures::{StreamExt, stream};
     use gtk::gio::{self, Cancellable, prelude::CancellableExt};
 
     use crate::{config::G_LOG_DOMAIN, images::Source};

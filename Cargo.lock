@@ -499,12 +499,17 @@ dependencies = [
 [[package]]
 name = "gnome-app-utils"
 version = "0.1.0"
-source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?branch=main#28af2dfb401055c203cbbe24ca504637ab07a737"
+source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?branch=main#8a3788c3b5fe573cfe2c582e4f8fd76bd34bd3fc"
 dependencies = [
+ "futures",
+ "gdk4-wayland",
+ "gdk4-x11",
  "gio",
  "glib",
+ "gtk4",
  "libc",
  "log",
+ "strum",
 ]
 
 [[package]]
@@ -1055,9 +1060,6 @@ name = "pictureoftheday"
 version = "1.5.1"
 dependencies = [
  "async-channel",
- "futures",
- "gdk4-wayland",
- "gdk4-x11",
  "glib",
  "gnome-app-utils",
  "gtk4",

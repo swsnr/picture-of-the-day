@@ -7,13 +7,13 @@
 use adw::prelude::*;
 use glib::{dgettext, dpgettext2};
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
+use gnome_app_utils::portal::PortalClient;
 use gtk::UriLauncher;
 use gtk::gio;
 
 use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
 use crate::date::BoxedCivilDate;
-use crate::services::portal::PortalClient;
 
 glib::wrapper! {
     pub struct ApplicationWindow(ObjectSubclass<imp::ApplicationWindow>)
@@ -233,10 +233,15 @@ mod imp {
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use futures::future::join_all;
     use glib::subclass::InitializingObject;
     use glib::{Object, Properties, closure, dpgettext2};
+    use gnome_app_utils::futures::future::join_all;
     use gnome_app_utils::io::ensure_directory_with_parents;
+    use gnome_app_utils::portal::{
+        PortalClient,
+        wallpaper::{Preview, SetOn},
+        window::PortalWindowHandle,
+    };
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, FileCreateFlags, FileQueryInfoFlags};
@@ -247,11 +252,6 @@ mod imp {
     use crate::config::G_LOG_DOMAIN;
     use crate::date::BoxedCivilDate;
     use crate::images::{Source, SourceError};
-    use crate::services::portal::{
-        PortalClient,
-        wallpaper::{Preview, SetOn},
-        window::PortalWindowHandle,
-    };
 
     #[derive(Default, CompositeTemplate, Properties)]
     #[properties(wrapper_type = super::ApplicationWindow)]

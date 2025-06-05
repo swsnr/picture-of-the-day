@@ -7,6 +7,11 @@
 use adw::prelude::*;
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gnome_app_utils::io::ensure_directory_with_parents;
+use gnome_app_utils::portal::{
+    RequestResult,
+    wallpaper::{Preview, SetOn},
+    window::PortalWindowHandle,
+};
 use gtk::{
     UriLauncher,
     gio::{self, ActionEntry, ApplicationFlags},
@@ -18,11 +23,6 @@ use scheduler::ScheduledWallpaperUpdate;
 use crate::{
     config::G_LOG_DOMAIN,
     images::{Source, SourceError},
-    services::portal::{
-        RequestResult,
-        wallpaper::{Preview, SetOn},
-        window::PortalWindowHandle,
-    },
 };
 
 mod model;
@@ -363,23 +363,15 @@ impl Default for Application {
 }
 
 mod imp {
-    use crate::{
-        app::{scheduler::AutomaticWallpaperUpdateInhibitor, widgets::ApplicationWindow},
-        config::G_LOG_DOMAIN,
-        services::{
-            SessionMonitor,
-            portal::{
-                PortalClient, RequestResult, background::RequestBackgroundFlags,
-                window::PortalWindowHandle,
-            },
-        },
-    };
     use adw::gio::ApplicationCommandLine;
     use adw::prelude::*;
     use adw::subclass::prelude::*;
-    use futures::StreamExt;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
+    use gnome_app_utils::futures::{self, StreamExt};
     use gnome_app_utils::libc;
+    use gnome_app_utils::portal::{
+        PortalClient, RequestResult, background::RequestBackgroundFlags, window::PortalWindowHandle,
+    };
     use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
     use soup::prelude::*;
@@ -387,6 +379,11 @@ mod imp {
     use std::{cell::Cell, str::FromStr};
 
     use super::{scheduler::AutomaticWallpaperUpdateScheduler, updated_monitor::AppUpdatedMonitor};
+    use crate::{
+        app::{scheduler::AutomaticWallpaperUpdateInhibitor, widgets::ApplicationWindow},
+        config::G_LOG_DOMAIN,
+        services::SessionMonitor,
+    };
 
     #[derive(Default, Properties)]
     #[properties(wrapper_type = super::Application)]
