@@ -27,7 +27,6 @@ use crate::{
 
 mod model;
 mod scheduler;
-mod updated_monitor;
 mod widgets;
 
 use widgets::PreferencesDialog;
@@ -367,6 +366,7 @@ mod imp {
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
+    use gnome_app_utils::app::{AppUpdatedMonitor, SessionLockedMonitor};
     use gnome_app_utils::futures::{self, StreamExt};
     use gnome_app_utils::libc;
     use gnome_app_utils::portal::{
@@ -378,11 +378,10 @@ mod imp {
     use std::cell::RefCell;
     use std::{cell::Cell, str::FromStr};
 
-    use super::{scheduler::AutomaticWallpaperUpdateScheduler, updated_monitor::AppUpdatedMonitor};
+    use super::scheduler::AutomaticWallpaperUpdateScheduler;
     use crate::{
         app::{scheduler::AutomaticWallpaperUpdateInhibitor, widgets::ApplicationWindow},
         config::G_LOG_DOMAIN,
-        services::SessionMonitor,
     };
 
     #[derive(Default, Properties)]
@@ -401,7 +400,7 @@ mod imp {
         /// Scheduler used for automatic updates.
         scheduler: AutomaticWallpaperUpdateScheduler,
         /// User session monitor.
-        session_monitor: SessionMonitor,
+        session_monitor: SessionLockedMonitor,
         /// App updates monitor,
         updated_monitor: AppUpdatedMonitor,
         /// Hold on to ourselves while automatic wallpaper updates are scheduled

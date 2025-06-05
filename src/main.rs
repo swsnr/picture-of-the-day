@@ -49,7 +49,6 @@ mod config;
 mod date;
 mod images;
 mod net;
-mod services;
 mod xml;
 
 use config::G_LOG_DOMAIN;
@@ -60,7 +59,7 @@ fn main() -> glib::ExitCode {
 
     glib::info!(
         "Running in flatpak?: {}",
-        crate::config::running_in_flatpak()
+        gnome_app_utils::env::running_in_flatpak()
     );
 
     let locale_dir = config::locale_directory();
