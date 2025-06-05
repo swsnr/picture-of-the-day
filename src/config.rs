@@ -20,6 +20,7 @@ pub static CARGO_PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
 fn cargo_pkg_version() -> semver::Version {
     semver::Version::parse(CARGO_PKG_VERSION).unwrap()
 }
+
 /// The version to use for release notes.
 ///
 /// Returns [`CARGO_PKG_VERSION`] but with patch set to 0, and all pre and
