@@ -49,7 +49,6 @@ mod config;
 mod date;
 mod dbus;
 mod images;
-mod io;
 mod net;
 mod services;
 mod xml;
@@ -58,17 +57,7 @@ use config::G_LOG_DOMAIN;
 use images::Source;
 
 fn main() -> glib::ExitCode {
-    static GLIB_LOGGER: glib::GlibLogger = glib::GlibLogger::new(
-        glib::GlibLoggerFormat::Structured,
-        glib::GlibLoggerDomain::CrateTarget,
-    );
-    let max_level = if std::env::var_os("G_MESSAGES_DEBUG").is_some() {
-        log::LevelFilter::Trace
-    } else {
-        log::LevelFilter::Warn
-    };
-    log::set_max_level(max_level);
-    log::set_logger(&GLIB_LOGGER).unwrap();
+    gnome_app_utils::log::log_to_glib();
 
     glib::info!(
         "Running in flatpak?: {}",

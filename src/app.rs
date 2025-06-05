@@ -6,17 +6,18 @@
 
 use adw::prelude::*;
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
+use gnome_app_utils::io::ensure_directory_with_parents;
 use gtk::{
     UriLauncher,
     gio::{self, ActionEntry, ApplicationFlags},
 };
+
 use model::{ErrorNotification, ErrorNotificationActions};
 use scheduler::ScheduledWallpaperUpdate;
 
 use crate::{
     config::G_LOG_DOMAIN,
     images::{Source, SourceError},
-    io::ensure_directory,
     services::portal::{
         RequestResult,
         wallpaper::{Preview, SetOn},
@@ -324,7 +325,7 @@ it again manually.",
         };
 
         let target_directory = source.images_directory();
-        ensure_directory(&target_directory).await?;
+        ensure_directory_with_parents(&target_directory).await?;
         let target = image
             .download_to_directory(&target_directory, &session)
             .await?;
@@ -378,6 +379,7 @@ mod imp {
     use adw::subclass::prelude::*;
     use futures::StreamExt;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
+    use gnome_app_utils::libc;
     use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
     use soup::prelude::*;

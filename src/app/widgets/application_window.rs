@@ -236,6 +236,7 @@ mod imp {
     use futures::future::join_all;
     use glib::subclass::InitializingObject;
     use glib::{Object, Properties, closure, dpgettext2};
+    use gnome_app_utils::io::ensure_directory_with_parents;
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, FileCreateFlags, FileQueryInfoFlags};
@@ -246,7 +247,6 @@ mod imp {
     use crate::config::G_LOG_DOMAIN;
     use crate::date::BoxedCivilDate;
     use crate::images::{Source, SourceError};
-    use crate::io::ensure_directory;
     use crate::services::portal::{
         PortalClient,
         wallpaper::{Preview, SetOn},
@@ -408,7 +408,7 @@ mod imp {
 
             // Create the download directory for the current source.
             let target_directory = source.images_directory();
-            ensure_directory(&target_directory).await?;
+            ensure_directory_with_parents(&target_directory).await?;
 
             // Download all images
             let http_session = self.http_session.borrow().clone();

@@ -499,10 +499,12 @@ dependencies = [
 [[package]]
 name = "gnome-app-utils"
 version = "0.1.0"
-source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?branch=main#6e1785559fddb403d8bb5dc2d243f5a3a01acc66"
+source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?branch=main#28af2dfb401055c203cbbe24ca504637ab07a737"
 dependencies = [
+ "gio",
  "glib",
  "libc",
+ "log",
 ]
 
 [[package]]
@@ -1062,8 +1064,6 @@ dependencies = [
  "indexmap",
  "jiff",
  "libadwaita",
- "libc",
- "log",
  "quick-xml",
  "scraper",
  "semver",

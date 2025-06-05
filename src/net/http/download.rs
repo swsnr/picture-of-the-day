@@ -8,10 +8,11 @@ use std::{fmt::Display, path::Path};
 
 use glib::Priority;
 use glib::translate::IntoGlib;
+use gnome_app_utils::io::delete_file_ignore_error;
 use gtk::gio::{self, FileCopyFlags, IOErrorEnum, prelude::*};
 use soup::prelude::SessionExt;
 
-use crate::{config::G_LOG_DOMAIN, io::delete_file_ignore_error};
+use crate::config::G_LOG_DOMAIN;
 
 /// An error occurred while downloading.
 #[derive(Debug, Clone)]
