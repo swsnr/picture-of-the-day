@@ -4,7 +4,8 @@
 //
 // See https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-use glib::Object;
+use glib::{Object, value::ToValue};
+use gtk::gdk::ContentProvider;
 
 glib::wrapper! {
     pub struct ImagePage(ObjectSubclass<imp::ImagePage>)
@@ -15,6 +16,13 @@ glib::wrapper! {
 impl Default for ImagePage {
     fn default() -> Self {
         Object::builder().build()
+    }
+}
+
+impl ImagePage {
+    fn drag_content_provider(&self) -> Option<ContentProvider> {
+        let image_file = self.image()?.downloaded_file()?;
+        Some(ContentProvider::for_value(&image_file.to_value()))
     }
 }
 
@@ -80,7 +88,18 @@ mod imp {
     }
 
     #[glib::derived_properties]
-    impl ObjectImpl for ImagePage {}
+    impl ObjectImpl for ImagePage {
+        fn constructed(&self) {
+            let source = gtk::DragSource::new();
+            source.connect_prepare(glib::clone!(
+                #[weak(rename_to = page)]
+                self.obj(),
+                #[upgrade_or_default]
+                move |_, _, _| page.drag_content_provider()
+            ));
+            self.picture.add_controller(source);
+        }
+    }
 
     impl WidgetImpl for ImagePage {}
 
