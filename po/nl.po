@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-05-23 15:58+0000\n"
+"PO-Revision-Date: 2025-06-09 19:58+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -134,7 +134,7 @@ msgstr "Kunst"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
 msgid "Drag images out of the app to copy them into other apps."
-msgstr ""
+msgstr "Versleep afbeeldingen om ze te kopiëren naar andere toepassingen."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:58
 msgid "Change license to European Union Public License 1.2."
