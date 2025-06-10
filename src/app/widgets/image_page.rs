@@ -4,8 +4,7 @@
 //
 // See https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
-use glib::{Object, value::ToValue};
-use gtk::gdk::ContentProvider;
+use glib::Object;
 
 glib::wrapper! {
     pub struct ImagePage(ObjectSubclass<imp::ImagePage>)
@@ -19,20 +18,13 @@ impl Default for ImagePage {
     }
 }
 
-impl ImagePage {
-    fn drag_content_provider(&self) -> Option<ContentProvider> {
-        let image_file = self.image()?.downloaded_file()?;
-        Some(ContentProvider::for_value(&image_file.to_value()))
-    }
-}
-
 mod imp {
     use std::cell::RefCell;
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::{Properties, subclass::InitializingObject};
-    use gtk::CompositeTemplate;
+    use gtk::{CompositeTemplate, gdk::ContentProvider};
 
     use crate::app::{
         model::{Image, ImageState},
@@ -48,9 +40,20 @@ mod imp {
         #[template_child]
         loading: TemplateChild<gtk::Widget>,
         #[template_child]
-        picture: TemplateChild<gtk::Widget>,
+        picture: TemplateChild<gtk::Picture>,
         #[template_child]
         error: TemplateChild<gtk::Widget>,
+    }
+
+    impl ImagePage {
+        fn drag_content_provider(&self) -> Option<ContentProvider> {
+            let image_file = self.obj().image()?.downloaded_file()?;
+            let paintable = self.picture.paintable()?;
+            Some(ContentProvider::new_union(&[
+                ContentProvider::for_value(&image_file.to_value()),
+                ContentProvider::for_value(&paintable.to_value()),
+            ]))
+        }
     }
 
     #[gtk::template_callbacks]
@@ -59,7 +62,7 @@ mod imp {
         fn stack_page(&self, state: ImageState) -> gtk::Widget {
             match state {
                 ImageState::Pending => self.loading.get(),
-                ImageState::Downloaded => self.picture.get(),
+                ImageState::Downloaded => self.picture.get().upcast(),
                 ImageState::DownloadFailed => self.error.get(),
             }
         }
@@ -95,7 +98,7 @@ mod imp {
                 #[weak(rename_to = page)]
                 self.obj(),
                 #[upgrade_or_default]
-                move |_, _, _| page.drag_content_provider()
+                move |_, _, _| page.imp().drag_content_provider()
             ));
             self.picture.add_controller(source);
         }
