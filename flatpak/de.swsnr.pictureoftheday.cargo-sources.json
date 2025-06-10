@@ -1,5 +1,11 @@
 [
     {
+        "type": "git",
+        "url": "https://codeberg.org/swsnr/gnome-app-utils.rs",
+        "commit": "3f0f41253fa42ca41cdb33221141077cdb8c5a5a",
+        "dest": "flatpak-cargo/git/gnome-app-utils.rs-3f0f412"
+    },
+    {
         "type": "archive",
         "archive-type": "tar-gzip",
         "url": "https://static.crates.io/crates/async-channel/async-channel-2.3.1.crate",
@@ -608,6 +614,24 @@
         "type": "inline",
         "contents": "{\"package\": \"8ab79e1ed126803a8fb827e3de0e2ff95191912b8db65cee467edb56fc4cc215\", \"files\": {}}",
         "dest": "cargo/vendor/glib-sys-0.20.10",
+        "dest-filename": ".cargo-checksum.json"
+    },
+    {
+        "type": "shell",
+        "commands": [
+            "cp -r --reflink=auto \"flatpak-cargo/git/gnome-app-utils.rs-3f0f412/.\" \"cargo/vendor/gnome-app-utils\""
+        ]
+    },
+    {
+        "type": "inline",
+        "contents": "[package]\nname = \"gnome-app-utils\"\ndescription = \"Utilities for my Gnome apps\"\nhomepage = \"https://codeberg.org/swsnr/gnome-app-utils.rs\"\nrepository = \"https://codeberg.org/swsnr/gnome-app-utils.rs\"\nlicense = \"EUPL-1.2\"\nauthors = [ \"Sebastian Wiesner <sebastian@swsnr.de>\",]\nversion = \"0.1.0\"\nedition = \"2024\"\npublish = false\nrust-version = \"1.87\"\n\n[dependencies]\nfutures = \"0.3.31\"\nlibc = \"0.2.170\"\nlog = \"0.4.27\"\n\n[dependencies.gdk4-wayland]\nversion = \"0.9.6\"\nfeatures = [ \"v4_18\",]\n\n[dependencies.gdk4-x11]\nversion = \"0.9.6\"\nfeatures = [ \"v4_18\",]\n\n[dependencies.gio]\nversion = \"0.20.11\"\nfeatures = [ \"v2_84\",]\n\n[dependencies.glib]\nversion = \"0.20.10\"\nfeatures = [ \"log\", \"v2_84\",]\n\n[dependencies.gtk]\npackage = \"gtk4\"\nversion = \"0.9.5\"\nfeatures = [ \"v4_18\", \"gnome_47\",]\n\n[dependencies.strum]\nversion = \"0.27.1\"\nfeatures = [ \"derive\",]\n",
+        "dest": "cargo/vendor/gnome-app-utils",
+        "dest-filename": "Cargo.toml"
+    },
+    {
+        "type": "inline",
+        "contents": "{\"package\": null, \"files\": {}}",
+        "dest": "cargo/vendor/gnome-app-utils",
         "dest-filename": ".cargo-checksum.json"
     },
     {
@@ -2172,7 +2196,7 @@
     },
     {
         "type": "inline",
-        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n",
+        "contents": "[source.vendored-sources]\ndirectory = \"cargo/vendor\"\n\n[source.crates-io]\nreplace-with = \"vendored-sources\"\n\n[source.\"https://codeberg.org/swsnr/gnome-app-utils.rs\"]\ngit = \"https://codeberg.org/swsnr/gnome-app-utils.rs\"\nreplace-with = \"vendored-sources\"\nbranch = \"main\"\n",
         "dest": "cargo",
         "dest-filename": "config"
     }
