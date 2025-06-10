@@ -45,17 +45,6 @@ mod imp {
         error: TemplateChild<gtk::Widget>,
     }
 
-    impl ImagePage {
-        fn drag_content_provider(&self) -> Option<ContentProvider> {
-            let image_file = self.obj().image()?.downloaded_file()?;
-            let paintable = self.picture.paintable()?;
-            Some(ContentProvider::new_union(&[
-                ContentProvider::for_value(&image_file.to_value()),
-                ContentProvider::for_value(&paintable.to_value()),
-            ]))
-        }
-    }
-
     #[gtk::template_callbacks]
     impl ImagePage {
         #[template_callback]
@@ -98,7 +87,14 @@ mod imp {
                 #[weak(rename_to = page)]
                 self.obj(),
                 #[upgrade_or_default]
-                move |_, _, _| page.imp().drag_content_provider()
+                move |_, _, _| {
+                    let image_file = page.image()?.downloaded_file()?;
+                    let paintable = page.imp().picture.paintable()?;
+                    Some(ContentProvider::new_union(&[
+                        ContentProvider::for_value(&image_file.to_value()),
+                        ContentProvider::for_value(&paintable.to_value()),
+                    ]))
+                }
             ));
             self.picture.add_controller(source);
         }
