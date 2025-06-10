@@ -1,5 +1,6 @@
 # The app ID to use (either de.swsnr.pictureoftheday or de.swsnr.pictureoftheday.Devel).
 APPID := 'de.swsnr.pictureoftheday'
+
 # The destination prefix to install files to.  Combines traditional DESTDIR and
 # PREFIX variables; picture-of-the-day does not encode the prefix into its binary
 # and thus does not need to distinguish between the prefix and the destdir.
@@ -18,21 +19,31 @@ default:
 clean:
     rm -fr .flatpak-builddir .flatpak-repo .flatpak-builder build
 
+# Write APP ID to file for build
+configure-app-id:
+    @rm -f build/app-id
+    @mkdir -p build
+    @# Do not add a newline; that'd break the app ID in include_str!
+    echo -n '{{APPID}}' > build/app-id
+
 # Compile all blueprint files to UI files.
 compile-blueprint:
-    mkdir -p build/resources-src/
+    @mkdir -p build/resources-src/
     blueprint-compiler batch-compile build/resources-src/ resources resources/**/*.blp
 
 # Compile the translated metainfo file.
 compile-metainfo:
-    mkdir -p build/resources-src/
+    @mkdir -p build/resources-src/
     msgfmt --xml --template de.swsnr.pictureoftheday.metainfo.xml -d po --output build/de.swsnr.pictureoftheday.metainfo.xml
+    @# Patch app ID
+    sed -i '/{{APPID}}/! s/de\.swsnr\.pictureoftheday/{{APPID}}/g' \
+        build/de.swsnr.pictureoftheday.metainfo.xml
     @# Also add the translated metainfo file to resources
     cp -t build/resources-src build/de.swsnr.pictureoftheday.metainfo.xml
 
 # Compile all Glib resources for this application.
 compile-resources: compile-blueprint compile-metainfo
-    mkdir -p build/resources
+    @mkdir -p build/resources
     glib-compile-resources --sourcedir=build/resources-src \
         --target build/resources/resources.generated.gresource \
         resources/resources.generated.gresource.xml
@@ -42,17 +53,29 @@ compile-resources: compile-blueprint compile-metainfo
 
 # Compile the translated desktop file.
 compile-desktop-file:
-    mkdir -p build
+    @mkdir -p build
     msgfmt --desktop --template de.swsnr.pictureoftheday.desktop -d po --output build/de.swsnr.pictureoftheday.desktop
+    @# Patch app ID
+    sed -i '/{{APPID}}/! s/de\.swsnr\.pictureoftheday/{{APPID}}/g' \
+        build/de.swsnr.pictureoftheday.desktop
 
 # Compile the settings schema
 compile-schemas:
-    mkdir -p build/schemas
-    cp -t build/schemas de.swsnr.pictureoftheday.gschema.xml
+    @mkdir -p build/schemas
+    cp de.swsnr.pictureoftheday.gschema.xml build/schemas/{{APPID}}.gschema.xml
+    @# Patch app ID
+    sed -i '/{{APPID}}/! s/de\.swsnr\.pictureoftheday/{{APPID}}/g' \
+         build/schemas/{{APPID}}.gschema.xml
     glib-compile-schemas --strict build/schemas
 
+compile-dbus:
+    @mkdir -p build
+    cp -t build dbus-1/de.swsnr.pictureoftheday.service
+    sed -i '/{{APPID}}/! s/de\.swsnr\.pictureoftheday/{{APPID}}/g' \
+        build/de.swsnr.pictureoftheday.service
+
 # Compile all extra files (resources, settings schemas, etc.)
-compile: compile-resources compile-desktop-file compile-schemas
+compile: configure-app-id compile-resources compile-desktop-file compile-schemas compile-dbus
 
 vet *ARGS:
     cargo vet {{ARGS}}
@@ -113,16 +136,10 @@ flatpak-build:
         --mirror-screenshots-url=https://dl.flathub.org/media/ --repo=.flatpak-repo \
         .flatpak-builddir flatpak/de.swsnr.pictureoftheday.yaml
 
-# Patch files for the Devel build
-patch-devel:
+# Patch `version` into `Cargo.toml`
+patch-version:
     sed -Ei 's/^version = "([^"]+)"/version = "\1+{{version}}"/' Cargo.toml
     cargo update -p pictureoftheday
-    sed -i '/{{APPID}}/! s/de\.swsnr\.pictureoftheday/{{APPID}}/g' \
-        src/config.rs \
-        de.swsnr.pictureoftheday.desktop \
-        de.swsnr.pictureoftheday.metainfo.xml \
-        dbus-1/de.swsnr.pictureoftheday.service \
-        de.swsnr.pictureoftheday.gschema.xml
 
 _install-po po_file:
     install -dm0755 '{{DESTPREFIX}}/share/locale/{{file_stem(po_file)}}/LC_MESSAGES'
@@ -141,8 +158,8 @@ install:
     install -Dm0644 -t '{{DESTPREFIX}}/share/icons/hicolor/scalable/apps/' 'resources/icons/scalable/apps/{{APPID}}.svg'
     install -Dm0644 resources/icons/symbolic/apps/de.swsnr.pictureoftheday-symbolic.svg \
         '{{DESTPREFIX}}/share/icons/hicolor/symbolic/apps/{{APPID}}-symbolic.svg'
-    install -Dm0644 dbus-1/de.swsnr.pictureoftheday.service '{{DESTPREFIX}}/share/dbus-1/services/{{APPID}}.service'
-    install -Dm0644 de.swsnr.pictureoftheday.gschema.xml '{{DESTPREFIX}}/share/glib-2.0/schemas/{{APPID}}.gschema.xml'
+    install -Dm0644 build/de.swsnr.pictureoftheday.service '{{DESTPREFIX}}/share/dbus-1/services/{{APPID}}.service'
+    install -Dm0644 'build/schemas/{{APPID}}.gschema.xml' '{{DESTPREFIX}}/share/glib-2.0/schemas/{{APPID}}.gschema.xml'
     @# Compile settings schemas after installation
     glib-compile-schemas --strict '{{DESTPREFIX}}/share/glib-2.0/schemas'
 

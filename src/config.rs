@@ -10,12 +10,16 @@ use glib::{GStr, dpgettext2, gstr};
 use gnome_app_utils::env::running_in_flatpak;
 use gtk::gio::{self, resources_register};
 
-pub static APP_ID: &GStr = gstr!("de.swsnr.pictureoftheday");
+pub const APP_ID: &GStr =
+    // SAFETY: We explicitly append a nul byte
+    unsafe {
+        GStr::from_str_with_nul_unchecked(concat!(include_str!("../build/app-id"), "\0"))
+    };
 
 /// The Cargo package verson.
 ///
 /// This provides the full version from `Cargo.toml`.
-pub static CARGO_PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
+pub const CARGO_PKG_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Get [`CARGO_PKG_VERSION`] parsed.
 fn cargo_pkg_version() -> semver::Version {
