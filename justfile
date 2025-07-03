@@ -83,7 +83,7 @@ vet *ARGS:
 lint-blueprint:
     blueprint-compiler format resources/**/*.blp
 
-lint-rust:
+lint-rust: compile
     cargo +stable deny --all-features --locked check
     cargo +stable fmt -- --check
     cargo +stable clippy --all-targets
@@ -99,11 +99,11 @@ lint-data:
 
 lint-all: lint-rust lint-blueprint lint-data lint-flatpak
 
-test-rust:
+test-rust: compile
     cargo +stable build
     cargo +stable test
 
-test-all: (vet "--locked") lint-all compile test-rust
+test-all: (vet "--locked") lint-all test-rust
 
 # Extract the message template from all source files.
 pot:
