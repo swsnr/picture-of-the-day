@@ -1,6 +1,11 @@
 
 # cargo-vet audits file
 
+[[audits.async-channel]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "2.3.1 -> 2.5.0"
+
 [[audits.autocfg]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
