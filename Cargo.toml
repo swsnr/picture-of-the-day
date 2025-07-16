@@ -39,7 +39,7 @@ jiff = { version = "0.2.10", default-features = false, features = [
 glib = { version = "0.21.0", features = ["log_macros"] }
 gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", branch = "main" }
 gtk = { package = "gtk4", version = "0.10.0", features = ["gnome_48"] }
-quick-xml = "0.30.0"
+quick-xml = "0.37.5"
 scraper = { version = "0.23.1", default-features = false }
 semver = "1.0.24"
 serde = { version = "1.0.128", features = ["derive"] }

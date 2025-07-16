@@ -56,6 +56,12 @@ impl From<jiff::Error> for RssError {
     }
 }
 
+impl From<quick_xml::events::attributes::AttrError> for RssError {
+    fn from(error: quick_xml::events::attributes::AttrError) -> Self {
+        quick_xml::Error::InvalidAttr(error).into()
+    }
+}
+
 type Result<T> = std::result::Result<T, RssError>;
 
 #[derive(Debug, Clone, Default)]
@@ -89,7 +95,10 @@ fn read_item(reader: &mut NsReader<&[u8]>) -> Result<RssItem> {
             }
             (ResolveResult::Bound(Namespace(b"http://search.yahoo.com/mrss/")), b"thumbnail") => {
                 if let Some(url) = start.try_get_attribute(b"url")? {
-                    item.thumbnail = Some(url.decode_and_unescape_value(reader)?.into_owned());
+                    item.thumbnail = Some(
+                        url.decode_and_unescape_value(reader.decoder())?
+                            .into_owned(),
+                    );
                 }
                 // Skip over the (empty) content of the thumbnail
                 reader.read_to_end(start.name())?;
@@ -140,7 +149,7 @@ impl Iterator for RssItemIterator<&[u8]> {
 /// If reading the RSS channel failed.
 pub fn read_rss_channel(mut reader: NsReader<&[u8]>) -> Result<RssItemIterator<&[u8]>> {
     // Expand empty items to avoid having to handle empty elements separately
-    reader.expand_empty_elements(true);
+    reader.config_mut().expand_empty_elements = true;
 
     // Consume the top-level rss element
     read_to_start(&mut reader)?.ok_or(RssError::NoRssDocument)?;

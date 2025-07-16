@@ -37,18 +37,13 @@ pub fn read_text(reader: &mut NsReader<&[u8]>) -> Result<String> {
     loop {
         let event = reader.read_event()?;
         match event {
-            // We should not have nested elements inside text elements
+            // We should not have nested elements inside text elements, but if
+            // reality surprises us there, let's skip over the element to
+            // put ourselves into a consistent state, and then continue.
             Event::Start(bytes_start) => {
-                // Skip over the element to make sure we're in a consistent state
                 reader.read_to_end(bytes_start.to_end().name())?;
-                return Err(quick_xml::Error::TextNotFound);
             }
             Event::End(_) => break,
-            Event::Eof => {
-                return Err(quick_xml::Error::UnexpectedEof(
-                    "Unexpected EoF while reading text".into(),
-                ));
-            }
             Event::Text(text) => {
                 let text = text.unescape()?;
                 if !text.trim().is_empty() {
