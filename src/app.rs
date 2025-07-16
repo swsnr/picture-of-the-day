@@ -719,7 +719,7 @@ mod imp {
                         // the end command line processing, and drop our outer
                         // hold on the application.
                         app.imp().hold_until_dialog_closed(&prefs).await;
-                        command_line.set_exit_status(ExitCode::SUCCESS.value());
+                        command_line.set_exit_status(ExitCode::SUCCESS.into());
                         command_line.done();
                         drop(guard);
                     }
