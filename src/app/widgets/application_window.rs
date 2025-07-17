@@ -7,9 +7,8 @@
 use adw::prelude::*;
 use glib::{dgettext, dpgettext2};
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
-use gnome_app_utils::portal::PortalClient;
 use gtk::UriLauncher;
-use gtk::gio;
+use gtk::gio::{self, DBusConnection};
 
 use crate::app::model::{ErrorNotification, ErrorNotificationActions};
 use crate::config::G_LOG_DOMAIN;
@@ -30,14 +29,14 @@ impl ApplicationWindow {
     /// It uses the `session` to fetch images for the selected source.
     pub fn new(
         application: &impl IsA<gtk::Application>,
-        session: soup::Session,
-        portal_client: PortalClient,
+        session: &soup::Session,
+        dbus_connection: &DBusConnection,
         date: Option<jiff::civil::Date>,
     ) -> Self {
         glib::Object::builder()
             .property("application", application)
             .property("http-session", session)
-            .property("portal-client", portal_client)
+            .property("dbus-connection", dbus_connection)
             .property("date", date.map(BoxedCivilDate::from))
             .build()
     }
@@ -237,6 +236,7 @@ mod imp {
     use glib::{Object, Properties, closure, dpgettext2};
     use gnome_app_utils::futures::future::join_all;
     use gnome_app_utils::io::ensure_directory_with_parents;
+    use gnome_app_utils::portal::wallpaper::SetWallpaperFile;
     use gnome_app_utils::portal::{
         PortalClient,
         wallpaper::{Preview, SetOn},
@@ -244,7 +244,7 @@ mod imp {
     };
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
-    use gtk::gio::{self, Cancellable, FileCreateFlags, FileQueryInfoFlags};
+    use gtk::gio::{self, Cancellable, DBusConnection, FileCreateFlags, FileQueryInfoFlags};
     use strum::IntoEnumIterator;
 
     use crate::app::model::{ErrorNotification, Image};
@@ -260,7 +260,7 @@ mod imp {
         #[property(get, construct_only)]
         http_session: RefCell<soup::Session>,
         #[property(get, construct_only)]
-        portal_client: RefCell<Option<PortalClient>>,
+        dbus_connection: RefCell<Option<DBusConnection>>,
         #[property(get, construct_only, nullable)]
         date: Cell<Option<BoxedCivilDate>>,
         #[property(get, set, builder(Source::default()))]
@@ -447,11 +447,21 @@ mod imp {
         pub async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
             if let Some(file) = self.current_image_file() {
                 let window_handle = PortalWindowHandle::new_for_native(&*self.obj()).await;
+                let (call, fdlist) = SetWallpaperFile::for_file(
+                    window_handle.identifier(),
+                    &file,
+                    Preview::NoPreview,
+                    SetOn::Both,
+                )
+                .await?;
+
                 let result = self
                     .obj()
-                    .portal_client()
+                    .dbus_connection()
                     .unwrap()
-                    .set_wallpaper(&file, &window_handle, Preview::NoPreview, SetOn::Both)
+                    .call_desktop_portal_with_unix_fd_list(call, Some(&fdlist))
+                    .await?
+                    .receive_response()
                     .await?;
                 glib::info!("Request finished: {result:?}");
             }

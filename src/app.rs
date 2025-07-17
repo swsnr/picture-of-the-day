@@ -7,6 +7,8 @@
 use adw::prelude::*;
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gnome_app_utils::io::ensure_directory_with_parents;
+use gnome_app_utils::portal::PortalClient;
+use gnome_app_utils::portal::wallpaper::SetWallpaperFile;
 use gnome_app_utils::portal::{
     RequestResult,
     wallpaper::{Preview, SetOn},
@@ -331,16 +333,21 @@ it again manually.",
 
         glib::info!("Setting wallpaper to {}", target.display());
         let window = PortalWindowHandle::new_for_app(self).await;
+        let (call, fdlist) = SetWallpaperFile::for_file(
+            window.identifier(),
+            &gio::File::for_path(&target),
+            Preview::NoPreview,
+            SetOn::Both,
+        )
+        .await?;
         let response = self
-            .portal_client()
+            .dbus_connection()
             .unwrap()
-            .set_wallpaper(
-                &gio::File::for_path(&target),
-                &window,
-                Preview::NoPreview,
-                SetOn::Both,
-            )
-            .await?;
+            .call_desktop_portal_with_unix_fd_list(call, Some(&fdlist))
+            .await?
+            .receive_response()
+            .await?
+            .result();
         if !matches!(response, RequestResult::Success) {
             glib::warn!(
                 "Request to set wallpaper to {} denied, got {response:?}",
@@ -367,10 +374,12 @@ mod imp {
     use adw::subclass::prelude::*;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
     use gnome_app_utils::app::{AppUpdatedMonitor, SessionLockedMonitor};
-    use gnome_app_utils::futures::{self, StreamExt};
+    use gnome_app_utils::futures::{self, StreamExt, TryFutureExt};
     use gnome_app_utils::libc;
+    use gnome_app_utils::portal::background::{RequestBackground, RequestBackgroundResult};
+    use gnome_app_utils::portal::{PortalClient, PortalRequest};
     use gnome_app_utils::portal::{
-        PortalClient, RequestResult, background::RequestBackgroundFlags, window::PortalWindowHandle,
+        RequestResult, background::RequestBackgroundFlags, window::PortalWindowHandle,
     };
     use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
@@ -389,8 +398,6 @@ mod imp {
     pub struct Application {
         #[property(get)]
         http_session: soup::Session,
-        #[property(get)]
-        portal_client: RefCell<Option<PortalClient>>,
         #[property(get)]
         settings: RefCell<Option<gio::Settings>>,
         /// The overridden date, if any.
@@ -745,17 +752,6 @@ mod imp {
             }
         }
 
-        fn dbus_register(
-            &self,
-            connection: &gio::DBusConnection,
-            object_path: &str,
-        ) -> Result<(), glib::Error> {
-            self.parent_dbus_register(connection, object_path)?;
-            self.portal_client
-                .replace(Some(PortalClient::new(connection)));
-            Ok(())
-        }
-
         fn activate(&self) {
             glib::info!("Activating application");
             self.parent_activate();
@@ -766,8 +762,8 @@ mod imp {
                 glib::debug!("Creating new window");
                 let window = ApplicationWindow::new(
                     &*self.obj(),
-                    self.obj().http_session(),
-                    self.obj().portal_client().unwrap(),
+                    &self.obj().http_session(),
+                    &self.obj().dbus_connection().unwrap(),
                     self.date.get(),
                 );
                 if crate::config::is_development() {
@@ -798,7 +794,7 @@ mod imp {
                     .build();
 
                 // Request background if the app gets activated the first time.
-                let portal_client = self.obj().portal_client().unwrap();
+                let connection = self.obj().dbus_connection().unwrap();
                 glib::spawn_future_local(async move {
                     let reason = dpgettext2(
                         None,
@@ -807,16 +803,19 @@ mod imp {
                     );
                     let window_handle = PortalWindowHandle::new_for_native(&window).await;
                     glib::info!("Requesting permission to run in background and autostart");
-                    match portal_client
-                        .request_background(
-                            &window_handle,
-                            &reason,
-                            Some(&[crate::config::APP_ID, "--gapplication-service"]),
-                            RequestBackgroundFlags::AUTOSTART,
-                        )
+                    let call = RequestBackground::new(
+                        window_handle.identifier(),
+                        &reason,
+                        Some(&[crate::config::APP_ID, "--gapplication-service"]),
+                        RequestBackgroundFlags::AUTOSTART,
+                    );
+                    match connection
+                        .call_desktop_portal(call)
+                        .and_then(PortalRequest::receive_response)
                         .await
                     {
                         Ok(response) => {
+                            let response = RequestBackgroundResult::from(response);
                             if response.request_result == RequestResult::Success {
                                 if !response.background {
                                     glib::warn!(
