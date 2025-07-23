@@ -702,7 +702,7 @@ msgstr[1] ""
 #, rust-format
 msgctxt "about-dialog.license-text"
 msgid ""
-"Copyright Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
+"Copyright {copyright_name} &lt;{copyright_mail}&gt;\n"
 "\n"
 "Licensed under the terms of the EUPL 1.2. You can find official translations "
 "of the license text at <a href=\"{translations}\">{translations}</a>.\n"
