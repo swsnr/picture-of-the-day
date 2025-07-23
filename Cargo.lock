@@ -199,6 +199,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "formatx"
+version = "0.2.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d8866fac38f53fc87fa3ae1b09ddd723e0482f8fa74323518b4c59df2c55a00a"
+
+[[package]]
 name = "futf"
 version = "0.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1019,6 +1025,7 @@ name = "pictureoftheday"
 version = "1.6.0"
 dependencies = [
  "async-channel",
+ "formatx",
  "glib",
  "gnome-app-utils",
  "gtk4",

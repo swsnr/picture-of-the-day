@@ -4,11 +4,13 @@
 //
 // See https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
+use std::sync::LazyLock;
+
+use formatx::formatx;
 use glib::dpgettext2;
 use gtk::gio::{self, ResourceLookupFlags, prelude::SettingsExtManual};
 use jiff::civil::Date;
 use serde::Deserialize;
-use std::sync::LazyLock;
 
 use super::super::{DownloadableImage, ImageMetadata, Source};
 
@@ -92,8 +94,11 @@ fn pick_image_for_date(date: Date, images: &[ImageInCollection]) -> Downloadable
     // The URL of the image is guaranteed to have at least one slash.
     let (_, base_name) = image.image.rsplit_once('/').unwrap();
     let copyright = dpgettext2(None, "source.stalenhag.copyright", "All rights reserved.");
-    let description = dpgettext2(None, "source.stalenhag.description", "Collection: %s")
-        .replace("%s", image.title);
+    let description = formatx!(
+        dpgettext2(None, "source.stalenhag.description", "Collection: {}"),
+        image.title
+    )
+    .unwrap();
     DownloadableImage {
         metadata: ImageMetadata {
             title: pretty_title(base_name),

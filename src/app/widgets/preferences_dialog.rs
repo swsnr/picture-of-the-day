@@ -38,6 +38,7 @@ mod imp {
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
+    use formatx::formatx;
     use glib::{Properties, StrV, dngettext, subclass::InitializingObject};
     use gtk::CompositeTemplate;
 
@@ -66,14 +67,17 @@ mod imp {
         fn label_enabled_collections(disabled_collections: StrV) -> String {
             let n_disabled = disabled_collections.len();
             let n_enabled = stalenhag::COLLECTIONS.len() - n_disabled;
-            dngettext(
-                None,
-                "%1/%2 collection enabled",
-                "%1/%2 collections enabled",
-                u64::try_from(n_enabled).unwrap(),
+            formatx!(
+                dngettext(
+                    None,
+                    "{n}/{total} collection enabled",
+                    "{n}/{total} collections enabled",
+                    u64::try_from(n_enabled).unwrap(),
+                ),
+                n = n_enabled,
+                total = stalenhag::COLLECTIONS.len()
             )
-            .replace("%1", &n_enabled.to_string())
-            .replace("%2", &stalenhag::COLLECTIONS.len().to_string())
+            .unwrap()
         }
     }
 

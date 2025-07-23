@@ -8,6 +8,7 @@
 //!
 //! See <https://commons.m.wikimedia.org/wiki/Commons:Picture_of_the_day>.
 
+use formatx::formatx;
 use glib::{Priority, dpgettext2};
 use jiff::civil::Date;
 use serde::Deserialize;
@@ -59,19 +60,23 @@ impl FeaturedImage {
         let license = self.license.as_ref().and_then(|l| l.r#type.as_ref());
         let credit = self.credit.as_ref().map(|c| &c.text);
         match (artist, license, credit) {
-            (Some(artist), Some(license), Some(credit)) => dpgettext2(
-                None,
-                "source.wikimedia.copyright",
-                "%artist (%credit, %license)",
+            (Some(artist), Some(license), Some(credit)) => formatx!(
+                dpgettext2(
+                    None,
+                    "source.wikimedia.copyright",
+                    "{artist} ({credit}, {license})",
+                ),
+                artist = artist,
+                credit = credit,
+                license = license
             )
-            .replace("%artist", artist)
-            .replace("%credit", credit)
-            .replace("%license", license),
-            (Some(artist), Some(license), _) => {
-                dpgettext2(None, "source.wikimedia.copyright", "%artist (%license)")
-                    .replace("%artist", artist)
-                    .replace("%license", license)
-            }
+            .unwrap(),
+            (Some(artist), Some(license), _) => formatx!(
+                dpgettext2(None, "source.wikimedia.copyright", "{artist} ({license})"),
+                artist = artist,
+                license = license,
+            )
+            .unwrap(),
             (Some(artist), None, _) => artist.clone(),
             (None, Some(license), _) => license.clone(),
             _ => dpgettext2(

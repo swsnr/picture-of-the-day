@@ -5,6 +5,7 @@
 // See https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12
 
 use adw::prelude::*;
+use formatx::formatx;
 use glib::{dgettext, dpgettext2};
 use glib::{object::IsA, subclass::types::ObjectSubclassIsExt};
 use gtk::UriLauncher;
@@ -66,11 +67,6 @@ impl ApplicationWindow {
         let url = self.selected_source().url();
         if let Err(error) = UriLauncher::new(url).launch_future(Some(self)).await {
             glib::warn!("Failed to open source URL: {error}");
-            let description = dpgettext2(
-                None,
-                "error-notification.description",
-                "An I/O error occurred while opening %1, with the following message: %2. If the issue persists please report the problem.",
-            );
             let error = ErrorNotification::builder()
                 .title(dpgettext2(
                     None,
@@ -78,9 +74,18 @@ impl ApplicationWindow {
                     "Failed to open source URL",
                 ))
                 .description(
-                    description
-                        .replace("%1", url)
-                        .replace("%2", &error.to_string()),
+                    formatx!(
+                        dpgettext2(
+                            None,
+                            "error-notification.description",
+                            "An I/O error occurred while opening {url}, with \
+the following message: {error}. If the issue persists please report the \
+problem.",
+                        ),
+                        url = url,
+                        error = error
+                    )
+                    .unwrap(),
                 )
                 .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
                 .build();
@@ -91,18 +96,25 @@ impl ApplicationWindow {
     async fn set_current_image_as_wallpaper(&self) {
         if let Err(error) = self.imp().set_current_image_as_wallpaper().await {
             glib::warn!("Failed to set current image as wallaper: {error}");
-            let description = dpgettext2(
-                None,
-                "error-notification.description",
-                "An I/O error occurred while setting the wallpaper, with the following message: %1. If the issue persists please report the problem.",
-            );
             let error = ErrorNotification::builder()
                 .title(dpgettext2(
                     None,
                     "error-notification.title",
                     "Failed to set wallpaper",
                 ))
-                .description(description.replace("%1", &error.to_string()))
+                .description(
+                    formatx!(
+                        dpgettext2(
+                            None,
+                            "error-notification.description",
+                            "An I/O error occurred while setting the \
+wallpaper, with the following message: {error}. If the issue persists please \
+report the problem.",
+                        ),
+                        error = error
+                    )
+                    .unwrap(),
+                )
                 .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
                 .build();
             self.imp().show_error(&error);
@@ -124,18 +136,25 @@ impl ApplicationWindow {
                     return;
                 }
                 glib::warn!("Failed to open current image: {error}");
-                let description = dpgettext2(
-                    None,
-                    "error-notification.description",
-                    "An I/O error occurred while opening the current image, with the following message: %1. If the issue persists please report the problem.",
-                );
                 let error = ErrorNotification::builder()
                     .title(dpgettext2(
                         None,
                         "error-notification.title",
                         "Failed to open image",
                     ))
-                    .description(description.replace("%1", &error.to_string()))
+                    .description(
+                        formatx!(
+                            dpgettext2(
+                                None,
+                                "error-notification.description",
+                                "An I/O error occurred while opening the \
+current image, with the following message: {error}. If the issue persists \
+please report the problem.",
+                            ),
+                            error = error
+                        )
+                        .unwrap(),
+                    )
                     .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
                     .build();
                 self.imp().show_error(&error);
@@ -148,7 +167,7 @@ impl ApplicationWindow {
             Ok(None) => {}
             Ok(Some(name)) => {
                 let toast = adw::Toast::builder()
-                    .title(dgettext(None, "Saved image %1").replace("%1", &name))
+                    .title(formatx!(dgettext(None, "Saved image {name}"), name = name).unwrap())
                     .priority(adw::ToastPriority::Normal)
                     .timeout(5)
                     .build();
@@ -163,18 +182,25 @@ impl ApplicationWindow {
                     return;
                 }
                 glib::warn!("Failed to save current image: {error}");
-                let description = dpgettext2(
-                    None,
-                    "error-notification.description",
-                    "An I/O error occurred while saving the current image, with the following message: %1. If the issue persists please report the problem.",
-                );
                 let error = ErrorNotification::builder()
                     .title(dpgettext2(
                         None,
                         "error-notification.title",
                         "Failed to save image",
                     ))
-                    .description(description.replace("%1", &error.to_string()))
+                    .description(
+                        formatx!(
+                            dpgettext2(
+                                None,
+                                "error-notification.description",
+                                "An I/O error occurred while saving the current \
+image, with the following message: {error}. If the issue persists please \
+report the problem.",
+                            ),
+                            error = error
+                        )
+                        .unwrap(),
+                    )
                     .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
                     .build();
                 self.imp().show_error(&error);

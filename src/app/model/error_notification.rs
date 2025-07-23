@@ -25,6 +25,7 @@ glib::wrapper! {
 }
 
 mod errors {
+    use formatx::formatx;
     use glib::dpgettext2;
     use glib::translate::IntoGlib;
     use gtk::gio;
@@ -40,14 +41,19 @@ mod errors {
             "error-notification.title",
             "Picture Of The Day needs an API key",
         );
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "Please configure a valid API key for %1 in the application preferences. The current key appears to be invalid.",
-        );
+        let description = formatx!(
+            dpgettext2(
+                None,
+                "error-notification.description",
+                "Please configure a valid API key for {source_name} in the \
+application preferences. The current key appears to be invalid.",
+            ),
+            source_name = source.i18n_name()
+        )
+        .unwrap();
         ErrorNotification::builder()
             .title(title)
-            .description(description.replace("%1", &source.i18n_name()))
+            .description(description)
             .actions(ErrorNotificationActions::OPEN_PREFERENCES)
             .needs_attention()
             .build()
@@ -59,40 +65,56 @@ mod errors {
             "error-notification.title",
             "Picture Of The Day was rate-limited",
         );
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "The %1 server is rate-limited and does currently not allow you to fetch an image. Try again later, or try a different source.",
-        );
+        let description = formatx!(
+            dpgettext2(
+                None,
+                "error-notification.description",
+                "The {source_name} server is rate-limited and does currently not \
+allow you to fetch an image. Try again later, or try a different source.",
+            ),
+            source_name = source.i18n_name()
+        )
+        .unwrap();
         ErrorNotification::builder()
             .title(title)
-            .description(description.replace("%1", &source.i18n_name()))
+            .description(description)
             .build()
     }
 
     pub fn no_image(source: Source) -> ErrorNotification {
         let title = dpgettext2(None, "error-notification.title", "No image today");
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "Currently, %1 does not provide an image for today. Try again later, or try a different source.",
-        );
+        let description = formatx!(
+            dpgettext2(
+                None,
+                "error-notification.description",
+                "Currently, {source_name} does not provide an image for today. \
+Try again later, or try a different source.",
+            ),
+            source_name = source.i18n_name()
+        )
+        .unwrap();
         ErrorNotification::builder()
             .title(title)
-            .description(description.replace("%1", &source.i18n_name()))
+            .description(description)
             .build()
     }
 
     pub fn not_an_image(source: Source) -> ErrorNotification {
         let title = dpgettext2(None, "error-notification.title", "No image today");
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "Today, %1 provides a video or another type of media which this application does not support. Try again tomorrow, or try a different source.",
-        );
+        let description = formatx!(
+            dpgettext2(
+                None,
+                "error-notification.description",
+                "Today, {source_name} provides a video or another type of media \
+which this application does not support. Try again tomorrow, or try a \
+different source.",
+            ),
+            source_name = source.i18n_name()
+        )
+        .unwrap();
         ErrorNotification::builder()
             .title(title)
-            .description(description.replace("%1", &source.i18n_name()))
+            .description(description)
             .actions(ErrorNotificationActions::OPEN_SOURCE_URL)
             // Needs attention because the user can navigate to the source site and e.g. watch the video
             .needs_attention()
@@ -101,32 +123,41 @@ mod errors {
 
     pub fn http_status(source: Source, status: soup::Status) -> ErrorNotification {
         let title = dpgettext2(None, "error-notification.title", "Fetching images failed");
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "The %s server replied with HTTP status %2. The server may have issues currently. Try again later, or try a different source. If the issue persists please report the problem.",
-        );
+        let description = formatx!(
+            dpgettext2(
+                None,
+                "error-notification.description",
+                "The {source_name} server replied with HTTP status {http_status}. \
+The server may have issues currently. Try again later, or try a different \
+source. If the issue persists please report the problem.",
+            ),
+            source_name = source.i18n_name(),
+            http_status = status.into_glib()
+        )
+        .unwrap();
         ErrorNotification::builder()
             .title(title)
-            .description(
-                description
-                    .replace("%1", &source.i18n_name())
-                    .replace("%2", &status.into_glib().to_string()),
-            )
+            .description(description)
             .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
             .build()
     }
 
     pub fn invalid_data(source: Source) -> ErrorNotification {
         let title = dpgettext2(None, "error-notification.title", "Fetching images failed");
-        let description = dpgettext2(
-            None,
-            "error-notification.description",
-            "The %1 server responded with invalid data. The server may have issues currently. Try again later, or try a different source. If the issue persists please report the problem.",
-        );
+        let description = formatx!(
+            dpgettext2(
+                None,
+                "error-notification.description",
+                "The {source_name} server responded with invalid data. The server \
+may have issues currently. Try again later, or try a different source. If the \
+issue persists please report the problem.",
+            ),
+            source_name = source.i18n_name()
+        )
+        .unwrap();
         ErrorNotification::builder()
             .title(title)
-            .description(description.replace("%1", &source.i18n_name()))
+            .description(description)
             .actions(ErrorNotificationActions::OPEN_ABOUT_DIALOG)
             .build()
     }
@@ -139,28 +170,39 @@ mod errors {
                 "error-notification.title",
                 "Limited network connectivity",
             );
-            let description = dpgettext2(
-                None,
-                "error-notification.description",
-                "An I/O error occurred while fetching today's image from %1, with the following message: %2. Your system appears to have only limited network connectivity. Try to connect your system to the internet.",
-            );
+            let description = formatx!(
+                dpgettext2(
+                    None,
+                    "error-notification.description",
+                    "An I/O error occurred while fetching today's image from \
+{source_name}, with the following message: {error}. Your system appears to \
+have only limited network connectivity. Try to connect your system to the \
+internet.",
+                ),
+                source_name = source.i18n_name(),
+                error = error
+            )
+            .unwrap();
             (title, description)
         } else {
             let title = dpgettext2(None, "error-notification.title", "Fetching images failed");
-            let description = dpgettext2(
-                None,
-                "error-notification.description",
-                "An I/O error occurred while fetching today's image from %1, with the following message: %2. Try again later, or try a different source. If the issue persists please report the problem.",
-            );
+            let description = formatx!(
+                dpgettext2(
+                    None,
+                    "error-notification.description",
+                    "An I/O error occurred while fetching today's image from \
+{source_name}, with the following message: {error}. Try again later, or try a \
+different source. If the issue persists please report the problem.",
+                ),
+                source_name = source.i18n_name(),
+                error = error
+            )
+            .unwrap();
             (title, description)
         };
         ErrorNotification::builder()
             .title(title)
-            .description(
-                description
-                    .replace("%1", &source.i18n_name())
-                    .replace("%2", &error.to_string()),
-            )
+            .description(description)
             .build()
     }
 }
