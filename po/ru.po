@@ -437,7 +437,7 @@ msgstr "Получить API-ключ"
 msgid "Enabled collections"
 msgstr "Используемые коллекции"
 
-#: src/app.rs:126
+#: src/app.rs:128
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "Переводы"
@@ -445,48 +445,48 @@ msgstr "Переводы"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:135
+#: src/app.rs:137
 msgid "translator-credits"
 msgstr "FAlexei"
 
-#: src/app.rs:140
+#: src/app.rs:142
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "Помощь и вдохновение"
 
-#: src/app.rs:153
+#: src/app.rs:155
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Полезные сервисы"
 
 #. Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
-#: src/app.rs:165
+#: src/app.rs:167
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
 msgstr ""
 
 #. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
-#: src/app.rs:170
+#: src/app.rs:172
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
 msgstr ""
 
-#: src/app.rs:188
+#: src/app.rs:190
 msgctxt "notification.title"
 msgid "Picture Of The Day updated"
 msgstr "Приложение «Изображение дня» обновилось"
 
-#: src/app.rs:193
+#: src/app.rs:195
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
 msgstr "Чтобы использовать новую версию, перезапустите приложение."
 
-#: src/app.rs:205
+#: src/app.rs:207
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr "Выполнить перезапуск после обновления?"
 
-#: src/app.rs:210
+#: src/app.rs:212
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture Of The Day was updated, and needs to be restarted.\n"
@@ -500,269 +500,339 @@ msgstr ""
 "Автоматический перезапуск пока не поддерживается, но вы можете в завершить "
 "приложение и запустить его снова вручную."
 
-#: src/app.rs:219
+#: src/app.rs:221
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/app.rs:221
+#: src/app.rs:223
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr "Завершить"
 
-#: src/app.rs:287
+#: src/app.rs:289
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: src/app.rs:292
+#: src/app.rs:294
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Открыть параметры"
 
-#: src/app.rs:296
+#: src/app.rs:298
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Открыть URL-адрес"
 
-#: src/app.rs:585
+#: src/app.rs:592
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Открыть параметры"
 
-#: src/app.rs:596
+#: src/app.rs:603
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "Показать изображение данной даты"
 
-#: src/app.rs:601
+#: src/app.rs:608
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "ГГГГ-ММ-ДД"
 
-#: src/app.rs:806
+#: src/app.rs:802
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Автоматическое получение и установка обоев в фоновом режиме"
 
-#: src/app/model/error_notification.rs:41
+#: src/app/model/error_notification.rs:42
 msgctxt "error-notification.title"
 msgid "Picture Of The Day needs an API key"
 msgstr "Приложение «Изображение дня» нуждается в API-ключе"
 
-#: src/app/model/error_notification.rs:46
+#: src/app/model/error_notification.rs:48
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "Please configure a valid API key for %1 in the application preferences. "
+#| "The current key appears to be invalid."
 msgctxt "error-notification.description"
 msgid ""
-"Please configure a valid API key for %1 in the application preferences. The "
-"current key appears to be invalid."
+"Please configure a valid API key for {source_name} in the application "
+"preferences. The current key appears to be invalid."
 msgstr ""
 "Пожалуйста, настройте действительный ключ API для %1 в параметрах "
 "приложения. Текущий ключ, по-видимому, недействителен."
 
-#: src/app/model/error_notification.rs:60
+#: src/app/model/error_notification.rs:66
 msgctxt "error-notification.title"
 msgid "Picture Of The Day was rate-limited"
 msgstr "Приложение «Изображение дня» было ограничено по скорости"
 
-#: src/app/model/error_notification.rs:65
+#: src/app/model/error_notification.rs:72
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "The %1 server is rate-limited and does currently not allow you to fetch "
+#| "an image. Try again later, or try a different source."
 msgctxt "error-notification.description"
 msgid ""
-"The %1 server is rate-limited and does currently not allow you to fetch an "
-"image. Try again later, or try a different source."
+"The {source_name} server is rate-limited and does currently not allow you to "
+"fetch an image. Try again later, or try a different source."
 msgstr ""
 "Сервер %1 ограничен по скорости и в данный момент не позволяет вам получить "
 "изображение. Повторите попытку позже или попробуйте другой источник."
 
-#: src/app/model/error_notification.rs:74
-#: src/app/model/error_notification.rs:87
+#: src/app/model/error_notification.rs:85
+#: src/app/model/error_notification.rs:103
 msgctxt "error-notification.title"
 msgid "No image today"
 msgstr "Сегодня нет изображения"
 
-#: src/app/model/error_notification.rs:78
+#: src/app/model/error_notification.rs:90
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "Currently, %1 does not provide an image for today. Try again later, or "
+#| "try a different source."
 msgctxt "error-notification.description"
 msgid ""
-"Currently, %1 does not provide an image for today. Try again later, or try a "
-"different source."
+"Currently, {source_name} does not provide an image for today. Try again "
+"later, or try a different source."
 msgstr ""
 "В настоящее время %1 не предоставляет изображение на сегодня. Попробуйте "
 "позже или воспользуйтесь другим источником."
 
-#: src/app/model/error_notification.rs:91
+#: src/app/model/error_notification.rs:108
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "Today, %1 provides a video or another type of media which this "
+#| "application does not support. Try again tomorrow, or try a different "
+#| "source."
 msgctxt "error-notification.description"
 msgid ""
-"Today, %1 provides a video or another type of media which this application "
-"does not support. Try again tomorrow, or try a different source."
+"Today, {source_name} provides a video or another type of media which this "
+"application does not support. Try again tomorrow, or try a different source."
 msgstr ""
 "Сегодня %1 предоставляет видео или другой тип медиафайла, который это "
 "приложение не поддерживает. Повторите попытку завтра или попробуйте другой "
 "источник."
 
-#: src/app/model/error_notification.rs:103
-#: src/app/model/error_notification.rs:121
-#: src/app/model/error_notification.rs:149
+#: src/app/model/error_notification.rs:125
+#: src/app/model/error_notification.rs:146
+#: src/app/model/error_notification.rs:188
 msgctxt "error-notification.title"
 msgid "Fetching images failed"
 msgstr "Не удалось получить изображения"
 
-#: src/app/model/error_notification.rs:107
+#: src/app/model/error_notification.rs:130
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "The %s server replied with HTTP status %2. The server may have issues "
+#| "currently. Try again later, or try a different source. If the issue "
+#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
-"The %s server replied with HTTP status %2. The server may have issues "
-"currently. Try again later, or try a different source. If the issue persists "
-"please report the problem."
+"The {source_name} server replied with HTTP status {http_status}. The server "
+"may have issues currently. Try again later, or try a different source. If "
+"the issue persists please report the problem."
 msgstr ""
 "Сервер %s ответил со статусом HTTP %2. Возможно, в данный момент на сервере "
 "возникли проблемы. Повторите попытку позже или попробуйте использовать "
 "другой источник. Если проблема сохраняется, пожалуйста, сообщите о ней."
 
-#: src/app/model/error_notification.rs:125
+#: src/app/model/error_notification.rs:151
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "The %1 server responded with invalid data. The server may have issues "
+#| "currently. Try again later, or try a different source. If the issue "
+#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
-"The %1 server responded with invalid data. The server may have issues "
-"currently. Try again later, or try a different source. If the issue persists "
-"please report the problem."
+"The {source_name} server responded with invalid data. The server may have "
+"issues currently. Try again later, or try a different source. If the issue "
+"persists please report the problem."
 msgstr ""
 "Сервер %1 ответил неверными данными. Возможно, в данный момент на сервере "
 "возникли проблемы. Повторите попытку позже или попробуйте использовать "
 "другой источник. Если проблема сохраняется, сообщите о ней."
 
-#: src/app/model/error_notification.rs:140
+#: src/app/model/error_notification.rs:171
 msgctxt "error-notification.title"
 msgid "Limited network connectivity"
 msgstr "Доступ к сети ограничен"
 
-#: src/app/model/error_notification.rs:145
+#: src/app/model/error_notification.rs:177
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while fetching today's image from %1, with the "
+#| "following message: %2. Your system appears to have only limited network "
+#| "connectivity. Try to connect your system to the internet."
 msgctxt "error-notification.description"
 msgid ""
-"An I/O error occurred while fetching today's image from %1, with the "
-"following message: %2. Your system appears to have only limited network "
-"connectivity. Try to connect your system to the internet."
+"An I/O error occurred while fetching today's image from {source_name}, with "
+"the following message: {error}. Your system appears to have only limited "
+"network connectivity. Try to connect your system to the internet."
 msgstr ""
 "При получении сегодняшнего изображения из %1 произошла ошибка ввода-вывода "
 "со следующим сообщением: %2. Похоже, что ваша система имеет ограниченное "
 "сетевое подключение. Попробуйте подключить систему к Интернету."
 
-#: src/app/model/error_notification.rs:153
+#: src/app/model/error_notification.rs:193
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while fetching today's image from %1, with the "
+#| "following message: %2. Try again later, or try a different source. If the "
+#| "issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
-"An I/O error occurred while fetching today's image from %1, with the "
-"following message: %2. Try again later, or try a different source. If the "
-"issue persists please report the problem."
+"An I/O error occurred while fetching today's image from {source_name}, with "
+"the following message: {error}. Try again later, or try a different source. "
+"If the issue persists please report the problem."
 msgstr ""
 "При получении сегодняшнего изображения из %1 произошла ошибка ввода-вывода "
 "со следующим сообщением: %2. Повторите попытку позже или попробуйте другой "
 "источник. Если проблема сохраняется, сообщите о ней."
 
-#: src/app/widgets/application_window.rs:73
-msgctxt "error-notification.description"
-msgid ""
-"An I/O error occurred while opening %1, with the following message: %2. If "
-"the issue persists please report the problem."
-msgstr ""
-"При открытии %1 произошла ошибка ввода-вывода со следующим сообщением: %2. "
-"Если проблема сохраняется, сообщите о ней."
-
-#: src/app/widgets/application_window.rs:79
+#: src/app/widgets/application_window.rs:74
 msgctxt "error-notification.title"
 msgid "Failed to open source URL"
 msgstr "Не удалось открыть URL-адрес источника"
 
-#: src/app/widgets/application_window.rs:98
+#: src/app/widgets/application_window.rs:81
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while opening %1, with the following message: %2. "
+#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
-"An I/O error occurred while setting the wallpaper, with the following "
-"message: %1. If the issue persists please report the problem."
+"An I/O error occurred while opening {url}, with the following message: "
+"{error}. If the issue persists please report the problem."
 msgstr ""
-"При установке обоев произошла ошибка ввода-вывода со следующим сообщением: "
-"%1. Если проблема сохраняется, сообщите о ней."
+"При открытии %1 произошла ошибка ввода-вывода со следующим сообщением: %2. "
+"Если проблема сохраняется, сообщите о ней."
 
-#: src/app/widgets/application_window.rs:104
+#: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
 msgid "Failed to set wallpaper"
 msgstr "Не удалось установить обои"
 
-#: src/app/widgets/application_window.rs:131
+#: src/app/widgets/application_window.rs:110
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while setting the wallpaper, with the following "
+#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
-"An I/O error occurred while opening the current image, with the following "
-"message: %1. If the issue persists please report the problem."
+"An I/O error occurred while setting the wallpaper, with the following "
+"message: {error}. If the issue persists please report the problem."
 msgstr ""
-"При открытии текущего изображения произошла ошибка ввода-вывода со следующим "
-"сообщением: %1. Если проблема сохраняется, сообщите о ней."
+"При установке обоев произошла ошибка ввода-вывода со следующим сообщением: "
+"%1. Если проблема сохраняется, сообщите о ней."
 
-#: src/app/widgets/application_window.rs:137
+#: src/app/widgets/application_window.rs:143
 msgctxt "error-notification.title"
 msgid "Failed to open image"
 msgstr "Не удалось открыть изображение"
 
-#: src/app/widgets/application_window.rs:152
-msgid "Saved image %1"
-msgstr "Сохраненное изображение: %1"
-
-#: src/app/widgets/application_window.rs:170
+#: src/app/widgets/application_window.rs:150
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while opening the current image, with the following "
+#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
-"An I/O error occurred while saving the current image, with the following "
-"message: %1. If the issue persists please report the problem."
+"An I/O error occurred while opening the current image, with the following "
+"message: {error}. If the issue persists please report the problem."
 msgstr ""
-"При сохранении текущего изображения произошла ошибка ввода-вывода со "
-"следующим сообщением: %1. Если проблема сохраняется, сообщите о ней."
+"При открытии текущего изображения произошла ошибка ввода-вывода со следующим "
+"сообщением: %1. Если проблема сохраняется, сообщите о ней."
 
-#: src/app/widgets/application_window.rs:176
+#: src/app/widgets/application_window.rs:170
+#, fuzzy
+#| msgid "Saved image %1"
+msgid "Saved image {name}"
+msgstr "Сохраненное изображение: %1"
+
+#: src/app/widgets/application_window.rs:189
 msgctxt "error-notification.title"
 msgid "Failed to save image"
 msgstr "Не удалось сохранить изображение"
 
-#: src/app/widgets/application_window.rs:193
+#: src/app/widgets/application_window.rs:196
+#, fuzzy
+#| msgctxt "error-notification.description"
+#| msgid ""
+#| "An I/O error occurred while saving the current image, with the following "
+#| "message: %1. If the issue persists please report the problem."
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while saving the current image, with the following "
+"message: {error}. If the issue persists please report the problem."
+msgstr ""
+"При сохранении текущего изображения произошла ошибка ввода-вывода со "
+"следующим сообщением: %1. Если проблема сохраняется, сообщите о ней."
+
+#: src/app/widgets/application_window.rs:218
 msgctxt "alert.response"
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/app/widgets/application_window.rs:200
+#: src/app/widgets/application_window.rs:225
 msgctxt "alert.response"
 msgid "Contact information"
 msgstr "Контактная информация"
 
-#: src/app/widgets/application_window.rs:204
+#: src/app/widgets/application_window.rs:229
 msgctxt "alert.response"
 msgid "Open preferences"
 msgstr "Открыть параметры"
 
-#: src/app/widgets/application_window.rs:208
+#: src/app/widgets/application_window.rs:233
 msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Открыть URL-адрес"
 
-#: src/app/widgets/application_window.rs:366
+#: src/app/widgets/application_window.rs:392
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Подробнее"
 
-#: src/app/widgets/application_window.rs:471
+#: src/app/widgets/application_window.rs:507
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr "Сохранить изображение"
 
-#: src/app/widgets/preferences_dialog.rs:71
-msgid "%1/%2 collection enabled"
-msgid_plural "%1/%2 collections enabled"
+#: src/app/widgets/preferences_dialog.rs:73
+#, fuzzy
+#| msgid "%1/%2 collection enabled"
+#| msgid_plural "%1/%2 collections enabled"
+msgid "{n}/{total} collection enabled"
+msgid_plural "{n}/{total} collections enabled"
 msgstr[0] "%1 из %2 коллекций используется"
 msgstr[1] "%1 из %2 коллекций используются"
 msgstr[2] "%1 из %2 коллекций используются"
 
 #. Translators: This is Pango markup, be sure to escape appropriately
-#: src/config.rs:61
+#: src/config.rs:71
 msgctxt "about-dialog.license-text"
 msgid ""
-"Copyright Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
+"Copyright {copyright_name} &lt;{copyright_mail}&gt;\n"
 "\n"
 "Licensed under the terms of the EUPL 1.2. You can find official translations "
-"of the license text at <a href=\"%1\">%1</a>.\n"
+"of the license text at <a href=\"{translations}\">{translations}</a>.\n"
 "\n"
 "The full English text follows.\n"
 "\n"
-"%2"
+"{license_text}"
 msgstr ""
 
 #: src/images/source.rs:58
@@ -805,30 +875,36 @@ msgctxt "source.eoiod.copyright"
 msgid "NASA Earth Observatory"
 msgstr "Обсерватория Земли НАСА"
 
-#: src/images/sources/stalenhag.rs:94
+#: src/images/sources/stalenhag.rs:96
 msgctxt "source.stalenhag.copyright"
 msgid "All rights reserved."
 msgstr "Все права защищены."
 
-#: src/images/sources/stalenhag.rs:95
-#, c-format
+#: src/images/sources/stalenhag.rs:98
+#, fuzzy
+#| msgctxt "source.stalenhag.description"
+#| msgid "Collection: %s"
 msgctxt "source.stalenhag.description"
-msgid "Collection: %s"
+msgid "Collection: {}"
 msgstr "Коллекция: %s"
 
-#: src/images/sources/wikimedia.rs:65
-#, c-format
+#: src/images/sources/wikimedia.rs:67
+#, fuzzy
+#| msgctxt "source.wikimedia.copyright"
+#| msgid "%artist (%credit, %license)"
 msgctxt "source.wikimedia.copyright"
-msgid "%artist (%credit, %license)"
+msgid "{artist} ({credit}, {license})"
 msgstr "%artist (%credit, %license)"
 
-#: src/images/sources/wikimedia.rs:71
-#, c-format
+#: src/images/sources/wikimedia.rs:75
+#, fuzzy
+#| msgctxt "source.wikimedia.copyright"
+#| msgid "%artist (%license)"
 msgctxt "source.wikimedia.copyright"
-msgid "%artist (%license)"
+msgid "{artist} ({license})"
 msgstr "%artist (%license)"
 
-#: src/images/sources/wikimedia.rs:80
+#: src/images/sources/wikimedia.rs:85
 msgctxt "source.wikimedia.copyright"
 msgid "Unknown, all rights reserved"
 msgstr "Неизвестен, все права защищены"
