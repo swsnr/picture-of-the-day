@@ -209,8 +209,8 @@ impl Application {
             Some(&dpgettext2(
                 None,
                 "alert-dialog.body",
-                "\
-Picture Of The Day was updated, and needs to be restarted.\n\n\
+                "Picture Of The Day was updated, and needs to be restarted.
+
 Automatic restarting is not yet supported, but you can quit the app and start \
 it again manually.",
             )),
