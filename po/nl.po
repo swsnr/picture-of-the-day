@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-06-09 19:58+0000\n"
+"PO-Revision-Date: 2025-07-24 19:09+0000\n"
 "Last-Translator: Vistaus <vistaus@noreply.codeberg.org>\n"
-"Language-Team: Dutch <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
+"Language-Team: Dutch <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.4\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
@@ -551,18 +551,13 @@ msgid "Picture Of The Day needs an API key"
 msgstr "Api-sleutel vereist"
 
 #: src/app/model/error_notification.rs:48
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Please configure a valid API key for %1 in the application preferences. "
-#| "The current key appears to be invalid."
 msgctxt "error-notification.description"
 msgid ""
 "Please configure a valid API key for {source_name} in the application "
 "preferences. The current key appears to be invalid."
 msgstr ""
-"Stel de api-sleutel van %1 in in de voorkeuren. De huidige sleutel lijkt "
-"onbruikbaar te zijn."
+"Stel de api-sleutel van {source_name} in in de voorkeuren. De huidige "
+"sleutel lijkt onbruikbaar te zijn."
 
 #: src/app/model/error_notification.rs:66
 msgctxt "error-notification.title"
@@ -570,18 +565,13 @@ msgid "Picture Of The Day was rate-limited"
 msgstr "Gebruiksbeperking"
 
 #: src/app/model/error_notification.rs:72
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %1 server is rate-limited and does currently not allow you to fetch "
-#| "an image. Try again later, or try a different source."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server is rate-limited and does currently not allow you to "
 "fetch an image. Try again later, or try a different source."
 msgstr ""
-"De server van %1 heeft u een beperking opgelegd - hierdoor kunt u geen "
-"afbeeldingen ophalen. Probeer het later opnieuw of maak gebruik van een "
+"De server van {source_name} heeft u een beperking opgelegd - hierdoor kunt u "
+"geen afbeeldingen ophalen. Probeer het later opnieuw of maak gebruik van een "
 "andere bron."
 
 #: src/app/model/error_notification.rs:85
@@ -591,34 +581,23 @@ msgid "No image today"
 msgstr "Geen afbeelding beschikbaar"
 
 #: src/app/model/error_notification.rs:90
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Currently, %1 does not provide an image for today. Try again later, or "
-#| "try a different source."
 msgctxt "error-notification.description"
 msgid ""
 "Currently, {source_name} does not provide an image for today. Try again "
 "later, or try a different source."
 msgstr ""
-"%1 heeft vandaag geen afbeelding beschikbaar gesteld. Probeer het morgen "
-"opnieuw of maak gebruik van een andere bron."
+"{source_name} heeft vandaag geen afbeelding beschikbaar gesteld. Probeer het "
+"morgen opnieuw of maak gebruik van een andere bron."
 
 #: src/app/model/error_notification.rs:108
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Today, %1 provides a video or another type of media which this "
-#| "application does not support. Try again tomorrow, or try a different "
-#| "source."
 msgctxt "error-notification.description"
 msgid ""
 "Today, {source_name} provides a video or another type of media which this "
 "application does not support. Try again tomorrow, or try a different source."
 msgstr ""
-"%1 heeft vandaag een video of ander mediabestand beschikbaar gesteld. Deze "
-"toepassing heeft hier geen ondersteuning voor. Probeer het morgen opnieuw of "
-"maak gebruik van een andere bron."
+"{source_name} heeft vandaag een video of ander mediabestand beschikbaar "
+"gesteld. Deze toepassing heeft hier geen ondersteuning voor. Probeer het "
+"morgen opnieuw of maak gebruik van een andere bron."
 
 #: src/app/model/error_notification.rs:125
 #: src/app/model/error_notification.rs:146
@@ -628,40 +607,28 @@ msgid "Fetching images failed"
 msgstr "Ophalen mislukt"
 
 #: src/app/model/error_notification.rs:130
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %s server replied with HTTP status %2. The server may have issues "
-#| "currently. Try again later, or try a different source. If the issue "
-#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server replied with HTTP status {http_status}. The server "
 "may have issues currently. Try again later, or try a different source. If "
 "the issue persists please report the problem."
 msgstr ""
-"De server van %s gaf de volgende http-statusmelding: “%2”. Mogelijk zijn er "
-"problemen met de server. Probeer het later opnieuw of maak gebruik van een "
-"andere bron. Als het probleem zich blijft voordoen, maak hier dan melding "
-"van."
+"De server van {source_name} gaf de volgende http-statusmelding: "
+"“{http_status}”. Mogelijk zijn er problemen met de server. Probeer het later "
+"opnieuw of maak gebruik van een andere bron. Als het probleem zich blijft "
+"voordoen, maak hier dan melding van."
 
 #: src/app/model/error_notification.rs:151
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %1 server responded with invalid data. The server may have issues "
-#| "currently. Try again later, or try a different source. If the issue "
-#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server responded with invalid data. The server may have "
 "issues currently. Try again later, or try a different source. If the issue "
 "persists please report the problem."
 msgstr ""
-"De server van %s leverde onbruikbare gegevens aan. Mogelijk zijn er "
-"problemen met de server. Probeer het later opnieuw of maak gebruik van een "
-"andere bron. Als het probleem zich blijft voordoen, maak hier dan melding "
-"van."
+"De server van {source_name} leverde onbruikbare gegevens aan. Mogelijk zijn "
+"er problemen met de server. Probeer het later opnieuw of maak gebruik van "
+"een andere bron. Als het probleem zich blijft voordoen, maak hier dan "
+"melding van."
 
 #: src/app/model/error_notification.rs:171
 msgctxt "error-notification.title"
@@ -669,39 +636,27 @@ msgid "Limited network connectivity"
 msgstr "Beperkte internetverbinding"
 
 #: src/app/model/error_notification.rs:177
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2. Your system appears to have only limited network "
-#| "connectivity. Try to connect your system to the internet."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from {source_name}, with "
 "the following message: {error}. Your system appears to have only limited "
 "network connectivity. Try to connect your system to the internet."
 msgstr ""
-"Er is een i/o-fout opgetreden tijdens het ophalen van de afbeelding van %1. "
-"De precieze foutmelding is “%2”. Maak verbinding met het internet en probeer "
-"het opnieuw."
+"Er is een i/o-fout opgetreden tijdens het ophalen van de afbeelding van "
+"{source_name}. De precieze foutmelding is “{error}”. Maak verbinding met het "
+"internet en probeer het opnieuw."
 
 #: src/app/model/error_notification.rs:193
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2. Try again later, or try a different source. If the "
-#| "issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from {source_name}, with "
 "the following message: {error}. Try again later, or try a different source. "
 "If the issue persists please report the problem."
 msgstr ""
-"Er is een i/o-fout opgetreden tijdens het ophalen van de afbeelding van %1. "
-"De precieze foutmelding is “%2”. Probeer het later opnieuw of maak gebruik "
-"van een andere bron. Als het probleem zich blijft voordoen, maak hier dan "
-"melding van."
+"Er is een i/o-fout opgetreden tijdens het ophalen van de afbeelding van "
+"{source_name}. De precieze foutmelding is “error”. Probeer het later opnieuw "
+"of maak gebruik van een andere bron. Als het probleem zich blijft voordoen, "
+"maak hier dan melding van."
 
 #: src/app/widgets/application_window.rs:74
 msgctxt "error-notification.title"
@@ -709,19 +664,14 @@ msgid "Failed to open source URL"
 msgstr "Openen van bron-url mislukt"
 
 #: src/app/widgets/application_window.rs:81
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening {url}, with the following message: "
 "{error}. If the issue persists please report the problem."
 msgstr ""
-"Er is een i/o-fout opgetreden tijdens het ophalen van de afbeelding van %1. "
-"De precieze foutmelding is “%2”. Als het probleem zich blijft voortdoen, "
-"maak hier dan melding van."
+"Er is een i/o-fout opgetreden tijdens het ophalen van de afbeelding van {url}"
+". De precieze foutmelding is “{error}”. Als het probleem zich blijft "
+"voortdoen, maak hier dan melding van."
 
 #: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
@@ -729,19 +679,14 @@ msgid "Failed to set wallpaper"
 msgstr "Instellen mislukt"
 
 #: src/app/widgets/application_window.rs:110
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while setting the wallpaper, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "Er is een i/o-fout opgetreden tijdens het instellen van de afbeelding. De "
-"precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, maak "
-"hier dan melding van."
+"precieze foutmelding is “{error}”. Als het probleem zich blijft voortdoen, "
+"maak hier dan melding van."
 
 #: src/app/widgets/application_window.rs:143
 msgctxt "error-notification.title"
@@ -749,25 +694,18 @@ msgid "Failed to open image"
 msgstr "Openen van afbeelding mislukt"
 
 #: src/app/widgets/application_window.rs:150
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "Er is een i/o-fout opgetreden tijdens het ophalen van de huidige afbeelding. "
-"De precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, "
-"maak hier dan melding van."
+"De precieze foutmelding is “{error}”. Als het probleem zich blijft "
+"voortdoen, maak hier dan melding van."
 
 #: src/app/widgets/application_window.rs:170
-#, fuzzy
-#| msgid "Saved image %1"
 msgid "Saved image {name}"
-msgstr "‘%1’ is opgeslagen"
+msgstr "‘{name}’ is opgeslagen"
 
 #: src/app/widgets/application_window.rs:189
 msgctxt "error-notification.title"
@@ -775,19 +713,14 @@ msgid "Failed to save image"
 msgstr "Opslaan van afbeelding mislukt"
 
 #: src/app/widgets/application_window.rs:196
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while saving the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "Er is een i/o-fout opgetreden tijdens het opslaan van de huidige afbeelding. "
-"De precieze foutmelding is “%1”. Als het probleem zich blijft voortdoen, "
-"maak hier dan melding van."
+"De precieze foutmelding is “{error}”. Als het probleem zich blijft "
+"voortdoen, maak hier dan melding van."
 
 #: src/app/widgets/application_window.rs:218
 msgctxt "alert.response"
@@ -820,27 +753,13 @@ msgid "Save image"
 msgstr "Afbeelding opslaan"
 
 #: src/app/widgets/preferences_dialog.rs:73
-#, fuzzy
-#| msgid "%1/%2 collection enabled"
-#| msgid_plural "%1/%2 collections enabled"
 msgid "{n}/{total} collection enabled"
 msgid_plural "{n}/{total} collections enabled"
-msgstr[0] "%1/%2 collectie ingeschakeld"
-msgstr[1] "%1/%2 collecties ingeschakeld"
+msgstr[0] "{n}/{total} collectie ingeschakeld"
+msgstr[1] "{n}/{total} collecties ingeschakeld"
 
 #. Translators: This is Pango markup, be sure to escape appropriately
 #: src/config.rs:71
-#, fuzzy
-#| msgctxt "about-dialog.license-text"
-#| msgid ""
-#| "Copyright Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
-#| "\n"
-#| "Licensed under the terms of the EUPL 1.2. You can find official "
-#| "translations of the license text at <a href=\"%1\">%1</a>.\n"
-#| "\n"
-#| "The full English text follows.\n"
-#| "\n"
-#| "%2"
 msgctxt "about-dialog.license-text"
 msgid ""
 "Copyright {copyright_name} &lt;{copyright_mail}&gt;\n"
@@ -852,15 +771,15 @@ msgid ""
 "\n"
 "{license_text}"
 msgstr ""
-"Auteursrecht Sebastian Wiesner &lt;sebastian@swsnr.de&gt;\n"
+"Auteursrecht {copyright_name} &lt;{copyright_mail}&gt;\n"
 "\n"
 "Uitgebracht onder de voorwaarden van de EUPL 1.2-licentie. Officiële "
-"vertalingen van de licentievoorwaarden zijn te vinden op <a href=\"%1\">%1</"
-"a>.\n"
+"vertalingen van de licentievoorwaarden zijn te vinden op <a href="
+"\"{translations}\">{translations}</a>.\n"
 "\n"
 "Hieronder vindt u de Engelstalige tekst.\n"
 "\n"
-"%2"
+"{license_text}"
 
 #: src/images/source.rs:58
 msgctxt "source name"
@@ -908,28 +827,19 @@ msgid "All rights reserved."
 msgstr "Alle rechten voorbehouden."
 
 #: src/images/sources/stalenhag.rs:98
-#, fuzzy
-#| msgctxt "source.stalenhag.description"
-#| msgid "Collection: %s"
 msgctxt "source.stalenhag.description"
 msgid "Collection: {}"
-msgstr "Collectie: %s"
+msgstr "Collectie: {}"
 
 #: src/images/sources/wikimedia.rs:67
-#, fuzzy
-#| msgctxt "source.wikimedia.copyright"
-#| msgid "%artist (%credit, %license)"
 msgctxt "source.wikimedia.copyright"
 msgid "{artist} ({credit}, {license})"
-msgstr "%artiest (re%chten, %licentie)"
+msgstr "{artist} ({credit}, {license})"
 
 #: src/images/sources/wikimedia.rs:75
-#, fuzzy
-#| msgctxt "source.wikimedia.copyright"
-#| msgid "%artist (%license)"
 msgctxt "source.wikimedia.copyright"
 msgid "{artist} ({license})"
-msgstr "%artiest (%licentie)"
+msgstr "{artist} ({license})"
 
 #: src/images/sources/wikimedia.rs:85
 msgctxt "source.wikimedia.copyright"
