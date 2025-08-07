@@ -80,13 +80,13 @@ struct ApodErrorBody {
 }
 
 fn to_source_error(error: HttpError) -> SourceError {
-    if let HttpError::HttpStatus(_, _, data) = &error {
-        if let Ok(body) = serde_json::from_slice::<ApodErrorBody>(data) {
-            match body.error.code.as_str() {
-                "API_KEY_INVALID" => return SourceError::InvalidApiKey,
-                "OVER_RATE_LIMIT" => return SourceError::RateLimited,
-                _ => (),
-            }
+    if let HttpError::HttpStatus(_, _, data) = &error
+        && let Ok(body) = serde_json::from_slice::<ApodErrorBody>(data)
+    {
+        match body.error.code.as_str() {
+            "API_KEY_INVALID" => return SourceError::InvalidApiKey,
+            "OVER_RATE_LIMIT" => return SourceError::RateLimited,
+            _ => (),
         }
     }
     error.into()

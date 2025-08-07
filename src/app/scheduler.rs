@@ -213,14 +213,12 @@ mod imp {
 
         fn cancel_scheduled_updates_if_inhibited(&self) {
             let inhibitors = self.inhibitors.get();
-            if !inhibitors.is_empty() {
-                if let Some(cancellable) = self.is_scheduled.take() {
-                    glib::info!(
-                        "Cancelling scheduled wallpaper updates, inhibited by {inhibitors}"
-                    );
-                    cancellable.cancel();
-                    self.obj().notify_is_scheduled();
-                }
+            if !inhibitors.is_empty()
+                && let Some(cancellable) = self.is_scheduled.take()
+            {
+                glib::info!("Cancelling scheduled wallpaper updates, inhibited by {inhibitors}");
+                cancellable.cancel();
+                self.obj().notify_is_scheduled();
             }
         }
 
