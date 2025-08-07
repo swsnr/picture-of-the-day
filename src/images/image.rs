@@ -45,7 +45,7 @@ pub struct DownloadableImage {
 }
 
 impl DownloadableImage {
-    fn guess_filename(&self) -> Cow<str> {
+    fn guess_filename(&self) -> Cow<'_, str> {
         self.image_url
             .split('/')
             .next_back()
@@ -61,7 +61,7 @@ impl DownloadableImage {
         self
     }
 
-    pub fn filename(&self) -> Cow<str> {
+    pub fn filename(&self) -> Cow<'_, str> {
         let filename = self
             .suggested_filename
             .as_deref()
