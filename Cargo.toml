@@ -20,7 +20,7 @@ version = "1.6.0"
 edition = "2024"
 publish = false
 default-run = "pictureoftheday"
-rust-version = "1.88"
+rust-version = "1.89"
 
 [features]
 # Guards the internal binary for scraping sources
