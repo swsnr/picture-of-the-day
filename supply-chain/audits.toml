@@ -11,6 +11,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.4.0 -> 1.5.0"
 
+[[audits.cfg-expr]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.20.1 -> 0.20.2"
+
 [[audits.cfg-if]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -46,6 +51,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "5.0.0 -> 5.3.1"
 
+[[audits.event-listener]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "5.4.0 -> 5.4.1"
+
 [[audits.formatx]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -59,6 +69,11 @@ notes = """
 Heavily relies on unsafe, prob. for performance.  unsafe decode looks good, but
 didn't audit the other unsafe code in detail.
 """
+
+[[audits.hashbrown]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.15.4 -> 0.15.5"
 
 [[audits.indexmap]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -169,6 +184,11 @@ delta = "0.1.5 -> 0.1.6"
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.1.5 -> 0.1.6"
+
+[[audits.zerovec]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.11.3 -> 0.11.4"
 
 [[trusted.cairo-rs]]
 criteria = "safe-to-run"
