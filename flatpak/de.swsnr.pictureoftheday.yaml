@@ -51,8 +51,8 @@ modules:
     sources:
       - type: git
         url: https://codeberg.org/swsnr/picture-of-the-day.git
-        tag: "v1.6.0"
-        commit: "2c4cac98219f2c6a810dca53f78223dde52271b4"
+        tag: "v1.6.1"
+        commit: "5d1c2fdecf3b8b34dda9f9ce96a2bea7e35c3b74"
       - de.swsnr.pictureoftheday.cargo-sources.json
     build-commands:
       - install -Dm644 cargo/config .cargo/config.toml
