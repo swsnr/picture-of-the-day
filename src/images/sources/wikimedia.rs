@@ -130,22 +130,14 @@ fn cleanup_title(title: &str) -> &str {
     }
 }
 
-/// Create a [`soup::Message`] to get featured content.
-///
-/// Create a [`soup::Message`] to get the content featured at the given `date`,
-/// on the Wikipedia for the given ISO `language_code`.
-fn get_feature_content_message(date: Date, language_code: &str) -> soup::Message {
-    let url_date = date.strftime("%Y/%m/%d");
-    let url = format!("https://{language_code}.wikipedia.org/api/rest_v1/feed/featured/{url_date}");
-    soup::Message::new("GET", &url).unwrap()
-}
-
 async fn fetch_featured_content(
     session: &soup::Session,
     date: Date,
     language_code: &str,
 ) -> Result<FeaturedContent, SourceError> {
-    let message = get_feature_content_message(date, language_code);
+    let url_date = date.strftime("%Y/%m/%d");
+    let url = format!("https://{language_code}.wikipedia.org/api/rest_v1/feed/featured/{url_date}");
+    let message = soup::Message::new("GET", &url).unwrap();
     glib::info!(
         "Fetching featured wikimedia content from {}",
         message.uri().unwrap()
@@ -182,11 +174,9 @@ pub async fn fetch_featured_image(
 
 #[cfg(test)]
 mod tests {
-    use gtk::gio::Cancellable;
     use jiff::civil::date;
-    use soup::prelude::SessionExt;
 
-    use crate::images::source::testutil::soup_session;
+    use crate::images::source::testutil::{block_on_new_main_context, soup_session};
 
     use super::*;
 
@@ -203,66 +193,64 @@ mod tests {
 
     #[test]
     fn featured_image() {
-        // See https://commons.m.wikimedia.org/wiki/Template:Potd/2025-03#/media/File%3AGeorge_Sand_by_Nadar%2C_1864.jpg
-        let date = date(2025, 3, 8);
-        let message = get_feature_content_message(date, "en");
-        let response = soup_session()
-            .send_and_read(&message, Cancellable::NONE)
-            .unwrap();
-        assert_eq!(message.status(), soup::Status::Ok);
+        block_on_new_main_context(async {
+            // See https://commons.m.wikimedia.org/wiki/Template:Potd/2025-03#/media/File%3AGeorge_Sand_by_Nadar%2C_1864.jpg
+            let date = date(2025, 3, 8);
+            let session = soup_session();
+            let content = fetch_featured_content(&session, date, "en").await.unwrap();
 
-        let content = serde_json::from_slice::<FeaturedContent>(&response).unwrap();
-        let image = content.image.as_ref().unwrap();
-        assert_eq!(image.title, "File:George Sand by Nadar, 1864.jpg");
-        assert_eq!(
-            image.description.as_ref().unwrap().text,
-            "Portrait of French author George Sand by photographer Nadar in 1864. \
+            let image = content.image.as_ref().unwrap();
+            assert_eq!(image.title, "File:George Sand by Nadar, 1864.jpg");
+            assert_eq!(
+                image.description.as_ref().unwrap().text,
+                "Portrait of French author George Sand by photographer Nadar in 1864. \
 One of the most popular writers in Europe in her lifetime, she stood up for women, \
 criticized marriage and fought against the prejudices of a conservative society."
-        );
-        assert_eq!(
-            image.credit.as_ref().unwrap().text,
-            "Galerie Contemporaine, 126 boulevard Magenta, Paris - Photographe Goupil [et] C° \
+            );
+            assert_eq!(
+                image.credit.as_ref().unwrap().text,
+                "Galerie Contemporaine, 126 boulevard Magenta, Paris - Photographe Goupil [et] C° \
 - Cliché Nadar, 51 rue d'Anjou-Saint-Honoré à Paris.Photographie de George Sand sur \
 le site Gallica.Ministère de la Culture (France) - Médiathèque de l'architecture et \
 du patrimoine.Diffusion Réunion des musées nationaux."
-        );
-        assert_eq!(
-            image.license.as_ref().unwrap().r#type.as_ref().unwrap(),
-            "Public domain"
-        );
-        assert_eq!(
-            &image.file_page,
-            "https://commons.wikimedia.org/wiki/File:George_Sand_by_Nadar,_1864.jpg"
-        );
+            );
+            assert_eq!(
+                image.license.as_ref().unwrap().r#type.as_ref().unwrap(),
+                "Public domain"
+            );
+            assert_eq!(
+                &image.file_page,
+                "https://commons.wikimedia.org/wiki/File:George_Sand_by_Nadar,_1864.jpg"
+            );
 
-        let image = DownloadableImage::from(content.image.unwrap());
-        assert_eq!(image.metadata.title, "George Sand by Nadar, 1864");
-        assert_eq!(
-            image.metadata.description.unwrap(),
-            "Portrait of French author George Sand by photographer Nadar in 1864. \
+            let image = DownloadableImage::from(content.image.unwrap());
+            assert_eq!(image.metadata.title, "George Sand by Nadar, 1864");
+            assert_eq!(
+                image.metadata.description.unwrap(),
+                "Portrait of French author George Sand by photographer Nadar in 1864. \
 One of the most popular writers in Europe in her lifetime, she stood up for women, \
 criticized marriage and fought against the prejudices of a conservative society."
-        );
-        assert_eq!(
-            image.metadata.copyright.unwrap(),
-            "Nadar (Galerie Contemporaine, 126 boulevard Magenta, Paris - \
+            );
+            assert_eq!(
+                image.metadata.copyright.unwrap(),
+                "Nadar (Galerie Contemporaine, 126 boulevard Magenta, Paris - \
 Photographe Goupil [et] C° - Cliché Nadar, 51 rue d'Anjou-Saint-Honoré à Paris.\
 Photographie de George Sand sur le site Gallica.Ministère de la Culture (France) - \
 Médiathèque de l'architecture et du patrimoine.Diffusion Réunion des musées nationaux., \
 Public domain)"
-        );
-        assert_eq!(
-            image.metadata.url.unwrap(),
-            "https://commons.wikimedia.org/wiki/File:George_Sand_by_Nadar,_1864.jpg"
-        );
-        assert_eq!(image.metadata.source, Source::Wikimedia);
+            );
+            assert_eq!(
+                image.metadata.url.unwrap(),
+                "https://commons.wikimedia.org/wiki/File:George_Sand_by_Nadar,_1864.jpg"
+            );
+            assert_eq!(image.metadata.source, Source::Wikimedia);
 
-        assert_eq!(
-            image.image_url,
-            "https://upload.wikimedia.org/wikipedia/commons/5/54/George_Sand_by_Nadar%2C_1864.jpg"
-        );
-        assert!(image.pubdate.is_none());
-        assert!(image.suggested_filename.is_none());
+            assert_eq!(
+                image.image_url,
+                "https://upload.wikimedia.org/wikipedia/commons/5/54/George_Sand_by_Nadar%2C_1864.jpg"
+            );
+            assert!(image.pubdate.is_none());
+            assert!(image.suggested_filename.is_none());
+        });
     }
 }

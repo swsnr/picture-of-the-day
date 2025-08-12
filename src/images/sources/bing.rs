@@ -97,7 +97,10 @@ struct BingResponse {
     images: Vec<BingImage>,
 }
 
-fn get_daily_bing_images_message(language_code: Option<&str>) -> soup::Message {
+async fn fetch_daily_bing_images(
+    session: &soup::Session,
+    language_code: Option<&str>,
+) -> Result<BingResponse, SourceError> {
     // n means number of images, we fetch eight,
     // see https://codeberg.org/swsnr/gnome-shell-extension-picture-of-the-day/issues/27
     let url = "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=8";
@@ -116,14 +119,7 @@ fn get_daily_bing_images_message(language_code: Option<&str>) -> soup::Message {
     } else {
         Cow::Borrowed(url)
     };
-    soup::Message::new("GET", &url).unwrap()
-}
-
-async fn fetch_daily_bing_images(
-    session: &soup::Session,
-    language_code: Option<&str>,
-) -> Result<BingResponse, SourceError> {
-    let message = get_daily_bing_images_message(language_code);
+    let message = soup::Message::new("GET", &url).unwrap();
     glib::debug!(
         "Querying latest bing images from {}",
         message.uri().unwrap()
@@ -152,33 +148,29 @@ pub async fn fetch_daily_images(
 
 #[cfg(test)]
 mod tests {
-    use gtk::gio::Cancellable;
-    use soup::prelude::SessionExt;
-
-    use crate::images::source::testutil::soup_session;
+    use crate::images::source::testutil::{block_on_new_main_context, soup_session};
 
     use super::*;
 
     #[test]
     fn fetch_daily_images() {
-        let message = get_daily_bing_images_message(Some("en_GB"));
-        let response = soup_session()
-            .send_and_read(&message, Cancellable::NONE)
-            .unwrap();
-        assert_eq!(message.status(), soup::Status::Ok);
-        let images = serde_json::from_slice::<BingResponse>(&response)
-            .unwrap()
-            .images;
-        assert_eq!(images.len(), 8);
+        block_on_new_main_context(async {
+            let session = soup_session();
+            let images = fetch_daily_bing_images(&session, Some("en_GB"))
+                .await
+                .unwrap()
+                .images;
+            assert_eq!(images.len(), 8);
 
-        let images = images
-            .into_iter()
-            .map(DownloadableImage::try_from)
-            .map(Result::unwrap)
-            .collect::<Vec<_>>();
-        for image in images {
-            assert!(image.pubdate.is_some());
-            assert!(image.suggested_filename.is_some());
-        }
+            let images = images
+                .into_iter()
+                .map(DownloadableImage::try_from)
+                .map(Result::unwrap)
+                .collect::<Vec<_>>();
+            for image in images {
+                assert!(image.pubdate.is_some());
+                assert!(image.suggested_filename.is_some());
+            }
+        });
     }
 }

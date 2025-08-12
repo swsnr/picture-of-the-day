@@ -149,14 +149,10 @@ fn scrape_page(data: &[u8]) -> Result<Vec<DownloadableImage>, ScraperError> {
     Ok(images)
 }
 
-fn get_blog_message() -> soup::Message {
-    soup::Message::new("GET", "https://epod.usra.edu/blog/").unwrap()
-}
-
 pub async fn fetch_picture_of_the_day(
     session: &soup::Session,
 ) -> Result<Vec<DownloadableImage>, SourceError> {
-    let message = get_blog_message();
+    let message = soup::Message::new("GET", "https://epod.usra.edu/blog/").unwrap();
     let data = session
         .send_and_read_future(&message, glib::Priority::DEFAULT)
         .await?;
@@ -172,7 +168,7 @@ mod tests {
     use jiff::civil::date;
     use soup::prelude::SessionExt;
 
-    use crate::images::source::testutil::soup_session;
+    use crate::images::source::testutil::{block_on_new_main_context, soup_session};
 
     use super::*;
 
@@ -279,17 +275,16 @@ celebrating its 55th observance. Note that while Earth Day is always on April \
 
     #[test]
     fn fetch_picture_of_the_day() {
-        let session = soup_session();
-        let message = get_blog_message();
-        let data = session.send_and_read(&message, Cancellable::NONE).unwrap();
-        let images = scrape_page(&data).unwrap();
-
-        assert!(!images.is_empty());
-        for image in &images {
-            assert_eq!(image.metadata.source, Source::Eopd);
-            assert!(image.metadata.url.is_some());
-            assert!(image.metadata.description.is_some());
-            assert!(image.pubdate.is_some());
-        }
+        block_on_new_main_context(async {
+            let session = soup_session();
+            let images = super::fetch_picture_of_the_day(&session).await.unwrap();
+            assert!(!images.is_empty());
+            for image in &images {
+                assert_eq!(image.metadata.source, Source::Eopd);
+                assert!(image.metadata.url.is_some());
+                assert!(image.metadata.description.is_some());
+                assert!(image.pubdate.is_some());
+            }
+        });
     }
 }

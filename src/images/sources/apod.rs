@@ -92,7 +92,12 @@ fn to_source_error(error: HttpError) -> SourceError {
     error.into()
 }
 
-fn get_metadata_message(date: Option<jiff::civil::Date>, api_key: &str) -> soup::Message {
+/// Fetch the astronomy picture of the day.
+async fn query_metadata(
+    session: &soup::Session,
+    date: Option<jiff::civil::Date>,
+    api_key: &str,
+) -> Result<ApodMetadata, SourceError> {
     let mut url = Url::parse_with_params(
         "https://api.nasa.gov/planetary/apod",
         &[("api_key", api_key)],
@@ -104,16 +109,7 @@ fn get_metadata_message(date: Option<jiff::civil::Date>, api_key: &str) -> soup:
     }
     glib::info!("Querying APOD image metadata from {url}");
     // We can safely unwrap here, because `Url` already guarantees us that `url` is valid
-    soup::Message::new("GET", url.as_str()).unwrap()
-}
-
-/// Fetch the astronomy picture of the day.
-async fn query_metadata(
-    session: &soup::Session,
-    date: Option<jiff::civil::Date>,
-    api_key: &str,
-) -> Result<ApodMetadata, SourceError> {
-    let message = get_metadata_message(date, api_key);
+    let message = soup::Message::new("GET", url.as_str()).unwrap();
     session
         .send_and_read_json::<ApodMetadata>(&message, Priority::DEFAULT)
         .await
@@ -131,49 +127,44 @@ pub async fn fetch_picture_of_the_day(
 
 #[cfg(test)]
 mod tests {
-    use gtk::gio::Cancellable;
-    use soup::prelude::SessionExt;
-
     use super::*;
-    use crate::images::source::testutil::soup_session;
+    use crate::images::source::testutil::{block_on_new_main_context, soup_session};
 
     #[test]
     fn fetch_apod() {
-        // We use a separate API key for testing, with account ID 431bacf7-4e26-407f-9ca3-06a17d8d7400
-        let api_key = "74AFPeibYGYI13Efz7MrgtjJ1ozN3etA1Ggt87r6";
-        // See https://apod.nasa.gov/apod/ap250327.html
-        let date = jiff::civil::date(2025, 3, 27);
-        let message = get_metadata_message(Some(date), api_key);
-        let response = soup_session()
-            .send_and_read(&message, Cancellable::NONE)
-            .unwrap();
-        assert_eq!(message.status(), soup::Status::Ok);
+        block_on_new_main_context(async {
+            // We use a separate API key for testing, with account ID 431bacf7-4e26-407f-9ca3-06a17d8d7400
+            let api_key = "74AFPeibYGYI13Efz7MrgtjJ1ozN3etA1Ggt87r6";
+            // See https://apod.nasa.gov/apod/ap250327.html
+            let date = jiff::civil::date(2025, 3, 27);
+            let session = soup_session();
+            let metadata = query_metadata(&session, Some(date), api_key).await.unwrap();
 
-        let metadata = serde_json::from_slice::<ApodMetadata>(&response).unwrap();
-        let image = DownloadableImage::try_from(metadata).unwrap();
-        let metadata = image.metadata;
+            let image = DownloadableImage::try_from(metadata).unwrap();
+            let metadata = image.metadata;
 
-        assert_eq!(metadata.title, "Messier 81");
-        assert!(
-            metadata
-                .description
-                .as_ref()
-                .unwrap()
-                .starts_with("One of the brightest galaxies"),
-            "{:?}",
-            &metadata.description
-        );
-        assert_eq!(metadata.copyright.unwrap(), "Lorand Fenyes");
-        assert_eq!(
-            metadata.url.unwrap(),
-            "https://apod.nasa.gov/apod/ap250327.html"
-        );
-        assert_eq!(metadata.source, Source::Apod);
-        assert_eq!(
-            image.image_url,
-            "https://apod.nasa.gov/apod/image/2503/291_lorand_fenyes_m81_kicsi.jpg"
-        );
-        assert_eq!(image.pubdate.unwrap(), date);
-        assert!(image.suggested_filename.is_none());
+            assert_eq!(metadata.title, "Messier 81");
+            assert!(
+                metadata
+                    .description
+                    .as_ref()
+                    .unwrap()
+                    .starts_with("One of the brightest galaxies"),
+                "{:?}",
+                &metadata.description
+            );
+            assert_eq!(metadata.copyright.unwrap(), "Lorand Fenyes");
+            assert_eq!(
+                metadata.url.unwrap(),
+                "https://apod.nasa.gov/apod/ap250327.html"
+            );
+            assert_eq!(metadata.source, Source::Apod);
+            assert_eq!(
+                image.image_url,
+                "https://apod.nasa.gov/apod/image/2503/291_lorand_fenyes_m81_kicsi.jpg"
+            );
+            assert_eq!(image.pubdate.unwrap(), date);
+            assert!(image.suggested_filename.is_none());
+        });
     }
 }
