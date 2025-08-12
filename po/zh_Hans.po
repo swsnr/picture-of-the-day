@@ -335,58 +335,58 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "切换带有图片信息的侧边栏"
 
-#: resources/ui/application-window.blp:175
-msgctxt "images-view.metadata.label"
-msgid "Title"
-msgstr "标题"
-
-#: resources/ui/application-window.blp:184
-msgid "Visit the source page of this image."
-msgstr "访问此图片的源页面。"
-
-#: resources/ui/application-window.blp:193
-msgctxt "images-view.metadata.label"
-msgid "Copyright"
-msgstr "版权"
-
-#: resources/ui/application-window.blp:204
-msgctxt "images-view.metadata.label"
-msgid "Description"
-msgstr "描述"
-
-#: resources/ui/application-window.blp:217
-msgctxt "images-view.metadata.label"
-msgid "Source"
-msgstr "来源"
-
-#: resources/ui/application-window.blp:225
-msgid "Visit the main page of the source of this image."
-msgstr "访问此图片来源的主页。"
-
-#: resources/ui/application-window.blp:244
-msgctxt "start-page.button.label"
-msgid "Get images"
-msgstr "获取图片"
-
-#: resources/ui/application-window.blp:262
+#: resources/ui/application-window.blp:134
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "退出(_Q)"
 
-#: resources/ui/application-window.blp:269
+#: resources/ui/application-window.blp:141
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "首选项(_P)"
 
-#: resources/ui/application-window.blp:274
+#: resources/ui/application-window.blp:146
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
-#: resources/ui/application-window.blp:279
+#: resources/ui/application-window.blp:151
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "关于今日图片(_A)"
+
+#: resources/ui/application-window.blp:200
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr "标题"
+
+#: resources/ui/application-window.blp:209
+msgid "Visit the source page of this image."
+msgstr "访问此图片的源页面。"
+
+#: resources/ui/application-window.blp:218
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr "版权"
+
+#: resources/ui/application-window.blp:229
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr "描述"
+
+#: resources/ui/application-window.blp:242
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr "来源"
+
+#: resources/ui/application-window.blp:250
+msgid "Visit the main page of the source of this image."
+msgstr "访问此图片来源的主页。"
+
+#: resources/ui/application-window.blp:269
+msgctxt "start-page.button.label"
+msgid "Get images"
+msgstr "获取图片"
 
 #: resources/ui/error-notification-page.blp:21
 msgid "Open preferences"

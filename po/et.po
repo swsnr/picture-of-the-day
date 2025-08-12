@@ -362,58 +362,58 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "Lülita pildi teabega külgpaan sisse/välja"
 
-#: resources/ui/application-window.blp:175
-msgctxt "images-view.metadata.label"
-msgid "Title"
-msgstr "Pealkiri"
-
-#: resources/ui/application-window.blp:184
-msgid "Visit the source page of this image."
-msgstr "Vaata pildi andmeallikat."
-
-#: resources/ui/application-window.blp:193
-msgctxt "images-view.metadata.label"
-msgid "Copyright"
-msgstr "Autoriõigused"
-
-#: resources/ui/application-window.blp:204
-msgctxt "images-view.metadata.label"
-msgid "Description"
-msgstr "Kirjeldus"
-
-#: resources/ui/application-window.blp:217
-msgctxt "images-view.metadata.label"
-msgid "Source"
-msgstr "Andmeallikas"
-
-#: resources/ui/application-window.blp:225
-msgid "Visit the main page of the source of this image."
-msgstr "Vaata selle pildi andmeallika avalehte."
-
-#: resources/ui/application-window.blp:244
-msgctxt "start-page.button.label"
-msgid "Get images"
-msgstr "Laadi üks pilt"
-
-#: resources/ui/application-window.blp:262
+#: resources/ui/application-window.blp:134
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "_Välju"
 
-#: resources/ui/application-window.blp:269
+#: resources/ui/application-window.blp:141
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "_Eelistused"
 
-#: resources/ui/application-window.blp:274
+#: resources/ui/application-window.blp:146
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "_Klaviatuuri kiirklahvid"
 
-#: resources/ui/application-window.blp:279
+#: resources/ui/application-window.blp:151
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "_Rakenduse teave: Päevapilt"
+
+#: resources/ui/application-window.blp:200
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr "Pealkiri"
+
+#: resources/ui/application-window.blp:209
+msgid "Visit the source page of this image."
+msgstr "Vaata pildi andmeallikat."
+
+#: resources/ui/application-window.blp:218
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr "Autoriõigused"
+
+#: resources/ui/application-window.blp:229
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr "Kirjeldus"
+
+#: resources/ui/application-window.blp:242
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr "Andmeallikas"
+
+#: resources/ui/application-window.blp:250
+msgid "Visit the main page of the source of this image."
+msgstr "Vaata selle pildi andmeallika avalehte."
+
+#: resources/ui/application-window.blp:269
+msgctxt "start-page.button.label"
+msgid "Get images"
+msgstr "Laadi üks pilt"
 
 #: resources/ui/error-notification-page.blp:21
 msgid "Open preferences"

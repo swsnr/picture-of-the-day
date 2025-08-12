@@ -359,58 +359,58 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr "Показ информации об изображении"
 
-#: resources/ui/application-window.blp:175
-msgctxt "images-view.metadata.label"
-msgid "Title"
-msgstr "Наименование"
-
-#: resources/ui/application-window.blp:184
-msgid "Visit the source page of this image."
-msgstr "Посетить страницу источника этого изображения."
-
-#: resources/ui/application-window.blp:193
-msgctxt "images-view.metadata.label"
-msgid "Copyright"
-msgstr "Авторское право"
-
-#: resources/ui/application-window.blp:204
-msgctxt "images-view.metadata.label"
-msgid "Description"
-msgstr "Описание"
-
-#: resources/ui/application-window.blp:217
-msgctxt "images-view.metadata.label"
-msgid "Source"
-msgstr "Источник"
-
-#: resources/ui/application-window.blp:225
-msgid "Visit the main page of the source of this image."
-msgstr "Посетить главную страницу источника этого изображения."
-
-#: resources/ui/application-window.blp:244
-msgctxt "start-page.button.label"
-msgid "Get images"
-msgstr "Получить изображения"
-
-#: resources/ui/application-window.blp:262
+#: resources/ui/application-window.blp:134
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr "_Завершить"
 
-#: resources/ui/application-window.blp:269
+#: resources/ui/application-window.blp:141
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr "_Параметры"
 
-#: resources/ui/application-window.blp:274
+#: resources/ui/application-window.blp:146
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr "_Сочетания клавиш"
 
-#: resources/ui/application-window.blp:279
+#: resources/ui/application-window.blp:151
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
 msgstr "_О приложении «Изображение дня»"
+
+#: resources/ui/application-window.blp:200
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr "Наименование"
+
+#: resources/ui/application-window.blp:209
+msgid "Visit the source page of this image."
+msgstr "Посетить страницу источника этого изображения."
+
+#: resources/ui/application-window.blp:218
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr "Авторское право"
+
+#: resources/ui/application-window.blp:229
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr "Описание"
+
+#: resources/ui/application-window.blp:242
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr "Источник"
+
+#: resources/ui/application-window.blp:250
+msgid "Visit the main page of the source of this image."
+msgstr "Посетить главную страницу источника этого изображения."
+
+#: resources/ui/application-window.blp:269
+msgctxt "start-page.button.label"
+msgid "Get images"
+msgstr "Получить изображения"
 
 #: resources/ui/error-notification-page.blp:21
 msgid "Open preferences"

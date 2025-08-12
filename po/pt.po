@@ -325,57 +325,57 @@ msgctxt "main-window.toolbar.button.tooltip"
 msgid "Toggle the sidebar with image information"
 msgstr ""
 
-#: resources/ui/application-window.blp:175
-msgctxt "images-view.metadata.label"
-msgid "Title"
-msgstr ""
-
-#: resources/ui/application-window.blp:184
-msgid "Visit the source page of this image."
-msgstr ""
-
-#: resources/ui/application-window.blp:193
-msgctxt "images-view.metadata.label"
-msgid "Copyright"
-msgstr ""
-
-#: resources/ui/application-window.blp:204
-msgctxt "images-view.metadata.label"
-msgid "Description"
-msgstr ""
-
-#: resources/ui/application-window.blp:217
-msgctxt "images-view.metadata.label"
-msgid "Source"
-msgstr ""
-
-#: resources/ui/application-window.blp:225
-msgid "Visit the main page of the source of this image."
-msgstr ""
-
-#: resources/ui/application-window.blp:244
-msgctxt "start-page.button.label"
-msgid "Get images"
-msgstr ""
-
-#: resources/ui/application-window.blp:262
+#: resources/ui/application-window.blp:134
 msgctxt "main-window.menu.label"
 msgid "_Quit"
 msgstr ""
 
-#: resources/ui/application-window.blp:269
+#: resources/ui/application-window.blp:141
 msgctxt "application-window.menu.label"
 msgid "_Preferences"
 msgstr ""
 
-#: resources/ui/application-window.blp:274
+#: resources/ui/application-window.blp:146
 msgctxt "application-window.menu.label"
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: resources/ui/application-window.blp:279
+#: resources/ui/application-window.blp:151
 msgctxt "main-window.menu.label"
 msgid "_About Picture Of The Day"
+msgstr ""
+
+#: resources/ui/application-window.blp:200
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr ""
+
+#: resources/ui/application-window.blp:209
+msgid "Visit the source page of this image."
+msgstr ""
+
+#: resources/ui/application-window.blp:218
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr ""
+
+#: resources/ui/application-window.blp:229
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr ""
+
+#: resources/ui/application-window.blp:242
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr ""
+
+#: resources/ui/application-window.blp:250
+msgid "Visit the main page of the source of this image."
+msgstr ""
+
+#: resources/ui/application-window.blp:269
+msgctxt "start-page.button.label"
+msgid "Get images"
 msgstr ""
 
 #: resources/ui/error-notification-page.blp:21
