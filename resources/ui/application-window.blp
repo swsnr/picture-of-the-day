@@ -128,7 +128,32 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
         }
 
         MenuButton button_menu {
-          menu-model: main_menu;
+          menu-model: menu {
+            section {
+              item {
+                label: C_("main-window.menu.label", "_Quit");
+                action: "app.quit";
+              }
+            }
+
+            section {
+              item {
+                label: C_("application-window.menu.label", "_Preferences");
+                action: "app.preferences";
+              }
+
+              item {
+                label: C_("application-window.menu.label", "_Keyboard Shortcuts");
+                action: "win.show-help-overlay";
+              }
+
+              item {
+                label: C_("main-window.menu.label", "_About Picture Of The Day");
+                action: "app.about";
+              }
+            }
+          };
+
           icon-name: 'menu-large-symbolic';
           primary: true;
         }
@@ -254,30 +279,4 @@ template $PotDApplicationWindow: Adw.ApplicationWindow {
       };
     }
   };
-}
-
-menu main_menu {
-  section {
-    item {
-      label: C_("main-window.menu.label", "_Quit");
-      action: "app.quit";
-    }
-  }
-
-  section {
-    item {
-      label: C_("application-window.menu.label", "_Preferences");
-      action: "app.preferences";
-    }
-
-    item {
-      label: C_("application-window.menu.label", "_Keyboard Shortcuts");
-      action: "win.show-help-overlay";
-    }
-
-    item {
-      label: C_("main-window.menu.label", "_About Picture Of The Day");
-      action: "app.about";
-    }
-  }
 }
