@@ -44,14 +44,14 @@
             <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
-        <release version="next" date="9999-01-01">
+        <release version="1.7.0" date="2025-08-12">
             <description>
                 <p>Fix wallpaper updates.</p>
             </description>
             <issues>
                 <issue url="https://codeberg.org/swsnr/picture-of-the-day/issues/110">CB-110</issue>
             </issues>
-            <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
+            <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/v1.7.0</url>
         </release>
         <release version="1.6.0" date="2025-06-10">
             <description>
