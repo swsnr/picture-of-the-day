@@ -13,7 +13,9 @@ pub fn soup_session() -> soup::Session {
     session
 }
 
-// TODO: Replace with glib::async_test once fixed, see https://github.com/gtk-rs/gtk-rs-core/pull/1787
+// TODO: Replace with glib::async_test once fixed
+// See https://github.com/gtk-rs/gtk-rs-core/pull/1787 and
+// https://github.com/gtk-rs/gtk-rs-core/pull/1789
 /// Run a future on a new thread-default main context.
 pub fn block_on_new_main_context<F>(f: F)
 where
@@ -21,7 +23,6 @@ where
 {
     let main_ctx = glib::MainContext::new();
     main_ctx
-        .clone()
-        .with_thread_default(move || main_ctx.block_on(f))
+        .with_thread_default(|| main_ctx.block_on(f))
         .unwrap();
 }
