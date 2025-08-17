@@ -262,12 +262,7 @@ mod imp {
     use glib::{Object, Properties, closure, dpgettext2};
     use gnome_app_utils::futures::future::join_all;
     use gnome_app_utils::io::ensure_directory_with_parents;
-    use gnome_app_utils::portal::wallpaper::SetWallpaperFile;
-    use gnome_app_utils::portal::{
-        PortalClient,
-        wallpaper::{Preview, SetOn},
-        window::PortalWindowHandle,
-    };
+    use gnome_app_utils::portal::{wallpaper, window::PortalWindowHandle};
     use gtk::CompositeTemplate;
     use gtk::gdk::{Key, ModifierType};
     use gtk::gio::{self, Cancellable, DBusConnection, FileCreateFlags, FileQueryInfoFlags};
@@ -472,24 +467,16 @@ mod imp {
 
         pub async fn set_current_image_as_wallpaper(&self) -> Result<(), glib::Error> {
             if let Some(file) = self.current_image_file() {
-                let window_handle = PortalWindowHandle::new_for_native(&*self.obj()).await;
-                let (call, fdlist) = SetWallpaperFile::for_file(
-                    window_handle.identifier(),
+                let parent_window = PortalWindowHandle::new_for_native(&*self.obj()).await;
+                let result = wallpaper::set_wallpaper_file(
+                    &self.obj().dbus_connection().unwrap(),
+                    parent_window.as_ref(),
                     &file,
-                    Preview::NoPreview,
-                    SetOn::Both,
+                    wallpaper::Preview::NoPreview,
+                    wallpaper::SetOn::Both,
                 )
                 .await?;
-
-                let result = self
-                    .obj()
-                    .dbus_connection()
-                    .unwrap()
-                    .call_desktop_portal_with_unix_fd_list(call, Some(&fdlist))
-                    .await?
-                    .receive_response()
-                    .await?;
-                glib::info!("Request finished: {result:?}");
+                glib::info!("Wallpaper request finished: {result:?}");
             }
             Ok(())
         }

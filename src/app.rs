@@ -7,13 +7,7 @@
 use adw::prelude::*;
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gnome_app_utils::io::ensure_directory_with_parents;
-use gnome_app_utils::portal::PortalClient;
-use gnome_app_utils::portal::wallpaper::SetWallpaperFile;
-use gnome_app_utils::portal::{
-    RequestResult,
-    wallpaper::{Preview, SetOn},
-    window::PortalWindowHandle,
-};
+use gnome_app_utils::portal::{RequestResult, wallpaper, window::PortalWindowHandle};
 use gtk::{
     UriLauncher,
     gio::{self, ActionEntry, ApplicationFlags},
@@ -332,22 +326,15 @@ it again manually.",
             .await?;
 
         glib::info!("Setting wallpaper to {}", target.display());
-        let window = PortalWindowHandle::new_for_app(self).await;
-        let (call, fdlist) = SetWallpaperFile::for_file(
-            window.identifier(),
+        let parent_window = PortalWindowHandle::new_for_app(self).await;
+        let response = wallpaper::set_wallpaper_file(
+            &self.dbus_connection().unwrap(),
+            parent_window.as_ref(),
             &gio::File::for_path(&target),
-            Preview::NoPreview,
-            SetOn::Both,
+            wallpaper::Preview::NoPreview,
+            wallpaper::SetOn::Both,
         )
         .await?;
-        let response = self
-            .dbus_connection()
-            .unwrap()
-            .call_desktop_portal_with_unix_fd_list(call, Some(&fdlist))
-            .await?
-            .receive_response()
-            .await?
-            .result();
         if !matches!(response, RequestResult::Success) {
             glib::warn!(
                 "Request to set wallpaper to {} denied, got {response:?}",
@@ -369,23 +356,20 @@ impl Default for Application {
 }
 
 mod imp {
+    use std::cell::RefCell;
+    use std::{cell::Cell, str::FromStr};
+
     use adw::gio::ApplicationCommandLine;
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
     use gnome_app_utils::app::{AppUpdatedMonitor, SessionLockedMonitor};
-    use gnome_app_utils::futures::{self, StreamExt, TryFutureExt};
+    use gnome_app_utils::futures::{self, StreamExt};
     use gnome_app_utils::libc;
-    use gnome_app_utils::portal::background::{RequestBackground, RequestBackgroundResult};
-    use gnome_app_utils::portal::{PortalClient, PortalRequest};
-    use gnome_app_utils::portal::{
-        RequestResult, background::RequestBackgroundFlags, window::PortalWindowHandle,
-    };
+    use gnome_app_utils::portal::{RequestResult, background, window::PortalWindowHandle};
     use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
     use soup::prelude::*;
-    use std::cell::RefCell;
-    use std::{cell::Cell, str::FromStr};
 
     use super::scheduler::AutomaticWallpaperUpdateScheduler;
     use crate::{
@@ -801,21 +785,18 @@ mod imp {
                         "portal.request-background.reason",
                         "Automatically fetch and set wallpaper in background",
                     );
-                    let window_handle = PortalWindowHandle::new_for_native(&window).await;
+                    let parent_window = PortalWindowHandle::new_for_native(&window).await;
                     glib::info!("Requesting permission to run in background and autostart");
-                    let call = RequestBackground::new(
-                        window_handle.identifier(),
-                        &reason,
+                    let response = background::request_background(
+                        &connection,
+                        parent_window.as_ref(),
+                        Some(&reason),
                         Some(&[crate::config::APP_ID, "--gapplication-service"]),
-                        RequestBackgroundFlags::AUTOSTART,
-                    );
-                    match connection
-                        .call_desktop_portal(call)
-                        .and_then(PortalRequest::receive_response)
-                        .await
-                    {
+                        background::RequestBackgroundFlags::AUTOSTART,
+                    )
+                    .await;
+                    match response {
                         Ok(response) => {
-                            let response = RequestBackgroundResult::from(response);
                             if response.request_result == RequestResult::Success {
                                 if !response.background {
                                     glib::warn!(
