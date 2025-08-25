@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-05-06 07:53+0000\n"
-"Last-Translator: Ricky-Tigg <ricky-tigg@noreply.codeberg.org>\n"
-"Language-Team: Finnish <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
+"PO-Revision-Date: 2025-08-25 13:09+0000\n"
+"Last-Translator: artnay <artnay@noreply.codeberg.org>\n"
+"Language-Team: Finnish <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.12.2\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
@@ -551,18 +551,13 @@ msgid "Picture Of The Day needs an API key"
 msgstr "Päivän kuva -sovellus tarvitsee API-avaimen"
 
 #: src/app/model/error_notification.rs:48
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Please configure a valid API key for %1 in the application preferences. "
-#| "The current key appears to be invalid."
 msgctxt "error-notification.description"
 msgid ""
 "Please configure a valid API key for {source_name} in the application "
 "preferences. The current key appears to be invalid."
 msgstr ""
-"Määritä lähteen %1 API-avain sovelluksen asetuksissa. Nykyinen avain "
-"vaikuttaa virheelliseltä."
+"Määritä lähteen {source_name} API-avain sovelluksen asetuksissa. Nykyinen "
+"avain vaikuttaa virheelliseltä."
 
 #: src/app/model/error_notification.rs:66
 msgctxt "error-notification.title"
@@ -570,18 +565,14 @@ msgid "Picture Of The Day was rate-limited"
 msgstr "Päivän kuvan bittinopeus oli rajoitettu"
 
 #: src/app/model/error_notification.rs:72
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %1 server is rate-limited and does currently not allow you to fetch "
-#| "an image. Try again later, or try a different source."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server is rate-limited and does currently not allow you to "
 "fetch an image. Try again later, or try a different source."
 msgstr ""
-"Palvelimen %1 bittinopeus on rajoitettu, eikä se tällä hetkellä salli kuvan "
-"noutamista. Yritä myöhemmin uudelleen tai kokeile toista lähdettä."
+"Palvelimen {source_name} pyyntömäärä on rajoitettu, eikä se tällä hetkellä "
+"salli kuvan noutamista. Yritä myöhemmin uudelleen tai kokeile toista "
+"lähdettä."
 
 #: src/app/model/error_notification.rs:85
 #: src/app/model/error_notification.rs:103
@@ -590,33 +581,22 @@ msgid "No image today"
 msgstr "Ei kuvaa tänään"
 
 #: src/app/model/error_notification.rs:90
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Currently, %1 does not provide an image for today. Try again later, or "
-#| "try a different source."
 msgctxt "error-notification.description"
 msgid ""
 "Currently, {source_name} does not provide an image for today. Try again "
 "later, or try a different source."
 msgstr ""
-"Tällä hetkellä %1 ei tarjoa päivän kuvaa. Yritä myöhemmin uudelleen, tai "
-"yritä käyttää toista lähdettä."
+"Tällä hetkellä {source_name} ei tarjoa päivän kuvaa. Yritä myöhemmin "
+"uudelleen, tai yritä käyttää toista lähdettä."
 
 #: src/app/model/error_notification.rs:108
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Today, %1 provides a video or another type of media which this "
-#| "application does not support. Try again tomorrow, or try a different "
-#| "source."
 msgctxt "error-notification.description"
 msgid ""
 "Today, {source_name} provides a video or another type of media which this "
 "application does not support. Try again tomorrow, or try a different source."
 msgstr ""
-"Tänään, %1 tarjoaa videon tai muun tyyppisen median, jota tämä sovellus ei "
-"tue. Yritä huomenna uudelleen tai kokeile toista lähdettä."
+"Tänään {source_name} tarjoaa videon tai muun tyyppisen median, jota tämä "
+"sovellus ei tue. Yritä huomenna uudelleen tai kokeile toista lähdettä."
 
 #: src/app/model/error_notification.rs:125
 #: src/app/model/error_notification.rs:146
@@ -626,37 +606,25 @@ msgid "Fetching images failed"
 msgstr "Kuvien noutaminen epäonnistui"
 
 #: src/app/model/error_notification.rs:130
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %s server replied with HTTP status %2. The server may have issues "
-#| "currently. Try again later, or try a different source. If the issue "
-#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server replied with HTTP status {http_status}. The server "
 "may have issues currently. Try again later, or try a different source. If "
 "the issue persists please report the problem."
 msgstr ""
-"Palvelin %s vastasi HTTP-tilalla %2. Palvelimessa saattaa olla tällä "
-"hetkellä ongelmia. Yritä myöhemmin uudelleen tai kokeile toista lähdettä. "
-"Jos ongelma jatkuu, ilmoita ongelmasta."
+"Palvelin {source_name} vastasi HTTP-tilalla {http_status}. Palvelimessa "
+"saattaa olla tällä hetkellä ongelmia. Yritä myöhemmin uudelleen tai kokeile "
+"toista lähdettä. Jos ongelma jatkuu, ilmoita ongelmasta."
 
 #: src/app/model/error_notification.rs:151
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %1 server responded with invalid data. The server may have issues "
-#| "currently. Try again later, or try a different source. If the issue "
-#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server responded with invalid data. The server may have "
 "issues currently. Try again later, or try a different source. If the issue "
 "persists please report the problem."
 msgstr ""
-"Palvelin %1 vastasi epäkelvollisilla tiedoilla. Palvelimessa saattaa olla "
-"tällä hetkellä ongelmia. Yritä myöhemmin uudelleen tai kokeile toista "
+"Palvelin {source_name} vastasi virheellisellä datalla. Palvelimessa saattaa "
+"olla tällä hetkellä ongelmia. Yritä myöhemmin uudelleen tai kokeile toista "
 "lähdettä. Jos ongelma jatkuu, ilmoita ongelmasta."
 
 #: src/app/model/error_notification.rs:171
@@ -756,10 +724,8 @@ msgstr ""
 "viesti: %1. Jos vika jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:170
-#, fuzzy
-#| msgid "Saved image %1"
 msgid "Saved image {name}"
-msgstr "Tallennettin kuva %1"
+msgstr "Tallennettin kuva {name}"
 
 #: src/app/widgets/application_window.rs:189
 msgctxt "error-notification.title"
@@ -811,13 +777,10 @@ msgid "Save image"
 msgstr "Tallenna kuva"
 
 #: src/app/widgets/preferences_dialog.rs:73
-#, fuzzy
-#| msgid "%1/%2 collection enabled"
-#| msgid_plural "%1/%2 collections enabled"
 msgid "{n}/{total} collection enabled"
 msgid_plural "{n}/{total} collections enabled"
-msgstr[0] "%1/%2 kokoelma käytössä"
-msgstr[1] "%1/%2 kokoelmaa käytössä"
+msgstr[0] "{n}/{total} kokoelma käytössä"
+msgstr[1] "{n}/{total} kokoelmaa käytössä"
 
 #. Translators: This is Pango markup, be sure to escape appropriately
 #: src/config.rs:71
@@ -879,28 +842,19 @@ msgid "All rights reserved."
 msgstr "Kaikki oikeudet pidätetään."
 
 #: src/images/sources/stalenhag.rs:98
-#, fuzzy
-#| msgctxt "source.stalenhag.description"
-#| msgid "Collection: %s"
 msgctxt "source.stalenhag.description"
 msgid "Collection: {}"
-msgstr "Kokoelma: %s"
+msgstr "Kokoelma: {}"
 
 #: src/images/sources/wikimedia.rs:67
-#, fuzzy
-#| msgctxt "source.wikimedia.copyright"
-#| msgid "%artist (%credit, %license)"
 msgctxt "source.wikimedia.copyright"
 msgid "{artist} ({credit}, {license})"
-msgstr "%artist (%credit, %license)"
+msgstr "{artist} ({credit}, {license})"
 
 #: src/images/sources/wikimedia.rs:75
-#, fuzzy
-#| msgctxt "source.wikimedia.copyright"
-#| msgid "%artist (%license)"
 msgctxt "source.wikimedia.copyright"
 msgid "{artist} ({license})"
-msgstr "%artist (%license)"
+msgstr "{artist} ({license})"
 
 #: src/images/sources/wikimedia.rs:85
 msgctxt "source.wikimedia.copyright"
