@@ -1,12 +1,12 @@
 # The app ID to use (either de.swsnr.pictureoftheday or de.swsnr.pictureoftheday.Devel).
-APPID := 'de.swsnr.pictureoftheday'
+APPID := 'de.swsnr.pictureoftheday.Devel'
 
 # The destination prefix to install files to.  Combines traditional DESTDIR and
 # PREFIX variables; picture-of-the-day does not encode the prefix into its binary
 # and thus does not need to distinguish between the prefix and the destdir.
 DESTPREFIX := '/app'
 
-xgettext_opts := '--package-name=' + APPID + \
+xgettext_opts := '--package-name=' + trim_end_matches(APPID, '.Devel') + \
     ' --foreign-user --copyright-holder "Sebastian Wiesner <sebastian@swsnr.de>"' + \
     ' --sort-by-file --from-code=UTF-8 --add-comments'
 
