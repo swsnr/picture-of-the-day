@@ -47,7 +47,7 @@ pub const G_LOG_DOMAIN: &str = "PictureOfTheDay";
 
 /// User Agent to use for all HTTP traffic.
 pub static USER_AGENT: &str = concat!(
-    env!("CARGO_PKG_NAME"),
+    include_str!("../build/app-id"),
     "/",
     env!("CARGO_PKG_VERSION"),
     " (",
