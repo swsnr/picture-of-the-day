@@ -435,7 +435,7 @@ mod imp {
             }
         }
 
-        fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
+        fn setup_scheduled_update_inhibitors(&self, settings: &gio::Settings) {
             // Inhibit automatic updates if the user disables them.
             // We do this first, to make sure all inhibitors are in place before
             // we start updates by setting the source.
@@ -526,7 +526,11 @@ mod imp {
                     )
                 })
                 .build();
+        }
 
+        fn setup_scheduled_wallpaper_updates(&self, settings: &gio::Settings) {
+            // Setup inhibitors for scheduled updates
+            self.setup_scheduled_update_inhibitors(settings);
             // Listen to scheduled updates, and set the wallpaper in response
             let rx = self.scheduler.update_receiver();
             // Explicitly pass a weak ref into the long running future, and
