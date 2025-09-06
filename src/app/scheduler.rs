@@ -30,6 +30,8 @@ pub enum AutomaticWallpaperUpdateInhibitor {
     NoNetwork = 0b0000_1000,
     /// The desktop session is locked.
     SessionLocked = 0b0001_0000,
+    /// The network is metered.
+    NetworkMetered = 0b0010_0000,
 }
 
 impl Display for AutomaticWallpaperUpdateInhibitor {

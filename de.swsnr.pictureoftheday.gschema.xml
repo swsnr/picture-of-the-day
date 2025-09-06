@@ -8,6 +8,10 @@
       <default>false</default>
       <description>Whether to set the wallpaper automatically.</description>
     </key>
+    <key name="update-wallpaper-over-metered-network" type="b">
+      <default>false</default>
+      <description>Whether to update the wallpaper over metered networks.</description>
+    </key>
     <key name="apod-api-key" type="s">
       <!-- API key account ID: dcc2671f-ef8d-4c1a-93cc-c5edeba69695 -->
       <default>"OmoiiKAC40a83uIjibcFmwfRKa8hfbCK9HLv90DI"</default>

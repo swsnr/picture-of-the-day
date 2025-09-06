@@ -50,9 +50,11 @@
                     No longer request direct access to logind, which is no longer allowed on Flathub.
                     Instead, instruct the user to provide access to logind in the preferences dialog.
                 </p>
+                <p>Optionally inhibit wallpaper updates over metered networks.</p>
             </description>
             <issues>
                 <issue url="https://codeberg.org/swsnr/picture-of-the-day/pulls/116">CB-116</issue>
+                <issue url="https://codeberg.org/swsnr/picture-of-the-day/issues/85">CB-85</issue>
             </issues>
             <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>

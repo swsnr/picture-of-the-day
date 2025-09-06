@@ -19,6 +19,13 @@ impl PreferencesDialog {
         settings.bind("apod-api-key", self, "apod-api-key").build();
         settings
             .bind(
+                "update-wallpaper-over-metered-network",
+                self,
+                "update-wallpaper-over-metered-network",
+            )
+            .build();
+        settings
+            .bind(
                 "stalenhag-disabled-collections",
                 self,
                 "stalenhag-disabled-collections",
@@ -56,6 +63,8 @@ mod imp {
         stalenhag_disabled_collections: RefCell<StrV>,
         #[property(get)]
         connected_to_logind: Cell<bool>,
+        #[property(get, set)]
+        update_wallpaper_over_metered_network: Cell<bool>,
         #[template_child]
         group_apod: TemplateChild<adw::PreferencesGroup>,
         #[template_child]

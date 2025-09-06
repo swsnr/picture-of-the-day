@@ -445,6 +445,20 @@ mod imp {
             }
         }
 
+        fn inhibit_for_metered_network(
+            &self,
+            network_monitor: &gio::NetworkMonitor,
+            settings: &gio::Settings,
+        ) {
+            let should_inhibit_metered = !settings.boolean("update-wallpaper-over-metered-network");
+            let inhibitors = if should_inhibit_metered && network_monitor.is_network_metered() {
+                self.scheduler.inhibitors() | AutomaticWallpaperUpdateInhibitor::NetworkMetered
+            } else {
+                self.scheduler.inhibitors() - AutomaticWallpaperUpdateInhibitor::NetworkMetered
+            };
+            self.scheduler.set_inhibitors(inhibitors);
+        }
+
         fn setup_scheduled_update_inhibitors(&self, settings: &gio::Settings) {
             // Inhibit automatic updates if the user disables them.
             // We do this first, to make sure all inhibitors are in place before
@@ -496,7 +510,8 @@ mod imp {
                 .build();
 
             // Inhibit if the network is down
-            gio::NetworkMonitor::default()
+            let network_monitor = gio::NetworkMonitor::default();
+            network_monitor
                 .bind_property("connectivity", &self.scheduler, "inhibitors")
                 .sync_create()
                 .transform_to(|binding, connectivity: NetworkConnectivity| {
@@ -521,6 +536,31 @@ mod imp {
                     )
                 })
                 .build();
+
+            // Inhibit on metered networks
+            network_monitor.connect_network_metered_notify(glib::clone!(
+                #[weak]
+                settings,
+                #[weak(rename_to = app)]
+                self.obj(),
+                move |monitor| {
+                    app.imp().inhibit_for_metered_network(monitor, &settings);
+                }
+            ));
+            settings.connect_changed(
+                Some("update-wallpaper-over-metered-network"),
+                glib::clone!(
+                    #[weak]
+                    network_monitor,
+                    #[weak(rename_to = app)]
+                    self.obj(),
+                    move |settings, _| {
+                        app.imp()
+                            .inhibit_for_metered_network(&network_monitor, settings);
+                    }
+                ),
+            );
+            self.inhibit_for_metered_network(&network_monitor, settings);
 
             // Inhibit while the session is locked
             self.session_monitor

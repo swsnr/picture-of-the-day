@@ -38,6 +38,15 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
     title: C_("preferences-dialog.page.title", "Daily wallpaper update");
 
     Adw.PreferencesGroup {
+      title: C_("preferences-dialog.group.title", "Network");
+
+      Adw.SwitchRow {
+        title: C_("preferences-dialog.row.title", "Update wallpaper over metered network");
+        active: bind template.update-wallpaper-over-metered-network bidirectional;
+      }
+    }
+
+    Adw.PreferencesGroup {
       title: C_("preferences-dialog.group.title", "Update after session is unlocked");
 
       Adw.ActionRow {
