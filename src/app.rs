@@ -447,9 +447,7 @@ mod imp {
                     &self.scheduler,
                     #[upgrade_or_default]
                     move |value, _| {
-                        let inhibitors = scheduler
-                            .downcast_ref::<AutomaticWallpaperUpdateScheduler>()?
-                            .inhibitors();
+                        let inhibitors = scheduler.inhibitors();
                         let set_automatically = value.get::<bool>()?;
                         let inhibitors = if set_automatically {
                             inhibitors - AutomaticWallpaperUpdateInhibitor::DisabledByUser
