@@ -7,7 +7,9 @@ targets = [
 
 [advisories]
 version = 2
-ignore = []
+ignore = [
+    "RUSTSEC-2025-0057", # We don't care that fxhash is no longer maintained
+]
 
 [licenses]
 version = 2
