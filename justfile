@@ -195,6 +195,10 @@ build-social-image:
         social-image.png
     oxipng social-image.png
 
+# Run oxipng on all screenshots
+optimize-screenshots:
+    oxipng screenshots/*.png
+
 run-for-screenshots *ARGS:
     #!/bin/bash
     set -euo pipefail
