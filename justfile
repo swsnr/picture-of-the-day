@@ -218,4 +218,4 @@ run-for-screenshots *ARGS:
         XDG_DATA_HOME="${DIR}/share"
         LC_MESSAGES=en_US.UTF-8
     )
-    env "${variables[@]}" cargo run -- --date=2025-03-08 "${@}"
+    env "${variables[@]}" cargo run -- --date=2025-03-08 {{ARGS}}
