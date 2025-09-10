@@ -406,8 +406,8 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.syn]]
-version = "2.0.104"
-when = "2025-06-20"
+version = "2.0.106"
+when = "2025-08-16"
 user-id = 3618
 user-login = "dtolnay"
 user-name = "David Tolnay"
@@ -574,8 +574,8 @@ user-login = "kennykerr"
 user-name = "Kenny Kerr"
 
 [[publisher.winnow]]
-version = "0.7.12"
-when = "2025-07-11"
+version = "0.7.13"
+when = "2025-08-22"
 user-id = 6743
 user-login = "epage"
 user-name = "Ed Page"
