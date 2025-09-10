@@ -20,7 +20,7 @@ msgstr ""
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-msgid "Picture Of The Day"
+msgid "Picture of the Day"
 msgstr ""
 
 #: de.swsnr.pictureoftheday.desktop:4
@@ -263,7 +263,7 @@ msgstr ""
 
 #: resources/gtk/help-overlay.blp:34
 msgctxt "shortcuts group title"
-msgid "Picture Of The Day Window"
+msgid "Picture of the Day Window"
 msgstr ""
 
 #: resources/gtk/help-overlay.blp:37
@@ -358,7 +358,7 @@ msgstr ""
 
 #: resources/ui/application-window.blp:151
 msgctxt "main-window.menu.label"
-msgid "_About Picture Of The Day"
+msgid "_About Picture of the Day"
 msgstr ""
 
 #: resources/ui/application-window.blp:200
@@ -523,7 +523,7 @@ msgstr ""
 
 #: src/app.rs:194
 msgctxt "notification.title"
-msgid "Picture Of The Day updated"
+msgid "Picture of the Day updated"
 msgstr ""
 
 #: src/app.rs:199
@@ -539,7 +539,7 @@ msgstr ""
 #: src/app.rs:216
 msgctxt "alert-dialog.body"
 msgid ""
-"Picture Of The Day was updated, and needs to be restarted.\n"
+"Picture of the Day was updated, and needs to be restarted.\n"
 "\n"
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
@@ -592,7 +592,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:42
 msgctxt "error-notification.title"
-msgid "Picture Of The Day needs an API key"
+msgid "Picture of the Day needs an API key"
 msgstr ""
 
 #: src/app/model/error_notification.rs:48
@@ -605,7 +605,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:66
 msgctxt "error-notification.title"
-msgid "Picture Of The Day was rate-limited"
+msgid "Picture of the Day was rate-limited"
 msgstr ""
 
 #: src/app/model/error_notification.rs:72
@@ -865,5 +865,5 @@ msgstr ""
 
 #: src/main.rs:72
 msgctxt "application-name"
-msgid "Picture Of The Day"
+msgid "Picture of the Day"
 msgstr ""
