@@ -496,7 +496,7 @@ dependencies = [
 [[package]]
 name = "gnome-app-utils"
 version = "0.1.0"
-source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?rev=aa2750e19b1b4a3401aeb55470541f70488a990e#aa2750e19b1b4a3401aeb55470541f70488a990e"
+source = "git+https://codeberg.org/swsnr/gnome-app-utils.rs.git?rev=c66af6cfc5ea9acac863c8898f103340ff0ed8c9#c66af6cfc5ea9acac863c8898f103340ff0ed8c9"
 dependencies = [
  "futures",
  "gdk4-wayland",

@@ -174,6 +174,16 @@ impl Application {
         let prefs = PreferencesDialog::default();
         prefs.bind(&self.imp().settings());
         prefs.present(self.active_window().as_ref());
+        // Restart the session monitor after the prefs dialog was closed, because
+        // the user might have followed the instructions to override logind access.
+        prefs.connect_closed(glib::clone!(
+            #[weak(rename_to = app)]
+            self,
+            move |_| {
+                glib::info!("Restarting session monitor");
+                app.imp().restart_session_monitor();
+            }
+        ));
         prefs
     }
 
@@ -553,6 +563,19 @@ mod imp {
                 .bind("selected-source", &self.scheduler, "source")
                 .build();
         }
+
+        pub fn restart_session_monitor(&self) {
+            glib::spawn_future_local(glib::clone!(
+                #[strong(rename_to = session_monitor)]
+                self.session_monitor,
+                async move {
+                    session_monitor.stop();
+                    if let Err(error) = session_monitor.start().await {
+                        glib::warn!("Failed to monitor session lock: {error}");
+                    }
+                }
+            ));
+        }
     }
 
     #[glib::object_subclass]
@@ -664,6 +687,9 @@ mod imp {
                     }
                 }
             ));
+
+            glib::info!("Monitoring session lock");
+            self.restart_session_monitor();
 
             glib::info!("Configuring automatic updates");
             self.setup_scheduled_wallpaper_updates(&settings);

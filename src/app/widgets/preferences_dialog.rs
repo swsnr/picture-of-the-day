@@ -34,14 +34,16 @@ impl Default for PreferencesDialog {
 }
 
 mod imp {
-    use std::cell::RefCell;
+    use std::cell::{Cell, RefCell};
 
     use adw::prelude::*;
     use adw::subclass::prelude::*;
     use formatx::formatx;
     use glib::{Properties, StrV, dngettext, subclass::InitializingObject};
+    use gnome_app_utils::app::SessionLockedMonitor;
     use gtk::CompositeTemplate;
 
+    use crate::config::G_LOG_DOMAIN;
     use crate::images::{Source, stalenhag};
 
     #[derive(Default, CompositeTemplate, Properties)]
@@ -52,6 +54,8 @@ mod imp {
         apod_api_key: RefCell<String>,
         #[property(get, set)]
         stalenhag_disabled_collections: RefCell<StrV>,
+        #[property(get)]
+        connected_to_logind: Cell<bool>,
         #[template_child]
         group_apod: TemplateChild<adw::PreferencesGroup>,
         #[template_child]
@@ -79,6 +83,12 @@ mod imp {
             )
             .unwrap()
         }
+
+        #[template_callback]
+        fn flatpak_override_command() -> String {
+            use crate::config::APP_ID;
+            format!("flatpak --user override --system-talk-name=org.freedesktop.login1 {APP_ID}")
+        }
     }
 
     #[glib::object_subclass]
@@ -92,6 +102,25 @@ mod imp {
         fn class_init(klass: &mut Self::Class) {
             klass.bind_template();
             klass.bind_template_callbacks();
+
+            klass.install_action_async("logind.check", None, |dialog, _, _| async move {
+                let monitor = SessionLockedMonitor::default();
+                let is_supported = monitor
+                    .start()
+                    .await
+                    .inspect_err(|error| {
+                        glib::warn!("Session lock monitoring not supported: {error}");
+                    })
+                    .is_ok();
+                dialog.imp().connected_to_logind.replace(is_supported);
+                dialog.notify_connected_to_logind();
+            });
+
+            klass.install_action("logind.copy", None, |dialog, _, _| {
+                dialog
+                    .clipboard()
+                    .set_text(&PreferencesDialog::flatpak_override_command());
+            });
         }
 
         fn instance_init(obj: &InitializingObject<Self>) {
@@ -146,6 +175,8 @@ mod imp {
                     })
                     .build();
             }
+
+            self.obj().activate_action("logind.check", None).unwrap();
         }
     }
 

@@ -9,6 +9,7 @@ using Adw 1;
 template $PotDPreferencesDialog: Adw.PreferencesDialog {
   Adw.PreferencesPage {
     icon-name: "de.swsnr.pictureoftheday-symbolic";
+    title: C_("preferences-dialog.page.title", "Wallpaper sources");
 
     Adw.PreferencesGroup group_apod {
       Adw.EntryRow {
@@ -17,7 +18,7 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
 
         [suffix]
         Gtk.LinkButton {
-          label: _("Get API key");
+          label: C_("preferences-dialog.row.link-label", "Get API key");
           uri: "https://api.nasa.gov/";
         }
       }
@@ -25,9 +26,84 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
 
     Adw.PreferencesGroup group_stalenhag {
       Adw.ExpanderRow stalenhag_collections {
-        title: _("Enabled collections");
+        title: C_("preferences-dialog.row.title", "Enabled collections");
         subtitle: bind $label_enabled_collections(template.stalenhag-disabled-collections) as <string>;
         expanded: true;
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    icon-name: "today-symbolic";
+    title: C_("preferences-dialog.page.title", "Daily wallpaper update");
+
+    Adw.PreferencesGroup {
+      title: C_("preferences-dialog.group.title", "Update after session is unlocked");
+
+      Adw.ActionRow {
+        title: C_("preferences-dialog.row.title", "Connection to logind allowed");
+        subtitle: C_("preferences-dialog.row.description", "After the session is unlocked the wallpaper is updated immediately.");
+        visible: bind template.connected-to-logind;
+
+        [suffix]
+        Gtk.Image {
+          icon-name: "checkmark-symbolic";
+
+          styles [
+            "success",
+          ]
+        }
+      }
+
+      Adw.ActionRow {
+        title: C_("preferences-dialog.row.title", "Connection to logind prohibited");
+        subtitle: C_("preferences-dialog.row.description", "After the session is unlocked the wallpaper is updated only after a considerable delay.");
+        visible: bind template.connected-to-logind inverted;
+
+        [suffix]
+        Gtk.Box {
+          orientation: horizontal;
+          spacing: 5;
+
+          Gtk.Image {
+            icon-name: "warning-outline-symbolic";
+
+            styles [
+              "warning",
+            ]
+          }
+
+          Gtk.Button {
+            icon-name: "arrow-circular-top-right-symbolic";
+            tooltip-text: C_("preferences-dialog.row.button.tooltip", "Check again");
+            action-name: "logind.check";
+            valign: center;
+
+            styles [
+              "flat",
+            ]
+          }
+        }
+      }
+
+      Adw.ActionRow {
+        title: C_("preferences-dialog.row.title", "Permit access to login in your terminal and restart the app");
+        // We don't really care for the value of connected-to-logind, but blueprint wants us to pass something to the closure
+        subtitle: bind $flatpak_override_command(template.connected-to-logind) as <string>;
+        use-markup: true;
+        visible: bind template.connected-to-logind inverted;
+
+        [suffix]
+        Gtk.Button {
+          icon-name: "copy-symbolic";
+          tooltip-text: C_("preferences-dialog.row.button.tooltip", "Copy to clipboard");
+          action-name: "logind.copy";
+          valign: center;
+
+          styles [
+            "flat",
+          ]
+        }
       }
     }
   }

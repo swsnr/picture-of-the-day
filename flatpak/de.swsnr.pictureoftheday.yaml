@@ -11,9 +11,6 @@ finish-args:
   - --socket=fallback-x11
   - --socket=wayland
   - --device=dri
-  # We need to talk to logind to monitor whether the session is locked, see
-  # https://codeberg.org/swsnr/picture-of-the-day/issues/39
-  - --system-talk-name=org.freedesktop.login1
 build-options:
   append-path: /usr/lib/sdk/rust-stable/bin
 modules:
