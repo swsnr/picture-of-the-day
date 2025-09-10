@@ -1,4 +1,4 @@
-# Picture Of The Day
+# Picture of the Day
 
 [![Translation status](https://translate.codeberg.org/widget/de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/svg-badge.svg)](https://translate.codeberg.org/engage/de-swsnr-pictureoftheday/)
 
@@ -27,7 +27,7 @@ Please submit translations to <https://translate.codeberg.org/engage/de-swsnr-pi
 
 ## Troubleshooting
 
-You can obtain a debugging log by running Picture Of The Day as follows from a terminal:
+You can obtain a debugging log by running Picture of the Day as follows from a terminal:
 
 ```console
 $ flatpak run --env=G_MESSAGES_DEBUG=all de.swsnr.pictureoftheday

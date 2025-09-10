@@ -191,7 +191,7 @@ impl Application {
         let notification = gio::Notification::new(&dpgettext2(
             None,
             "notification.title",
-            "Picture Of The Day updated",
+            "Picture of the Day updated",
         ));
         notification.set_body(Some(&dpgettext2(
             None,
@@ -213,7 +213,7 @@ impl Application {
             Some(&dpgettext2(
                 None,
                 "alert-dialog.body",
-                "Picture Of The Day was updated, and needs to be restarted.
+                "Picture of the Day was updated, and needs to be restarted.
 
 Automatic restarting is not yet supported, but you can quit the app and start \
 it again manually.",

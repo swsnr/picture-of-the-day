@@ -2,7 +2,7 @@
 <component type="desktop-application">
     <id>de.swsnr.pictureoftheday</id>
     <metadata_license>CC0-1.0</metadata_license>
-    <name>Picture Of The Day</name>
+    <name>Picture of the Day</name>
     <summary>Your daily wallpaper</summary>
     <description>
         <p>Get a picture of the day from the following sources and use as your daily wallpaper.</p>

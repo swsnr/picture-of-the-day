@@ -69,7 +69,7 @@ fn main() -> glib::ExitCode {
     }
 
     config::register_resources();
-    glib::set_application_name(&dpgettext2(None, "application-name", "Picture Of The Day"));
+    glib::set_application_name(&dpgettext2(None, "application-name", "Picture of the Day"));
 
     let app = Application::default();
     app.set_version(config::CARGO_PKG_VERSION);

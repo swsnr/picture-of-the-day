@@ -58,7 +58,7 @@ required-features = ["scraper"]
 
 [package.metadata.release]
 pre-release-commit-message = "Release {{version}}"
-tag-message = "Picture Of The Day {{tag_name}}"
+tag-message = "Picture of the Day {{tag_name}}"
 publish = false
 # We push explicitly when the new release looks good
 push = false

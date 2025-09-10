@@ -39,7 +39,7 @@ mod errors {
         let title = dpgettext2(
             None,
             "error-notification.title",
-            "Picture Of The Day needs an API key",
+            "Picture of the Day needs an API key",
         );
         let description = formatx!(
             dpgettext2(
@@ -63,7 +63,7 @@ application preferences. The current key appears to be invalid.",
         let title = dpgettext2(
             None,
             "error-notification.title",
-            "Picture Of The Day was rate-limited",
+            "Picture of the Day was rate-limited",
         );
         let description = formatx!(
             dpgettext2(
