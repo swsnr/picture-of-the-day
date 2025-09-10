@@ -37,7 +37,7 @@ jiff = { version = "0.2.10", default-features = false, features = [
     # civil dates and don't care about zones at all.
 ] }
 glib = { version = "0.21.0", features = ["log_macros"] }
-gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", rev = "aa2750e19b1b4a3401aeb55470541f70488a990e" }
+gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", rev = "c66af6cfc5ea9acac863c8898f103340ff0ed8c9" }
 gtk = { package = "gtk4", version = "0.10.0", features = ["gnome_48"] }
 quick-xml = "0.37.5"
 scraper = { version = "0.23.1", default-features = false }
