@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-08-14 09:09+0000\n"
 "Last-Translator: Priit Jõerüüt <jrtcdbrg@noreply.codeberg.org>\n"
-"Language-Team: Estonian <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
+"Language-Team: Estonian <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/et/>\n"
 "Language: et\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +21,9 @@ msgstr ""
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-msgid "Picture Of The Day"
+#, fuzzy
+#| msgid "Picture Of The Day"
+msgid "Picture of the Day"
 msgstr "Päevapilt"
 
 #: de.swsnr.pictureoftheday.desktop:4
@@ -45,7 +47,13 @@ msgstr "Valitud andmeallika tunnus."
 msgid "Whether to set the wallpaper automatically."
 msgstr "Kas valime taustapildid automaatselt."
 
-#: de.swsnr.pictureoftheday.gschema.xml:14
+#: de.swsnr.pictureoftheday.gschema.xml:13
+#, fuzzy
+#| msgid "Whether to set the wallpaper automatically."
+msgid "Whether to update the wallpaper over metered networks."
+msgstr "Kas valime taustapildid automaatselt."
+
+#: de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
 "The API key to use for requests to the APOD API. The default key is usually "
 "fine, but if you find that you are rate-limited, you may wish to use your "
@@ -55,7 +63,7 @@ msgstr ""
 "märkad päringute piiramist või lihtsalt soovid oma võtit kasutada, siis saad "
 "ta tasuta registreerida https://api.nasa.gov/ lehel."
 
-#: de.swsnr.pictureoftheday.gschema.xml:24
+#: de.swsnr.pictureoftheday.gschema.xml:28
 msgid "Collections from Stålenhag which to ignore."
 msgstr "Stålenhagi kogumikud, mida peaksime eirama."
 
@@ -135,20 +143,31 @@ msgid "Artwork"
 msgstr "Kunst"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
+msgid ""
+"No longer request direct access to logind, which is no longer allowed on "
+"Flathub. Instead, instruct the user to provide access to logind in the "
+"preferences dialog."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:53
+msgid "Optionally inhibit wallpaper updates over metered networks."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:63
 msgid "Fix wallpaper updates."
 msgstr "Taustapiltide uuendamise parandused."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:58
+#: de.swsnr.pictureoftheday.metainfo.xml:72
 msgid "Drag images out of the app to copy them into other apps."
 msgstr "Lohistades saad pilte teistesse rakendustesse kopeerida."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:67
+#: de.swsnr.pictureoftheday.metainfo.xml:81
 msgid "Change license to European Union Public License 1.2."
 msgstr ""
 "Muutsime litsentseerimist ning nüüdsest on lähtekood avaldatud Euroopa Liidu "
 "tarkvara vaba kasutuse litsentsi („EUPL“) versiooni 1.2 alusel."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:73
+#: de.swsnr.pictureoftheday.metainfo.xml:87
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -158,7 +177,7 @@ msgstr ""
 "automaatselt - see võimaldab kasutajatel valida erinevate allikate ja eri "
 "piltide vahel ilma koheseid muudatusi tegemata."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:74
+#: de.swsnr.pictureoftheday.metainfo.xml:88
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
@@ -166,13 +185,13 @@ msgstr ""
 "Kui sessioon on lukustatud või arvuti/nutiseade on energiasäästurežimil, "
 "siis enam me ei uuenda taustapilti automaatselt."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:75
+#: de.swsnr.pictureoftheday.metainfo.xml:89
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 "Teavita olukorrast ja palu rakendus uuesti käivitada, kui ta on taustal "
 "uuendatud."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:88
+#: de.swsnr.pictureoftheday.metainfo.xml:102
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
@@ -180,14 +199,14 @@ msgstr ""
 "Lisasime uute allikatena Earth Science Picture of the Day ja NASA Earth "
 "Observatory Image of the Day."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:98
+#: de.swsnr.pictureoftheday.metainfo.xml:112
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Lisa piltide vaatesse ülekattega tööriistariba, mis võimaldab liikuda "
 "piltide vahel."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:99
+#: de.swsnr.pictureoftheday.metainfo.xml:113
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -195,34 +214,34 @@ msgstr ""
 "Lisa tööriistaribale nupp, mis võimaldab kuvatavat pilti salvestada ja avada "
 "välise rakendusega."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:100
+#: de.swsnr.pictureoftheday.metainfo.xml:114
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Parandasime allaalaadimise kontrolli, et rakendusest väljumisel ei jääks "
 "alles pooleldi allalaaditud pilte."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:112
+#: de.swsnr.pictureoftheday.metainfo.xml:126
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Kasutame Vikimeedia jaoks töökindlamat otspunkti."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:113
+#: de.swsnr.pictureoftheday.metainfo.xml:127
 msgid "No longer show preview when setting a wallpaper."
 msgstr "Taustapildi määramisel enam ei näita eelvaadet."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:114
+#: de.swsnr.pictureoftheday.metainfo.xml:128
 msgid "Improve scheduling of automatic downloads."
 msgstr "Parem automaatsete uuenduste ajastamine."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:115
+#: de.swsnr.pictureoftheday.metainfo.xml:129
 msgid "Remember window size and state."
 msgstr "Jätame nüüd meelde akna mõõdud ja oleku."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:116
+#: de.swsnr.pictureoftheday.metainfo.xml:130
 msgid "Update to GNOME 48."
 msgstr "Uuendus kasutab nüüd GNOME 48 teeke."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:126
+#: de.swsnr.pictureoftheday.metainfo.xml:140
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -230,11 +249,11 @@ msgstr ""
 "Lisasime rakenduse automaatse käivituse ja uuendame igapäevast taustapilti "
 "12-tunnise välbaga."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:127
+#: de.swsnr.pictureoftheday.metainfo.xml:141
 msgid "No longer support multiple windows."
 msgstr "Lõpetasime mitme akna toe."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:137
+#: de.swsnr.pictureoftheday.metainfo.xml:151
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -242,7 +261,7 @@ msgstr ""
 "Esimene versioon nelja allika toega: APOD, Vikimeedia, Simon Stålenhag ja "
 "Bing."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:138
+#: de.swsnr.pictureoftheday.metainfo.xml:152
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -250,15 +269,15 @@ msgstr ""
 "Lisasime põhivaate tänase päevapildi näitamiseks ja taustapildiks "
 "määramiseks."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:150
+#: de.swsnr.pictureoftheday.metainfo.xml:164
 msgid "A picture of the day from Wikimedia"
 msgstr "Päevapilt Vikimeediast"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:154
+#: de.swsnr.pictureoftheday.metainfo.xml:168
 msgid "The preferences dialog with settings for image sources"
 msgstr "Eelistuste vaade andmeallikate seadistamiseks"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:158
+#: de.swsnr.pictureoftheday.metainfo.xml:172
 msgid "The empty greeting page with the application icon"
 msgstr "Tühi avaleht rakenduse ikooniga"
 
@@ -283,8 +302,11 @@ msgid "Quit application"
 msgstr "Sulge rakendus"
 
 #: resources/gtk/help-overlay.blp:34
+#, fuzzy
+#| msgctxt "shortcuts group title"
+#| msgid "Picture Of The Day Window"
 msgctxt "shortcuts group title"
-msgid "Picture Of The Day Window"
+msgid "Picture of the Day Window"
 msgstr "Päevapildi aken"
 
 #: resources/gtk/help-overlay.blp:37
@@ -378,8 +400,11 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Klaviatuuri kiirklahvid"
 
 #: resources/ui/application-window.blp:151
+#, fuzzy
+#| msgctxt "main-window.menu.label"
+#| msgid "_About Picture Of The Day"
 msgctxt "main-window.menu.label"
-msgid "_About Picture Of The Day"
+msgid "_About Picture of the Day"
 msgstr "_Rakenduse teave: Päevapilt"
 
 #: resources/ui/application-window.blp:200
@@ -432,19 +457,93 @@ msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
 msgstr "Pilt on allalaadimisel…"
 
-#: resources/ui/preferences-dialog.blp:15
+#: resources/ui/preferences-dialog.blp:12
+#, fuzzy
+#| msgid "Wallpaper"
+msgctxt "preferences-dialog.page.title"
+msgid "Wallpaper sources"
+msgstr "Taustapilt"
+
+#: resources/ui/preferences-dialog.blp:16
 msgid "API key"
 msgstr "API-võti"
 
-#: resources/ui/preferences-dialog.blp:20
+#: resources/ui/preferences-dialog.blp:21
+#, fuzzy
+#| msgid "Get API key"
+msgctxt "preferences-dialog.row.link-label"
 msgid "Get API key"
 msgstr "Tee oma API võti"
 
-#: resources/ui/preferences-dialog.blp:28
+#: resources/ui/preferences-dialog.blp:29
+#, fuzzy
+#| msgid "Enabled collections"
+msgctxt "preferences-dialog.row.title"
 msgid "Enabled collections"
 msgstr "Kasutusel kogumikud"
 
-#: src/app.rs:128
+#: resources/ui/preferences-dialog.blp:38
+#, fuzzy
+#| msgid "Fix wallpaper updates."
+msgctxt "preferences-dialog.page.title"
+msgid "Daily wallpaper update"
+msgstr "Taustapiltide uuendamise parandused."
+
+#: resources/ui/preferences-dialog.blp:41
+#, fuzzy
+#| msgid "Artwork"
+msgctxt "preferences-dialog.group.title"
+msgid "Network"
+msgstr "Kunst"
+
+#: resources/ui/preferences-dialog.blp:44
+msgctxt "preferences-dialog.row.title"
+msgid "Update wallpaper over metered network"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:50
+msgctxt "preferences-dialog.group.title"
+msgid "Update after session is unlocked"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:53
+msgctxt "preferences-dialog.row.title"
+msgid "Connection to logind allowed"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:54
+msgctxt "preferences-dialog.row.description"
+msgid "After the session is unlocked the wallpaper is updated immediately."
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:68
+msgctxt "preferences-dialog.row.title"
+msgid "Connection to logind prohibited"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:69
+msgctxt "preferences-dialog.row.description"
+msgid ""
+"After the session is unlocked the wallpaper is updated only after a "
+"considerable delay."
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:87
+msgctxt "preferences-dialog.row.button.tooltip"
+msgid "Check again"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:99
+msgctxt "preferences-dialog.row.title"
+msgid "Permit access to login in your terminal and restart the app"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:108
+msgctxt "preferences-dialog.row.button.tooltip"
+msgid "Copy to clipboard"
+msgstr ""
+
+#: src/app.rs:122
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr "Tõlked"
@@ -452,51 +551,61 @@ msgstr "Tõlked"
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:137
+#: src/app.rs:131
 msgid "translator-credits"
 msgstr "Priit Jõerüüt 2025"
 
-#: src/app.rs:142
+#: src/app.rs:136
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr "Abiteave ja inspiratsioon"
 
-#: src/app.rs:155
+#: src/app.rs:149
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr "Abiks olevad teenused"
 
 #. Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
-#: src/app.rs:167
+#: src/app.rs:161
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
 msgstr "Lülita sisse"
 
 #. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
-#: src/app.rs:172
+#: src/app.rs:166
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
 msgstr "Lülita seadmed oma võrgus sisse"
 
-#: src/app.rs:190
+#: src/app.rs:194
+#, fuzzy
+#| msgctxt "notification.title"
+#| msgid "Picture Of The Day updated"
 msgctxt "notification.title"
-msgid "Picture Of The Day updated"
+msgid "Picture of the Day updated"
 msgstr "Päevapilt on uuendatud"
 
-#: src/app.rs:195
+#: src/app.rs:199
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
 msgstr "Rakenduse uue versiooni kasutamiseks palun käivita ta uuesti."
 
-#: src/app.rs:207
+#: src/app.rs:211
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr "Kas taaskäivitame rakenduse peale uuendust?"
 
-#: src/app.rs:212
+#: src/app.rs:216
+#, fuzzy
+#| msgctxt "alert-dialog.body"
+#| msgid ""
+#| "Picture Of The Day was updated, and needs to be restarted.\n"
+#| "\n"
+#| "Automatic restarting is not yet supported, but you can quit the app and "
+#| "start it again manually."
 msgctxt "alert-dialog.body"
 msgid ""
-"Picture Of The Day was updated, and needs to be restarted.\n"
+"Picture of the Day was updated, and needs to be restarted.\n"
 "\n"
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
@@ -506,54 +615,57 @@ msgstr ""
 "Automaatne taaskäivitus pole veel toetatud, aga sa saad rakenduse sulged ja "
 "ise uuesti tööle panna."
 
-#: src/app.rs:221
+#: src/app.rs:225
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr "Katkesta"
 
-#: src/app.rs:223
+#: src/app.rs:227
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr "Välju"
 
-#: src/app.rs:289
+#: src/app.rs:293
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr "Kontaktteave"
 
-#: src/app.rs:294
+#: src/app.rs:298
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app.rs:298
+#: src/app.rs:302
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Ava võrguaadress"
 
-#: src/app.rs:592
+#: src/app.rs:641
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Ava eelistused"
 
-#: src/app.rs:603
+#: src/app.rs:652
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "Näita antud kuupäeva päevapilti"
 
-#: src/app.rs:608
+#: src/app.rs:657
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "AAAA-KK-PP"
 
-#: src/app.rs:802
+#: src/app.rs:854
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Laadi ja lisa taustapilt automaatselt"
 
 #: src/app/model/error_notification.rs:42
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Picture Of The Day needs an API key"
 msgctxt "error-notification.title"
-msgid "Picture Of The Day needs an API key"
+msgid "Picture of the Day needs an API key"
 msgstr "Päevapilt vajab API võtit"
 
 #: src/app/model/error_notification.rs:48
@@ -566,8 +678,11 @@ msgstr ""
 "Tundub, et praegune võti enam ei kehti."
 
 #: src/app/model/error_notification.rs:66
+#, fuzzy
+#| msgctxt "error-notification.title"
+#| msgid "Picture Of The Day was rate-limited"
 msgctxt "error-notification.title"
-msgid "Picture Of The Day was rate-limited"
+msgid "Picture of the Day was rate-limited"
 msgstr "Rakendusele Päevapilt rakendus päringute mahupiirang"
 
 #: src/app/model/error_notification.rs:72
@@ -745,17 +860,17 @@ msgctxt "alert.response"
 msgid "Open URL"
 msgstr "Ava võrguaadress"
 
-#: src/app/widgets/application_window.rs:392
+#: src/app/widgets/application_window.rs:387
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr "Üksikasjad"
 
-#: src/app/widgets/application_window.rs:507
+#: src/app/widgets/application_window.rs:494
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr "Salvesta pilt"
 
-#: src/app/widgets/preferences_dialog.rs:73
+#: src/app/widgets/preferences_dialog.rs:86
 msgid "{n}/{total} collection enabled"
 msgid_plural "{n}/{total} collections enabled"
 msgstr[0] "Kasutusel kogumik: {n}/{total}"
@@ -851,9 +966,15 @@ msgid "Unknown, all rights reserved"
 msgstr "Teadmata autor, kõik õigused kaitstud"
 
 #: src/main.rs:72
+#, fuzzy
+#| msgid "Picture Of The Day"
 msgctxt "application-name"
-msgid "Picture Of The Day"
+msgid "Picture of the Day"
 msgstr "Päevapilt"
+
+#~ msgctxt "application-name"
+#~ msgid "Picture Of The Day"
+#~ msgstr "Päevapilt"
 
 #~ msgctxt "command-line.option.description"
 #~ msgid "Show image for DATE, parsed as ISO string"

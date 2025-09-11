@@ -19,7 +19,7 @@ msgstr ""
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-msgid "Picture Of The Day"
+msgid "Picture of the Day"
 msgstr ""
 
 #: de.swsnr.pictureoftheday.desktop:4
@@ -43,14 +43,18 @@ msgstr ""
 msgid "Whether to set the wallpaper automatically."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.gschema.xml:14
+#: de.swsnr.pictureoftheday.gschema.xml:13
+msgid "Whether to update the wallpaper over metered networks."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
 "The API key to use for requests to the APOD API. The default key is usually "
 "fine, but if you find that you are rate-limited, you may wish to use your "
 "own API key, which you can obtain free of charge at https://api.nasa.gov/."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.gschema.xml:24
+#: de.swsnr.pictureoftheday.gschema.xml:28
 msgid "Collections from Stålenhag which to ignore."
 msgstr ""
 
@@ -121,107 +125,118 @@ msgid "Artwork"
 msgstr ""
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
+msgid ""
+"No longer request direct access to logind, which is no longer allowed on "
+"Flathub. Instead, instruct the user to provide access to logind in the "
+"preferences dialog."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:53
+msgid "Optionally inhibit wallpaper updates over metered networks."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:63
 msgid "Fix wallpaper updates."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:58
+#: de.swsnr.pictureoftheday.metainfo.xml:72
 msgid "Drag images out of the app to copy them into other apps."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:67
+#: de.swsnr.pictureoftheday.metainfo.xml:81
 msgid "Change license to European Union Public License 1.2."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:73
+#: de.swsnr.pictureoftheday.metainfo.xml:87
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
 "desktop background."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:74
+#: de.swsnr.pictureoftheday.metainfo.xml:88
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:75
+#: de.swsnr.pictureoftheday.metainfo.xml:89
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:88
+#: de.swsnr.pictureoftheday.metainfo.xml:102
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:98
+#: de.swsnr.pictureoftheday.metainfo.xml:112
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:99
+#: de.swsnr.pictureoftheday.metainfo.xml:113
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:100
+#: de.swsnr.pictureoftheday.metainfo.xml:114
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:112
+#: de.swsnr.pictureoftheday.metainfo.xml:126
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:113
+#: de.swsnr.pictureoftheday.metainfo.xml:127
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:114
+#: de.swsnr.pictureoftheday.metainfo.xml:128
 msgid "Improve scheduling of automatic downloads."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:115
+#: de.swsnr.pictureoftheday.metainfo.xml:129
 msgid "Remember window size and state."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:116
+#: de.swsnr.pictureoftheday.metainfo.xml:130
 msgid "Update to GNOME 48."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:126
+#: de.swsnr.pictureoftheday.metainfo.xml:140
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:127
+#: de.swsnr.pictureoftheday.metainfo.xml:141
 msgid "No longer support multiple windows."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:137
+#: de.swsnr.pictureoftheday.metainfo.xml:151
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:138
+#: de.swsnr.pictureoftheday.metainfo.xml:152
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:150
+#: de.swsnr.pictureoftheday.metainfo.xml:164
 msgid "A picture of the day from Wikimedia"
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:154
+#: de.swsnr.pictureoftheday.metainfo.xml:168
 msgid "The preferences dialog with settings for image sources"
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:158
+#: de.swsnr.pictureoftheday.metainfo.xml:172
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
@@ -247,7 +262,7 @@ msgstr ""
 
 #: resources/gtk/help-overlay.blp:34
 msgctxt "shortcuts group title"
-msgid "Picture Of The Day Window"
+msgid "Picture of the Day Window"
 msgstr ""
 
 #: resources/gtk/help-overlay.blp:37
@@ -342,7 +357,7 @@ msgstr ""
 
 #: resources/ui/application-window.blp:151
 msgctxt "main-window.menu.label"
-msgid "_About Picture Of The Day"
+msgid "_About Picture of the Day"
 msgstr ""
 
 #: resources/ui/application-window.blp:200
@@ -395,19 +410,83 @@ msgctxt "image-page.loading-message.title"
 msgid "Downloading image…"
 msgstr ""
 
-#: resources/ui/preferences-dialog.blp:15
+#: resources/ui/preferences-dialog.blp:12
+msgctxt "preferences-dialog.page.title"
+msgid "Wallpaper sources"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:16
 msgid "API key"
 msgstr ""
 
-#: resources/ui/preferences-dialog.blp:20
+#: resources/ui/preferences-dialog.blp:21
+msgctxt "preferences-dialog.row.link-label"
 msgid "Get API key"
 msgstr ""
 
-#: resources/ui/preferences-dialog.blp:28
+#: resources/ui/preferences-dialog.blp:29
+msgctxt "preferences-dialog.row.title"
 msgid "Enabled collections"
 msgstr ""
 
-#: src/app.rs:128
+#: resources/ui/preferences-dialog.blp:38
+msgctxt "preferences-dialog.page.title"
+msgid "Daily wallpaper update"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:41
+msgctxt "preferences-dialog.group.title"
+msgid "Network"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:44
+msgctxt "preferences-dialog.row.title"
+msgid "Update wallpaper over metered network"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:50
+msgctxt "preferences-dialog.group.title"
+msgid "Update after session is unlocked"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:53
+msgctxt "preferences-dialog.row.title"
+msgid "Connection to logind allowed"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:54
+msgctxt "preferences-dialog.row.description"
+msgid "After the session is unlocked the wallpaper is updated immediately."
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:68
+msgctxt "preferences-dialog.row.title"
+msgid "Connection to logind prohibited"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:69
+msgctxt "preferences-dialog.row.description"
+msgid ""
+"After the session is unlocked the wallpaper is updated only after a "
+"considerable delay."
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:87
+msgctxt "preferences-dialog.row.button.tooltip"
+msgid "Check again"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:99
+msgctxt "preferences-dialog.row.title"
+msgid "Permit access to login in your terminal and restart the app"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:108
+msgctxt "preferences-dialog.row.button.tooltip"
+msgid "Copy to clipboard"
+msgstr ""
+
+#: src/app.rs:122
 msgctxt "about-dialog.link.label"
 msgid "Translations"
 msgstr ""
@@ -415,104 +494,104 @@ msgstr ""
 #. Credits for the translator to the current language.
 #. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
-#: src/app.rs:137
+#: src/app.rs:131
 msgid "translator-credits"
 msgstr ""
 
-#: src/app.rs:142
+#: src/app.rs:136
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Help and inspiration"
 msgstr ""
 
-#: src/app.rs:155
+#: src/app.rs:149
 msgctxt "about-dialog.acknowledgment-section"
 msgid "Helpful services"
 msgstr ""
 
 #. Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
-#: src/app.rs:167
+#: src/app.rs:161
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
 msgstr ""
 
 #. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
-#: src/app.rs:172
+#: src/app.rs:166
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
 msgstr ""
 
-#: src/app.rs:190
+#: src/app.rs:194
 msgctxt "notification.title"
-msgid "Picture Of The Day updated"
+msgid "Picture of the Day updated"
 msgstr ""
 
-#: src/app.rs:195
+#: src/app.rs:199
 msgctxt "notification.body"
 msgid "Please restart the app to use the new version."
 msgstr ""
 
-#: src/app.rs:207
+#: src/app.rs:211
 msgctxt "alert-dialog.title"
 msgid "Restart after update?"
 msgstr ""
 
-#: src/app.rs:212
+#: src/app.rs:216
 msgctxt "alert-dialog.body"
 msgid ""
-"Picture Of The Day was updated, and needs to be restarted.\n"
+"Picture of the Day was updated, and needs to be restarted.\n"
 "\n"
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
 
-#: src/app.rs:221
+#: src/app.rs:225
 msgctxt "alert-dialog.response"
 msgid "Cancel"
 msgstr ""
 
-#: src/app.rs:223
+#: src/app.rs:227
 msgctxt "alert-dialog.response"
 msgid "Quit"
 msgstr ""
 
-#: src/app.rs:289
+#: src/app.rs:293
 msgctxt "notification.button.label"
 msgid "Contact information"
 msgstr ""
 
-#: src/app.rs:294
+#: src/app.rs:298
 msgctxt "notification.button.label"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:298
+#: src/app.rs:302
 msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:592
+#: src/app.rs:641
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:603
+#: src/app.rs:652
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr ""
 
-#: src/app.rs:608
+#: src/app.rs:657
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr ""
 
-#: src/app.rs:802
+#: src/app.rs:854
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
 
 #: src/app/model/error_notification.rs:42
 msgctxt "error-notification.title"
-msgid "Picture Of The Day needs an API key"
+msgid "Picture of the Day needs an API key"
 msgstr ""
 
 #: src/app/model/error_notification.rs:48
@@ -524,7 +603,7 @@ msgstr ""
 
 #: src/app/model/error_notification.rs:66
 msgctxt "error-notification.title"
-msgid "Picture Of The Day was rate-limited"
+msgid "Picture of the Day was rate-limited"
 msgstr ""
 
 #: src/app/model/error_notification.rs:72
@@ -670,17 +749,17 @@ msgctxt "alert.response"
 msgid "Open URL"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:392
+#: src/app/widgets/application_window.rs:387
 msgctxt "toast.button.label"
 msgid "Details"
 msgstr ""
 
-#: src/app/widgets/application_window.rs:507
+#: src/app/widgets/application_window.rs:494
 msgctxt "file-dialog.title"
 msgid "Save image"
 msgstr ""
 
-#: src/app/widgets/preferences_dialog.rs:73
+#: src/app/widgets/preferences_dialog.rs:86
 msgid "{n}/{total} collection enabled"
 msgid_plural "{n}/{total} collections enabled"
 msgstr[0] ""
@@ -767,5 +846,5 @@ msgstr ""
 
 #: src/main.rs:72
 msgctxt "application-name"
-msgid "Picture Of The Day"
+msgid "Picture of the Day"
 msgstr ""
