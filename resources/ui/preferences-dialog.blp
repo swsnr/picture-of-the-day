@@ -96,7 +96,7 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
       }
 
       Adw.ActionRow {
-        title: C_("preferences-dialog.row.title", "Permit access to login in your terminal and restart the app");
+        title: C_("preferences-dialog.row.title", "Command to permit access to logind");
         // We don't really care for the value of connected-to-logind, but blueprint wants us to pass something to the closure
         subtitle: bind $flatpak_override_command(template.connected-to-logind) as <string>;
         use-markup: true;
@@ -113,6 +113,16 @@ template $PotDPreferencesDialog: Adw.PreferencesDialog {
             "flat",
           ]
         }
+      }
+    }
+
+    Adw.PreferencesGroup {
+      visible: bind template.connected-to-logind inverted;
+
+      Gtk.Label {
+        label: _("Run this command in a terminal to grant access to logind. You may need to restart the application afterwards. Alternatively, you can use <a href=\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a> to add a permission for this application to talk to <tt>org.freedesktop.login1</tt> on the <i>System Bus</i>.");
+        use-markup: true;
+        wrap: true;
       }
     }
   }
