@@ -10,8 +10,8 @@ msgstr ""
 "PO-Revision-Date: 2025-09-11 05:37+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
-"translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
-"de-swsnr-pictureoftheday/zh_Hans/>\n"
+"translate.codeberg.org/projects/de-swsnr-pictureoftheday/de-swsnr-"
+"pictureoftheday/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -137,8 +137,9 @@ msgid ""
 "No longer request direct access to logind, which is no longer allowed on "
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
-msgstr "不再请求直接访问 logind，Flathub 已不再允许此操作。"
-"改为指导用户在首选项对话框中提供 logind 访问权限。"
+msgstr ""
+"不再请求直接访问 logind，Flathub 已不再允许此操作。改为指导用户在首选项对话框"
+"中提供 logind 访问权限。"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:53
 msgid "Optionally inhibit wallpaper updates over metered networks."
@@ -456,8 +457,11 @@ msgid "Update wallpaper over metered network"
 msgstr "通过按流量计费的网络更新壁纸"
 
 #: resources/ui/preferences-dialog.blp:50
+#, fuzzy
+#| msgctxt "preferences-dialog.group.title"
+#| msgid "Update after session is unlocked"
 msgctxt "preferences-dialog.group.title"
-msgid "Update after session is unlocked"
+msgid "Update wallpaper after session is unlocked"
 msgstr "会话解锁后更新"
 
 #: resources/ui/preferences-dialog.blp:53
@@ -489,13 +493,22 @@ msgstr "再次检查"
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
-msgid "Permit access to login in your terminal and restart the app"
-msgstr "在终端中允许登录访问权限并重启应用"
+msgid "Command to permit access to logind"
+msgstr ""
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
 msgstr "复制到剪贴板"
+
+#: resources/ui/preferences-dialog.blp:123
+msgid ""
+"Run this command in a terminal to grant access to logind. You may need to "
+"restart the application afterwards. Alternatively, you can use <a "
+"href=\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a> "
+"to add a permission for this application to talk to "
+"<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
+msgstr ""
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
@@ -888,6 +901,10 @@ msgstr "未知，版权所有"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "今日图片"
+
+#~ msgctxt "preferences-dialog.row.title"
+#~ msgid "Permit access to login in your terminal and restart the app"
+#~ msgstr "在终端中允许登录访问权限并重启应用"
 
 #~ msgctxt "application-name"
 #~ msgid "Picture Of The Day"

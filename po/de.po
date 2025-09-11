@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "PO-Revision-Date: 2025-09-11 05:49+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/"
-"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
+"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -490,8 +490,11 @@ msgid "Update wallpaper over metered network"
 msgstr "Hintergrundbild über getaktete Netzwerke aktualisieren"
 
 #: resources/ui/preferences-dialog.blp:50
+#, fuzzy
+#| msgctxt "preferences-dialog.group.title"
+#| msgid "Update after session is unlocked"
 msgctxt "preferences-dialog.group.title"
-msgid "Update after session is unlocked"
+msgid "Update wallpaper after session is unlocked"
 msgstr "Hintergrundbild nach Entsperren der Sitzung aktualisieren"
 
 #: resources/ui/preferences-dialog.blp:53
@@ -526,14 +529,22 @@ msgstr "Erneut prüfen"
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
-msgid "Permit access to login in your terminal and restart the app"
+msgid "Command to permit access to logind"
 msgstr ""
-"Erlaube Zugriff auf logind über das Terminal und starte die Anwendung neu"
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
 msgstr "In die Zwischenablage kopieren"
+
+#: resources/ui/preferences-dialog.blp:123
+msgid ""
+"Run this command in a terminal to grant access to logind. You may need to "
+"restart the application afterwards. Alternatively, you can use <a "
+"href=\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a> "
+"to add a permission for this application to talk to "
+"<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
+msgstr ""
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
@@ -947,6 +958,11 @@ msgstr "Unbekannt, alle Rechte vorbehalten"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "Bild des Tages"
+
+#~ msgctxt "preferences-dialog.row.title"
+#~ msgid "Permit access to login in your terminal and restart the app"
+#~ msgstr ""
+#~ "Erlaube Zugriff auf logind über das Terminal und starte die Anwendung neu"
 
 #~ msgctxt "application-name"
 #~ msgid "Picture Of The Day"

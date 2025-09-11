@@ -446,7 +446,7 @@ msgstr ""
 
 #: resources/ui/preferences-dialog.blp:50
 msgctxt "preferences-dialog.group.title"
-msgid "Update after session is unlocked"
+msgid "Update wallpaper after session is unlocked"
 msgstr ""
 
 #: resources/ui/preferences-dialog.blp:53
@@ -478,12 +478,21 @@ msgstr ""
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
-msgid "Permit access to login in your terminal and restart the app"
+msgid "Command to permit access to logind"
 msgstr ""
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
+msgstr ""
+
+#: resources/ui/preferences-dialog.blp:123
+msgid ""
+"Run this command in a terminal to grant access to logind. You may need to "
+"restart the application afterwards. Alternatively, you can use <a "
+"href=\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a> "
+"to add a permission for this application to talk to "
+"<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
 msgstr ""
 
 #: src/app.rs:122
