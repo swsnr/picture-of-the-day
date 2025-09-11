@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-08-14 09:09+0000\n"
+"PO-Revision-Date: 2025-09-11 05:37+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
-"translate.codeberg.org/projects/de-swsnr-pictureoftheday/de-swsnr-"
-"pictureoftheday/zh_Hans/>\n"
+"translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
+"de-swsnr-pictureoftheday/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,8 +22,6 @@ msgstr ""
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgid "Picture of the Day"
 msgstr "今日图片"
 
@@ -49,10 +47,8 @@ msgid "Whether to set the wallpaper automatically."
 msgstr "是否自动设置壁纸。"
 
 #: de.swsnr.pictureoftheday.gschema.xml:13
-#, fuzzy
-#| msgid "Whether to set the wallpaper automatically."
 msgid "Whether to update the wallpaper over metered networks."
-msgstr "是否自动设置壁纸。"
+msgstr "是否通过按流量计费的网络更新壁纸。"
 
 #: de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
@@ -141,11 +137,12 @@ msgid ""
 "No longer request direct access to logind, which is no longer allowed on "
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
-msgstr ""
+msgstr "不再请求直接访问 logind，Flathub 已不再允许此操作。"
+"改为指导用户在首选项对话框中提供 logind 访问权限。"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:53
 msgid "Optionally inhibit wallpaper updates over metered networks."
-msgstr ""
+msgstr "可选择禁止通过按流量计费的网络更新壁纸。"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:63
 msgid "Fix wallpaper updates."
@@ -275,9 +272,6 @@ msgid "Quit application"
 msgstr "退出应用程序"
 
 #: resources/gtk/help-overlay.blp:34
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Picture Of The Day Window"
 msgctxt "shortcuts group title"
 msgid "Picture of the Day Window"
 msgstr "今日图片窗口"
@@ -373,9 +367,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "键盘快捷键(_K)"
 
 #: resources/ui/application-window.blp:151
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_About Picture Of The Day"
 msgctxt "main-window.menu.label"
 msgid "_About Picture of the Day"
 msgstr "关于今日图片(_A)"
@@ -431,90 +422,80 @@ msgid "Downloading image…"
 msgstr "正在下载图片…"
 
 #: resources/ui/preferences-dialog.blp:12
-#, fuzzy
-#| msgid "Wallpaper"
 msgctxt "preferences-dialog.page.title"
 msgid "Wallpaper sources"
-msgstr "壁纸"
+msgstr "壁纸来源"
 
 #: resources/ui/preferences-dialog.blp:16
 msgid "API key"
 msgstr "API 密钥"
 
 #: resources/ui/preferences-dialog.blp:21
-#, fuzzy
-#| msgid "Get API key"
 msgctxt "preferences-dialog.row.link-label"
 msgid "Get API key"
 msgstr "获取 API 密钥"
 
 #: resources/ui/preferences-dialog.blp:29
-#, fuzzy
-#| msgid "Enabled collections"
 msgctxt "preferences-dialog.row.title"
 msgid "Enabled collections"
-msgstr "启用的集合"
+msgstr "已启用的集合"
 
 #: resources/ui/preferences-dialog.blp:38
-#, fuzzy
-#| msgid "Fix wallpaper updates."
 msgctxt "preferences-dialog.page.title"
 msgid "Daily wallpaper update"
-msgstr "修复壁纸更新。"
+msgstr "每日壁纸更新"
 
 #: resources/ui/preferences-dialog.blp:41
-#, fuzzy
-#| msgid "Artwork"
 msgctxt "preferences-dialog.group.title"
 msgid "Network"
-msgstr "作品"
+msgstr "网络"
 
 #: resources/ui/preferences-dialog.blp:44
 msgctxt "preferences-dialog.row.title"
 msgid "Update wallpaper over metered network"
-msgstr ""
+msgstr "通过按流量计费的网络更新壁纸"
 
 #: resources/ui/preferences-dialog.blp:50
 msgctxt "preferences-dialog.group.title"
 msgid "Update after session is unlocked"
-msgstr ""
+msgstr "会话解锁后更新"
 
 #: resources/ui/preferences-dialog.blp:53
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind allowed"
-msgstr ""
+msgstr "允许连接到 logind"
 
 #: resources/ui/preferences-dialog.blp:54
 msgctxt "preferences-dialog.row.description"
 msgid "After the session is unlocked the wallpaper is updated immediately."
-msgstr ""
+msgstr "会话解锁后，壁纸会立即更新。"
 
 #: resources/ui/preferences-dialog.blp:68
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind prohibited"
-msgstr ""
+msgstr "禁止连接到 logind"
 
 #: resources/ui/preferences-dialog.blp:69
 msgctxt "preferences-dialog.row.description"
 msgid ""
 "After the session is unlocked the wallpaper is updated only after a "
 "considerable delay."
-msgstr ""
+msgstr "会话解锁后，壁纸仅在显著延迟后更新。"
 
 #: resources/ui/preferences-dialog.blp:87
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Check again"
-msgstr ""
+msgstr "再次检查"
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
 msgid "Permit access to login in your terminal and restart the app"
-msgstr ""
+msgstr "在终端中允许登录访问权限并重启应用"
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "复制到剪贴板"
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
@@ -551,9 +532,6 @@ msgid "Turn on devices in your network"
 msgstr "打开网络中的设备"
 
 #: src/app.rs:194
-#, fuzzy
-#| msgctxt "notification.title"
-#| msgid "Picture Of The Day updated"
 msgctxt "notification.title"
 msgid "Picture of the Day updated"
 msgstr "今日图片已更新"
@@ -569,13 +547,6 @@ msgid "Restart after update?"
 msgstr "更新后重启？"
 
 #: src/app.rs:216
-#, fuzzy
-#| msgctxt "alert-dialog.body"
-#| msgid ""
-#| "Picture Of The Day was updated, and needs to be restarted.\n"
-#| "\n"
-#| "Automatic restarting is not yet supported, but you can quit the app and "
-#| "start it again manually."
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture of the Day was updated, and needs to be restarted.\n"
@@ -633,9 +604,6 @@ msgid "Automatically fetch and set wallpaper in background"
 msgstr "在后台自动获取并设置壁纸"
 
 #: src/app/model/error_notification.rs:42
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day needs an API key"
 msgctxt "error-notification.title"
 msgid "Picture of the Day needs an API key"
 msgstr "需要 API 密钥"
@@ -649,9 +617,6 @@ msgstr ""
 "请在应用程序首选项中为 {source_name} 配置有效的 API 密钥。当前密钥似乎无效。"
 
 #: src/app/model/error_notification.rs:66
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day was rate-limited"
 msgctxt "error-notification.title"
 msgid "Picture of the Day was rate-limited"
 msgstr "速率限制"
@@ -920,8 +885,6 @@ msgid "Unknown, all rights reserved"
 msgstr "未知，版权所有"
 
 #: src/main.rs:72
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "今日图片"
