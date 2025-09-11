@@ -44,7 +44,7 @@
             <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
-        <release version="next" date="9999-01-01">
+        <release version="1.8.0" date="2025-09-11">
             <description>
                 <p>
                     No longer request direct access to logind, which is no longer allowed on Flathub.
@@ -56,7 +56,7 @@
                 <issue url="https://codeberg.org/swsnr/picture-of-the-day/pulls/116">CB-116</issue>
                 <issue url="https://codeberg.org/swsnr/picture-of-the-day/issues/85">CB-85</issue>
             </issues>
-            <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
+            <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/v1.8.0</url>
         </release>
         <release version="1.7.0" date="2025-08-12">
             <description>
