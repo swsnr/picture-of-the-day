@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-08-12 18:20+0000\n"
+"PO-Revision-Date: 2025-09-11 05:49+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,8 +21,6 @@ msgstr ""
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgid "Picture of the Day"
 msgstr "Bild des Tages"
 
@@ -48,10 +46,9 @@ msgid "Whether to set the wallpaper automatically."
 msgstr "Ob der Bildschirmhintergrund automatisch gesetzt werden soll."
 
 #: de.swsnr.pictureoftheday.gschema.xml:13
-#, fuzzy
-#| msgid "Whether to set the wallpaper automatically."
 msgid "Whether to update the wallpaper over metered networks."
-msgstr "Ob der Bildschirmhintergrund automatisch gesetzt werden soll."
+msgstr ""
+"Ob das Hintergrundbild über getaktete Netzwerke aktualisiert werden soll."
 
 #: de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
@@ -147,10 +144,15 @@ msgid ""
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
 msgstr ""
+"Die Anwendung erhält nicht länger direkten Zugriff auf logind, da Flathub "
+"diesen Zugriff nicht mehr erlaubt. Stattdessen wird in den Einstellungen "
+"eine Anleitung angezeigt, wie Zugriff auf logind gewährt werden kann."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:53
 msgid "Optionally inhibit wallpaper updates over metered networks."
 msgstr ""
+"Das Hintergrundbild wird optional nicht mehr über getaktete Netzwerke "
+"aktualisiert."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:63
 msgid "Fix wallpaper updates."
@@ -304,9 +306,6 @@ msgid "Quit application"
 msgstr "Anwendung beenden"
 
 #: resources/gtk/help-overlay.blp:34
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Picture Of The Day Window"
 msgctxt "shortcuts group title"
 msgid "Picture of the Day Window"
 msgstr "Bild des Tages Fenster"
@@ -402,9 +401,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Tastenkürzel"
 
 #: resources/ui/application-window.blp:151
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_About Picture Of The Day"
 msgctxt "main-window.menu.label"
 msgid "_About Picture of the Day"
 msgstr "_Über Bild des Tages"
@@ -460,68 +456,59 @@ msgid "Downloading image…"
 msgstr "Bild wird heruntergeladen…"
 
 #: resources/ui/preferences-dialog.blp:12
-#, fuzzy
-#| msgid "Wallpaper"
 msgctxt "preferences-dialog.page.title"
 msgid "Wallpaper sources"
-msgstr "Bildschirmhintergrund"
+msgstr "Bild-Quellen"
 
 #: resources/ui/preferences-dialog.blp:16
 msgid "API key"
 msgstr "API-Schlüssel"
 
 #: resources/ui/preferences-dialog.blp:21
-#, fuzzy
-#| msgid "Get API key"
 msgctxt "preferences-dialog.row.link-label"
 msgid "Get API key"
 msgstr "API-Schlüssel erhalten"
 
 #: resources/ui/preferences-dialog.blp:29
-#, fuzzy
-#| msgid "Enabled collections"
 msgctxt "preferences-dialog.row.title"
 msgid "Enabled collections"
 msgstr "Ausgewählte Sammlungen"
 
 #: resources/ui/preferences-dialog.blp:38
-#, fuzzy
-#| msgid "Fix wallpaper updates."
 msgctxt "preferences-dialog.page.title"
 msgid "Daily wallpaper update"
-msgstr "Aktualisierung des Hintergrundbilds korrigiert."
+msgstr "Tägliche Aktualisierung"
 
 #: resources/ui/preferences-dialog.blp:41
-#, fuzzy
-#| msgid "Artwork"
 msgctxt "preferences-dialog.group.title"
 msgid "Network"
-msgstr "Kunstwerk"
+msgstr "Netzwerk"
 
 #: resources/ui/preferences-dialog.blp:44
 msgctxt "preferences-dialog.row.title"
 msgid "Update wallpaper over metered network"
-msgstr ""
+msgstr "Hintergrundbild über getaktete Netzwerke aktualisieren"
 
 #: resources/ui/preferences-dialog.blp:50
 msgctxt "preferences-dialog.group.title"
 msgid "Update after session is unlocked"
-msgstr ""
+msgstr "Hintergrundbild nach Entsperren der Sitzung aktualisieren"
 
 #: resources/ui/preferences-dialog.blp:53
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind allowed"
-msgstr ""
+msgstr "Verbindung zu logind erlaubt"
 
 #: resources/ui/preferences-dialog.blp:54
 msgctxt "preferences-dialog.row.description"
 msgid "After the session is unlocked the wallpaper is updated immediately."
 msgstr ""
+"Nach Entsperren der Sitzung wird das Hintergrundbild sofort aktualisiert."
 
 #: resources/ui/preferences-dialog.blp:68
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind prohibited"
-msgstr ""
+msgstr "Verbindung zu logind nicht erlaubt"
 
 #: resources/ui/preferences-dialog.blp:69
 msgctxt "preferences-dialog.row.description"
@@ -529,21 +516,24 @@ msgid ""
 "After the session is unlocked the wallpaper is updated only after a "
 "considerable delay."
 msgstr ""
+"Nach Entsperren der Sitzung wird das Hintergrundbild nur sehr verzögert "
+"aktualisiert."
 
 #: resources/ui/preferences-dialog.blp:87
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Check again"
-msgstr ""
+msgstr "Erneut prüfen"
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
 msgid "Permit access to login in your terminal and restart the app"
 msgstr ""
+"Erlaube Zugriff auf logind über das Terminal und starte die Anwendung neu"
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "In die Zwischenablage kopieren"
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
@@ -580,9 +570,6 @@ msgid "Turn on devices in your network"
 msgstr "Geräte in Deinem Netzwerk anschalten"
 
 #: src/app.rs:194
-#, fuzzy
-#| msgctxt "notification.title"
-#| msgid "Picture Of The Day updated"
 msgctxt "notification.title"
 msgid "Picture of the Day updated"
 msgstr "Bild des Tages wurde aktualisiert"
@@ -598,13 +585,6 @@ msgid "Restart after update?"
 msgstr "Nach Aktualisierung neu starten?"
 
 #: src/app.rs:216
-#, fuzzy
-#| msgctxt "alert-dialog.body"
-#| msgid ""
-#| "Picture Of The Day was updated, and needs to be restarted.\n"
-#| "\n"
-#| "Automatic restarting is not yet supported, but you can quit the app and "
-#| "start it again manually."
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture of the Day was updated, and needs to be restarted.\n"
@@ -663,9 +643,6 @@ msgid "Automatically fetch and set wallpaper in background"
 msgstr "Bildschirmhintergrund im Hintergrund automatisch abrufen und setzen"
 
 #: src/app/model/error_notification.rs:42
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day needs an API key"
 msgctxt "error-notification.title"
 msgid "Picture of the Day needs an API key"
 msgstr "Bild des Tages benötigt einen API-Schlüssel"
@@ -680,9 +657,6 @@ msgstr ""
 "Einstellungen der Anwendung."
 
 #: src/app/model/error_notification.rs:66
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day was rate-limited"
 msgctxt "error-notification.title"
 msgid "Picture of the Day was rate-limited"
 msgstr "Die Zugriffsrate von Bild des Tages wurde beschränkt"
@@ -970,8 +944,6 @@ msgid "Unknown, all rights reserved"
 msgstr "Unbekannt, alle Rechte vorbehalten"
 
 #: src/main.rs:72
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "Bild des Tages"
