@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-11 05:37+0000\n"
+"PO-Revision-Date: 2025-09-12 17:09+0000\n"
 "Last-Translator: Outbreak2096 <outbreak2096@noreply.codeberg.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
-"translate.codeberg.org/projects/de-swsnr-pictureoftheday/de-swsnr-"
-"pictureoftheday/zh_Hans/>\n"
+"translate.codeberg.org/projects/de-swsnr-pictureoftheday/"
+"de-swsnr-pictureoftheday/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
@@ -457,12 +457,9 @@ msgid "Update wallpaper over metered network"
 msgstr "通过按流量计费的网络更新壁纸"
 
 #: resources/ui/preferences-dialog.blp:50
-#, fuzzy
-#| msgctxt "preferences-dialog.group.title"
-#| msgid "Update after session is unlocked"
 msgctxt "preferences-dialog.group.title"
 msgid "Update wallpaper after session is unlocked"
-msgstr "会话解锁后更新"
+msgstr "会话解锁后更新壁纸"
 
 #: resources/ui/preferences-dialog.blp:53
 msgctxt "preferences-dialog.row.title"
@@ -494,7 +491,7 @@ msgstr "再次检查"
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
 msgid "Command to permit access to logind"
-msgstr ""
+msgstr "允许访问 logind 的命令"
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
@@ -509,6 +506,11 @@ msgid ""
 "to add a permission for this application to talk to "
 "<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
 msgstr ""
+"在终端中运行此命令以授予对 logind "
+"的访问权限。之后，您可能需要重启应用程序。另外，您可以使用 <a href="
+"\"https://flathub.org/zh-Hans/apps/com.github.tchx84.Flatseal\">Flatseal</a> "
+"为此应用程序添加权限，以便在<i>系统总线</i>上与 <tt>org.freedesktop.login1</"
+"tt> 通信。"
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
