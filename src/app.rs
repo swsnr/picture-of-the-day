@@ -413,19 +413,6 @@ mod imp {
             self.settings.borrow().as_ref().unwrap().clone()
         }
 
-        /// Hold onto this app until `dialog` is closed.
-        async fn hold_until_dialog_closed(&self, dialog: &impl IsA<adw::Dialog>) {
-            let guard = self.obj().hold();
-            let (tx, mut rx) = futures::channel::mpsc::unbounded();
-            dialog.connect_closed(move |_| {
-                if tx.unbounded_send(()).is_err() {
-                    glib::warn!("Dialog closed again?");
-                }
-            });
-            let _: Option<()> = rx.next().await;
-            drop(guard);
-        }
-
         fn inhibitors_for_binding_target(
             binding: &glib::Binding,
             inhibitor: AutomaticWallpaperUpdateInhibitor,
@@ -765,21 +752,13 @@ mod imp {
             if let Ok(Some(true)) = options.lookup("preferences") {
                 glib::debug!("Showing preferences");
                 let prefs = self.obj().show_preferences();
-                glib::spawn_future_local(glib::clone!(
-                    #[strong(rename_to = app)]
-                    self.obj(),
-                    #[strong]
-                    command_line,
-                    async move {
-                        // Hold onto the app until the prefs dialog is closed,
-                        // the end command line processing, and drop our outer
-                        // hold on the application.
-                        app.imp().hold_until_dialog_closed(&prefs).await;
-                        command_line.set_exit_status(ExitCode::SUCCESS.into());
-                        command_line.done();
-                        drop(guard);
-                    }
-                ));
+                let command_line = command_line.clone();
+                let guard = RefCell::new(Some(guard));
+                prefs.connect_closed(move |_| {
+                    command_line.set_exit_status(ExitCode::SUCCESS.into());
+                    command_line.done();
+                    guard.borrow_mut().take();
+                });
                 ExitCode::SUCCESS
             } else if let Ok(Some(date)) = options.lookup::<String>("date") {
                 match jiff::civil::Date::from_str(&date) {
