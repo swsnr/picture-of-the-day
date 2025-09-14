@@ -417,14 +417,11 @@ mod imp {
         async fn hold_until_dialog_closed(&self, dialog: &impl IsA<adw::Dialog>) {
             let guard = self.obj().hold();
             let (tx, mut rx) = futures::channel::mpsc::unbounded();
-            dialog.connect_closed(glib::clone!(
-                #[strong]
-                tx,
-                move |_| {
-                    #[allow(clippy::let_underscore_must_use)]
-                    let _: Result<_, _> = tx.unbounded_send(());
+            dialog.connect_closed(move |_| {
+                if tx.unbounded_send(()).is_err() {
+                    glib::warn!("Dialog closed again?");
                 }
-            ));
+            });
             let _: Option<()> = rx.next().await;
             drop(guard);
         }
