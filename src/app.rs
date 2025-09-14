@@ -590,7 +590,7 @@ mod imp {
 
         pub fn restart_session_monitor(&self) {
             glib::spawn_future_local(glib::clone!(
-                #[strong(rename_to = session_monitor)]
+                #[weak(rename_to = session_monitor)]
                 self.session_monitor,
                 async move {
                     session_monitor.stop();
