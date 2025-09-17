@@ -148,29 +148,29 @@ pub async fn fetch_daily_images(
 
 #[cfg(test)]
 mod tests {
-    use crate::images::source::testutil::{block_on_new_main_context, soup_session};
+    use glib::async_test;
+
+    use crate::images::source::testutil::soup_session;
 
     use super::*;
 
-    #[test]
-    fn fetch_daily_images() {
-        block_on_new_main_context(async {
-            let session = soup_session();
-            let images = fetch_daily_bing_images(&session, Some("en_GB"))
-                .await
-                .unwrap()
-                .images;
-            assert_eq!(images.len(), 8);
+    #[async_test]
+    async fn fetch_daily_images() {
+        let session = soup_session();
+        let images = fetch_daily_bing_images(&session, Some("en_GB"))
+            .await
+            .unwrap()
+            .images;
+        assert_eq!(images.len(), 8);
 
-            let images = images
-                .into_iter()
-                .map(DownloadableImage::try_from)
-                .map(Result::unwrap)
-                .collect::<Vec<_>>();
-            for image in images {
-                assert!(image.pubdate.is_some());
-                assert!(image.suggested_filename.is_some());
-            }
-        });
+        let images = images
+            .into_iter()
+            .map(DownloadableImage::try_from)
+            .map(Result::unwrap)
+            .collect::<Vec<_>>();
+        for image in images {
+            assert!(image.pubdate.is_some());
+            assert!(image.suggested_filename.is_some());
+        }
     }
 }

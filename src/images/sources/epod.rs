@@ -164,11 +164,12 @@ pub async fn fetch_picture_of_the_day(
 
 #[cfg(test)]
 mod tests {
+    use glib::async_test;
     use gtk::gio::Cancellable;
     use jiff::civil::date;
     use soup::prelude::SessionExt;
 
-    use crate::images::source::testutil::{block_on_new_main_context, soup_session};
+    use crate::images::source::testutil::soup_session;
 
     use super::*;
 
@@ -273,18 +274,16 @@ celebrating its 55th observance. Note that while Earth Day is always on April \
         assert_eq!(image.pubdate.unwrap(), date(2025, 4, 22));
     }
 
-    #[test]
-    fn fetch_picture_of_the_day() {
-        block_on_new_main_context(async {
-            let session = soup_session();
-            let images = super::fetch_picture_of_the_day(&session).await.unwrap();
-            assert!(!images.is_empty());
-            for image in &images {
-                assert_eq!(image.metadata.source, Source::Eopd);
-                assert!(image.metadata.url.is_some());
-                assert!(image.metadata.description.is_some());
-                assert!(image.pubdate.is_some());
-            }
-        });
+    #[async_test]
+    async fn fetch_picture_of_the_day() {
+        let session = soup_session();
+        let images = super::fetch_picture_of_the_day(&session).await.unwrap();
+        assert!(!images.is_empty());
+        for image in &images {
+            assert_eq!(image.metadata.source, Source::Eopd);
+            assert!(image.metadata.url.is_some());
+            assert!(image.metadata.description.is_some());
+            assert!(image.pubdate.is_some());
+        }
     }
 }
