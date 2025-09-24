@@ -143,29 +143,35 @@ msgid "Artwork"
 msgstr "Художественные работы"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
+#, fuzzy
+#| msgid "Update to GNOME 48."
+msgid "Update to GNOME 49."
+msgstr "Обновление до GNOME 48."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:55
 msgid ""
 "No longer request direct access to logind, which is no longer allowed on "
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:53
+#: de.swsnr.pictureoftheday.metainfo.xml:59
 msgid "Optionally inhibit wallpaper updates over metered networks."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:63
+#: de.swsnr.pictureoftheday.metainfo.xml:69
 msgid "Fix wallpaper updates."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:72
+#: de.swsnr.pictureoftheday.metainfo.xml:78
 msgid "Drag images out of the app to copy them into other apps."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:81
+#: de.swsnr.pictureoftheday.metainfo.xml:87
 msgid "Change license to European Union Public License 1.2."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:87
+#: de.swsnr.pictureoftheday.metainfo.xml:93
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -174,7 +180,7 @@ msgstr ""
 "Теперь обои не устанавливаются автоматически при видимом главном окне, чтобы "
 "вы могли просматривать различные источники, не меняя фон рабочего стола."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:88
+#: de.swsnr.pictureoftheday.metainfo.xml:94
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
@@ -183,13 +189,13 @@ msgstr ""
 "заблокирован, система работает в режиме низкого энергопотребления или не "
 "подключена к сети."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:89
+#: de.swsnr.pictureoftheday.metainfo.xml:95
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 "Уведомление и просьба перезапустить приложение, если оно было обновлено в "
 "фоновом режиме."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:102
+#: de.swsnr.pictureoftheday.metainfo.xml:108
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
@@ -197,14 +203,14 @@ msgstr ""
 "Добавлены «Изображение дня по наукам о Земле» и «Изображение дня по "
 "обсерватории Земли НАСА»."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:112
+#: de.swsnr.pictureoftheday.metainfo.xml:118
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Добавлена панель инструментов наложения для перехода к предыдущему или "
 "следующему изображению в режиме просмотра изображений."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:113
+#: de.swsnr.pictureoftheday.metainfo.xml:119
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -212,33 +218,33 @@ msgstr ""
 "Добавлены кнопки панели инструментов для сохранения текущего изображения и "
 "для открытия текущего изображения во внешнем приложении."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:114
+#: de.swsnr.pictureoftheday.metainfo.xml:120
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Большее стремление не оставлять частично загруженные обои при завершении."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:126
+#: de.swsnr.pictureoftheday.metainfo.xml:132
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Использование более надежной конечной точки для изображений Викимедиа."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:127
+#: de.swsnr.pictureoftheday.metainfo.xml:133
 msgid "No longer show preview when setting a wallpaper."
 msgstr "Предварительный просмотр больше не отображается при установке обоев."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:128
+#: de.swsnr.pictureoftheday.metainfo.xml:134
 msgid "Improve scheduling of automatic downloads."
 msgstr "Улучшено планирование автоматических загрузок."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:129
+#: de.swsnr.pictureoftheday.metainfo.xml:135
 msgid "Remember window size and state."
 msgstr "Запоминание размера и состояния окна."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:130
+#: de.swsnr.pictureoftheday.metainfo.xml:136
 msgid "Update to GNOME 48."
 msgstr "Обновление до GNOME 48."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:140
+#: de.swsnr.pictureoftheday.metainfo.xml:146
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -246,11 +252,11 @@ msgstr ""
 "Автоматический запуск и автоматическое обновление ежедневных обоев каждые "
 "двенадцать часов."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:141
+#: de.swsnr.pictureoftheday.metainfo.xml:147
 msgid "No longer support multiple windows."
 msgstr "Прекращена поддержка нескольких окон."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:151
+#: de.swsnr.pictureoftheday.metainfo.xml:157
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -258,7 +264,7 @@ msgstr ""
 "Первоначальный выпуск с четырьмя источниками: APOD, Викимедиа, Симон "
 "Сталенхаг и Bing."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:152
+#: de.swsnr.pictureoftheday.metainfo.xml:158
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -266,80 +272,86 @@ msgstr ""
 "Добавлено главное окно, в котором будет отображаться сегодняшняя картинка "
 "дня и кнопка, позволяющая установить ее в качестве текущих обоев."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:164
+#: de.swsnr.pictureoftheday.metainfo.xml:170
 msgid "A picture of the day from Wikimedia"
 msgstr "Изображение дня от Викимедиа"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:168
+#: de.swsnr.pictureoftheday.metainfo.xml:174
 msgid "The preferences dialog with settings for image sources"
 msgstr "Диалог настроек с параметрами источников изображения"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:172
+#: de.swsnr.pictureoftheday.metainfo.xml:178
 msgid "The empty greeting page with the application icon"
 msgstr "Пустая страница приветствия со значком приложения"
 
-#: resources/gtk/help-overlay.blp:15
-msgctxt "shortcuts group title"
-msgid "General"
-msgstr "Общие"
-
-#: resources/gtk/help-overlay.blp:18
-msgctxt "shortcut description"
-msgid "Preferences"
-msgstr "Параметры"
-
-#: resources/gtk/help-overlay.blp:23
-msgctxt "shortcut description"
-msgid "Show shortcuts"
-msgstr "Показать сочетания клавиш"
-
-#: resources/gtk/help-overlay.blp:28
-msgctxt "shortcut description"
-msgid "Quit application"
-msgstr "Завершить приложение"
-
-#: resources/gtk/help-overlay.blp:34
+#: resources/shortcuts-dialog.blp:11
 #, fuzzy
 #| msgctxt "shortcuts group title"
 #| msgid "Picture Of The Day Window"
-msgctxt "shortcuts group title"
+msgctxt "shortcuts section title"
 msgid "Picture of the Day Window"
 msgstr "Окно Изображение дня"
 
-#: resources/gtk/help-overlay.blp:37
+#: resources/shortcuts-dialog.blp:14
 msgctxt "shortcut description"
 msgid "Select source"
 msgstr "Выбрать источник"
 
-#: resources/gtk/help-overlay.blp:42
+#: resources/shortcuts-dialog.blp:21
 msgctxt "shortcut description"
 msgid "Load images"
 msgstr "Загрузить изображения"
 
-#: resources/gtk/help-overlay.blp:47
+#: resources/shortcuts-dialog.blp:26
 msgctxt "shortcut description"
 msgid "Cancel loading images"
 msgstr "Отменить загрузку изображений"
 
-#: resources/gtk/help-overlay.blp:52
+#: resources/shortcuts-dialog.blp:33
 msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr "Показ боковой панели"
 
-#: resources/gtk/help-overlay.blp:58
-msgctxt "shortcuts group title"
+#: resources/shortcuts-dialog.blp:39
+#, fuzzy
+#| msgctxt "shortcuts group title"
+#| msgid "Navigate images"
+msgctxt "shortcuts section title"
 msgid "Navigate images"
 msgstr "Навигация по изображениям"
 
-#: resources/gtk/help-overlay.blp:61 resources/gtk/help-overlay.blp:66
+#: resources/shortcuts-dialog.blp:42 resources/shortcuts-dialog.blp:47
 msgctxt "shortcut description"
 msgid "Previous image"
 msgstr "Предыдущее изображение"
 
-#: resources/gtk/help-overlay.blp:71 resources/gtk/help-overlay.blp:76
+#: resources/shortcuts-dialog.blp:54 resources/shortcuts-dialog.blp:59
 msgctxt "shortcut description"
 msgid "Next image"
 msgstr "Следующее изображение"
+
+#: resources/shortcuts-dialog.blp:65
+#, fuzzy
+#| msgctxt "shortcuts group title"
+#| msgid "General"
+msgctxt "shortcuts section title"
+msgid "General"
+msgstr "Общие"
+
+#: resources/shortcuts-dialog.blp:68
+msgctxt "shortcut description"
+msgid "Preferences"
+msgstr "Параметры"
+
+#: resources/shortcuts-dialog.blp:75
+msgctxt "shortcut description"
+msgid "Show shortcuts"
+msgstr "Показать сочетания клавиш"
+
+#: resources/shortcuts-dialog.blp:80
+msgctxt "shortcut description"
+msgid "Quit application"
+msgstr "Завершить приложение"
 
 #: resources/ui/application-window.blp:31
 msgctxt "main-window.toolbar.button.tooltip"
@@ -647,22 +659,22 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Открыть URL-адрес"
 
-#: src/app.rs:641
+#: src/app.rs:625
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Открыть параметры"
 
-#: src/app.rs:652
+#: src/app.rs:636
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "Показать изображение данной даты"
 
-#: src/app.rs:657
+#: src/app.rs:641
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "ГГГГ-ММ-ДД"
 
-#: src/app.rs:854
+#: src/app.rs:830
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Автоматическое получение и установка обоев в фоновом режиме"
