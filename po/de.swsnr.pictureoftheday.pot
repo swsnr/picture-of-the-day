@@ -241,64 +241,64 @@ msgstr ""
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:15
-msgctxt "shortcuts group title"
-msgid "General"
-msgstr ""
-
-#: resources/gtk/help-overlay.blp:18
-msgctxt "shortcut description"
-msgid "Preferences"
-msgstr ""
-
-#: resources/gtk/help-overlay.blp:23
-msgctxt "shortcut description"
-msgid "Show shortcuts"
-msgstr ""
-
-#: resources/gtk/help-overlay.blp:28
-msgctxt "shortcut description"
-msgid "Quit application"
-msgstr ""
-
-#: resources/gtk/help-overlay.blp:34
-msgctxt "shortcuts group title"
+#: resources/shortcuts-dialog.blp:11
+msgctxt "shortcuts section title"
 msgid "Picture of the Day Window"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:37
+#: resources/shortcuts-dialog.blp:14
 msgctxt "shortcut description"
 msgid "Select source"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:42
+#: resources/shortcuts-dialog.blp:21
 msgctxt "shortcut description"
 msgid "Load images"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:47
+#: resources/shortcuts-dialog.blp:26
 msgctxt "shortcut description"
 msgid "Cancel loading images"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:52
+#: resources/shortcuts-dialog.blp:33
 msgctxt "shortcut description"
 msgid "Toggle sidebar"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:58
-msgctxt "shortcuts group title"
+#: resources/shortcuts-dialog.blp:39
+msgctxt "shortcuts section title"
 msgid "Navigate images"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:61 resources/gtk/help-overlay.blp:66
+#: resources/shortcuts-dialog.blp:42 resources/shortcuts-dialog.blp:47
 msgctxt "shortcut description"
 msgid "Previous image"
 msgstr ""
 
-#: resources/gtk/help-overlay.blp:71 resources/gtk/help-overlay.blp:76
+#: resources/shortcuts-dialog.blp:54 resources/shortcuts-dialog.blp:59
 msgctxt "shortcut description"
 msgid "Next image"
+msgstr ""
+
+#: resources/shortcuts-dialog.blp:65
+msgctxt "shortcuts section title"
+msgid "General"
+msgstr ""
+
+#: resources/shortcuts-dialog.blp:68
+msgctxt "shortcut description"
+msgid "Preferences"
+msgstr ""
+
+#: resources/shortcuts-dialog.blp:75
+msgctxt "shortcut description"
+msgid "Show shortcuts"
+msgstr ""
+
+#: resources/shortcuts-dialog.blp:80
+msgctxt "shortcut description"
+msgid "Quit application"
 msgstr ""
 
 #: resources/ui/application-window.blp:31
@@ -579,22 +579,22 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr ""
 
-#: src/app.rs:641
+#: src/app.rs:625
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr ""
 
-#: src/app.rs:652
+#: src/app.rs:636
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr ""
 
-#: src/app.rs:657
+#: src/app.rs:641
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr ""
 
-#: src/app.rs:854
+#: src/app.rs:830
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr ""
