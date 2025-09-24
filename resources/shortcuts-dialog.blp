@@ -1,0 +1,84 @@
+// Copyright Sebastian Wiesner <sebastian@swsnr.de>
+//
+// Licensed under the EUPL
+//
+// See https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12
+using Gtk 4.0;
+using Adw 1;
+
+Adw.ShortcutsDialog shortcuts_dialog {
+  Adw.ShortcutsSection {
+    title: C_("shortcuts section title", "Picture of the Day Window");
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Select source");
+      accelerator: "<Ctrl>O";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Load images");
+      accelerator: "F5";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Cancel loading images");
+      accelerator: "Escape";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Toggle sidebar");
+      accelerator: "F9";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: C_("shortcuts section title", "Navigate images");
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Previous image");
+      accelerator: "Left";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Previous image");
+      accelerator: "Page_Up";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Next image");
+      accelerator: "Right";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Next image");
+      accelerator: "Page_Down";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    title: C_("shortcuts section title", "General");
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Preferences");
+      action-name: "app.preferences";
+    }
+  }
+
+  Adw.ShortcutsSection {
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Show shortcuts");
+      action-name: "app.shortcuts";
+    }
+
+    Adw.ShortcutsItem {
+      title: C_("shortcut description", "Quit application");
+      action-name: "app.quit";
+    }
+  }
+}

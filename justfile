@@ -29,7 +29,7 @@ configure-app-id:
 # Compile all blueprint files to UI files.
 compile-blueprint:
     @mkdir -p build/resources-src/
-    blueprint-compiler batch-compile build/resources-src/ resources resources/**/*.blp
+    blueprint-compiler batch-compile build/resources-src/ resources resources/**/*.blp resources/*.blp
 
 # Compile the translated metainfo file.
 compile-metainfo:
@@ -81,7 +81,7 @@ vet *ARGS:
     cargo vet {{ARGS}}
 
 lint-blueprint:
-    blueprint-compiler format resources/**/*.blp
+    blueprint-compiler format resources/**/*.blp resources/*.blp
 
 lint-rust: compile
     cargo +stable deny --all-features --locked check

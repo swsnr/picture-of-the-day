@@ -2,8 +2,6 @@
 <gresources>
     <!-- Resource definition for generated resource files -->
     <gresource prefix="/de/swsnr/pictureoftheday/">
-        <!-- Predefined Gtk user interfaces -->
-        <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
         <!-- User interface templates -->
         <file compressed="true" preprocess="xml-stripblanks">ui/application-window.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/source-row.ui</file>
@@ -11,6 +9,8 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/images-carousel.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/error-notification-page.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/preferences-dialog.ui</file>
+        <!-- Application shortcuts dialog, see https://gnome.pages.gitlab.gnome.org/libadwaita/doc/1.8/class.Application.html#shortcuts-dialog -->
+        <file compressed="true" preprocess="xml-stripblanks">shortcuts-dialog.ui</file>
         <!-- Other data files -->
         <file compressed="true" preprocess="xml-stripblanks">de.swsnr.pictureoftheday.metainfo.xml</file>
     </gresource>
