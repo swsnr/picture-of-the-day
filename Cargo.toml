@@ -27,7 +27,7 @@ rust-version = "1.89"
 scraper = ["dep:indexmap", "indexmap/serde", "url/serde"]
 
 [dependencies]
-adw = { package = "libadwaita", version = "0.8.0", features = ["v1_7"] }
+adw = { package = "libadwaita", version = "0.8.0", features = ["v1_8"] }
 async-channel = "2.3.1"
 jiff = { version = "0.2.10", default-features = false, features = [
     "std",
@@ -37,8 +37,8 @@ jiff = { version = "0.2.10", default-features = false, features = [
     # civil dates and don't care about zones at all.
 ] }
 glib = { version = "0.21.2", features = ["log_macros"] }
-gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", rev = "ee945bcb72184adec41afa4eb48a0d279807a4fb" }
-gtk = { package = "gtk4", version = "0.10.1", features = ["gnome_48"] }
+gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", rev = "fa6c00fd9e8d269d47fca8924226002dab37df32" }
+gtk = { package = "gtk4", version = "0.10.1" }
 quick-xml = "0.37.5"
 scraper = { version = "0.23.1", default-features = false }
 semver = "1.0.24"
