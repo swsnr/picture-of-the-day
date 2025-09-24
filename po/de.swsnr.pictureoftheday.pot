@@ -126,118 +126,122 @@ msgid "Artwork"
 msgstr ""
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
+msgid "Update to GNOME 49."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:55
 msgid ""
 "No longer request direct access to logind, which is no longer allowed on "
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:53
+#: de.swsnr.pictureoftheday.metainfo.xml:59
 msgid "Optionally inhibit wallpaper updates over metered networks."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:63
+#: de.swsnr.pictureoftheday.metainfo.xml:69
 msgid "Fix wallpaper updates."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:72
+#: de.swsnr.pictureoftheday.metainfo.xml:78
 msgid "Drag images out of the app to copy them into other apps."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:81
+#: de.swsnr.pictureoftheday.metainfo.xml:87
 msgid "Change license to European Union Public License 1.2."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:87
+#: de.swsnr.pictureoftheday.metainfo.xml:93
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
 "desktop background."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:88
+#: de.swsnr.pictureoftheday.metainfo.xml:94
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:89
+#: de.swsnr.pictureoftheday.metainfo.xml:95
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:102
+#: de.swsnr.pictureoftheday.metainfo.xml:108
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:112
+#: de.swsnr.pictureoftheday.metainfo.xml:118
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:113
+#: de.swsnr.pictureoftheday.metainfo.xml:119
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:114
+#: de.swsnr.pictureoftheday.metainfo.xml:120
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:126
+#: de.swsnr.pictureoftheday.metainfo.xml:132
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:127
+#: de.swsnr.pictureoftheday.metainfo.xml:133
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:128
+#: de.swsnr.pictureoftheday.metainfo.xml:134
 msgid "Improve scheduling of automatic downloads."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:129
+#: de.swsnr.pictureoftheday.metainfo.xml:135
 msgid "Remember window size and state."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:130
+#: de.swsnr.pictureoftheday.metainfo.xml:136
 msgid "Update to GNOME 48."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:140
+#: de.swsnr.pictureoftheday.metainfo.xml:146
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:141
+#: de.swsnr.pictureoftheday.metainfo.xml:147
 msgid "No longer support multiple windows."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:151
+#: de.swsnr.pictureoftheday.metainfo.xml:157
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:152
+#: de.swsnr.pictureoftheday.metainfo.xml:158
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:164
+#: de.swsnr.pictureoftheday.metainfo.xml:170
 msgid "A picture of the day from Wikimedia"
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:168
+#: de.swsnr.pictureoftheday.metainfo.xml:174
 msgid "The preferences dialog with settings for image sources"
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:172
+#: de.swsnr.pictureoftheday.metainfo.xml:178
 msgid "The empty greeting page with the application icon"
 msgstr ""
 
