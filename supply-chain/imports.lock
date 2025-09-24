@@ -670,6 +670,12 @@ who = "Pat Hickey <phickey@fastly.com>"
 criteria = "safe-to-deploy"
 version = "0.1.0"
 
+[[audits.bytecode-alliance.audits.semver]]
+who = "Pat Hickey <phickey@fastly.com>"
+criteria = "safe-to-deploy"
+version = "1.0.17"
+notes = "plenty of unsafe pointer and vec tricks, but in well-structured and commented code that appears to be correct"
+
 [[audits.embark-studios.wildcard-audits.cfg-expr]]
 who = "Jake Shadle <opensource@embark-studios.com>"
 criteria = "safe-to-deploy"
@@ -1239,49 +1245,6 @@ who = "Android Legacy"
 criteria = "safe-to-run"
 version = "1.0.5"
 aggregated-from = "https://chromium.googlesource.com/chromiumos/third_party/rust_crates/+/refs/heads/main/cargo-vet/audits.toml?format=TEXT"
-
-[[audits.google.audits.semver]]
-who = "danakj@chromium.org"
-criteria = "safe-to-run"
-version = "1.0.20"
-notes = """
-Reviewed in https://crrev.com/c/5171063
-
-Previously reviewed during security review and the audit is grandparented in.
-"""
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
-
-[[audits.google.audits.semver]]
-who = "Lukasz Anforowicz <lukasza@chromium.org>"
-criteria = "safe-to-run"
-delta = "1.0.20 -> 1.0.21"
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
-
-[[audits.google.audits.semver]]
-who = "Lukasz Anforowicz <lukasza@chromium.org>"
-criteria = "safe-to-run"
-delta = "1.0.21 -> 1.0.22"
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
-
-[[audits.google.audits.semver]]
-who = "danakj <danakj@chromium.org>"
-criteria = "safe-to-run"
-delta = "1.0.22 -> 1.0.23"
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
-
-[[audits.google.audits.semver]]
-who = "Lukasz Anforowicz <lukasza@chromium.org>"
-criteria = "safe-to-run"
-delta = "1.0.23 -> 1.0.24"
-notes = "Minor, `ptr_eq`-related changes."
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
-
-[[audits.google.audits.semver]]
-who = "Lukasz Anforowicz <lukasza@chromium.org>"
-criteria = "safe-to-run"
-delta = "1.0.24 -> 1.0.25"
-notes = "No changes in `.rs` files except `doc` attribute changes in `lib.rs`."
-aggregated-from = "https://chromium.googlesource.com/chromium/src/+/main/third_party/rust/chromium_crates_io/supply-chain/audits.toml?format=TEXT"
 
 [[audits.google.audits.semver]]
 who = "Daniel Cheng <dcheng@chromium.org>"
@@ -1994,6 +1957,12 @@ criteria = "safe-to-deploy"
 delta = "2.0.0-beta2 -> 2.0.0"
 aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
 
+[[audits.mozilla.audits.idna]]
+who = "edgul <ed.guloien@gmail.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.3 -> 1.1.0"
+aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
+
 [[audits.mozilla.audits.idna_adapter]]
 who = "Makoto Kato <m_kato@ga2.so-net.ne.jp>"
 criteria = "safe-to-deploy"
@@ -2004,6 +1973,12 @@ aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-ch
 who = "Makoto Kato <m_kato@ga2.so-net.ne.jp>"
 criteria = "safe-to-deploy"
 delta = "0.7.5 -> 0.8.0"
+aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
+
+[[audits.mozilla.audits.percent-encoding]]
+who = "edgul <ed.guloien@gmail.com>"
+criteria = "safe-to-deploy"
+delta = "2.3.1 -> 2.3.2"
 aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
 
 [[audits.mozilla.audits.precomputed-hash]]
@@ -2042,6 +2017,12 @@ criteria = "safe-to-deploy"
 delta = "0.25.0 -> 0.26.0"
 notes = "First-party code."
 aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
+
+[[audits.mozilla.audits.semver]]
+who = "Jan-Erik Rediger <jrediger@mozilla.com>"
+criteria = "safe-to-deploy"
+delta = "1.0.17 -> 1.0.25"
+aggregated-from = "https://raw.githubusercontent.com/mozilla/glean/main/supply-chain/audits.toml"
 
 [[audits.mozilla.audits.servo_arc]]
 who = "Emilio Cobos Álvarez <emilio@crisal.io>"
@@ -2098,6 +2079,12 @@ aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-ch
 who = "Valentin Gosu <valentin.gosu@gmail.com>"
 criteria = "safe-to-deploy"
 delta = "2.5.1 -> 2.5.4"
+aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
+
+[[audits.mozilla.audits.url]]
+who = "edgul <ed.guloien@gmail.com>"
+criteria = "safe-to-deploy"
+delta = "2.5.4 -> 2.5.7"
 aggregated-from = "https://hg.mozilla.org/mozilla-central/raw-file/tip/supply-chain/audits.toml"
 
 [[audits.mozilla.audits.windows-link]]
@@ -2288,6 +2275,12 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.5.13 -> 0.5.17"
 aggregated-from = "https://codeberg.org/swsnr/git-gone/raw/branch/main/supply-chain/audits.toml"
+
+[[audits.swsnr.audits.semver]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "1.0.26 -> 1.0.27"
+aggregated-from = "https://codeberg.org/swsnr/turnon/raw/branch/main/supply-chain/audits.toml"
 
 [[audits.swsnr.audits.serde_json]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
