@@ -1,6 +1,6 @@
 id: de.swsnr.pictureoftheday
 runtime: org.gnome.Platform
-runtime-version: "48"
+runtime-version: "49"
 sdk: org.gnome.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.rust-stable
@@ -32,24 +32,14 @@ modules:
           - x86_64
     build-commands:
       - install -D -m755 just /app/bin/just
-    cleanup:
-      - /bin/just
-  - name: blueprint
-    buildsystem: meson
-    sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/blueprint-compiler.git
-        tag: "v0.18.0"
-        commit: "07c9c9df9cd1b6b4454ecba21ee58211e9144a4b"
-    cleanup:
-      - "*"
+    cleanup: ["*"]
   - name: pictureoftheday
     buildsystem: simple
     sources:
       - type: git
         url: https://codeberg.org/swsnr/picture-of-the-day.git
-        tag: "v1.8.1"
-        commit: "6d243bcb938631c53f928d411d432df85d7a63a8"
+        tag: "v1.9.0"
+        commit: "c496ebd778ff8181151b2aa9eb4f3ea427f1900b"
       - de.swsnr.pictureoftheday.cargo-sources.json
     build-commands:
       - install -Dm644 cargo/config .cargo/config.toml
