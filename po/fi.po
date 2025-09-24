@@ -7,22 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-08-25 13:09+0000\n"
+"PO-Revision-Date: 2025-09-14 09:09+0000\n"
 "Last-Translator: artnay <artnay@noreply.codeberg.org>\n"
-"Language-Team: Finnish <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
+"Language-Team: Finnish <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12.2\n"
+"X-Generator: Weblate 5.13.2\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgid "Picture of the Day"
 msgstr "Päivän kuva"
 
@@ -48,10 +46,10 @@ msgid "Whether to set the wallpaper automatically."
 msgstr "Asetetaanko taustakuva automaattisesti."
 
 #: de.swsnr.pictureoftheday.gschema.xml:13
-#, fuzzy
-#| msgid "Whether to set the wallpaper automatically."
 msgid "Whether to update the wallpaper over metered networks."
-msgstr "Asetetaanko taustakuva automaattisesti."
+msgstr ""
+"Päivitetäänkö taustakuva, kun käytössä on käytön mukaan laskutettava "
+"verkkoyhteys."
 
 #: de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
@@ -296,9 +294,6 @@ msgid "Quit application"
 msgstr "Lopeta sovellus"
 
 #: resources/gtk/help-overlay.blp:34
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Picture Of The Day Window"
 msgctxt "shortcuts group title"
 msgid "Picture of the Day Window"
 msgstr "Päivän kuvan ikkuna"
@@ -394,9 +389,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Pikanäppäimet"
 
 #: resources/ui/application-window.blp:151
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_About Picture Of The Day"
 msgctxt "main-window.menu.label"
 msgid "_About Picture of the Day"
 msgstr "_Tietoja - Päivän kuva"
@@ -452,68 +444,58 @@ msgid "Downloading image…"
 msgstr "Lataa kuva…"
 
 #: resources/ui/preferences-dialog.blp:12
-#, fuzzy
-#| msgid "Wallpaper"
 msgctxt "preferences-dialog.page.title"
 msgid "Wallpaper sources"
-msgstr "Taustakuva"
+msgstr "Taustakuvien lähteet"
 
 #: resources/ui/preferences-dialog.blp:16
 msgid "API key"
 msgstr "API-avain"
 
 #: resources/ui/preferences-dialog.blp:21
-#, fuzzy
-#| msgid "Get API key"
 msgctxt "preferences-dialog.row.link-label"
 msgid "Get API key"
 msgstr "Hanki API-avain"
 
 #: resources/ui/preferences-dialog.blp:29
-#, fuzzy
-#| msgid "Enabled collections"
 msgctxt "preferences-dialog.row.title"
 msgid "Enabled collections"
 msgstr "Käytössä olevat kokoelmat"
 
 #: resources/ui/preferences-dialog.blp:38
-#, fuzzy
-#| msgid "Your daily wallpaper"
 msgctxt "preferences-dialog.page.title"
 msgid "Daily wallpaper update"
-msgstr "Päivittäinen taustakuva"
+msgstr "Päivittäinen taustan päivitys"
 
 #: resources/ui/preferences-dialog.blp:41
-#, fuzzy
-#| msgid "Artwork"
 msgctxt "preferences-dialog.group.title"
 msgid "Network"
-msgstr "Taideteos"
+msgstr "Verkko"
 
 #: resources/ui/preferences-dialog.blp:44
 msgctxt "preferences-dialog.row.title"
 msgid "Update wallpaper over metered network"
-msgstr ""
+msgstr "Päivitä taustakuva, kun käytössä on käytön mukaan laskutettava yhteys"
 
 #: resources/ui/preferences-dialog.blp:50
 msgctxt "preferences-dialog.group.title"
 msgid "Update wallpaper after session is unlocked"
-msgstr ""
+msgstr "Päivitä taustakuva, kun istunnon lukitus on avattu"
 
 #: resources/ui/preferences-dialog.blp:53
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind allowed"
-msgstr ""
+msgstr "Yhteys logind:hen sallittu"
 
 #: resources/ui/preferences-dialog.blp:54
 msgctxt "preferences-dialog.row.description"
 msgid "After the session is unlocked the wallpaper is updated immediately."
-msgstr ""
+msgstr "Kun istunnon lukitus on avattu, taustakuva päivitetään välittömästi."
 
 #: resources/ui/preferences-dialog.blp:68
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind prohibited"
-msgstr ""
+msgstr "Yhteys logind:hen estetty"
 
 #: resources/ui/preferences-dialog.blp:69
 msgctxt "preferences-dialog.row.description"
@@ -521,21 +503,23 @@ msgid ""
 "After the session is unlocked the wallpaper is updated only after a "
 "considerable delay."
 msgstr ""
+"Kun istunnon lukitus on avattu, taustakuva päivitetään pitkän viiveen "
+"jälkeen."
 
 #: resources/ui/preferences-dialog.blp:87
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Check again"
-msgstr ""
+msgstr "Tarkista uudelleen"
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
 msgid "Command to permit access to logind"
-msgstr ""
+msgstr "Logind:hen pääsyn salliva komento"
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Kopioi leikepöydälle"
 
 #: resources/ui/preferences-dialog.blp:123
 msgid ""
@@ -545,6 +529,11 @@ msgid ""
 "to add a permission for this application to talk to "
 "<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
 msgstr ""
+"Suorita tämä komento päätteessä antaaksesi pääsyn logind:hen. Sovellus tulee "
+"käynnistää uudelleen tämän jälkeen. Vaihtoehtoisesti voit käyttää <a href="
+"\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a>ia "
+"lisätäksesi tälle sovellukselle oikeuden kommunikoida "
+"<tt>org.freedesktop.login1</tt>:n kanssa <i>järjestelmäväylän</i> kautta."
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
@@ -581,9 +570,6 @@ msgid "Turn on devices in your network"
 msgstr ""
 
 #: src/app.rs:194
-#, fuzzy
-#| msgctxt "notification.title"
-#| msgid "Picture Of The Day updated"
 msgctxt "notification.title"
 msgid "Picture of the Day updated"
 msgstr "Päivän kuva päivitetty"
@@ -599,13 +585,6 @@ msgid "Restart after update?"
 msgstr "Käynnistetäänkö uudelleen päivityksen jälkeen?"
 
 #: src/app.rs:216
-#, fuzzy
-#| msgctxt "alert-dialog.body"
-#| msgid ""
-#| "Picture Of The Day was updated, and needs to be restarted.\n"
-#| "\n"
-#| "Automatic restarting is not yet supported, but you can quit the app and "
-#| "start it again manually."
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture of the Day was updated, and needs to be restarted.\n"
@@ -664,9 +643,6 @@ msgid "Automatically fetch and set wallpaper in background"
 msgstr "Nouda ja aseta taustakuva automaattisesti taustalla"
 
 #: src/app/model/error_notification.rs:42
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day needs an API key"
 msgctxt "error-notification.title"
 msgid "Picture of the Day needs an API key"
 msgstr "Päivän kuva -sovellus tarvitsee API-avaimen"
@@ -681,12 +657,9 @@ msgstr ""
 "avain vaikuttaa virheelliseltä."
 
 #: src/app/model/error_notification.rs:66
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day was rate-limited"
 msgctxt "error-notification.title"
 msgid "Picture of the Day was rate-limited"
-msgstr "Päivän kuvan bittinopeus oli rajoitettu"
+msgstr "Päivän kuvan kyselyjen määrää rajoitettiin"
 
 #: src/app/model/error_notification.rs:72
 msgctxt "error-notification.description"
@@ -757,38 +730,26 @@ msgid "Limited network connectivity"
 msgstr "Rajoitettu yhdistettävyys verkkoon"
 
 #: src/app/model/error_notification.rs:177
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2. Your system appears to have only limited network "
-#| "connectivity. Try to connect your system to the internet."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from {source_name}, with "
 "the following message: {error}. Your system appears to have only limited "
 "network connectivity. Try to connect your system to the internet."
 msgstr ""
-"Syöttö/lähtövirhe noudettaessa tämän päivän kuvaa %1:sta, seuraavalla "
-"viestillä: %2. Järjestelmälläsi näyttää olevan vain rajoitettu verkkoyhteys. "
-"Yritä yhdistää järjestelmäsi Internetiin."
+"Syöttö-/lähtövirhe noudettaessa tämän päivän kuvaa lähteestä {source_name} "
+"seuraavalla viestillä: {error}. Järjestelmälläsi näyttää olevan vain "
+"rajoitettu verkkoyhteys. Yritä yhdistää järjestelmäsi Internetiin."
 
 #: src/app/model/error_notification.rs:193
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2. Try again later, or try a different source. If the "
-#| "issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from {source_name}, with "
 "the following message: {error}. Try again later, or try a different source. "
 "If the issue persists please report the problem."
 msgstr ""
-"Tapahtui syöttö/lähtövirhe noudettaessa tämän päivän kuvaa %1:sta, ja "
-"seuraava viesti: %2. Yritä myöhemmin uudelleen tai kokeile toista lähdettä. "
-"Jos ongelma jatkuu, ilmoita ongelmasta."
+"Tapahtui syöttö-/lähtövirhe noudettaessa tämän päivän kuvaa lähteestä "
+"{source_name}, ja seuraava viesti: {error}. Yritä myöhemmin uudelleen tai "
+"kokeile toista lähdettä. Jos ongelma jatkuu, ilmoita ongelmasta."
 
 #: src/app/widgets/application_window.rs:74
 msgctxt "error-notification.title"
@@ -986,8 +947,6 @@ msgid "Unknown, all rights reserved"
 msgstr "Tuntematon, kaikki oikeudet pidätetään"
 
 #: src/main.rs:72
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "Päivän kuva"
