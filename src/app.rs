@@ -339,7 +339,7 @@ it again manually.",
         let parent_window = PortalWindowHandle::new_for_app(self).await;
         let response = wallpaper::set_wallpaper_file(
             &self.dbus_connection().unwrap(),
-            parent_window.as_ref(),
+            &parent_window,
             &gio::File::for_path(&target),
             wallpaper::Preview::NoPreview,
             wallpaper::SetOn::Both,
@@ -833,7 +833,7 @@ mod imp {
                     glib::info!("Requesting permission to run in background and autostart");
                     let response = background::request_background(
                         &connection,
-                        parent_window.as_ref(),
+                        &parent_window,
                         Some(&reason),
                         Some(&[crate::config::APP_ID, "--gapplication-service"]),
                         background::RequestBackgroundFlags::AUTOSTART,

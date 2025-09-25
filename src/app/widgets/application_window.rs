@@ -470,7 +470,7 @@ mod imp {
                 let parent_window = PortalWindowHandle::new_for_native(&*self.obj()).await;
                 let result = wallpaper::set_wallpaper_file(
                     &self.obj().dbus_connection().unwrap(),
-                    parent_window.as_ref(),
+                    &parent_window,
                     &file,
                     wallpaper::Preview::NoPreview,
                     wallpaper::SetOn::Both,
