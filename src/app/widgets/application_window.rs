@@ -475,7 +475,7 @@ mod imp {
                     wallpaper::Preview::NoPreview,
                     wallpaper::SetOn::Both,
                 )
-                .await?;
+                .await;
                 glib::info!("Wallpaper request finished: {result:?}");
             }
             Ok(())

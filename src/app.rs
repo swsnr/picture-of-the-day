@@ -7,7 +7,7 @@
 use adw::prelude::*;
 use glib::{Object, dgettext, dpgettext2, subclass::types::ObjectSubclassIsExt};
 use gnome_app_utils::io::ensure_directory_with_parents;
-use gnome_app_utils::portal::{RequestResult, wallpaper, window::PortalWindowHandle};
+use gnome_app_utils::portal::{wallpaper, window::PortalWindowHandle};
 use gtk::{
     UriLauncher,
     gio::{self, ActionEntry, ApplicationFlags},
@@ -337,7 +337,7 @@ it again manually.",
 
         glib::info!("Setting wallpaper to {}", target.display());
         let parent_window = PortalWindowHandle::new_for_app(self).await;
-        let response = wallpaper::set_wallpaper_file(
+        wallpaper::set_wallpaper_file(
             &self.dbus_connection().unwrap(),
             &parent_window,
             &gio::File::for_path(&target),
@@ -345,12 +345,6 @@ it again manually.",
             wallpaper::SetOn::Both,
         )
         .await?;
-        if !matches!(response, RequestResult::Success) {
-            glib::warn!(
-                "Request to set wallpaper to {} denied, got {response:?}",
-                target.display()
-            );
-        }
         Ok(())
     }
 }
@@ -376,7 +370,7 @@ mod imp {
     use gnome_app_utils::app::{AppUpdatedMonitor, SessionLockedMonitor};
     use gnome_app_utils::futures;
     use gnome_app_utils::libc;
-    use gnome_app_utils::portal::{RequestResult, background, window::PortalWindowHandle};
+    use gnome_app_utils::portal::{background, window::PortalWindowHandle};
     use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
     use soup::prelude::*;
@@ -841,21 +835,14 @@ mod imp {
                     .await;
                     match response {
                         Ok(response) => {
-                            if response.request_result == RequestResult::Success {
-                                if !response.background {
-                                    glib::warn!(
-                                        "Background request successful, but background not granted?"
-                                    );
-                                }
-                                if !response.autostart {
-                                    glib::warn!(
-                                        "Background request successful, but autostart not granted?"
-                                    );
-                                }
-                            } else {
+                            if !response.background {
                                 glib::warn!(
-                                    "Background request no successfully: {:?}",
-                                    response.request_result
+                                    "Background request successful, but background not granted?"
+                                );
+                            }
+                            if !response.autostart {
+                                glib::warn!(
+                                    "Background request successful, but autostart not granted?"
                                 );
                             }
                         }
