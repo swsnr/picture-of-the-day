@@ -91,6 +91,7 @@ lint-rust: compile
     cargo clippy --all-features --all-targets
 
 lint-flatpak:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.Devel.yaml
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.yaml
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream de.swsnr.pictureoftheday.metainfo.xml
 
