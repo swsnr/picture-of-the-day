@@ -181,6 +181,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore = "https://epod.usra.edu appears to be down as of 2025-10-01"]
     fn scrape_page_with_asset_link_and_photographer() {
         let mut images = scrape_page_at_url(
             "https://epod.usra.edu/blog/2025/01/aurora-borealis-and-an-east-west-oriented-arc-september-1314-2024.html",
@@ -228,6 +229,7 @@ Photo Details: Canon 650D camera; Samyang 8 mm fisheye-lens.
     }
 
     #[test]
+    #[ignore = "https://epod.usra.edu appears to be down as of 2025-10-01"]
     fn scrape_page_without_asset_link_and_copyright() {
         let mut images = scrape_page_at_url(
             "https://epod.usra.edu/blog/2025/04/archive-earth-day-and-red-deer-bridge.html",
@@ -275,6 +277,7 @@ celebrating its 55th observance. Note that while Earth Day is always on April \
     }
 
     #[async_test]
+    #[ignore = "https://epod.usra.edu appears to be down as of 2025-10-01"]
     async fn fetch_picture_of_the_day() {
         let session = soup_session();
         let images = super::fetch_picture_of_the_day(&session).await.unwrap();
