@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-14 09:09+0000\n"
-"Last-Translator: artnay <artnay@noreply.codeberg.org>\n"
-"Language-Team: Finnish <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
+"PO-Revision-Date: 2025-10-01 14:09+0000\n"
+"Last-Translator: Ricky-Tigg <ricky-tigg@noreply.codeberg.org>\n"
+"Language-Team: Finnish <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -138,10 +138,8 @@ msgid "Artwork"
 msgstr "Taideteos"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:49
-#, fuzzy
-#| msgid "Update to GNOME 48."
 msgid "Update to GNOME 49."
-msgstr "Päivitys GNOME 48:aan."
+msgstr "Päivitä GNOME 49:ään."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:55
 msgid ""
@@ -149,22 +147,25 @@ msgid ""
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
 msgstr ""
+"Ei enää pyydetä suoraa pääsyä logind-palveluun, mikä ei ole enää sallittua "
+"Flathubissa. Sen sijaan käyttäjälle annetaan ohjeet antaa pääsy logind-"
+"palveluun asetusvalintaikkunassa."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:59
 msgid "Optionally inhibit wallpaper updates over metered networks."
-msgstr ""
+msgstr "Valinnaisesti estä taustakuvan päivitykset mitatuissa verkoissa."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:69
 msgid "Fix wallpaper updates."
-msgstr ""
+msgstr "Korjaa taustakuvapäivitykset."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:78
 msgid "Drag images out of the app to copy them into other apps."
-msgstr ""
+msgstr "Vedä kuvat pois sovelluksesta kopioidaksesi ne muihin sovelluksiin."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:87
 msgid "Change license to European Union Public License 1.2."
-msgstr ""
+msgstr "Vaihda lisenssi European Union Public License 1.2:ksi."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:93
 msgid ""
@@ -280,9 +281,6 @@ msgid "The empty greeting page with the application icon"
 msgstr "Tyhjä aloitusnäkymä sovelluksen kuvakkeen kera"
 
 #: resources/shortcuts-dialog.blp:11
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Picture of the Day Window"
 msgctxt "shortcuts section title"
 msgid "Picture of the Day Window"
 msgstr "Päivän kuvan ikkuna"
@@ -308,9 +306,6 @@ msgid "Toggle sidebar"
 msgstr "Sivupalkki päällä/pois"
 
 #: resources/shortcuts-dialog.blp:39
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Navigate images"
 msgctxt "shortcuts section title"
 msgid "Navigate images"
 msgstr "Liiku kuvien välillä"
@@ -326,9 +321,6 @@ msgid "Next image"
 msgstr "Seuraava kuva"
 
 #: resources/shortcuts-dialog.blp:65
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "General"
 msgctxt "shortcuts section title"
 msgid "General"
 msgstr "Yleiset"
@@ -576,13 +568,13 @@ msgstr "Hyödylliset palvelut"
 #: src/app.rs:161
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
-msgstr ""
+msgstr "Kytke päälle"
 
 #. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
 #: src/app.rs:166
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
-msgstr ""
+msgstr "Kytke verkossasi olevat laitteet päälle"
 
 #: src/app.rs:194
 msgctxt "notification.title"
@@ -772,18 +764,13 @@ msgid "Failed to open source URL"
 msgstr "Lähdeosoitteen avaaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:81
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening {url}, with the following message: "
 "{error}. If the issue persists please report the problem."
 msgstr ""
-"Tapahtui syöttö/lähtövirhe avattaessa %1, seuraavalla viestillä: %2. Jos "
-"ongelma jatkuu, ilmoita ongelmasta."
+"Tapahtui syöttö/lähtövirhe avattaessa {url}, seuraavalla viestillä: {error}. "
+"Jos ongelma jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
@@ -791,18 +778,13 @@ msgid "Failed to set wallpaper"
 msgstr "Taustakuvan asettaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:110
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while setting the wallpaper, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "Tapahtui syöttö/lähtövirhe taustakuvaa asetettaessa, seuraavalla viestillä: "
-"%1. Jos ongelma jatkuu, ilmoita ongelmasta."
+"{error}. Jos ongelma jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:143
 msgctxt "error-notification.title"
@@ -810,18 +792,13 @@ msgid "Failed to open image"
 msgstr "Kuvan avaaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:150
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
-"Nykyistä kuvaa avattaessa tapahtui syöttö-/lähtövirhe, josta tuli seuraava "
-"viesti: %1. Jos vika jatkuu, ilmoita siitä."
+"Nykyistä kuvaa avattaessa tapahtui syöttö-/lähtövirhe, seuraavalla viestillä:"
+" {error}. Jos vika jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:170
 msgid "Saved image {name}"
@@ -833,18 +810,13 @@ msgid "Failed to save image"
 msgstr "Kuvan tallentaminen epäonnistui"
 
 #: src/app/widgets/application_window.rs:196
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while saving the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
-"Nykyistä kuvaa tallennettaessa tapahtui syöttö-/lähtövirhe, josta tuli "
-"seuraava viesti: %1. Jos vika jatkuu, ilmoita siitä."
+"Nykyistä kuvaa tallennettaessa tapahtui syöttö-/lähtövirhe, seuraavalla "
+"viestillä: {error}. Jos vika jatkuu, ilmoita siitä."
 
 #: src/app/widgets/application_window.rs:218
 msgctxt "alert.response"
@@ -895,6 +867,14 @@ msgid ""
 "\n"
 "{license_text}"
 msgstr ""
+"Tekijänoikeus {copyright_name} &lt;{copyright_mail}&gt;\n"
+"\n"
+"Lisensoitu EUPL 1.2 :n ehtojen mukaisesti. Löydät lisenssitekstin viralliset "
+"käännökset osoitteesta <a href=\"{translations}\">{translations</a>.\n"
+"\n"
+"Koko englanninkielinen teksti on seuraava.\n"
+"\n"
+"{license_text}"
 
 #: src/images/source.rs:58
 msgctxt "source name"
