@@ -40,7 +40,6 @@ pub enum Source {
     Bing,
     Wikimedia,
     Stalenhag,
-    Eopd,
     Eoiod,
 }
 
@@ -59,7 +58,6 @@ impl Source {
             Source::Bing => dpgettext2(None, "source name", "Bing"),
             Source::Wikimedia => dpgettext2(None, "source name", "Wikimedia Picture of the Day"),
             Source::Stalenhag => dpgettext2(None, "source name", "Simon Stålenhag"),
-            Source::Eopd => dpgettext2(None, "source name", "Earth Science Picture of the Day"),
             Source::Eoiod => dpgettext2(
                 None,
                 "source name",
@@ -78,7 +76,6 @@ impl Source {
             Source::Bing => "https://bing.com",
             Source::Wikimedia => "https://commons.wikimedia.org/wiki/Main_Page",
             Source::Stalenhag => "https://simonstalenhag.se/",
-            Source::Eopd => "https://epod.usra.edu/blog/",
             Source::Eoiod => "https://earthobservatory.nasa.gov",
         }
     }
@@ -114,14 +111,6 @@ impl Source {
             Source::Stalenhag => vec![stalenhag::pick_image_for_date_from_configured_collections(
                 date.unwrap_or(today),
             )],
-            Source::Eopd => {
-                date.inspect(|_| {
-                    glib::warn!(
-                        "Earth Science Picture of the Day does not support overriding the date"
-                    );
-                });
-                epod::fetch_picture_of_the_day(session).await?
-            }
             Source::Eoiod => {
                 date.inspect(|_| {
                     glib::warn!(

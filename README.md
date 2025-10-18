@@ -12,7 +12,6 @@ Get a picture of the day from any of the following sources as your daily wallpap
 - [Bing](https://bing.com)
 - [Simon Stålenhag Artwork](https://simonstalenhag.se/)
 - [Wikimedia Picture of the Day](https://commons.wikimedia.org/wiki/Main_Page)
-- [Earth Science Picture of the Day](https://epod.usra.edu/blog/)
 - [NASA Earth Observatory Image of the Day](https://earthobservatory.nasa.gov)
 
 Note that all images are protected by copyright; you may not be allowed to use or distribute them. Do take a look at the license terms for each image.

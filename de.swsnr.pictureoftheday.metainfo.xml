@@ -11,7 +11,6 @@
             <li>Bing</li>
             <li>Simon Stålenhag Artwork</li>
             <li>Wikimedia Picture of the Day</li>
-            <li>Earth Science Picture of the Day</li>
             <li>NASA Earth Observatory Image of the Day</li>
         </ul>
         <p>Preview images, pick your favorite source, enable automatic updates, and enjoy a fresh wallpaper every day.</p>
@@ -44,6 +43,12 @@
             <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
         </release>
         -->
+        <release version="next" date="9999-01-01">
+            <description>
+                <p>Remove EPOD source, as it appears to be offline since October 2025.</p>
+            </description>
+            <url>https://codeberg.org/swsnr/picture-of-the-day/releases/tag/next</url>
+        </release>
         <release version="1.9.0" date="2025-09-24">
             <description>
                 <p>Update to GNOME 49.</p>

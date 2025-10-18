@@ -7,6 +7,5 @@
 pub mod apod;
 pub mod bing;
 pub mod eoiod;
-pub mod epod;
 pub mod stalenhag;
 pub mod wikimedia;
