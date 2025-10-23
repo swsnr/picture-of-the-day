@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.picture-of-the-day\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-09-26 12:09+0000\n"
+"PO-Revision-Date: 2025-10-23 11:05+0000\n"
 "Last-Translator: Sebastian Wiesner <sebastian@swsnr.de>\n"
-"Language-Team: German <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
+"Language-Team: German <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.2\n"
+"X-Generator: Weblate 5.13.3\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
@@ -137,6 +137,7 @@ msgstr "Kunstwerk"
 #: de.swsnr.pictureoftheday.metainfo.xml:48
 msgid "Remove EPOD source, as it appears to be offline since October 2025."
 msgstr ""
+"Die EPOD Quelle wurde entfernt, da die Quelle seit Oktober 2025 offline ist."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:54
 msgid "Update to GNOME 49."
