@@ -38,6 +38,9 @@
     clippy::as_conversions,
 )]
 #![allow(clippy::enum_glob_use, clippy::module_name_repetitions)]
+#![forbid(unsafe_code)]
+
+use std::ffi::CString;
 
 use app::Application;
 use glib::dpgettext2;
@@ -64,7 +67,10 @@ fn main() -> glib::ExitCode {
 
     let locale_dir = config::locale_directory();
     glib::debug!("Initializing gettext with locale directory {}", locale_dir);
-    if let Err(error) = gettext::init_gettext(config::APP_ID, locale_dir) {
+    if let Err(error) = gettext::init_gettext(
+        &CString::new(config::APP_ID).unwrap(),
+        locale_dir.to_cstr().unwrap(),
+    ) {
         glib::warn!("Failed to initialize gettext: {error}");
     }
 
