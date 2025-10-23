@@ -16,6 +16,9 @@ url = "https://gitlab.gnome.org/Teams/Releng/rust-supply-chain/-/raw/main/gnome-
 [imports.google]
 url = "https://raw.githubusercontent.com/google/supply-chain/main/audits.toml"
 
+[imports.isrg]
+url = "https://raw.githubusercontent.com/divviup/libprio-rs/main/supply-chain/audits.toml"
+
 [imports.mozilla]
 url = "https://raw.githubusercontent.com/mozilla/supply-chain/main/audits.toml"
 
@@ -27,4 +30,8 @@ criteria = "safe-to-run"
 
 [[exemptions.redox_syscall]]
 version = "0.5.12"
+criteria = "safe-to-run"
+
+[[exemptions.toml_parser]]
+version = "1.0.4"
 criteria = "safe-to-run"

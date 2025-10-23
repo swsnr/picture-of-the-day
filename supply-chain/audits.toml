@@ -151,6 +151,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.5.12 -> 0.5.13"
 
+[[audits.redox_syscall]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.5.17 -> 0.5.18"
+
 [[audits.ryu]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -166,6 +171,26 @@ notes = "No code changes"
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "0.23.1"
+
+[[audits.serde]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "1.0.227 -> 1.0.228"
+
+[[audits.serde_core]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "1.0.227 -> 1.0.228"
+
+[[audits.serde_derive]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "1.0.227 -> 1.0.228"
+
+[[audits.serde_derive]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "1.0.227 -> 1.0.228"
 
 [[audits.serde_json]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -204,6 +229,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.15.0 -> 1.15.1"
 
+[[audits.stable_deref_trait]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "1.2.0 -> 1.2.1"
+
 [[audits.strum]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -213,6 +243,12 @@ delta = "0.26.3 -> 0.27.1"
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.26.4 -> 0.27.1"
+
+[[audits.system-deps]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "7.0.5 -> 7.0.6"
+notes = "No real code changes"
 
 [[audits.target-lexicon]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -224,6 +260,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "0.7.6"
 notes = "Trace amounts of unsafe, didn't audit decoding logic."
+
+[[audits.windows-link]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "0.2.0 -> 0.2.1"
 
 [[audits.zerofrom]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
