@@ -132,6 +132,7 @@ mod tests {
     use super::*;
     use crate::images::source::testutil::soup_session;
 
+    #[ignore = "APOD API suspended during US government shutdown"]
     #[async_test]
     async fn fetch_apod() {
         // We use a separate API key for testing, with account ID 431bacf7-4e26-407f-9ca3-06a17d8d7400
