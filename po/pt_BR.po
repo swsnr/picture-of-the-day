@@ -97,14 +97,10 @@ msgid "Wikimedia Picture of the Day"
 msgstr "Imagem do Dia da Wikimedia"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:14
-msgid "Earth Science Picture of the Day"
-msgstr "Imagem do Dia das Ciências da Terra"
-
-#: de.swsnr.pictureoftheday.metainfo.xml:15
 msgid "NASA Earth Observatory Image of the Day"
 msgstr "Imagem do Dia do Observatório Terrestre da NASA"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:17
+#: de.swsnr.pictureoftheday.metainfo.xml:16
 msgid ""
 "Preview images, pick your favorite source, enable automatic updates, and "
 "enjoy a fresh wallpaper every day."
@@ -112,7 +108,7 @@ msgstr ""
 "Visualize imagens, escolha sua fonte favorita, ative atualizações "
 "automáticas e aproveite um novo papel de parede todos os dias."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:18
+#: de.swsnr.pictureoftheday.metainfo.xml:17
 msgid ""
 "Note that all images are protected by copyright; you may not be allowed to "
 "use or distribute them. Do take a look at the license terms for each image."
@@ -121,56 +117,60 @@ msgstr ""
 "poderá usá-las ou distribuí-las. Consulte os termos de licença de cada "
 "imagem."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:24
+#: de.swsnr.pictureoftheday.metainfo.xml:23
 msgid "Picture"
 msgstr "Foto"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:25
+#: de.swsnr.pictureoftheday.metainfo.xml:24
 msgid "Daily"
 msgstr "Diário"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:26
+#: de.swsnr.pictureoftheday.metainfo.xml:25
 msgid "Wallpaper"
 msgstr "Papel de Parede"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:27
+#: de.swsnr.pictureoftheday.metainfo.xml:26
 msgid "Astronomy"
 msgstr "Astronomia"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:28
+#: de.swsnr.pictureoftheday.metainfo.xml:27
 msgid "Artwork"
 msgstr "Obra de Arte"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:49
+#: de.swsnr.pictureoftheday.metainfo.xml:48
+msgid "Remove EPOD source, as it appears to be offline since October 2025."
+msgstr ""
+
+#: de.swsnr.pictureoftheday.metainfo.xml:54
 #, fuzzy
 #| msgid "Update to GNOME 48."
 msgid "Update to GNOME 49."
 msgstr "Atualizado para o GNOME 48."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:55
+#: de.swsnr.pictureoftheday.metainfo.xml:60
 msgid ""
 "No longer request direct access to logind, which is no longer allowed on "
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:59
+#: de.swsnr.pictureoftheday.metainfo.xml:64
 msgid "Optionally inhibit wallpaper updates over metered networks."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:69
+#: de.swsnr.pictureoftheday.metainfo.xml:74
 msgid "Fix wallpaper updates."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:78
+#: de.swsnr.pictureoftheday.metainfo.xml:83
 msgid "Drag images out of the app to copy them into other apps."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:87
+#: de.swsnr.pictureoftheday.metainfo.xml:92
 msgid "Change license to European Union Public License 1.2."
 msgstr ""
 
-#: de.swsnr.pictureoftheday.metainfo.xml:93
+#: de.swsnr.pictureoftheday.metainfo.xml:98
 msgid ""
 "No longer set the wallpaper automatically while the main window is visible, "
 "to allow you to preview different sources without actually changing your "
@@ -180,7 +180,7 @@ msgstr ""
 "janela principal estiver visível, para permitir que você visualize "
 "diferentes fontes sem alterar o plano de fundo da área de trabalho."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:94
+#: de.swsnr.pictureoftheday.metainfo.xml:99
 msgid ""
 "No longer attempt to set the wallpaper automatically while the session is "
 "locked, or the system is on low power or has no network connection."
@@ -189,13 +189,13 @@ msgstr ""
 "estiver bloqueada, ou o sistema estiver com pouca energia ou não tiver "
 "conexão de rede."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:95
+#: de.swsnr.pictureoftheday.metainfo.xml:100
 msgid "Notify and ask to restart app when it was updated in the background."
 msgstr ""
 "Notifique e peça para reiniciar o aplicativo quando ele for atualizado em "
 "segundo plano."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:108
+#: de.swsnr.pictureoftheday.metainfo.xml:113
 msgid ""
 "Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
 "Day."
@@ -203,14 +203,14 @@ msgstr ""
 "Adicione a Imagem do Dia da Ciência da Terra e a Imagem do Dia do "
 "Observatório da Terra da NASA."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:118
+#: de.swsnr.pictureoftheday.metainfo.xml:123
 msgid ""
 "Add overlay toolbar to go to the previous or next image to the image view."
 msgstr ""
 "Adicione uma barra de ferramentas de sobreposição para ir para a imagem "
 "anterior ou seguinte na visualização de imagem."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:119
+#: de.swsnr.pictureoftheday.metainfo.xml:124
 msgid ""
 "Add toolbar buttons to save the current image, and to open the current image "
 "in an external application."
@@ -218,34 +218,34 @@ msgstr ""
 "Adicione botões na barra de ferramentas para salvar a imagem atual e para "
 "abri-la em um aplicativo externo."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:120
+#: de.swsnr.pictureoftheday.metainfo.xml:125
 msgid ""
 "Try harder not to leave partially downloaded wallpapers behind when quitting."
 msgstr ""
 "Tente não deixar papéis de parede parcialmente baixados para trás ao sair."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:132
+#: de.swsnr.pictureoftheday.metainfo.xml:137
 msgid "Use a more reliable endpoint for Wikimedia images."
 msgstr "Use um ponto final mais confiável para imagens da Wikimedia."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:133
+#: de.swsnr.pictureoftheday.metainfo.xml:138
 msgid "No longer show preview when setting a wallpaper."
 msgstr ""
 "Não é mais possível mostrar a pré-visualização ao definir um papel de parede."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:134
+#: de.swsnr.pictureoftheday.metainfo.xml:139
 msgid "Improve scheduling of automatic downloads."
 msgstr "Melhore o agendamento de downloads automáticos."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:135
+#: de.swsnr.pictureoftheday.metainfo.xml:140
 msgid "Remember window size and state."
 msgstr "Lembre-se do tamanho e estado da janela."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:136
+#: de.swsnr.pictureoftheday.metainfo.xml:141
 msgid "Update to GNOME 48."
 msgstr "Atualizado para o GNOME 48."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:146
+#: de.swsnr.pictureoftheday.metainfo.xml:151
 msgid ""
 "Start automatically and refresh the daily wallpaper automatically every "
 "twelve hours."
@@ -253,11 +253,11 @@ msgstr ""
 "Inicie automaticamente e atualize o papel de parede diário automaticamente a "
 "cada doze horas."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:147
+#: de.swsnr.pictureoftheday.metainfo.xml:152
 msgid "No longer support multiple windows."
 msgstr "Não oferece mais suporte a múltiplas janelas."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:157
+#: de.swsnr.pictureoftheday.metainfo.xml:162
 msgid ""
 "The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
 "and Bing."
@@ -265,7 +265,7 @@ msgstr ""
 "O lançamento inicial, com quatro fontes: APOD, Wikimedia, Simon Stålenhag e "
 "Bing."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:158
+#: de.swsnr.pictureoftheday.metainfo.xml:163
 msgid ""
 "Add a main window to show today's picture of the day and a button to set it "
 "as current wallpaper."
@@ -273,16 +273,16 @@ msgstr ""
 "Adicione uma janela principal para mostrar a foto do dia e um botão para "
 "defini-la como papel de parede atual."
 
-#: de.swsnr.pictureoftheday.metainfo.xml:170
+#: de.swsnr.pictureoftheday.metainfo.xml:175
 msgid "A picture of the day from Wikimedia"
 msgstr "Uma foto do dia da Wikimedia"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:174
+#: de.swsnr.pictureoftheday.metainfo.xml:179
 msgid "The preferences dialog with settings for image sources"
 msgstr ""
 "A caixa de diálogo de preferências com configurações para fontes de imagem"
 
-#: de.swsnr.pictureoftheday.metainfo.xml:178
+#: de.swsnr.pictureoftheday.metainfo.xml:183
 msgid "The empty greeting page with the application icon"
 msgstr "A página de boas-vindas vazia com o ícone do aplicativo"
 
@@ -660,22 +660,22 @@ msgctxt "notification.button.label"
 msgid "Open URL"
 msgstr "Abrir URL"
 
-#: src/app.rs:625
+#: src/app.rs:619
 msgctxt "command-line.option.description"
 msgid "Open preferences"
 msgstr "Abrir preferências"
 
-#: src/app.rs:636
+#: src/app.rs:630
 msgctxt "command-line.option.description"
 msgid "Show image for the given date"
 msgstr "Mostrar imagem para a data fornecida"
 
-#: src/app.rs:641
+#: src/app.rs:635
 msgctxt "command-line.option.arg.description"
 msgid "YYYY-MM-DD"
 msgstr "YYYY-MM-DD"
 
-#: src/app.rs:830
+#: src/app.rs:824
 msgctxt "portal.request-background.reason"
 msgid "Automatically fetch and set wallpaper in background"
 msgstr "Buscar e definir automaticamente o papel de parede em segundo plano"
@@ -974,32 +974,27 @@ msgid ""
 "{license_text}"
 msgstr ""
 
-#: src/images/source.rs:58
+#: src/images/source.rs:57
 msgctxt "source name"
 msgid "NASA Astronomy Picture of the Day"
 msgstr "Foto Astronômica do Dia da NASA"
 
-#: src/images/source.rs:59
+#: src/images/source.rs:58
 msgctxt "source name"
 msgid "Bing"
 msgstr "Bing"
 
-#: src/images/source.rs:60
+#: src/images/source.rs:59
 msgctxt "source name"
 msgid "Wikimedia Picture of the Day"
 msgstr "Imagem do Dia da Wikimedia"
 
-#: src/images/source.rs:61
+#: src/images/source.rs:60
 msgctxt "source name"
 msgid "Simon Stålenhag"
 msgstr "Simon Stålenhag"
 
-#: src/images/source.rs:62
-msgctxt "source name"
-msgid "Earth Science Picture of the Day"
-msgstr "Imagem do Dia das Ciências da Terra"
-
-#: src/images/source.rs:66
+#: src/images/source.rs:64
 msgctxt "source name"
 msgid "NASA Earth Observatory Image of the Day"
 msgstr "Imagem do Dia do Observatório Terrestre da NASA"
@@ -1054,6 +1049,13 @@ msgstr "Desconhecido, todos os direitos reservados"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "Imagem do Dia"
+
+#~ msgid "Earth Science Picture of the Day"
+#~ msgstr "Imagem do Dia das Ciências da Terra"
+
+#~ msgctxt "source name"
+#~ msgid "Earth Science Picture of the Day"
+#~ msgstr "Imagem do Dia das Ciências da Terra"
 
 #~ msgctxt "application-name"
 #~ msgid "Picture Of The Day"
