@@ -1023,7 +1023,7 @@ dependencies = [
 
 [[package]]
 name = "pictureoftheday"
-version = "1.10.0"
+version = "1.10.1"
 dependencies = [
  "async-channel",
  "formatx",
