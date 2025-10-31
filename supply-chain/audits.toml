@@ -146,6 +146,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.0.97 -> 1.0.101"
 
+[[audits.proc-macro2]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "1.0.102 -> 1.0.103"
+
 [[audits.redox_syscall]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -254,6 +259,11 @@ notes = "No real code changes"
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.12.16 -> 0.13.2"
+
+[[audits.unicode-ident]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "1.0.20 -> 1.0.22"
 
 [[audits.utf-8]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -522,6 +532,48 @@ start = "2019-04-27"
 end = "2026-04-10"
 notes = "Respectable whatwg & servo person"
 
+[[trusted.icu_collections]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2022-09-27"
+end = "2026-10-31"
+
+[[trusted.icu_locale_core]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2025-02-26"
+end = "2026-10-31"
+
+[[trusted.icu_normalizer]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-04-29"
+end = "2026-10-31"
+
+[[trusted.icu_normalizer_data]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2023-10-03"
+end = "2026-10-31"
+
+[[trusted.icu_properties]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2022-01-31"
+end = "2026-10-31"
+
+[[trusted.icu_properties_data]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2023-10-03"
+end = "2026-10-31"
+
+[[trusted.icu_provider]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2022-01-31"
+end = "2026-10-31"
+
 [[trusted.jiff]]
 criteria = "safe-to-run"
 user-id = 189 # Andrew Gallant (BurntSushi)
@@ -571,6 +623,12 @@ criteria = "safe-to-run"
 user-id = 55123 # rust-lang-owner
 start = "2024-08-15"
 end = "2026-03-08"
+
+[[trusted.litemap]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-02-23"
+end = "2026-10-31"
 
 [[trusted.lock_api]]
 criteria = "safe-to-run"
@@ -670,6 +728,12 @@ user-id = 33035 # Taiki Endo (taiki-e)
 start = "2023-01-15"
 end = "2026-05-16"
 
+[[trusted.potential_utf]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2024-11-23"
+end = "2026-10-31"
+
 [[trusted.scopeguard]]
 criteria = "safe-to-run"
 user-id = 2915 # Amanieu d'Antras (Amanieu)
@@ -732,6 +796,12 @@ user-id = 2396 # Josh Matthews (jdm)
 start = "2022-03-27"
 end = "2026-04-10"
 notes = "Respectable whatwg & servo person"
+
+[[trusted.tinystr]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-01-14"
+end = "2026-10-31"
 
 [[trusted.toml]]
 criteria = "safe-to-run"
@@ -810,3 +880,39 @@ criteria = "safe-to-run"
 user-id = 6743 # Ed Page (epage)
 start = "2023-02-22"
 end = "2026-02-12"
+
+[[trusted.writeable]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-11-01"
+end = "2026-10-31"
+
+[[trusted.yoke]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-05-01"
+end = "2026-10-31"
+
+[[trusted.yoke-derive]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-07-02"
+end = "2026-10-31"
+
+[[trusted.zerotrie]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2023-10-03"
+end = "2026-10-31"
+
+[[trusted.zerovec]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-04-19"
+end = "2026-10-31"
+
+[[trusted.zerovec-derive]]
+criteria = "safe-to-run"
+user-id = 1139 # Manish Goregaokar (Manishearth)
+start = "2021-12-11"
+end = "2026-10-31"
