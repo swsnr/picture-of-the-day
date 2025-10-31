@@ -36,9 +36,9 @@ jiff = { version = "0.2.10", default-features = false, features = [
     # We deliberately enable none of the timezone features as we only handle
     # civil dates and don't care about zones at all.
 ] }
-glib = { version = "0.21.2", features = ["log_macros"] }
-gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", rev = "a20c376fe47e04f0d67f9f2be953a6d67f2a846b" }
-gtk = { package = "gtk4", version = "0.10.1" }
+glib = { version = "0.21.4", features = ["log_macros"] }
+gnome-app-utils = { git = "https://codeberg.org/swsnr/gnome-app-utils.rs.git", rev = "3a61b5d2399c688f4e472b54dcfa1efd50909b70" }
+gtk = { package = "gtk4", version = "0.10.2" }
 quick-xml = "0.37.5"
 semver = "1.0.24"
 serde = { version = "1.0.128", features = ["derive"] }
@@ -47,6 +47,7 @@ soup = { package = "soup3", version = "0.8.0", features = ["v3_6"] }
 strum = { version = "0.27.1", features = ["derive"] }
 url = "2.5.4"
 formatx = "0.2.4"
+libc = "0.2.177"
 
 # Optional dependencies for the scraper binary
 indexmap = { version = "2.7.1", optional = true }

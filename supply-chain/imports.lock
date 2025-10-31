@@ -78,8 +78,8 @@ user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gdk4-wayland]]
-version = "0.10.1"
-when = "2025-09-17"
+version = "0.10.2"
+when = "2025-10-30"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -106,8 +106,8 @@ user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gio]]
-version = "0.21.2"
-when = "2025-09-17"
+version = "0.21.4"
+when = "2025-10-30"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -120,15 +120,15 @@ user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.glib]]
-version = "0.21.3"
-when = "2025-09-21"
+version = "0.21.4"
+when = "2025-10-30"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.glib-macros]]
-version = "0.21.2"
-when = "2025-09-17"
+version = "0.21.4"
+when = "2025-10-30"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"
@@ -176,8 +176,8 @@ user-login = "sdroege"
 user-name = "Sebastian Dröge"
 
 [[publisher.gtk4]]
-version = "0.10.1"
-when = "2025-09-17"
+version = "0.10.2"
+when = "2025-10-30"
 user-id = 3623
 user-login = "sdroege"
 user-name = "Sebastian Dröge"

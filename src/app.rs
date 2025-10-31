@@ -369,7 +369,6 @@ mod imp {
     use glib::{ExitCode, OptionArg, OptionFlags, Properties, dpgettext2};
     use gnome_app_utils::app::{AppUpdatedMonitor, SessionLockedMonitor};
     use gnome_app_utils::futures;
-    use gnome_app_utils::libc;
     use gnome_app_utils::portal::{background, window::PortalWindowHandle};
     use gtk::gio::{self, ApplicationHoldGuard, NetworkConnectivity};
     use jiff::civil::Date;
