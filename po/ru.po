@@ -7,23 +7,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de.swsnr.pictureoftheday\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2025-05-06 17:34+0000\n"
-"Last-Translator: analexey <analexey@noreply.codeberg.org>\n"
-"Language-Team: Russian <https://translate.codeberg.org/projects/de-swsnr-"
-"pictureoftheday/de-swsnr-pictureoftheday/ru/>\n"
+"PO-Revision-Date: 2025-11-07 10:09+0000\n"
+"Last-Translator: Ilya Mevshiy <milia20@noreply.codeberg.org>\n"
+"Language-Team: Russian <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.14\n"
 
 #. Translators: Do feel free to translate the application name
 #: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
 #: resources/ui/application-window.blp:10
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgid "Picture of the Day"
 msgstr "Изображение дня"
 
@@ -49,10 +47,8 @@ msgid "Whether to set the wallpaper automatically."
 msgstr "Устанавливать ли обои автоматически."
 
 #: de.swsnr.pictureoftheday.gschema.xml:13
-#, fuzzy
-#| msgid "Whether to set the wallpaper automatically."
 msgid "Whether to update the wallpaper over metered networks."
-msgstr "Устанавливать ли обои автоматически."
+msgstr "Обновлять обои через лимитные сети."
 
 #: de.swsnr.pictureoftheday.gschema.xml:18
 msgid ""
@@ -140,13 +136,11 @@ msgstr "Художественные работы"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:48
 msgid "Remove EPOD source, as it appears to be offline since October 2025."
-msgstr ""
+msgstr "Удалите источник EPOD, так как он не работает с октября 2025 года."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:54
-#, fuzzy
-#| msgid "Update to GNOME 48."
 msgid "Update to GNOME 49."
-msgstr "Обновление до GNOME 48."
+msgstr "Обновление до GNOME 49."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:60
 msgid ""
@@ -154,22 +148,28 @@ msgid ""
 "Flathub. Instead, instruct the user to provide access to logind in the "
 "preferences dialog."
 msgstr ""
+"Больше не запрашивайте прямой доступ к logind, так как это больше не "
+"разрешено на Flathub. Вместо этого проинструктируйте пользователя "
+"предоставить доступ к logind в диалоговом окне настроек."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:64
 msgid "Optionally inhibit wallpaper updates over metered networks."
 msgstr ""
+"При необходимости запретите обновление обоев в сетях с лимитным трафиком."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:74
 msgid "Fix wallpaper updates."
-msgstr ""
+msgstr "Починить обновления обоев."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:83
 msgid "Drag images out of the app to copy them into other apps."
 msgstr ""
+"Перетащите изображения из приложения, чтобы скопировать их в другие "
+"приложения."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:92
 msgid "Change license to European Union Public License 1.2."
-msgstr ""
+msgstr "Лицензия изменена на European Union Public License 1.2."
 
 #: de.swsnr.pictureoftheday.metainfo.xml:98
 msgid ""
@@ -274,7 +274,7 @@ msgstr ""
 
 #: de.swsnr.pictureoftheday.metainfo.xml:175
 msgid "A picture of the day from Wikimedia"
-msgstr "Изображение дня от Викимедиа"
+msgstr "Изображение дня из Викимедиа"
 
 #: de.swsnr.pictureoftheday.metainfo.xml:179
 msgid "The preferences dialog with settings for image sources"
@@ -285,9 +285,6 @@ msgid "The empty greeting page with the application icon"
 msgstr "Пустая страница приветствия со значком приложения"
 
 #: resources/shortcuts-dialog.blp:11
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Picture Of The Day Window"
 msgctxt "shortcuts section title"
 msgid "Picture of the Day Window"
 msgstr "Окно Изображение дня"
@@ -313,9 +310,6 @@ msgid "Toggle sidebar"
 msgstr "Показ боковой панели"
 
 #: resources/shortcuts-dialog.blp:39
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "Navigate images"
 msgctxt "shortcuts section title"
 msgid "Navigate images"
 msgstr "Навигация по изображениям"
@@ -331,9 +325,6 @@ msgid "Next image"
 msgstr "Следующее изображение"
 
 #: resources/shortcuts-dialog.blp:65
-#, fuzzy
-#| msgctxt "shortcuts group title"
-#| msgid "General"
 msgctxt "shortcuts section title"
 msgid "General"
 msgstr "Общие"
@@ -409,9 +400,6 @@ msgid "_Keyboard Shortcuts"
 msgstr "_Сочетания клавиш"
 
 #: resources/ui/application-window.blp:151
-#, fuzzy
-#| msgctxt "main-window.menu.label"
-#| msgid "_About Picture Of The Day"
 msgctxt "main-window.menu.label"
 msgid "_About Picture of the Day"
 msgstr "_О приложении «Изображение дня»"
@@ -467,68 +455,58 @@ msgid "Downloading image…"
 msgstr "Загрузка изображения…"
 
 #: resources/ui/preferences-dialog.blp:12
-#, fuzzy
-#| msgid "Wallpaper"
 msgctxt "preferences-dialog.page.title"
 msgid "Wallpaper sources"
-msgstr "Обои"
+msgstr "Исходники обоев"
 
 #: resources/ui/preferences-dialog.blp:16
 msgid "API key"
 msgstr "API-ключ"
 
 #: resources/ui/preferences-dialog.blp:21
-#, fuzzy
-#| msgid "Get API key"
 msgctxt "preferences-dialog.row.link-label"
 msgid "Get API key"
 msgstr "Получить API-ключ"
 
 #: resources/ui/preferences-dialog.blp:29
-#, fuzzy
-#| msgid "Enabled collections"
 msgctxt "preferences-dialog.row.title"
 msgid "Enabled collections"
 msgstr "Используемые коллекции"
 
 #: resources/ui/preferences-dialog.blp:38
-#, fuzzy
-#| msgid "Your daily wallpaper"
 msgctxt "preferences-dialog.page.title"
 msgid "Daily wallpaper update"
-msgstr "Ваши ежедневные обои"
+msgstr "Ежедневное обновление обоев"
 
 #: resources/ui/preferences-dialog.blp:41
-#, fuzzy
-#| msgid "Artwork"
 msgctxt "preferences-dialog.group.title"
 msgid "Network"
-msgstr "Художественные работы"
+msgstr "Сеть"
 
 #: resources/ui/preferences-dialog.blp:44
 msgctxt "preferences-dialog.row.title"
 msgid "Update wallpaper over metered network"
-msgstr ""
+msgstr "Обновление обоев по лимитной сети"
 
 #: resources/ui/preferences-dialog.blp:50
 msgctxt "preferences-dialog.group.title"
 msgid "Update wallpaper after session is unlocked"
-msgstr ""
+msgstr "Обновить обои после разблокировки сеанса"
 
 #: resources/ui/preferences-dialog.blp:53
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind allowed"
-msgstr ""
+msgstr "Подключение к logind разрешено"
 
 #: resources/ui/preferences-dialog.blp:54
 msgctxt "preferences-dialog.row.description"
 msgid "After the session is unlocked the wallpaper is updated immediately."
-msgstr ""
+msgstr "После разблокировки сеанса обои немедленно обновляются."
 
 #: resources/ui/preferences-dialog.blp:68
 msgctxt "preferences-dialog.row.title"
 msgid "Connection to logind prohibited"
-msgstr ""
+msgstr "Подключение к logind запрещено"
 
 #: resources/ui/preferences-dialog.blp:69
 msgctxt "preferences-dialog.row.description"
@@ -536,21 +514,22 @@ msgid ""
 "After the session is unlocked the wallpaper is updated only after a "
 "considerable delay."
 msgstr ""
+"После разблокировки сеанса обои обновляются только со значительной задержкой."
 
 #: resources/ui/preferences-dialog.blp:87
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Check again"
-msgstr ""
+msgstr "Проверить снова"
 
 #: resources/ui/preferences-dialog.blp:99
 msgctxt "preferences-dialog.row.title"
 msgid "Command to permit access to logind"
-msgstr ""
+msgstr "Команда, разрешающая доступ к logind"
 
 #: resources/ui/preferences-dialog.blp:108
 msgctxt "preferences-dialog.row.button.tooltip"
 msgid "Copy to clipboard"
-msgstr ""
+msgstr "Скопировать в буфер обмена"
 
 #: resources/ui/preferences-dialog.blp:123
 msgid ""
@@ -560,6 +539,12 @@ msgid ""
 "to add a permission for this application to talk to "
 "<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
 msgstr ""
+"Выполните эту команду в терминале, чтобы предоставить доступ к logind. После "
+"этого вам может потребоваться перезапустить приложение. В качестве "
+"альтернативы вы можете использовать <a href="
+"\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a>, "
+"чтобы добавить разрешение для этого приложения на взаимодействие с "
+"<tt>org.freedesktop.login1</tt> в <i>System Bus</i>."
 
 #: src/app.rs:122
 msgctxt "about-dialog.link.label"
@@ -571,7 +556,9 @@ msgstr "Переводы"
 #. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
 #: src/app.rs:131
 msgid "translator-credits"
-msgstr "FAlexei"
+msgstr ""
+"FAlexei \\n"
+" milia20"
 
 #: src/app.rs:136
 msgctxt "about-dialog.acknowledgment-section"
@@ -587,18 +574,15 @@ msgstr "Полезные сервисы"
 #: src/app.rs:161
 msgctxt "about-dialog.other-app.name"
 msgid "Turn On"
-msgstr ""
+msgstr "Turn On"
 
 #. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
 #: src/app.rs:166
 msgctxt "about-dialog.other-app.summary"
 msgid "Turn on devices in your network"
-msgstr ""
+msgstr "Включите устройства в вашей сети"
 
 #: src/app.rs:194
-#, fuzzy
-#| msgctxt "notification.title"
-#| msgid "Picture Of The Day updated"
 msgctxt "notification.title"
 msgid "Picture of the Day updated"
 msgstr "Приложение «Изображение дня» обновилось"
@@ -614,13 +598,6 @@ msgid "Restart after update?"
 msgstr "Выполнить перезапуск после обновления?"
 
 #: src/app.rs:216
-#, fuzzy
-#| msgctxt "alert-dialog.body"
-#| msgid ""
-#| "Picture Of The Day was updated, and needs to be restarted.\n"
-#| "\n"
-#| "Automatic restarting is not yet supported, but you can quit the app and "
-#| "start it again manually."
 msgctxt "alert-dialog.body"
 msgid ""
 "Picture of the Day was updated, and needs to be restarted.\n"
@@ -628,8 +605,8 @@ msgid ""
 "Automatic restarting is not yet supported, but you can quit the app and "
 "start it again manually."
 msgstr ""
-"Приложение «Изображение дня» было обновлено, и его необходимо "
-"перезапустить.\n"
+"Приложение «Изображение дня» было обновлено, и его необходимо перезапустить."
+"\n"
 "\n"
 "Автоматический перезапуск пока не поддерживается, но вы можете в завершить "
 "приложение и запустить его снова вручную."
@@ -680,48 +657,33 @@ msgid "Automatically fetch and set wallpaper in background"
 msgstr "Автоматическое получение и установка обоев в фоновом режиме"
 
 #: src/app/model/error_notification.rs:42
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day needs an API key"
 msgctxt "error-notification.title"
 msgid "Picture of the Day needs an API key"
 msgstr "Приложение «Изображение дня» нуждается в API-ключе"
 
 #: src/app/model/error_notification.rs:48
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Please configure a valid API key for %1 in the application preferences. "
-#| "The current key appears to be invalid."
 msgctxt "error-notification.description"
 msgid ""
 "Please configure a valid API key for {source_name} in the application "
 "preferences. The current key appears to be invalid."
 msgstr ""
-"Пожалуйста, настройте действительный ключ API для %1 в параметрах "
+"Пожалуйста, настройте действительный ключ API для {source_name} в параметрах "
 "приложения. Текущий ключ, по-видимому, недействителен."
 
 #: src/app/model/error_notification.rs:66
-#, fuzzy
-#| msgctxt "error-notification.title"
-#| msgid "Picture Of The Day was rate-limited"
 msgctxt "error-notification.title"
 msgid "Picture of the Day was rate-limited"
 msgstr "Приложение «Изображение дня» было ограничено по скорости"
 
 #: src/app/model/error_notification.rs:72
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %1 server is rate-limited and does currently not allow you to fetch "
-#| "an image. Try again later, or try a different source."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server is rate-limited and does currently not allow you to "
 "fetch an image. Try again later, or try a different source."
 msgstr ""
-"Сервер %1 ограничен по скорости и в данный момент не позволяет вам получить "
-"изображение. Повторите попытку позже или попробуйте другой источник."
+"Сервер {source_name} ограничен по скорости и в данный момент не позволяет "
+"вам получить изображение. Повторите попытку позже или попробуйте другой "
+"источник."
 
 #: src/app/model/error_notification.rs:85
 #: src/app/model/error_notification.rs:103
@@ -730,34 +692,23 @@ msgid "No image today"
 msgstr "Сегодня нет изображения"
 
 #: src/app/model/error_notification.rs:90
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Currently, %1 does not provide an image for today. Try again later, or "
-#| "try a different source."
 msgctxt "error-notification.description"
 msgid ""
 "Currently, {source_name} does not provide an image for today. Try again "
 "later, or try a different source."
 msgstr ""
-"В настоящее время %1 не предоставляет изображение на сегодня. Попробуйте "
-"позже или воспользуйтесь другим источником."
+"В настоящее время {source_name} не предоставляет изображение на сегодня. "
+"Попробуйте позже или воспользуйтесь другим источником."
 
 #: src/app/model/error_notification.rs:108
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "Today, %1 provides a video or another type of media which this "
-#| "application does not support. Try again tomorrow, or try a different "
-#| "source."
 msgctxt "error-notification.description"
 msgid ""
 "Today, {source_name} provides a video or another type of media which this "
 "application does not support. Try again tomorrow, or try a different source."
 msgstr ""
-"Сегодня %1 предоставляет видео или другой тип медиафайла, который это "
-"приложение не поддерживает. Повторите попытку завтра или попробуйте другой "
-"источник."
+"Сегодня {source_name} предоставляет видео или другой тип медиафайла, который "
+"это приложение не поддерживает. Повторите попытку завтра или попробуйте "
+"другой источник."
 
 #: src/app/model/error_notification.rs:125
 #: src/app/model/error_notification.rs:146
@@ -767,38 +718,27 @@ msgid "Fetching images failed"
 msgstr "Не удалось получить изображения"
 
 #: src/app/model/error_notification.rs:130
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %s server replied with HTTP status %2. The server may have issues "
-#| "currently. Try again later, or try a different source. If the issue "
-#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server replied with HTTP status {http_status}. The server "
 "may have issues currently. Try again later, or try a different source. If "
 "the issue persists please report the problem."
 msgstr ""
-"Сервер %s ответил со статусом HTTP %2. Возможно, в данный момент на сервере "
-"возникли проблемы. Повторите попытку позже или попробуйте использовать "
-"другой источник. Если проблема сохраняется, пожалуйста, сообщите о ней."
+"Сервер {source_name} ответил со статусом HTTP {http_status}. Возможно, в "
+"данный момент на сервере возникли проблемы. Повторите попытку позже или "
+"попробуйте использовать другой источник. Если проблема сохраняется, "
+"пожалуйста, сообщите о ней."
 
 #: src/app/model/error_notification.rs:151
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "The %1 server responded with invalid data. The server may have issues "
-#| "currently. Try again later, or try a different source. If the issue "
-#| "persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "The {source_name} server responded with invalid data. The server may have "
 "issues currently. Try again later, or try a different source. If the issue "
 "persists please report the problem."
 msgstr ""
-"Сервер %1 ответил неверными данными. Возможно, в данный момент на сервере "
-"возникли проблемы. Повторите попытку позже или попробуйте использовать "
-"другой источник. Если проблема сохраняется, сообщите о ней."
+"Сервер {source_name} ответил неверными данными. Возможно, в данный момент на "
+"сервере возникли проблемы. Повторите попытку позже или попробуйте "
+"использовать другой источник. Если проблема сохраняется, сообщите о ней."
 
 #: src/app/model/error_notification.rs:171
 msgctxt "error-notification.title"
@@ -806,38 +746,27 @@ msgid "Limited network connectivity"
 msgstr "Доступ к сети ограничен"
 
 #: src/app/model/error_notification.rs:177
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2. Your system appears to have only limited network "
-#| "connectivity. Try to connect your system to the internet."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from {source_name}, with "
 "the following message: {error}. Your system appears to have only limited "
 "network connectivity. Try to connect your system to the internet."
 msgstr ""
-"При получении сегодняшнего изображения из %1 произошла ошибка ввода-вывода "
-"со следующим сообщением: %2. Похоже, что ваша система имеет ограниченное "
-"сетевое подключение. Попробуйте подключить систему к Интернету."
+"При получении сегодняшнего изображения из {source_name} произошла ошибка "
+"ввода-вывода со следующим сообщением: {error}. Похоже, что ваша система "
+"имеет ограниченное сетевое подключение. Попробуйте подключить систему к "
+"Интернету."
 
 #: src/app/model/error_notification.rs:193
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while fetching today's image from %1, with the "
-#| "following message: %2. Try again later, or try a different source. If the "
-#| "issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while fetching today's image from {source_name}, with "
 "the following message: {error}. Try again later, or try a different source. "
 "If the issue persists please report the problem."
 msgstr ""
-"При получении сегодняшнего изображения из %1 произошла ошибка ввода-вывода "
-"со следующим сообщением: %2. Повторите попытку позже или попробуйте другой "
-"источник. Если проблема сохраняется, сообщите о ней."
+"При получении сегодняшнего изображения из {source_name} произошла ошибка "
+"ввода-вывода со следующим сообщением: {error}. Повторите попытку позже или "
+"попробуйте другой источник. Если проблема сохраняется, сообщите о ней."
 
 #: src/app/widgets/application_window.rs:74
 msgctxt "error-notification.title"
@@ -845,18 +774,13 @@ msgid "Failed to open source URL"
 msgstr "Не удалось открыть URL-адрес источника"
 
 #: src/app/widgets/application_window.rs:81
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening %1, with the following message: %2. "
-#| "If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening {url}, with the following message: "
 "{error}. If the issue persists please report the problem."
 msgstr ""
-"При открытии %1 произошла ошибка ввода-вывода со следующим сообщением: %2. "
-"Если проблема сохраняется, сообщите о ней."
+"При открытии {url} произошла ошибка ввода-вывода со следующим сообщением: "
+"{error}. Если проблема сохраняется, сообщите о ней."
 
 #: src/app/widgets/application_window.rs:103
 msgctxt "error-notification.title"
@@ -864,18 +788,13 @@ msgid "Failed to set wallpaper"
 msgstr "Не удалось установить обои"
 
 #: src/app/widgets/application_window.rs:110
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while setting the wallpaper, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while setting the wallpaper, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "При установке обоев произошла ошибка ввода-вывода со следующим сообщением: "
-"%1. Если проблема сохраняется, сообщите о ней."
+"{error}. Если проблема сохраняется, сообщите о ней."
 
 #: src/app/widgets/application_window.rs:143
 msgctxt "error-notification.title"
@@ -883,24 +802,17 @@ msgid "Failed to open image"
 msgstr "Не удалось открыть изображение"
 
 #: src/app/widgets/application_window.rs:150
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while opening the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while opening the current image, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "При открытии текущего изображения произошла ошибка ввода-вывода со следующим "
-"сообщением: %1. Если проблема сохраняется, сообщите о ней."
+"сообщением: {error}. Если проблема сохраняется, сообщите о ней."
 
 #: src/app/widgets/application_window.rs:170
-#, fuzzy
-#| msgid "Saved image %1"
 msgid "Saved image {name}"
-msgstr "Сохраненное изображение: %1"
+msgstr "Сохраненное изображение: {name}"
 
 #: src/app/widgets/application_window.rs:189
 msgctxt "error-notification.title"
@@ -908,18 +820,13 @@ msgid "Failed to save image"
 msgstr "Не удалось сохранить изображение"
 
 #: src/app/widgets/application_window.rs:196
-#, fuzzy
-#| msgctxt "error-notification.description"
-#| msgid ""
-#| "An I/O error occurred while saving the current image, with the following "
-#| "message: %1. If the issue persists please report the problem."
 msgctxt "error-notification.description"
 msgid ""
 "An I/O error occurred while saving the current image, with the following "
 "message: {error}. If the issue persists please report the problem."
 msgstr ""
 "При сохранении текущего изображения произошла ошибка ввода-вывода со "
-"следующим сообщением: %1. Если проблема сохраняется, сообщите о ней."
+"следующим сообщением: {error}. Если проблема сохраняется, сообщите о ней."
 
 #: src/app/widgets/application_window.rs:218
 msgctxt "alert.response"
@@ -952,14 +859,11 @@ msgid "Save image"
 msgstr "Сохранить изображение"
 
 #: src/app/widgets/preferences_dialog.rs:86
-#, fuzzy
-#| msgid "%1/%2 collection enabled"
-#| msgid_plural "%1/%2 collections enabled"
 msgid "{n}/{total} collection enabled"
 msgid_plural "{n}/{total} collections enabled"
-msgstr[0] "%1 из %2 коллекций используется"
-msgstr[1] "%1 из %2 коллекций используются"
-msgstr[2] "%1 из %2 коллекций используются"
+msgstr[0] "{n}/{total} коллекций используется"
+msgstr[1] "{n}/{total} коллекций используются"
+msgstr[2] "{n}/{total} коллекций используются"
 
 #. Translators: This is Pango markup, be sure to escape appropriately
 #: src/config.rs:71
@@ -974,6 +878,15 @@ msgid ""
 "\n"
 "{license_text}"
 msgstr ""
+"Copyright {copyright_name} &lt;{copyright_mail}&gt;\n"
+"\n"
+"Лицензировано в соответствии с условиями EUPL 1.2. Официальные переводы "
+"текста лицензии доступны по адресу <a href=\"{translations}\""
+">{translations}</a>.\n"
+"\n"
+"Полный текст на английском языке приведён ниже.\n"
+"\n"
+"{license_text}"
 
 #: src/images/source.rs:57
 msgctxt "source name"
@@ -1016,28 +929,19 @@ msgid "All rights reserved."
 msgstr "Все права защищены."
 
 #: src/images/sources/stalenhag.rs:98
-#, fuzzy
-#| msgctxt "source.stalenhag.description"
-#| msgid "Collection: %s"
 msgctxt "source.stalenhag.description"
 msgid "Collection: {}"
-msgstr "Коллекция: %s"
+msgstr "Коллекция: {}"
 
 #: src/images/sources/wikimedia.rs:67
-#, fuzzy
-#| msgctxt "source.wikimedia.copyright"
-#| msgid "%artist (%credit, %license)"
 msgctxt "source.wikimedia.copyright"
 msgid "{artist} ({credit}, {license})"
-msgstr "%artist (%credit, %license)"
+msgstr "{artist} ({credit}, {license})"
 
 #: src/images/sources/wikimedia.rs:75
-#, fuzzy
-#| msgctxt "source.wikimedia.copyright"
-#| msgid "%artist (%license)"
 msgctxt "source.wikimedia.copyright"
 msgid "{artist} ({license})"
-msgstr "%artist (%license)"
+msgstr "{artist} ({license})"
 
 #: src/images/sources/wikimedia.rs:85
 msgctxt "source.wikimedia.copyright"
@@ -1045,8 +949,6 @@ msgid "Unknown, all rights reserved"
 msgstr "Неизвестен, все права защищены"
 
 #: src/main.rs:72
-#, fuzzy
-#| msgid "Picture Of The Day"
 msgctxt "application-name"
 msgid "Picture of the Day"
 msgstr "Изображение дня"
