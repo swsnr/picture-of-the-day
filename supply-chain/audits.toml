@@ -26,6 +26,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.20.2 -> 0.20.3"
 
+[[audits.cfg-expr]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "0.20.3 -> 0.20.4"
+
 [[audits.cfg-if]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -151,6 +156,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "1.0.102 -> 1.0.103"
 
+[[audits.quote]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-run"
+delta = "1.0.41 -> 1.0.42"
+
 [[audits.redox_syscall]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
@@ -255,10 +265,20 @@ criteria = "safe-to-deploy"
 delta = "7.0.5 -> 7.0.6"
 notes = "No real code changes"
 
+[[audits.system-deps]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "7.0.6 -> 7.0.7"
+
 [[audits.target-lexicon]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 delta = "0.12.16 -> 0.13.2"
+
+[[audits.target-lexicon]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "0.13.2 -> 0.13.3"
 
 [[audits.unicode-ident]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"
@@ -270,6 +290,11 @@ who = "Sebastian Wiesner <sebastian@swsnr.de>"
 criteria = "safe-to-run"
 version = "0.7.6"
 notes = "Trace amounts of unsafe, didn't audit decoding logic."
+
+[[audits.version-compare]]
+who = "Sebastian Wiesner <sebastian@swsnr.de>"
+criteria = "safe-to-deploy"
+delta = "0.2.0 -> 0.2.1"
 
 [[audits.windows-link]]
 who = "Sebastian Wiesner <sebastian@swsnr.de>"

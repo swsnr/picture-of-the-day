@@ -260,15 +260,15 @@ user-login = "Manishearth"
 user-name = "Manish Goregaokar"
 
 [[publisher.jiff]]
-version = "0.2.15"
-when = "2025-06-13"
+version = "0.2.16"
+when = "2025-11-07"
 user-id = 189
 user-login = "BurntSushi"
 user-name = "Andrew Gallant"
 
 [[publisher.jiff-static]]
-version = "0.2.15"
-when = "2025-06-13"
+version = "0.2.16"
+when = "2025-11-07"
 user-id = 189
 user-login = "BurntSushi"
 user-name = "Andrew Gallant"
@@ -469,8 +469,8 @@ user-login = "jdm"
 user-name = "Josh Matthews"
 
 [[publisher.syn]]
-version = "2.0.108"
-when = "2025-10-22"
+version = "2.0.109"
+when = "2025-11-05"
 user-id = 3618
 user-login = "dtolnay"
 user-name = "David Tolnay"
