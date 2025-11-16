@@ -24,6 +24,7 @@ pub use error::SourceError;
 
 #[derive(
     Debug,
+    Default,
     Clone,
     Copy,
     PartialEq,
@@ -38,16 +39,11 @@ pub use error::SourceError;
 pub enum Source {
     Apod,
     Bing,
+    // This source provides images under free licenses
+    #[default]
     Wikimedia,
     Stalenhag,
     Eoiod,
-}
-
-impl Default for Source {
-    fn default() -> Self {
-        // This source provides images under free licenses
-        Self::Wikimedia
-    }
 }
 
 #[deny(clippy::as_conversions)]
