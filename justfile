@@ -88,7 +88,7 @@ lint-rust: configure-app-id
     cargo +stable fmt -- --check
     cargo +stable clippy --all-targets
     # Run clippy over the scraper binary
-    cargo clippy --all-features --all-targets
+    cargo +stable clippy --all-features --all-targets
 
 lint-flatpak-manifest:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.Devel.yaml
