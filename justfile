@@ -78,7 +78,7 @@ compile-dbus:
 compile: configure-app-id compile-resources compile-desktop-file compile-schemas compile-dbus
 
 vet *ARGS:
-    cargo vet {{ARGS}}
+    cargo +stable vet {{ARGS}}
 
 lint-blueprint:
     blueprint-compiler format resources/**/*.blp resources/*.blp
