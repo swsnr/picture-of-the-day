@@ -93,7 +93,6 @@ lint-rust: compile
 lint-flatpak:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.Devel.yaml
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.yaml
-    flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream de.swsnr.pictureoftheday.metainfo.xml
 
 lint-data:
     appstreamcli validate --explain de.swsnr.pictureoftheday.metainfo.xml
