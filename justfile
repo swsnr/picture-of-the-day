@@ -83,7 +83,7 @@ vet *ARGS:
 lint-blueprint:
     blueprint-compiler format resources/**/*.blp resources/*.blp
 
-lint-rust: compile
+lint-rust: configure-app-id
     cargo +stable deny --all-features --locked check
     cargo +stable fmt -- --check
     cargo +stable clippy --all-targets
