@@ -90,14 +90,14 @@ lint-rust: compile
     # Run clippy over the scraper binary
     cargo clippy --all-features --all-targets
 
-lint-flatpak:
+lint-flatpak-manifest:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.Devel.yaml
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest flatpak/de.swsnr.pictureoftheday.yaml
 
 lint-data:
     appstreamcli validate --explain de.swsnr.pictureoftheday.metainfo.xml
 
-lint-all: lint-rust lint-blueprint lint-data lint-flatpak
+lint-all: lint-rust lint-blueprint lint-data
 
 test-rust: compile
     cargo +stable build
