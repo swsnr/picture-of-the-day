@@ -1,0 +1,972 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Sebastian Wiesner <sebastian@swsnr.de>
+# This file is distributed under the same license as the de.swsnr.pictureoftheday package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: de.swsnr.pictureoftheday\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2025-11-30 16:53+0000\n"
+"Last-Translator: pcharlanes <pcharlanes@noreply.codeberg.org>\n"
+"Language-Team: French <https://translate.codeberg.org/projects/"
+"de-swsnr-pictureoftheday/de-swsnr-pictureoftheday/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.14.3\n"
+
+#. Translators: Do feel free to translate the application name
+#: de.swsnr.pictureoftheday.desktop:3 de.swsnr.pictureoftheday.metainfo.xml:5
+#: resources/ui/application-window.blp:10
+msgid "Picture of the Day"
+msgstr "Image du Jour"
+
+#: de.swsnr.pictureoftheday.desktop:4
+msgid "A daily picture as your wallpaper"
+msgstr "Une image du jour en fond d'écran"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: de.swsnr.pictureoftheday.desktop:10
+msgid "Gnome;GTK;Picture;Day;Wallpaper;"
+msgstr "Gnome;GTK;Image;Jour;Fond d'écran;"
+
+#: de.swsnr.pictureoftheday.desktop:17
+msgid "Preferences"
+msgstr "Préférences"
+
+#: de.swsnr.pictureoftheday.gschema.xml:5
+msgid "The identifier the selected source."
+msgstr "L'identifiant de la source sélectionnée."
+
+#: de.swsnr.pictureoftheday.gschema.xml:9
+msgid "Whether to set the wallpaper automatically."
+msgstr "Définir automatiquement le fond d’écran."
+
+#: de.swsnr.pictureoftheday.gschema.xml:13
+msgid "Whether to update the wallpaper over metered networks."
+msgstr "Mettre à jour le fond d’écran sur les réseaux limités."
+
+#: de.swsnr.pictureoftheday.gschema.xml:18
+msgid ""
+"The API key to use for requests to the APOD API. The default key is usually "
+"fine, but if you find that you are rate-limited, you may wish to use your "
+"own API key, which you can obtain free of charge at https://api.nasa.gov/."
+msgstr ""
+"La clé API à utiliser pour les requêtes vers l'API APOD. La clé par défaut "
+"fonctionne généralement, mais si vous êtes limité en nombre de requêtes, "
+"vous pouvez utiliser votre propre clé API, disponible gratuitement à "
+"l'adresse suivante : https://api.nasa.gov/."
+
+#: de.swsnr.pictureoftheday.gschema.xml:28
+msgid "Collections from Stålenhag which to ignore."
+msgstr "Collections de Stålenhag à ignorer."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:6
+msgid "Your daily wallpaper"
+msgstr "Votre fond d’écran quotidien"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:8
+msgid ""
+"Get a picture of the day from the following sources and use as your daily "
+"wallpaper."
+msgstr ""
+"Obtenir l’image du jour depuis les sources suivantes et l’utiliser comme "
+"fond d’écran quotidien."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:10
+msgid "NASA Astronomy Picture of the Day"
+msgstr "Image du Jour de NASA Astronomy"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:11
+msgid "Bing"
+msgstr "Bing"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:12
+msgid "Simon Stålenhag Artwork"
+msgstr "Illustrations de Simon Stålenhag"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:13
+msgid "Wikimedia Picture of the Day"
+msgstr "Image du Jour de Wikimedia"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:14
+msgid "NASA Earth Observatory Image of the Day"
+msgstr "Image du Jour de NASA Earth Observatory"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:16
+msgid ""
+"Preview images, pick your favorite source, enable automatic updates, and "
+"enjoy a fresh wallpaper every day."
+msgstr ""
+"Prévisualisez les images, choisissez votre source préférée, activez les "
+"mises à jour automatiques et profitez d’un nouveau fond d’écran chaque jour."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:17
+msgid ""
+"Note that all images are protected by copyright; you may not be allowed to "
+"use or distribute them. Do take a look at the license terms for each image."
+msgstr ""
+"Notez que toutes les images sont protégées par des droits d’auteur ; leur "
+"utilisation ou distribution peut être soumise à restrictions. Veuillez "
+"consulter les conditions de licence de chaque image avant toute utilisation."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:23
+msgid "Picture"
+msgstr "Image"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:24
+msgid "Daily"
+msgstr "Quotidien"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:25
+msgid "Wallpaper"
+msgstr "Fond d'écran"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:26
+msgid "Astronomy"
+msgstr "Astronomie"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:27
+msgid "Artwork"
+msgstr "Illustration"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:48
+msgid "Remove EPOD source, as it appears to be offline since October 2025."
+msgstr ""
+"Supprimer la source EPOD, car elle semble hors ligne depuis octobre 2025."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:54
+msgid "Update to GNOME 49."
+msgstr "Mise à jour vers GNOME 49."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:60
+msgid ""
+"No longer request direct access to logind, which is no longer allowed on "
+"Flathub. Instead, instruct the user to provide access to logind in the "
+"preferences dialog."
+msgstr ""
+"Ne plus demander d’accès direct à logind, ce qui n’est plus autorisé sur "
+"Flathub. À la place, invitez l’utilisateur à accorder l’accès à logind via "
+"la boîte de dialogue des préférences."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:64
+msgid "Optionally inhibit wallpaper updates over metered networks."
+msgstr "Ne pas mettre à jour le fond d’écran sur les connexions limitées."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:74
+msgid "Fix wallpaper updates."
+msgstr "Corriger les mises à jour du fond d’écran."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:83
+msgid "Drag images out of the app to copy them into other apps."
+msgstr ""
+"Faire glisser les images hors de l'application pour les copier dans d'autres "
+"applications."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:92
+msgid "Change license to European Union Public License 1.2."
+msgstr ""
+"Changer la licence pour la Licence Publique de l’Union Européenne (EUPL) "
+"version 1.2."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:98
+msgid ""
+"No longer set the wallpaper automatically while the main window is visible, "
+"to allow you to preview different sources without actually changing your "
+"desktop background."
+msgstr ""
+"Ne plus définir automatiquement le fond d’écran lorsque la fenêtre "
+"principale est visible, afin de vous permettre de prévisualiser les "
+"différentes sources sans modifier effectivement l’arrière-plan de votre "
+"bureau."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:99
+msgid ""
+"No longer attempt to set the wallpaper automatically while the session is "
+"locked, or the system is on low power or has no network connection."
+msgstr ""
+"Ne plus tenter de définir automatiquement le fond d’écran lorsque la session "
+"est verrouillée, que le système est en mode basse consommation ou qu’il n’y "
+"a pas de connexion réseau."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:100
+msgid "Notify and ask to restart app when it was updated in the background."
+msgstr ""
+"Notifier et demander à redémarrer l’application lorsqu’elle a été mise à "
+"jour en arrière-plan."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:113
+msgid ""
+"Add Earth Science Picture of the Day and NASA Earth Observatory Image of the "
+"Day."
+msgstr ""
+"Ajouter les sources Image du Jour de Earth Science et Image du Jour de NASA "
+"Earth Observatory."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:123
+msgid ""
+"Add overlay toolbar to go to the previous or next image to the image view."
+msgstr ""
+"Ajouter une barre d’outils superposée dans la vue d’image pour naviguer vers "
+"l’image précédente ou suivante."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:124
+msgid ""
+"Add toolbar buttons to save the current image, and to open the current image "
+"in an external application."
+msgstr ""
+"Ajouter des boutons à la barre d’outils pour enregistrer l’image actuelle et "
+"pour l’ouvrir dans une application externe."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:125
+msgid ""
+"Try harder not to leave partially downloaded wallpapers behind when quitting."
+msgstr "Réduir les résidus de téléchargements incomplets à la fermeture."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:137
+msgid "Use a more reliable endpoint for Wikimedia images."
+msgstr "Utiliser un point de terminaison plus fiable pour les images Wikimedia."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:138
+msgid "No longer show preview when setting a wallpaper."
+msgstr "Ne plus afficher l’aperçu lors de la définition d’un fond d’écran."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:139
+msgid "Improve scheduling of automatic downloads."
+msgstr "Améliorer la planification des téléchargements automatiques."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:140
+msgid "Remember window size and state."
+msgstr "Mémoriser la taille et l’état de la fenêtre."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:141
+msgid "Update to GNOME 48."
+msgstr "Mise à jour vers GNOME 48."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:151
+msgid ""
+"Start automatically and refresh the daily wallpaper automatically every "
+"twelve hours."
+msgstr ""
+"Démarrer automatiquement et rafraîchir le fond d’écran quotidien toutes les "
+"douze heures."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:152
+msgid "No longer support multiple windows."
+msgstr "Ne plus prendre en charge plusieurs fenêtres."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:162
+msgid ""
+"The initial release, with four sources: APOD, Wikimedia, Simon Stålenhag, "
+"and Bing."
+msgstr ""
+"Première version, incluant quatre sources de fonds d’écran : APOD, "
+"Wikimedia, Simon Stålenhag et Bing."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:163
+msgid ""
+"Add a main window to show today's picture of the day and a button to set it "
+"as current wallpaper."
+msgstr ""
+"Ajouter une fenêtre principale affichant l’image du jour, avec un bouton "
+"pour la définir comme fond d’écran actuel."
+
+#: de.swsnr.pictureoftheday.metainfo.xml:175
+msgid "A picture of the day from Wikimedia"
+msgstr "L’image du jour de Wikimedia"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:179
+msgid "The preferences dialog with settings for image sources"
+msgstr ""
+"Boîte de dialogue des préférences avec les paramètres des sources d’images"
+
+#: de.swsnr.pictureoftheday.metainfo.xml:183
+msgid "The empty greeting page with the application icon"
+msgstr "La page d’accueil vide avec l’icône de l’application"
+
+#: resources/shortcuts-dialog.blp:11
+msgctxt "shortcuts section title"
+msgid "Picture of the Day Window"
+msgstr "Fenêtre de Image du Jour"
+
+#: resources/shortcuts-dialog.blp:14
+msgctxt "shortcut description"
+msgid "Select source"
+msgstr "Choisir la source"
+
+#: resources/shortcuts-dialog.blp:21
+msgctxt "shortcut description"
+msgid "Load images"
+msgstr "Charger les images"
+
+#: resources/shortcuts-dialog.blp:26
+msgctxt "shortcut description"
+msgid "Cancel loading images"
+msgstr "Annuler le chargement des images"
+
+#: resources/shortcuts-dialog.blp:33
+msgctxt "shortcut description"
+msgid "Toggle sidebar"
+msgstr "Basculer la barre latérale"
+
+#: resources/shortcuts-dialog.blp:39
+msgctxt "shortcuts section title"
+msgid "Navigate images"
+msgstr "Naviguer parmi les images"
+
+#: resources/shortcuts-dialog.blp:42 resources/shortcuts-dialog.blp:47
+msgctxt "shortcut description"
+msgid "Previous image"
+msgstr "Image précédente"
+
+#: resources/shortcuts-dialog.blp:54 resources/shortcuts-dialog.blp:59
+msgctxt "shortcut description"
+msgid "Next image"
+msgstr "Image suivante"
+
+#: resources/shortcuts-dialog.blp:65
+msgctxt "shortcuts section title"
+msgid "General"
+msgstr "Général"
+
+#: resources/shortcuts-dialog.blp:68
+msgctxt "shortcut description"
+msgid "Preferences"
+msgstr "Préférences"
+
+#: resources/shortcuts-dialog.blp:75
+msgctxt "shortcut description"
+msgid "Show shortcuts"
+msgstr "Afficher les raccourcis"
+
+#: resources/shortcuts-dialog.blp:80
+msgctxt "shortcut description"
+msgid "Quit application"
+msgstr "Quitter l’application"
+
+#: resources/ui/application-window.blp:31
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Set daily wallpaper automatically"
+msgstr "Définir automatiquement le fond d’écran quotidien"
+
+#: resources/ui/application-window.blp:42
+msgctxt "main-window.toolbar.button.label"
+msgid "Source"
+msgstr "Source"
+
+#: resources/ui/application-window.blp:69
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Load images for selected source"
+msgstr "Charger les images de la source sélectionnée"
+
+#: resources/ui/application-window.blp:75
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Cancel loading images"
+msgstr "Annuler le chargement des images"
+
+#: resources/ui/application-window.blp:91
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Set current image as wallpaper"
+msgstr "Définir cette image comme fond d’écran"
+
+#: resources/ui/application-window.blp:103
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Open image with external application"
+msgstr "Ouvrir l’image avec une application externe"
+
+#: resources/ui/application-window.blp:109
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Save image"
+msgstr "Enregistrer l’image"
+
+#: resources/ui/application-window.blp:120
+msgctxt "main-window.toolbar.button.tooltip"
+msgid "Toggle the sidebar with image information"
+msgstr "Basculer les infos de l’image"
+
+#: resources/ui/application-window.blp:134
+msgctxt "main-window.menu.label"
+msgid "_Quit"
+msgstr "_Quitter"
+
+#: resources/ui/application-window.blp:141
+msgctxt "application-window.menu.label"
+msgid "_Preferences"
+msgstr "_Préférences"
+
+#: resources/ui/application-window.blp:146
+msgctxt "application-window.menu.label"
+msgid "_Keyboard Shortcuts"
+msgstr "_Raccourcis clavier"
+
+#: resources/ui/application-window.blp:151
+msgctxt "main-window.menu.label"
+msgid "_About Picture of the Day"
+msgstr "_À propos de Image du Jour"
+
+#: resources/ui/application-window.blp:200
+msgctxt "images-view.metadata.label"
+msgid "Title"
+msgstr "Titre"
+
+#: resources/ui/application-window.blp:209
+msgid "Visit the source page of this image."
+msgstr "Visiter la page source de cette image."
+
+#: resources/ui/application-window.blp:218
+msgctxt "images-view.metadata.label"
+msgid "Copyright"
+msgstr "Droits d’auteur"
+
+#: resources/ui/application-window.blp:229
+msgctxt "images-view.metadata.label"
+msgid "Description"
+msgstr "Description"
+
+#: resources/ui/application-window.blp:242
+msgctxt "images-view.metadata.label"
+msgid "Source"
+msgstr "Source"
+
+#: resources/ui/application-window.blp:250
+msgid "Visit the main page of the source of this image."
+msgstr "Visiter la page principale de la source de cette image."
+
+#: resources/ui/application-window.blp:269
+msgctxt "start-page.button.label"
+msgid "Get images"
+msgstr "Obtenir les images"
+
+#: resources/ui/error-notification-page.blp:21
+msgid "Open preferences"
+msgstr "Ouvrir les préférences"
+
+#: resources/ui/error-notification-page.blp:31
+msgid "Contact information"
+msgstr "Informations de contact"
+
+#: resources/ui/error-notification-page.blp:41
+msgid "Open source"
+msgstr "Ouvrir la source"
+
+#: resources/ui/image-page.blp:20
+msgctxt "image-page.loading-message.title"
+msgid "Downloading image…"
+msgstr "Téléchargement de l’image…"
+
+#: resources/ui/preferences-dialog.blp:12
+msgctxt "preferences-dialog.page.title"
+msgid "Wallpaper sources"
+msgstr "Sources de fonds d’écran"
+
+#: resources/ui/preferences-dialog.blp:16
+msgid "API key"
+msgstr "Clé API"
+
+#: resources/ui/preferences-dialog.blp:21
+msgctxt "preferences-dialog.row.link-label"
+msgid "Get API key"
+msgstr "Obtenir une clé API"
+
+#: resources/ui/preferences-dialog.blp:29
+msgctxt "preferences-dialog.row.title"
+msgid "Enabled collections"
+msgstr "Collections activées"
+
+#: resources/ui/preferences-dialog.blp:38
+msgctxt "preferences-dialog.page.title"
+msgid "Daily wallpaper update"
+msgstr "Mise à jour quotidienne du fond d’écran"
+
+#: resources/ui/preferences-dialog.blp:41
+msgctxt "preferences-dialog.group.title"
+msgid "Network"
+msgstr "Réseau"
+
+#: resources/ui/preferences-dialog.blp:44
+msgctxt "preferences-dialog.row.title"
+msgid "Update wallpaper over metered network"
+msgstr "Mettre à jour le fond d’écran sur réseau limité"
+
+#: resources/ui/preferences-dialog.blp:50
+msgctxt "preferences-dialog.group.title"
+msgid "Update wallpaper after session is unlocked"
+msgstr "Mettre à jour le fond d’écran après le déverrouillage de la session"
+
+#: resources/ui/preferences-dialog.blp:53
+msgctxt "preferences-dialog.row.title"
+msgid "Connection to logind allowed"
+msgstr "Connexion à logind autorisée"
+
+#: resources/ui/preferences-dialog.blp:54
+msgctxt "preferences-dialog.row.description"
+msgid "After the session is unlocked the wallpaper is updated immediately."
+msgstr ""
+"Dès que la session est déverrouillée, le fond d’écran est mis à jour "
+"immédiatement."
+
+#: resources/ui/preferences-dialog.blp:68
+msgctxt "preferences-dialog.row.title"
+msgid "Connection to logind prohibited"
+msgstr "Connexion à logind interdite"
+
+#: resources/ui/preferences-dialog.blp:69
+msgctxt "preferences-dialog.row.description"
+msgid ""
+"After the session is unlocked the wallpaper is updated only after a "
+"considerable delay."
+msgstr ""
+"Après le déverrouillage de la session, le fond d’écran n’est mis à jour qu’"
+"après un délai significatif."
+
+#: resources/ui/preferences-dialog.blp:87
+msgctxt "preferences-dialog.row.button.tooltip"
+msgid "Check again"
+msgstr "Vérifier à nouveau"
+
+#: resources/ui/preferences-dialog.blp:99
+msgctxt "preferences-dialog.row.title"
+msgid "Command to permit access to logind"
+msgstr "Commande pour autoriser l’accès à logind"
+
+#: resources/ui/preferences-dialog.blp:108
+msgctxt "preferences-dialog.row.button.tooltip"
+msgid "Copy to clipboard"
+msgstr "Copier vers le presse-papiers"
+
+#: resources/ui/preferences-dialog.blp:123
+msgid ""
+"Run this command in a terminal to grant access to logind. You may need to "
+"restart the application afterwards. Alternatively, you can use <a "
+"href=\"https://flathub.org/en/apps/com.github.tchx84.Flatseal\">Flatseal</a> "
+"to add a permission for this application to talk to "
+"<tt>org.freedesktop.login1</tt> on the <i>System Bus</i>."
+msgstr ""
+"Exécutez cette commande dans un terminal pour accorder l’accès à logind. "
+"Vous devrez peut-être redémarrer l’application ensuite. Alternativement, "
+"vous pouvez utiliser <a href="
+"\"https://flathub.org/fr/apps/com.github.tchx84.Flatseal\">Flatseal</a> pour "
+"ajouter une permission permettant à cette application de communiquer avec "
+"<tt>org.freedesktop.login1</tt> sur le <i>bus système</i>."
+
+#: src/app.rs:122
+msgctxt "about-dialog.link.label"
+msgid "Translations"
+msgstr "Traductions"
+
+#. Credits for the translator to the current language.
+#. Translators: Add your name here, as "Jane Doe <jdoe@example.com>" or "Jane Doe https://jdoe.example.com"
+#. Mail address or URL are optional.  Separate multiple translators with a newline, i.e. \n
+#: src/app.rs:131
+msgid "translator-credits"
+msgstr "Philippe Charlanes"
+
+#: src/app.rs:136
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Help and inspiration"
+msgstr "Aide et inspiration"
+
+#: src/app.rs:149
+msgctxt "about-dialog.acknowledgment-section"
+msgid "Helpful services"
+msgstr "Services utiles"
+
+#. Translators: Use translated app name from https://flathub.org/apps/de.swsnr.turnon
+#: src/app.rs:161
+msgctxt "about-dialog.other-app.name"
+msgid "Turn On"
+msgstr "Allumer"
+
+#. Translators: Use translated app summary from https://flathub.org/apps/de.swsnr.turnon
+#: src/app.rs:166
+msgctxt "about-dialog.other-app.summary"
+msgid "Turn on devices in your network"
+msgstr "Allumer les appareils de votre réseau"
+
+#: src/app.rs:194
+msgctxt "notification.title"
+msgid "Picture of the Day updated"
+msgstr "Image du Jour mise à jour"
+
+#: src/app.rs:199
+msgctxt "notification.body"
+msgid "Please restart the app to use the new version."
+msgstr "Veuillez redémarrer l’application pour utiliser la nouvelle version."
+
+#: src/app.rs:211
+msgctxt "alert-dialog.title"
+msgid "Restart after update?"
+msgstr "Redémarrer après la mise à jour ?"
+
+#: src/app.rs:216
+msgctxt "alert-dialog.body"
+msgid ""
+"Picture of the Day was updated, and needs to be restarted.\n"
+"\n"
+"Automatic restarting is not yet supported, but you can quit the app and "
+"start it again manually."
+msgstr ""
+"Image du Jour a été mise à jour et doit être redémarré.\n"
+"\n"
+"Le redémarrage automatique n’est pas encore pris en charge, mais vous pouvez "
+"quitter l’application et la relancer manuellement."
+
+#: src/app.rs:225
+msgctxt "alert-dialog.response"
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/app.rs:227
+msgctxt "alert-dialog.response"
+msgid "Quit"
+msgstr "Quitter"
+
+#: src/app.rs:293
+msgctxt "notification.button.label"
+msgid "Contact information"
+msgstr "Informations de contact"
+
+#: src/app.rs:298
+msgctxt "notification.button.label"
+msgid "Open preferences"
+msgstr "Ouvrir les préférences"
+
+#: src/app.rs:302
+msgctxt "notification.button.label"
+msgid "Open URL"
+msgstr "Ouvrir l'URL"
+
+#: src/app.rs:619
+msgctxt "command-line.option.description"
+msgid "Open preferences"
+msgstr "Ouvrir les préférences"
+
+#: src/app.rs:630
+msgctxt "command-line.option.description"
+msgid "Show image for the given date"
+msgstr "Afficher l’image pour la date indiquée"
+
+#: src/app.rs:635
+msgctxt "command-line.option.arg.description"
+msgid "YYYY-MM-DD"
+msgstr "AAAA-MM-JJ"
+
+#: src/app.rs:824
+msgctxt "portal.request-background.reason"
+msgid "Automatically fetch and set wallpaper in background"
+msgstr "Télécharger et définir automatiquement le fond d’écran en arrière-plan"
+
+#: src/app/model/error_notification.rs:42
+msgctxt "error-notification.title"
+msgid "Picture of the Day needs an API key"
+msgstr "Image du Jour nécessite une clé API"
+
+#: src/app/model/error_notification.rs:48
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"Please configure a valid API key for {source_name} in the application "
+"preferences. The current key appears to be invalid."
+msgstr ""
+"Veuillez configurer une clé API valide pour {source_name} dans les "
+"préférences de l’application. La clé actuelle semble invalide."
+
+#: src/app/model/error_notification.rs:66
+msgctxt "error-notification.title"
+msgid "Picture of the Day was rate-limited"
+msgstr "Image du Jour a atteint la limite de requêtes autorisées"
+
+#: src/app/model/error_notification.rs:72
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"The {source_name} server is rate-limited and does currently not allow you to "
+"fetch an image. Try again later, or try a different source."
+msgstr ""
+"Le serveur {source_name} a atteint sa limite de requêtes et ne permet pas "
+"actuellement de récupérer une image. Réessayez plus tard ou utilisez une "
+"source différente."
+
+#: src/app/model/error_notification.rs:85
+#: src/app/model/error_notification.rs:103
+msgctxt "error-notification.title"
+msgid "No image today"
+msgstr "Aucune image aujourd’hui"
+
+#: src/app/model/error_notification.rs:90
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"Currently, {source_name} does not provide an image for today. Try again "
+"later, or try a different source."
+msgstr ""
+"Actuellement, {source_name} ne propose pas d’image pour aujourd’hui. "
+"Réessayez plus tard ou choisissez une autre source."
+
+#: src/app/model/error_notification.rs:108
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"Today, {source_name} provides a video or another type of media which this "
+"application does not support. Try again tomorrow, or try a different source."
+msgstr ""
+"Aujourd’hui, {source_name} propose une vidéo ou un autre type de média non "
+"pris en charge par cette application. Réessayez demain ou choisissez une "
+"autre source."
+
+#: src/app/model/error_notification.rs:125
+#: src/app/model/error_notification.rs:146
+#: src/app/model/error_notification.rs:188
+msgctxt "error-notification.title"
+msgid "Fetching images failed"
+msgstr "Échec du téléchargement des images"
+
+#: src/app/model/error_notification.rs:130
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"The {source_name} server replied with HTTP status {http_status}. The server "
+"may have issues currently. Try again later, or try a different source. If "
+"the issue persists please report the problem."
+msgstr ""
+"Le serveur {source_name} a répondu avec le code HTTP {http_status}. Il "
+"rencontre peut-être des problèmes actuellement. Réessayez plus tard ou "
+"utilisez une autre source. Si le problème persiste, merci de le signaler."
+
+#: src/app/model/error_notification.rs:151
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"The {source_name} server responded with invalid data. The server may have "
+"issues currently. Try again later, or try a different source. If the issue "
+"persists please report the problem."
+msgstr ""
+"Le serveur {source_name} a retourné des données invalides. Il rencontre peut-"
+"être des problèmes actuellement. Réessayez plus tard ou utilisez une autre "
+"source. Si le problème persiste, merci de le signaler."
+
+#: src/app/model/error_notification.rs:171
+msgctxt "error-notification.title"
+msgid "Limited network connectivity"
+msgstr "Connectivité réseau limitée"
+
+#: src/app/model/error_notification.rs:177
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from {source_name}, with "
+"the following message: {error}. Your system appears to have only limited "
+"network connectivity. Try to connect your system to the internet."
+msgstr ""
+"Une erreur d’entrée/sortie s’est produite lors de la récupération de l’image "
+"du jour depuis {source_name} : {error}. Votre système semble avoir une "
+"connectivité réseau limitée. Veuillez vérifier votre connexion Internet."
+
+#: src/app/model/error_notification.rs:193
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while fetching today's image from {source_name}, with "
+"the following message: {error}. Try again later, or try a different source. "
+"If the issue persists please report the problem."
+msgstr ""
+"Une erreur d’entrée/sortie est survenue lors de la récupération de l’image "
+"du jour depuis {source_name} : {error}. Réessayez plus tard ou utilisez une "
+"autre source. Si le problème persiste, merci de le signaler."
+
+#: src/app/widgets/application_window.rs:74
+msgctxt "error-notification.title"
+msgid "Failed to open source URL"
+msgstr "Impossible d’ouvrir l’URL de la source"
+
+#: src/app/widgets/application_window.rs:81
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening {url}, with the following message: "
+"{error}. If the issue persists please report the problem."
+msgstr ""
+"Une erreur d’entrée/sortie est survenue lors de l’ouverture de {url} : "
+"{error}. Si le problème persiste, merci de le signaler."
+
+#: src/app/widgets/application_window.rs:103
+msgctxt "error-notification.title"
+msgid "Failed to set wallpaper"
+msgstr "Impossible de définir le fond d’écran"
+
+#: src/app/widgets/application_window.rs:110
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while setting the wallpaper, with the following "
+"message: {error}. If the issue persists please report the problem."
+msgstr ""
+"Une erreur d’entrée/sortie est survenue lors de la définition du fond d’"
+"écran : {error}. Si le problème persiste, merci de le signaler."
+
+#: src/app/widgets/application_window.rs:143
+msgctxt "error-notification.title"
+msgid "Failed to open image"
+msgstr "Impossible d’ouvrir l’image"
+
+#: src/app/widgets/application_window.rs:150
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while opening the current image, with the following "
+"message: {error}. If the issue persists please report the problem."
+msgstr ""
+"Une erreur d’entrée/sortie est survenue lors de l’ouverture de l’image : "
+"{error}. Si le problème persiste, merci de le signaler."
+
+#: src/app/widgets/application_window.rs:170
+#, rust-format
+msgid "Saved image {name}"
+msgstr "Image enregistrée {name}"
+
+#: src/app/widgets/application_window.rs:189
+msgctxt "error-notification.title"
+msgid "Failed to save image"
+msgstr "Impossible d'enregistrer l'image"
+
+#: src/app/widgets/application_window.rs:196
+#, rust-format
+msgctxt "error-notification.description"
+msgid ""
+"An I/O error occurred while saving the current image, with the following "
+"message: {error}. If the issue persists please report the problem."
+msgstr ""
+"Une erreur d’entrée/sortie est survenue lors de l’enregistrement de l’image :"
+" {error}. Si le problème persiste, merci de le signaler."
+
+#: src/app/widgets/application_window.rs:218
+msgctxt "alert.response"
+msgid "Close"
+msgstr "Fermer"
+
+#: src/app/widgets/application_window.rs:225
+msgctxt "alert.response"
+msgid "Contact information"
+msgstr "Informations de contact"
+
+#: src/app/widgets/application_window.rs:229
+msgctxt "alert.response"
+msgid "Open preferences"
+msgstr "Ouvrir les préférences"
+
+#: src/app/widgets/application_window.rs:233
+msgctxt "alert.response"
+msgid "Open URL"
+msgstr "Ouvrir l'URL"
+
+#: src/app/widgets/application_window.rs:387
+msgctxt "toast.button.label"
+msgid "Details"
+msgstr "Détails"
+
+#: src/app/widgets/application_window.rs:494
+msgctxt "file-dialog.title"
+msgid "Save image"
+msgstr "Enregistrer l’image"
+
+#: src/app/widgets/preferences_dialog.rs:86
+#, rust-format
+msgid "{n}/{total} collection enabled"
+msgid_plural "{n}/{total} collections enabled"
+msgstr[0] "{n}/{total} collection activée"
+msgstr[1] "{n}/{total} collections activées"
+
+#. Translators: This is Pango markup, be sure to escape appropriately
+#: src/config.rs:71
+#, rust-format
+msgctxt "about-dialog.license-text"
+msgid ""
+"Copyright {copyright_name} &lt;{copyright_mail}&gt;\n"
+"\n"
+"Licensed under the terms of the EUPL 1.2. You can find official translations "
+"of the license text at <a href=\"{translations}\">{translations}</a>.\n"
+"\n"
+"The full English text follows.\n"
+"\n"
+"{license_text}"
+msgstr ""
+"Copyright {copyright_name} &lt;{copyright_mail}&gt;\n"
+"\n"
+"Distribué sous les termes de la licence EUPL 1.2. Vous trouverez les "
+"traductions officielles du texte de la licence à l’adresse <a href="
+"\"{translations}\">{translations}</a>.\n"
+"\n"
+"Le texte intégral en anglais suit ci-dessous.\n"
+"\n"
+"{license_text}"
+
+#: src/images/source.rs:57
+msgctxt "source name"
+msgid "NASA Astronomy Picture of the Day"
+msgstr "Image du Jour de NASA Astronomy"
+
+#: src/images/source.rs:58
+msgctxt "source name"
+msgid "Bing"
+msgstr "Bing"
+
+#: src/images/source.rs:59
+msgctxt "source name"
+msgid "Wikimedia Picture of the Day"
+msgstr "Image du Jour de Wikimedia"
+
+#: src/images/source.rs:60
+msgctxt "source name"
+msgid "Simon Stålenhag"
+msgstr "Simon Stålenhag"
+
+#: src/images/source.rs:64
+msgctxt "source name"
+msgid "NASA Earth Observatory Image of the Day"
+msgstr "Image du Jour de NASA Earth Observatory"
+
+#: src/images/sources/bing.rs:77
+msgctxt "source.bing.copyright"
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: src/images/sources/eoiod.rs:36
+msgctxt "source.eoiod.copyright"
+msgid "NASA Earth Observatory"
+msgstr "NASA Earth Observatory"
+
+#: src/images/sources/stalenhag.rs:96
+msgctxt "source.stalenhag.copyright"
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: src/images/sources/stalenhag.rs:98
+#, rust-format
+msgctxt "source.stalenhag.description"
+msgid "Collection: {}"
+msgstr "Collection: {}"
+
+#: src/images/sources/wikimedia.rs:67
+#, rust-format
+msgctxt "source.wikimedia.copyright"
+msgid "{artist} ({credit}, {license})"
+msgstr "{artist} ({credit}, {license})"
+
+#: src/images/sources/wikimedia.rs:75
+#, rust-format
+msgctxt "source.wikimedia.copyright"
+msgid "{artist} ({license})"
+msgstr "{artist} ({license})"
+
+#: src/images/sources/wikimedia.rs:85
+msgctxt "source.wikimedia.copyright"
+msgid "Unknown, all rights reserved"
+msgstr "Inconnu, tous droits réservés"
+
+#: src/main.rs:72
+msgctxt "application-name"
+msgid "Picture of the Day"
+msgstr "Image du Jour"
